@@ -23,6 +23,17 @@
         ]
       },
       {
+        "group": "App de Securitização",
+        "pages": [
+          "securitizacao/visao-geral",
+          "securitizacao/ativos-cnab",
+          "securitizacao/passivos-registry",
+          "securitizacao/upload",
+          "securitizacao/parametrizar-cnab",
+          "securitizacao/investigacao"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"

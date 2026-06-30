@@ -1,0 +1,151 @@
+---
+title: "Processamento, conciliação e investigação"
+sidebarTitle: "Investigação e checagens"
+description: "Como processar os arquivos enviados, conciliar, ler as checagens de qualidade e investigar divergências e arquivos que não processaram."
+icon: "magnifying-glass"
+---
+
+Depois de [enviar os arquivos](/securitizacao/upload), você os **processa**, **concilia** e **investiga**. Esta página cobre todo esse ciclo e o que fazer quando algo dá errado.
+
+## 1. Processar
+
+<Info>
+  **Onde fica:** **Operação → Processar**. O processamento transforma os arquivos do stage em dados (camada bronze).
+</Info>
+
+<Steps>
+  <Step title="Selecione o projeto">
+    Escolha o **projeto**. A tela lista os **arquivos no stage** com um ponto/etiqueta indicando **pendente** ou **processado**.
+  </Step>
+  <Step title="Escolha o que processar">
+    Marque os arquivos desejados (ou **Selecionar pendentes**) e clique em **Processar**. A opção **Reprocessar tudo** força o reprocessamento da carteira inteira.
+  </Step>
+  <Step title="Acompanhe o progresso">
+    A seção **Progresso** mostra arquivo a arquivo, com ícones de status:
+
+    | Ícone | Estado |
+    |---|---|
+    | <Icon icon="clock" /> | Na fila |
+    | <Icon icon="spinner" /> | Processando |
+    | <Icon icon="circle-check" color="#16a34a" /> | Concluído |
+    | <Icon icon="circle-xmark" color="#dc2626" /> | Erro (mensagem em vermelho) |
+  </Step>
+  <Step title="Confira o resumo">
+    Ao final, o **Resumo** mostra quantos foram **processados** e quantos deram **erro**.
+  </Step>
+</Steps>
+
+<Warning>
+  **Remover selecionados** apaga o bronze (cessão + liquidação) daqueles arquivos, tira‑os do stage e **reprocessa a carteira inteira**. A ação pede confirmação e roda em segundo plano — acompanhe pelo indicador de **jobs**.
+</Warning>
+
+## 2. Conciliar
+
+<Info>
+  **Onde fica:** **Operação → Conciliação**. A conciliação **deriva** contratos, parcelas e pagamentos a partir do bronze.
+</Info>
+
+<Steps>
+  <Step title="Selecione o projeto e os arquivos pendentes">
+    Os pendentes aparecem em dois grupos: **Cessão** e **Liquidação**. Marque os que quer conciliar (ou use **Reprocessar tudo**).
+  </Step>
+  <Step title="Inicie a conciliação">
+    Clique em **Iniciar Conciliação** e acompanhe as **fases** (consolidar cessões, derivar parcelas, etc.).
+  </Step>
+  <Step title="Leia os resultados">
+    No fim aparecem as métricas: **contratos**, **parcelas**, **pagamentos**, **valor de face**, **VP total** e **valor pago**.
+  </Step>
+  <Step title="Atenção aos avisos">
+    A tela destaca três situações comuns:
+
+    - <Icon icon="triangle-exclamation" color="#dc2626" /> **Registros não carregados** — CNAB inválido (ex.: nº de parcela não numérico, contrato vazio). Mostra uma amostra com o motivo.
+    - <Icon icon="triangle-exclamation" color="#d97706" /> **Duplicatas em liquidação** — linhas repetidas; mostra arquivo/contrato/parcela.
+    - <Icon icon="circle-info" color="#2563eb" /> **Deduplicação aplicada** — o sistema manteve o snapshot mais recente por contrato/parcela.
+  </Step>
+</Steps>
+
+<Note>
+  Ao terminar, um job de **atualização das tabelas** é disparado automaticamente em segundo plano. Você pode sair da tela — acompanhe pelo indicador de jobs.
+</Note>
+
+## 3. Checagens de qualidade
+
+<Info>
+  **Onde fica:** **Carteira → Check** (aba **Qualidade**). As checagens validam a saúde dos dados antes de fechar o período.
+</Info>
+
+No topo há o status geral ("Tudo conforme" ou "X de Y verificações aprovadas") e o botão **Recalcular**, que recomputa as validações. Os problemas vêm agrupados em três famílias:
+
+<AccordionGroup>
+  <Accordion title="Arquivo" icon="file">
+    - **Arquivos duplicados** — arquivos cujos registros já existem em outro (ex.: cópia `(1).REM`).
+  </Accordion>
+  <Accordion title="Processo (bronze)" icon="layer-group">
+    - **Pagamentos órfãos** — liquidação sem a cessão correspondente.
+    - **Pagamento antes da cessão** — data de liquidação anterior à cessão.
+    - **Overpayment** — valor pago acima de ~130% do título.
+    - **Divergência de valor** — título diferente entre cessão e liquidação.
+    - **Contratos multi‑data**, **duplicatas**, **datas inválidas**, **arquivos faltando**.
+  </Accordion>
+  <Accordion title="Conciliação (derivado)" icon="diagram-project">
+    - **Parcelas/contratos órfãos**, **pagamentos fantasma/não aplicados**.
+    - **Vencimento antes da cessão**, **pago antes do vencimento**.
+    - **Saldo negativo** (pago maior que o devido), **parcelas/contratos duplicados**, **divergência arquivo × pagamento**, **datas inválidas**.
+  </Accordion>
+</AccordionGroup>
+
+### Como tratar uma checagem que falhou
+
+<Steps>
+  <Step title="Abra o detalhe">
+    Clique no card do problema (os que têm contagem maior que zero). Abre um **painel de detalhe** com a descrição e uma amostra dos registros afetados.
+  </Step>
+  <Step title="Escolha a ação certa">
+    O painel oferece a correção adequada ao tipo de problema:
+
+    - **Revisão necessária** — não há correção automática segura. Use **Exportar registros (CSV)**, investigue a origem e corrija o arquivo (e reenvie).
+    - **Correção automática** — para casos seguros (remover duplicatas, remover órfãos derivados, reprocessar). Clique em **Corrigir**, **confirme** o aviso de impacto e aguarde o resultado.
+  </Step>
+  <Step title="Recalcule">
+    Após corrigir, use **Recalcular** para confirmar que o problema saiu da lista.
+  </Step>
+</Steps>
+
+## 4. Auditoria (investigar a origem)
+
+<Info>
+  **Onde fica:** **Operação → Auditoria** (também acessível pelas abas **Inspeção** e **Rastreio** do Check). Serve para rastrear o caminho **arquivo CNAB → contrato → parcela → pagamento**.
+</Info>
+
+<Tabs>
+  <Tab title="Inspeção de arquivo">
+    Lista os arquivos com filtros por **status** (processados/pendentes) e **tipo** (cessão/liquidação). Clique num arquivo para abrir o detalhe, com KPIs (registros, VP total, contratos/pagamentos) e abas com os **registros CNAB**, **contratos** e **parcelas** extraídos. Você pode ver o **arquivo bruto** (primeiras linhas) e **baixar** o CNAB original.
+  </Tab>
+  <Tab title="Rastreio de contrato">
+    Busque um **contrato** (por ID ou cliente) e veja o **lineage** completo: resumo, **arquivos CNAB de origem**, histórico de pagamento por parcela (com status Pago/Parcial/Aberto e saldo) e as seções de **Cessões, Liquidações, Parcelas e Pagamentos**. Há **Baixar pacote** para exportar tudo do contrato em um ZIP.
+  </Tab>
+</Tabs>
+
+## 5. Quando um arquivo não processa
+
+<Steps>
+  <Step title="Confirme o status em Processar">
+    O arquivo aparece como **pendente** (ou com erro, com a mensagem em vermelho na seção Progresso).
+  </Step>
+  <Step title="Verifique se há job em andamento">
+    Olhe o indicador de **jobs**. Se houver uma **remoção em andamento** para o projeto, aguarde concluir antes de tentar de novo.
+  </Step>
+  <Step title="Inspecione o arquivo bruto">
+    Em **Auditoria → Inspeção de arquivo**, abra o arquivo e veja o **arquivo bruto**. Procure por linhas malformadas, codificação estranha ou header/trailer inválidos.
+  </Step>
+  <Step title="Verifique a parametrização">
+    Se o layout é novo, talvez nenhum template **case** com ele. Confira/crie o template em [Parametrizar novo CNAB](/securitizacao/parametrizar-cnab) e teste com a ferramenta de detecção.
+  </Step>
+  <Step title="Corrija e reprocesse">
+    Corrija o arquivo na origem e reenvie, ou em **Processar** selecione o arquivo e use **Remover selecionados** (que reprocessa a carteira) ou **Reprocessar tudo**.
+  </Step>
+</Steps>
+
+<Card title="Checklist rápido de investigação" icon="list-check">
+  **Não processa?** → arquivo bruto na Auditoria · **Erro de parsing?** → confira o formato/template · **Duplicatas?** → remova as cópias e reprocesse · **Conciliação com inválidos?** → corrija contrato/parcela na origem e reenvie · **Job travado (> 1h)?** → acione o admin.
+</Card>
