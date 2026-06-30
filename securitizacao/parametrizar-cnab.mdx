@@ -1,0 +1,130 @@
+---
+title: "Parametrizar um novo CNAB"
+sidebarTitle: "Parametrizar novo CNAB"
+description: "Como criar um template de layout CNAB: seletor de identificação automática, mapa de campos (de-para), transformações e teste antes de ativar."
+icon: "sliders"
+---
+
+Cada originador/banco entrega o CNAB num **layout próprio** — os campos ficam em posições diferentes. Os **Templates** ensinam o sistema a ler cada layout: quando um arquivo é enviado, o parser testa os templates e usa o que **casa** com o arquivo.
+
+<Info>
+  **Onde fica:** **Operação → Templates**. Você só precisa criar um template quando aparece um **layout novo** que o sistema ainda não reconhece.
+</Info>
+
+## Anatomia de um template
+
+Um template tem quatro partes:
+
+<Columns cols={2}>
+  <Card title="1. Identificação" icon="tag">
+    Nome, tipo de CNAB (400/444/500/600) e status (Ativo/Inativo).
+  </Card>
+  <Card title="2. Operação" icon="arrows-split-up-and-left">
+    Se o arquivo é sempre **Cessão**/**Liquidação** (fixa) ou se o tipo é **derivado** de uma regra do conteúdo.
+  </Card>
+  <Card title="3. Seletor" icon="filter">
+    As condições que dizem **se este template casa** com um arquivo (detecção automática).
+  </Card>
+  <Card title="4. Mapa de campos" icon="table-columns">
+    O **de‑para**: cada coluna de saída e a posição que ela ocupa na linha do arquivo.
+  </Card>
+</Columns>
+
+## Passo a passo
+
+<Steps>
+  <Step title="Crie o template">
+    Em **Templates**, clique em **Novo template**. Informe:
+
+    - **Nome** — ex.: "BTG Cessão 400".
+    - **Tipo CNAB** — 400, 444, 500 ou 600.
+    - **Operação** — Cessão, Liquidação, ou deixe em branco para **derivada**.
+
+    Clique em **Criar e editar**. O template nasce **Inativo** (não participa da detecção automática até ser ativado).
+  </Step>
+
+  <Step title="Defina a operação">
+    Na seção **Operação**, escolha:
+
+    - **Fixa** — todas as linhas viram a mesma operação (Cessão ou Liquidação).
+    - **Derivada** — o tipo depende de uma regra do conteúdo. Ex.: *ocorrência 06/09 (444)* → se o código for 06 ou 09 é **Liquidação**, senão **Cessão**; ou *valor pago > 0* → se há valor pago é **Liquidação**.
+  </Step>
+
+  <Step title="Configure o seletor (identificação automática)">
+    Em **Seletor**, adicione **condições** (todas precisam ser verdadeiras). Tipos disponíveis:
+
+    | Condição | Para que serve | Exemplo |
+    |---|---|---|
+    | **Tamanho do registro** | Casar pelo comprimento da linha de detalhe | `tamanho = 400` (ou faixa 398–402) |
+    | **Literal no header** | Procurar um texto em posição fixa do cabeçalho | `header[3–9] = "REMESSA"` |
+    | **Ocorrência em lista** | Campo deve estar entre certos valores | `posição[105–106] ∈ [06, 09]` |
+    | **Campo > 0** | Soma de um campo é positiva | `soma[83–95] > 0` (valor pago) |
+
+    O resumo em texto ajuda a conferir a leitura das condições.
+  </Step>
+
+  <Step title="Monte o mapa de campos (de-para)">
+    Esta é a parte central. Cada linha do mapa extrai **uma coluna** de uma **posição fixa** do arquivo.
+
+    Para cada campo informe: **Coluna destino** (ex.: `VALOR_TITULO`), **Pos. inicial**, **Pos. final** e a **transformação**. O **tamanho** é calculado automaticamente.
+
+    <Tip>
+      Use **Colar da planilha** para colar várias linhas de uma vez no formato `COLUNA  POS_INI  POS_FIM  TRANSFORMAÇÃO  NOTA` (separadas por tabulação).
+    </Tip>
+  </Step>
+
+  <Step title="Teste antes de ativar">
+    Na ferramenta **Testar template**, selecione o template e **suba um arquivo** (ou cole uma linha). Você também pode usar **Detectar (auto)** para ver qual template casa com o arquivo. O resultado mostra a operação detectada, avisos e uma **amostra das colunas extraídas** — confira se os valores caíram nas colunas certas.
+  </Step>
+
+  <Step title="Ative">
+    Volte ao editor, mude o **Status** para **Ativo** e **Salve**. A partir daí o template entra na detecção automática dos próximos uploads.
+  </Step>
+</Steps>
+
+## Transformações disponíveis
+
+A transformação diz como interpretar os caracteres extraídos:
+
+| Transformação | O que faz | Exemplo |
+|---|---|---|
+| **TEXTO** | Texto como está (mantém espaços) | `"SICREDI  "` → `"SICREDI  "` |
+| **TEXTO_STRIP** | Texto sem espaços nas pontas | `"SICREDI  "` → `"SICREDI"` |
+| **NUMERO** | Número (inteiro ou com casas decimais) | `"00012345"` (2 casas) → `123.45` |
+| **MOEDA** | Centavos inteiros → valor | `"00000001234"` (2 casas) → `12.34` |
+| **ID** | Remove zeros à esquerda | `"00000123456"` → `"123456"` |
+| **DATA6** | Data no formato DDMMAA | `"301225"` → `2025‑12‑30` |
+| **DATA8** | Data no formato DDMMAAAA | `"30122025"` → `2025‑12‑30` |
+| **CONST** | Valor constante (ignora a posição) | sempre `"MANUAL"` |
+| **RAW** | A linha inteira, sem recorte | linha completa |
+
+<Note>
+  Existem variações para datas lidas do **header** (HEADER_DATE6/8) e posições **alternativas** de fallback. Use a nota de cada campo para registrar a origem (ex.: "código do banco").
+</Note>
+
+## Erros e avisos no mapa de campos
+
+Ao salvar, o editor sinaliza:
+
+<AccordionGroup>
+  <Accordion title="Erros (bloqueiam o salvamento)" icon="circle-xmark">
+    - Campo **sem coluna de destino**.
+    - **Pos. final menor que a inicial**.
+    - **Pos. final maior que o tamanho do registro**.
+    - **Coluna duplicada** (duas linhas com o mesmo destino).
+  </Accordion>
+  <Accordion title="Avisos (informativos)" icon="triangle-exclamation">
+    - **Sobreposição de posições** entre dois campos — pode ser intencional, mas vale conferir.
+  </Accordion>
+</AccordionGroup>
+
+## Dicas de manutenção
+
+<Columns cols={2}>
+  <Card title="Duplicar para variar" icon="copy">
+    Um layout parecido com outro? **Duplique** um template existente (a cópia nasce Inativa) e ajuste só o que muda.
+  </Card>
+  <Card title="Prioridade" icon="arrow-up-9-1">
+    Quando mais de um template poderia casar, a **prioridade** funciona como desempate na detecção automática.
+  </Card>
+</Columns>

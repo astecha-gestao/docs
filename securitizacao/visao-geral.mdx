@@ -1,0 +1,110 @@
+---
+title: "App de Securitização — Visão geral"
+sidebarTitle: "Visão geral"
+description: "Como o app de Securitização organiza ativos (recebíveis em CNAB) e passivos (aportes/resgates no Registry), e o fluxo de trabalho de ponta a ponta."
+icon: "building-columns"
+---
+
+<Info>
+  Guia operacional interno da Astecha. Descreve as telas do app de Securitização do Portal e do módulo de Passivos (Registry). Os nomes de abas, botões e campos seguem o que aparece na interface.
+</Info>
+
+## O que é o app de Securitização
+
+O app concentra a operação de uma **securitização** (uma emissão/veículo que compra recebíveis e é financiado por cotistas). Ele tem dois lados que se equilibram:
+
+<Columns cols={2}>
+  <Card title="Ativos — o que o fundo tem a receber" icon="file-invoice-dollar">
+    Os **recebíveis** (contratos e parcelas) entram no sistema por meio de **arquivos CNAB** — cessões (novos recebíveis) e liquidações (pagamentos). Ficam no app de **Securitização**.
+  </Card>
+  <Card title="Passivos — o que o fundo deve aos cotistas" icon="users">
+    Os **aportes** (subscrições de cotas) e **resgates** dos investidores são cadastrados no módulo de **Passivos / Registry**. É o "quem é dono de quanto".
+  </Card>
+</Columns>
+
+<Note>
+  **Regra mental:** *ativo* = onde o dinheiro do fundo está aplicado (recebíveis via CNAB). *Passivo* = de quem é o dinheiro do fundo (cotistas, via aportes). Os dois se ligam pelo **veículo/projeto**.
+</Note>
+
+## Conceitos essenciais
+
+<AccordionGroup>
+  <Accordion title="Deal, Projeto e Veículo" icon="diagram-project">
+    - **Deal** — a emissão/securitização como um todo (ex.: "ABC Recebíveis 2024"). Agrupa um ou mais projetos.
+    - **Projeto / Veículo** — a unidade onde os recebíveis são registrados e processados. Todo arquivo CNAB é enviado **para um projeto**.
+    - A maioria das telas começa pedindo que você **selecione o Deal (Gestão) ou o Projeto (Carteira)** e uma **data‑base**.
+  </Accordion>
+  <Accordion title="CNAB, Cessão e Liquidação" icon="file-lines">
+    - **CNAB** — formato de arquivo texto de posição fixa usado pelo mercado para trafegar recebíveis. Cada layout (400/444/500/600) organiza os campos em posições diferentes.
+    - **Cessão** — arquivo/registro que **traz um recebível** para o fundo (contrato + parcela + valor presente).
+    - **Liquidação** — arquivo/registro que **informa um pagamento** recebido de um devedor.
+  </Accordion>
+  <Accordion title="Aporte, Resgate e Despesa" icon="hand-holding-dollar">
+    - **Aporte (subscrição)** — entrada de capital de um cotista, que recebe cotas em troca.
+    - **Resgate** — saída de capital do cotista; o sistema calcula cotas, dias de carrego e IR.
+    - **Despesa** — custos da operação (administração, servicing, taxas), acompanhados na aba **Despesas** da Gestão.
+  </Accordion>
+  <Accordion title="Bronze, conciliação e checagens" icon="layer-group">
+    - Os arquivos CNAB entram "crus" (camada **bronze**: cessões e liquidações).
+    - A **conciliação** deriva daí as tabelas de **contratos, parcelas e pagamentos** usadas nos relatórios.
+    - As **checagens** validam a qualidade desses dados (órfãos, duplicatas, divergências de valor, datas inválidas, etc.).
+  </Accordion>
+</AccordionGroup>
+
+## Como chegar no app
+
+<Steps>
+  <Step title="Abra o Portal e vá em Credit → Securitização">
+    Na tela inicial (grade de apps), abra a área **Credit** e selecione o app **Securitização**. A tela inicial é a **visão da Securitizadora** (KPIs gerais antes de escolher um deal).
+  </Step>
+  <Step title="Use o menu lateral do app">
+    O app é dividido em quatro áreas no menu:
+
+    - **Securitizadora** — visão executiva da securitizadora.
+    - **Operação** — **Upload**, **Processar**, **Conciliação**, **CNAB Manual** e **Templates**.
+    - **Gestão** — Relatório, Rentabilidade, Posições e IR, Despesas, PDD e DRE (escolhe **Deal** + **data**).
+    - **Carteira** — Geral, Estoque, Safra, Analítica e **Check** (escolhe **Projeto** + **data**).
+  </Step>
+  <Step title="Para passivos, vá em Controller → Passivos / Registry">
+    Os **aportes e resgates** ficam em outra área: **Controller → Passivos** (com o **Registry** de subscrições). É lá que se cadastram cotistas, aportes e resgates. Veja em [Passivos no Registry](/securitizacao/passivos-registry).
+  </Step>
+</Steps>
+
+## Fluxo de trabalho de ponta a ponta
+
+A ordem típica de uma rotina de fechamento:
+
+<Steps>
+  <Step title="Enviar os arquivos CNAB do período">
+    Suba as cessões e liquidações do projeto. → [Upload de arquivos](/securitizacao/upload)
+  </Step>
+  <Step title="Processar e conciliar">
+    Rode o processamento e a conciliação para derivar contratos, parcelas e pagamentos. → [Investigação e checagens](/securitizacao/investigacao)
+  </Step>
+  <Step title="Revisar as checagens de qualidade">
+    Trate órfãos, duplicatas e divergências antes de fechar. → [Investigação e checagens](/securitizacao/investigacao)
+  </Step>
+  <Step title="Cadastrar os passivos do período">
+    Registre aportes e resgates dos cotistas. → [Passivos no Registry](/securitizacao/passivos-registry)
+  </Step>
+  <Step title="Conferir relatórios e posições">
+    Use as abas de **Gestão** e **Carteira** para conferir PL, rentabilidade, DRE e posições.
+  </Step>
+</Steps>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Ativos em CNAB" icon="file-invoice-dollar" href="/securitizacao/ativos-cnab">
+    Como os recebíveis entram e são organizados.
+  </Card>
+  <Card title="Passivos no Registry" icon="users" href="/securitizacao/passivos-registry">
+    Cadastro de aportes, resgates e cotistas.
+  </Card>
+  <Card title="Upload de arquivos" icon="upload" href="/securitizacao/upload">
+    Enviar CNABs e gerar CNAB manual.
+  </Card>
+  <Card title="Parametrizar novo CNAB" icon="sliders" href="/securitizacao/parametrizar-cnab">
+    Criar templates de layout para novos arquivos.
+  </Card>
+</Columns>

@@ -1,0 +1,96 @@
+---
+title: "Upload de arquivos CNAB"
+sidebarTitle: "Upload de arquivos"
+description: "Como enviar arquivos CNAB de cessão e liquidação, ler os resultados do envio e gerar um CNAB manual para correções."
+icon: "upload"
+---
+
+O upload é o ponto de entrada dos **ativos**: é aqui que você envia os arquivos CNAB (cessões e liquidações) para um projeto. Depois do envio, eles ficam aguardando o **processamento**.
+
+<Info>
+  **Onde fica:** **Operação → Upload**. Tudo é feito **por projeto** — selecione o projeto antes de enviar.
+</Info>
+
+## Enviar arquivos CNAB
+
+<Steps>
+  <Step title="Selecione o projeto">
+    No topo, escolha o **projeto** no campo de seleção. O envio fica bloqueado até um projeto ser selecionado.
+
+    <Note>
+      Se o projeto ainda não existe, use o atalho **+ Novo projeto**, que leva ao **Registry** para cadastrá‑lo. Só depois volte ao Upload.
+    </Note>
+  </Step>
+  <Step title="Carregue os arquivos">
+    Arraste os arquivos para a **área de upload** (borda tracejada) ou clique para selecioná‑los. São aceitas as extensões **`.txt`**, **`.rem`** e **`.ret`**. Pode enviar vários de uma vez; arquivos com o mesmo nome são ignorados.
+  </Step>
+  <Step title="Revise a lista de pendentes">
+    Cada arquivo aparece com **nome** e **tamanho**. Use o **X** para remover um item, ou **Limpar** para esvaziar a lista.
+  </Step>
+  <Step title="Envie">
+    Clique em **Enviar (N)**, onde N é a quantidade de arquivos. Cada arquivo passa por uma **validação de formato** (codificação e comprimento de linha) antes de subir.
+  </Step>
+  <Step title="Leia os resultados">
+    Aparece um resumo em selos coloridos e a lista arquivo a arquivo:
+
+    | Status | Significado |
+    |---|---|
+    | <Icon icon="circle-check" color="#16a34a" /> **Enviado** | Subiu com sucesso e aguarda processamento. |
+    | <Icon icon="ban" color="#d97706" /> **Duplicado** | Conteúdo já enviado antes (mesmo nome ou mesmo conteúdo). Foi ignorado. |
+    | <Icon icon="circle-xmark" color="#dc2626" /> **Erro / Inválido** | Não passou na validação (ex.: formato/codificação). Veja a mensagem na linha. |
+  </Step>
+</Steps>
+
+<Check>
+  Depois de **Enviado**, o arquivo fica na fila do projeto. O próximo passo é **Processar** e **Conciliar** — veja [Investigação e checagens](/securitizacao/investigacao).
+</Check>
+
+## CNAB Manual
+
+A tela **CNAB Manual** (em **Operação → CNAB Manual**) gera um arquivo `.REM` **sob demanda**, a partir das parcelas em aberto — sem precisar receber um arquivo externo. Use para **correções e lançamentos pontuais**.
+
+<Tabs>
+  <Tab title="Quando usar Liquidação">
+    Você recebeu pagamentos de devedores (em parcelas específicas) e precisa registrar os valores pagos. O app gera um `.REM` de **liquidação**.
+  </Tab>
+  <Tab title="Quando usar Cessão">
+    Você quer ceder novas parcelas ao fundo, confirmando ou ajustando o **valor presente** de cada uma. O app gera um `.REM` de **cessão**.
+  </Tab>
+</Tabs>
+
+### Passo a passo
+
+<Steps>
+  <Step title="Selecione o projeto">
+    Escolha o **projeto** no topo. Sem projeto, a tela mostra um aviso para selecionar antes de continuar.
+  </Step>
+  <Step title="Escolha o tipo de operação">
+    Use os botões **Liquidação** ou **Cessão**. Trocar de tipo limpa a seleção e os valores em andamento.
+  </Step>
+  <Step title="Busque e selecione as parcelas">
+    Use a **busca por contrato ou cliente** para filtrar a tabela de **parcelas em aberto**. Marque as parcelas (checkbox ou clique na linha). Há **Selecionar página** para marcar todas as visíveis. A tabela é paginada.
+  </Step>
+  <Step title="Ajuste os valores no painel da direita">
+    As parcelas selecionadas aparecem no painel lateral. O **valor** de cada uma já vem preenchido (saldo em aberto, na liquidação; valor presente, na cessão) e é **editável**. O **total** é somado em tempo real.
+  </Step>
+  <Step title="Informe a data e gere">
+    Preencha a **Data da operação** e clique em **Gerar arquivo CNAB**. O botão fica bloqueado sem data ou sem parcelas selecionadas.
+  </Step>
+  <Step title="Confirme e processe">
+    O card de sucesso mostra o **nome do arquivo gerado**, a **quantidade de registros** e o **valor total**. O arquivo vai para a fila do projeto — abra **Processar** para processá‑lo.
+  </Step>
+</Steps>
+
+## Problemas comuns no envio
+
+<AccordionGroup>
+  <Accordion title="O botão Enviar está desabilitado" icon="ban">
+    Confira: há um **projeto selecionado**? Há **arquivos na lista de pendentes**? Já existe um envio em andamento? Qualquer um desses bloqueia o botão.
+  </Accordion>
+  <Accordion title="O arquivo voltou como Inválido" icon="triangle-exclamation">
+    O arquivo não passou na validação de formato (codificação fora de latin‑1/utf‑8, linhas vazias ou comprimento de linha inesperado). Confira o arquivo na origem. Se for um layout novo, talvez ele precise ser **parametrizado** — veja [Parametrizar novo CNAB](/securitizacao/parametrizar-cnab).
+  </Accordion>
+  <Accordion title="O arquivo voltou como Duplicado" icon="copy">
+    Já existe um arquivo com o mesmo nome ou com o mesmo conteúdo no projeto. Se for realmente uma nova remessa, verifique se você não está reenviando uma cópia (ex.: `arquivo (1).REM`).
+  </Accordion>
+</AccordionGroup>
