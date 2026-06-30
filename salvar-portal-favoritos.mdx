@@ -1,0 +1,151 @@
+---
+title: "Salvar Portal Astecha"
+sidebarTitle: "Salvar Portal Astecha"
+description: "Guia rápido para salvar o endereço fixo do Portal Astecha no Google Chrome e no Microsoft Edge (computador)."
+icon: "bookmark"
+---
+
+Muitos usuários salvam nos favoritos a página de **login da Snowflake** — uma das telas que aparecem no caminho até o portal. Esse endereço carrega informações temporárias de sessão e, por isso, deixa de funcionar depois de um tempo (a página dá erro ou não abre).
+
+A solução é simples: salvar nos favoritos o **endereço fixo do portal**. Se você já tem um favorito que parou de funcionar, não precisa apagá-lo — basta editar o endereço dele (mostramos como na [Parte 2](#parte-2-corrigir-um-favorito-existente)).
+
+<Info>
+  **Endereço correto do portal — use sempre este:**
+
+  ```
+  https://xxxx-xxxx-xxx.snowflakecomputing.app/
+  ```
+
+  O endereço completo do seu portal é **sempre fornecido pela equipe da Astecha** — o trecho `xxxx-xxxx-xxx` acima é apenas um exemplo. O endereço certo é curto e termina em `.snowflakecomputing.app/`. Em caso de dúvida, confirme com o seu contato Astecha.
+</Info>
+
+## Como saber se você salvou o link errado
+
+<Columns cols={2}>
+  <Card title="Certo" icon="circle-check" color="#16a34a">
+    Endereço **curto**, **sempre o mesmo**, termina em `.snowflakecomputing.app/`.
+
+    ```
+    https://xxxx-xxxx-xxx.snowflakecomputing.app/
+    ```
+  </Card>
+  <Card title="Errado" icon="circle-xmark" color="#dc2626">
+    Endereço de **login**: longo, **muda a cada acesso**, contém `login`, `oauth`, `sso` ou `app.snowflake.com` e uma sequência grande de letras e números.
+
+    ```
+    https://app.snowflake.com/.../oauth/authorize?...token=AB12cd34...
+    ```
+  </Card>
+</Columns>
+
+<Note>
+  Se o endereço do seu favorito não for exatamente o que está no quadro acima, ele está errado. Siga os passos abaixo para salvar o correto ou corrigir o existente.
+</Note>
+
+## Parte 1 — Salvar o favorito correto
+
+<Tabs>
+  <Tab title="Google Chrome">
+    <Steps>
+      <Step title="Abra o portal pelo endereço correto">
+        Copie e cole na barra de endereços do Chrome o link `https://xxxx-xxxx-xxx.snowflakecomputing.app/` e pressione **Enter**. Faça o login normalmente.
+      </Step>
+      <Step title="Volte a digitar o endereço correto">
+        Depois do login, o endereço pode mudar. **Antes de salvar**, clique na barra de endereços, apague o que estiver lá e digite novamente `https://xxxx-xxxx-xxx.snowflakecomputing.app/` e **Enter**.
+      </Step>
+      <Step title="Clique no ícone de estrela">
+        No canto direito da barra de endereços, clique no ícone de estrela (*"Adicionar esta página aos favoritos"*).
+      </Step>
+      <Step title="Dê um nome fácil">
+        Em **Nome**, escreva algo como **Portal Astecha**. Em **Pasta**, deixe **"Barra de favoritos"** para ele ficar sempre visível.
+      </Step>
+      <Step title="Clique em Concluído">
+        Pronto! O favorito aparecerá na barra, logo abaixo do endereço.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Microsoft Edge">
+    <Steps>
+      <Step title="Abra o portal pelo endereço correto">
+        Cole na barra de endereços do Edge o link `https://xxxx-xxxx-xxx.snowflakecomputing.app/` e pressione **Enter**. Faça o login normalmente.
+      </Step>
+      <Step title="Confirme o endereço antes de salvar">
+        Clique na barra de endereços, apague o conteúdo e digite novamente `https://xxxx-xxxx-xxx.snowflakecomputing.app/` e **Enter**.
+      </Step>
+      <Step title="Clique no ícone de estrela">
+        No canto direito da barra de endereços, clique no ícone de estrela (*"Adicionar esta página aos favoritos"*).
+      </Step>
+      <Step title="Dê um nome e escolha a pasta">
+        Em **Nome**, use **Portal Astecha**. Em **Pasta**, escolha **"Barra de favoritos"**.
+      </Step>
+      <Step title="Clique em Concluído">
+        O favorito fica salvo e disponível na barra de favoritos.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Parte 2 — Corrigir um favorito existente
+
+Já tem um favorito que parou de funcionar? Não precisa apagar e criar de novo. Você pode apenas **trocar o endereço dele** pelo endereço correto. Veja como:
+
+<Tabs>
+  <Tab title="Google Chrome">
+    <Steps>
+      <Step title="Encontre o favorito">
+        Na barra de favoritos (abaixo do endereço), localize o atalho do portal que não está mais abrindo.
+      </Step>
+      <Step title="Clique com o botão direito sobre ele">
+        Vai aparecer um menu de opções.
+      </Step>
+      <Step title="Escolha “Editar…”">
+        Abre uma janela com dois campos: **Nome** e **URL**.
+      </Step>
+      <Step title="Apague o conteúdo do campo URL">
+        Selecione tudo que está no campo **URL** e apague.
+      </Step>
+      <Step title="Cole o endereço correto">
+        Digite ou cole `https://xxxx-xxxx-xxx.snowflakecomputing.app/` no campo **URL**.
+      </Step>
+      <Step title="Clique em Salvar">
+        Agora o favorito abre direto o portal correto.
+      </Step>
+    </Steps>
+
+    <Accordion title="Não acha a barra de favoritos?">
+      No Chrome, pressione **Ctrl + Shift + B** para mostrá-la. Ou abra o menu de três pontinhos (canto superior direito) → **Favoritos** → **Gerenciador de favoritos** para localizar e editar o atalho.
+    </Accordion>
+  </Tab>
+  <Tab title="Microsoft Edge">
+    <Steps>
+      <Step title="Encontre o favorito">
+        Na barra de favoritos, localize o atalho do portal que parou de funcionar.
+      </Step>
+      <Step title="Clique com o botão direito sobre ele">
+        Abre um menu de opções.
+      </Step>
+      <Step title="Escolha “Editar”">
+        Aparecem os campos **Nome** e **URL**.
+      </Step>
+      <Step title="Apague o conteúdo do campo URL">
+        Selecione tudo no campo **URL** e apague.
+      </Step>
+      <Step title="Cole o endereço correto">
+        Digite ou cole `https://xxxx-xxxx-xxx.snowflakecomputing.app/` no campo **URL**.
+      </Step>
+      <Step title="Clique em Salvar">
+        O favorito passa a abrir o portal correto.
+      </Step>
+    </Steps>
+
+    <Accordion title="Não acha a barra de favoritos?">
+      No Edge, pressione **Ctrl + Shift + B** para exibi-la. Ou abra o menu **…** (canto superior direito) → **Favoritos** para localizar e editar o atalho.
+    </Accordion>
+  </Tab>
+</Tabs>
+
+## Precisa de ajuda?
+
+<Card title="Fale com o seu contato Astecha" icon="headset">
+  Se mesmo após editar o favorito o portal não abrir, entre em contato com o seu contato na Astecha e informe o endereço que está salvo no seu favorito. Teremos prazer em ajudar.
+</Card>
