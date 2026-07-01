@@ -1,0 +1,139 @@
+---
+title: "Passivos no Registry"
+sidebarTitle: "Passivos no Registry"
+description: "Cadastro de aportes (subscrições) e resgates dos cotistas, importação em lote, boletins e onde acompanhar despesas."
+icon: "users"
+---
+
+Os **passivos** representam o que o fundo deve aos seus cotistas. É no módulo de **Passivos / Registry** que você cadastra **aportes** (entradas de capital) e **resgates** (saídas), e acompanha as posições dos investidores.
+
+<Info>
+  **Onde fica:** menu **Controller → Passivos**. A área tem duas telas: a **Visão geral** (Cotistas, Movimentações e Agenda) e o **Registry de subscrições** (cadastro de aportes, importação em lote e boletins).
+</Info>
+
+## As telas de passivos
+
+<Columns cols={3}>
+  <Card title="Cotistas" icon="user-group">
+    Posições consolidadas: cotas, valor investido e impostos estimados por investidor.
+  </Card>
+  <Card title="Movimentações" icon="right-left">
+    Histórico de aportes e resgates, com filtro por tipo (todos / aportes / resgates).
+  </Card>
+  <Card title="Agenda" icon="calendar-days">
+    Resgates pendentes de liquidação — a agenda de execução.
+  </Card>
+</Columns>
+
+## Cadastrar um aporte (subscrição)
+
+Um aporte é o investimento de um cotista no veículo. Há duas formas: individual (formulário) ou em lote (planilha).
+
+### Formulário individual
+
+<Steps>
+  <Step title="Abra o Registry de subscrições">
+    Em **Controller → Passivos**, vá para a aba **Subscriptions** (Registry).
+  </Step>
+  <Step title="Selecione o Ativo">
+    No campo **Ativo**, escolha o veículo pelo código (CODIGO_IF). A lista vem dos ativos cadastrados no Registry.
+  </Step>
+  <Step title="Escolha o investidor">
+    No campo **Investidor**, busque um investidor existente. Se ele ainda não estiver cadastrado, o app oferece o atalho para cadastrá‑lo no Registry antes de continuar.
+  </Step>
+  <Step title="Informe a data da subscrição">
+    No campo **Data da subscrição**, escolha a data do aporte.
+
+    <Warning>
+      A data precisa ser **dia útil** (calendário ANBIMA + feriados). Fins de semana e feriados são recusados.
+    </Warning>
+  </Step>
+  <Step title="Informe o valor aportado">
+    No campo **Valor**, digite o valor em reais (duas casas decimais).
+  </Step>
+  <Step title="Salve">
+    Clique em **Salvar**. O aporte aparece na tabela à esquerda. Para **editar**, clique na linha, ajuste os campos e salve de novo.
+  </Step>
+</Steps>
+
+### Importação em lote (.xlsx)
+
+Para muitos aportes de uma vez, use o modelo de planilha.
+
+<Steps>
+  <Step title="Baixe o modelo">
+    Com um **Ativo** selecionado, clique em **Baixar modelo**. O arquivo `aportes_lote_<ativo>.xlsx` já vem formatado, com as colunas **Investidor**, **Data Subscrição** e **Valor (R$)**.
+  </Step>
+  <Step title="Preencha uma linha por aporte">
+    Não altere o cabeçalho nem a célula do código do ativo. Datas devem ser dias úteis; valor maior que zero.
+  </Step>
+  <Step title="Envie a planilha">
+    Arraste o `.xlsx` para a área de upload (ou clique para selecionar).
+  </Step>
+  <Step title="Confira o resultado">
+    O app mostra **quantos aportes foram importados** e lista, linha a linha, eventuais erros (data inválida, valor zerado, investidor vazio). Linhas válidas são gravadas mesmo que outras tenham erro.
+  </Step>
+</Steps>
+
+## Cadastrar um resgate
+
+Um resgate é a saída de capital de um cotista. O sistema calcula cotas, dias de carrego e IR.
+
+<Steps>
+  <Step title="Abra o resgate">
+    Em **Movimentações**, troque o filtro para **Resgates** e abra um **novo resgate** (ou clique em um existente para editar). Você também pode usar a aba **Boletim de Resgate**.
+  </Step>
+  <Step title="Preencha os campos">
+    - **Investidor** — entre os que têm posição aberta no ativo.
+    - **Data do resgate** — dia útil.
+    - **Valor resgatado** — valor bruto em reais.
+    - **Quantidade de cotas** — aceita alta precisão (até 8 casas).
+    - **Data de liquidação** *(opcional)* — quando o resgate será pago; posterior à data do resgate.
+  </Step>
+  <Step title="Confira o pré-cálculo">
+    Antes de confirmar, o app mostra um **preview**: alocação de cotas por lote de subscrição, **IR estimado** e **valor líquido**.
+  </Step>
+  <Step title="Salve">
+    Confirme. O sistema grava o resgate e recalcula IR (taxa, base e valor), dias de carrego e cota da data. A **Agenda** e as **posições** se atualizam.
+  </Step>
+</Steps>
+
+## Boletins (comprovantes)
+
+A partir dos cadastros é possível gerar documentos:
+
+<Columns cols={2}>
+  <Card title="Boletim de Subscrição" icon="file-signature">
+    Comprovante de aporte. Pode ser gerado individualmente ou em lote (ZIP), com preenchimento automático.
+  </Card>
+  <Card title="Boletim de Resgate" icon="file-export">
+    Comprovante de resgate, no mesmo padrão de geração em lote.
+  </Card>
+</Columns>
+
+## Despesas
+
+As **despesas** da operação (administração, servicing, taxas, juros) afetam o resultado do fundo. No app, elas aparecem em **Gestão → Despesas**, em modo **somente leitura** — a aba lista cada despesa com **data inicial, data de pagamento, valor, descrição e status**.
+
+<Info>
+  A aba **Despesas** é de **consulta**: não existe um botão "Nova despesa" nas telas operacionais. O lançamento das despesas é feito pela **equipe Astecha (back office)** — não pelo fluxo de operação do app.
+</Info>
+
+### Paga x Provisionada
+
+O status de cada despesa é definido **automaticamente** pela presença (ou não) de uma **data de pagamento**:
+
+| Status | Quando | Efeito no DRE |
+|---|---|---|
+| **Pago** | Tem data de pagamento | Entra como despesa de **caixa** (realizado), na data do pagamento. |
+| **Provisionado** | Sem data de pagamento | Entra como despesa **provisionada** (a pagar), na data da posição. |
+
+Em ambos os casos a despesa **reduz o PL** e compõe o **DRE** (em **Gestão → DRE**).
+
+<Note>
+  Despesa **não** se confunde com **PDD**: despesa é um **custo operacional** do fundo; PDD é a **provisão sobre recebíveis** que podem não ser pagos. São lançamentos distintos.
+</Note>
+
+## Editar ou excluir um lançamento
+
+Para qualquer aporte ou resgate: clique na linha na tabela para abrir o registro, ajuste os valores e **salve**, ou use **Excluir** dentro do modal de edição. As posições e a agenda recarregam automaticamente.

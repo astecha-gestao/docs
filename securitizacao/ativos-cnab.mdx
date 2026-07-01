@@ -1,0 +1,75 @@
+---
+title: "Ativos em CNAB"
+sidebarTitle: "Ativos em CNAB"
+description: "O que são os ativos da securitização, como entram pelos arquivos CNAB (cessões e liquidações) e onde consultá-los."
+icon: "file-invoice-dollar"
+---
+
+Os **ativos** de uma securitização são os **recebíveis** que o fundo comprou: contratos e suas parcelas a receber. Eles entram no sistema por **arquivos CNAB** e, depois de processados, viram tabelas de contratos, parcelas e pagamentos que alimentam os relatórios.
+
+## O ciclo de vida de um ativo
+
+<Steps>
+  <Step title="Cessão — o recebível entra no fundo">
+    Um arquivo de **cessão** traz cada recebível: contrato, número da parcela, vencimento, valor do título e **valor presente** (o valor descontado pelo qual o fundo "comprou" a parcela).
+  </Step>
+  <Step title="Liquidação — o devedor paga">
+    Um arquivo de **liquidação** informa os **pagamentos** recebidos: contrato, parcela, data e valor pago. É a entrada de caixa do fundo.
+  </Step>
+  <Step title="Conciliação — os dados viram contratos e parcelas">
+    O sistema cruza cessões e liquidações e **deriva** as tabelas de **contratos, parcelas e pagamentos**, calculando saldo em aberto, atraso e provisão.
+  </Step>
+  <Step title="Posição — o ativo aparece nos relatórios">
+    A partir daí o recebível compõe o **estoque**, o **valor presente (PV)** diário, a **rentabilidade** e a **inadimplência** por safra.
+  </Step>
+</Steps>
+
+## Glossário rápido dos campos
+
+| Termo | O que é |
+|---|---|
+| **Contrato** | A operação de crédito originada (cliente, data, valor). |
+| **Parcela** | Cada vencimento de um contrato (valor, vencimento, valor presente). |
+| **Valor do título** | Valor de face da parcela. |
+| **Valor presente (VP)** | Valor descontado da parcela na data‑base. |
+| **Cessão** | Registro que traz a parcela para o fundo. |
+| **Liquidação** | Registro de pagamento recebido. |
+| **Saldo em aberto** | Quanto ainda falta receber da parcela. |
+| **Atraso (arrears)** | Dias em atraso; agrupado em faixas (0, 16–30, 31–90, 91–180, >180). |
+| **PDD** | Provisão para devedores duvidosos — reserva contábil sobre o que pode não ser pago. |
+
+## Onde consultar os ativos
+
+Depois de processados, os recebíveis ficam visíveis em várias telas:
+
+<Columns cols={2}>
+  <Card title="Carteira → Estoque" icon="boxes-stacked">
+    Sub‑abas **Parcelas**, **Cessão** e **Liquidação** — as tabelas de recebíveis e fluxos em estoque.
+  </Card>
+  <Card title="Carteira → Geral e Safra" icon="chart-pie">
+    Composição por status, taxa média, mapa de atraso por safra e análise de inadimplência por período de originação.
+  </Card>
+  <Card title="Gestão → Posições e IR" icon="table-list">
+    Posições detalhadas por projeto/instância, com valores e impostos.
+  </Card>
+  <Card title="Operação → Auditoria" icon="magnifying-glass">
+    **Inspeção de arquivo** e **Rastreio de contrato** para ver a origem CNAB de cada parcela e pagamento. Veja em [Investigação](/securitizacao/investigacao).
+  </Card>
+</Columns>
+
+## Como os ativos chegam aqui
+
+Há duas formas de alimentar os ativos:
+
+<CardGroup cols={2}>
+  <Card title="Upload de arquivos CNAB" icon="upload" href="/securitizacao/upload">
+    O caminho normal: enviar as cessões e liquidações que você recebeu do originador/servicer.
+  </Card>
+  <Card title="CNAB Manual" icon="pen-to-square" href="/securitizacao/upload#cnab-manual">
+    Para correções e lançamentos pontuais: o próprio sistema gera um arquivo `.REM` de cessão ou liquidação a partir das parcelas selecionadas.
+  </Card>
+</CardGroup>
+
+<Note>
+  Cada layout de arquivo (banco/originador diferente) precisa estar **parametrizado** para ser lido corretamente. Se um arquivo novo não for reconhecido, veja [Parametrizar novo CNAB](/securitizacao/parametrizar-cnab).
+</Note>
