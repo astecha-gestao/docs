@@ -1,0 +1,152 @@
+---
+title: "Cadastrar uma nova operação"
+sidebarTitle: "Cadastrar operação"
+description: "Como cadastrar uma nova operação de securitização no Registry: criar o Deal, criar o Projeto (veículo que recebe os CNABs) e o que acontece depois."
+icon: "folder-plus"
+---
+
+Cadastrar uma **operação** é o primeiro passo antes de qualquer upload: é aqui que você cria o **Projeto** que vai receber os arquivos CNAB. Sem o projeto cadastrado, o sistema recusa o envio de arquivos.
+
+<Info>
+  **Onde fica:** **Controller → Registry → Securitization**. É lá que ficam as tabelas **Deals** e **Projects**. Você também chega pelo atalho **+ Novo projeto** na tela de [Upload](/securitizacao/upload).
+</Info>
+
+## Deal e Projeto — a estrutura da operação
+
+Uma operação tem dois níveis. Você cadastra os dois no **Registry**, nessa ordem:
+
+<Columns cols={2}>
+  <Card title="Deal — a emissão" icon="diagram-project">
+    A securitização como um todo (ex.: "ABC Recebíveis 2024"). Um **Deal** agrupa **um ou mais projetos** e concentra os dados bancários e as fórmulas de cálculo da operação.
+  </Card>
+  <Card title="Projeto — o veículo" icon="folder">
+    A unidade que **recebe e processa os recebíveis**. Todo arquivo CNAB é enviado **para um projeto**. Um projeto pertence a **um** Deal.
+  </Card>
+</Columns>
+
+<Note>
+  Se a operação é de um **Deal novo**, cadastre o Deal **primeiro** (Passo 1). Se o Deal já existe e você só está adicionando mais um veículo, pule direto para o Passo 2.
+</Note>
+
+## Antes de começar
+
+<Steps>
+  <Step title="Confirme se o Deal já existe">
+    Em **Registry → Securitization → Deals**, procure pelo nome da operação. Se não encontrar, você vai criá‑lo no Passo 1.
+  </Step>
+  <Step title="Tenha os dados do projeto em mãos">
+    O **nome** do projeto e o **Deal** ao qual ele pertence. Só isso já basta para criar — **CNPJ**, tipo de ativo e localização podem ser completados depois.
+  </Step>
+</Steps>
+
+## Passo 1 — Cadastrar o Deal (se ainda não existe)
+
+<Steps>
+  <Step title="Abra a tabela de Deals">
+    Em **Controller → Registry**, selecione a seção **Securitization** e a tabela **Deals**.
+  </Step>
+  <Step title="Clique em Novo">
+    Um formulário se abre com os campos do Deal.
+  </Step>
+  <Step title="Preencha os campos do Deal">
+    O único campo obrigatório é o **nome** — mas, sempre que possível, já deixe o **máximo de informações** preenchido:
+
+    - **DEAL_NAME** *(obrigatório)* — o nome da operação (ex.: "ABC Recebíveis 2024").
+    - **BANCO**, **AGENCIA**, **CONTA_CORRENTE** — os dados da conta da operação.
+
+    <Note>
+      Os campos de **fórmula** (recebíveis, estoque, LTV, inadimplência, cobertura) definem como os indicadores do Deal são calculados. São **avançados** e normalmente configurados **com apoio da equipe Astecha** — deixe em branco se não tiver essa informação.
+    </Note>
+  </Step>
+  <Step title="Salve">
+    O Deal aparece na tabela. Guarde o **nome**: você vai selecioná‑lo ao criar o projeto.
+  </Step>
+</Steps>
+
+## Passo 2 — Cadastrar o Projeto
+
+<Steps>
+  <Step title="Abra a tabela de Projects">
+    Em **Controller → Registry → Securitization**, selecione a tabela **Projects** e clique em **Novo**.
+  </Step>
+  <Step title="Preencha os campos essenciais">
+    Para a maioria das operações, só **dois campos** importam:
+
+    - **PROJECT_NAME** — o nome do projeto.
+    - **DEAL_ID** — o Deal ao qual o projeto pertence. Escolha na lista suspensa (ela mostra `Deal — Nome`); é esse vínculo que faz o projeto somar dentro da operação nos relatórios de Gestão.
+
+    <Note>
+      Quando os **parâmetros CNAB padrão** atendem a operação (o caso mais comum), **nome + Deal já bastam** para criar o projeto. O sistema cuida do identificador interno — você não precisa digitar um código.
+    </Note>
+  </Step>
+  <Step title="Complete os dados do veículo (opcional)">
+    Quando tiver as informações em mãos, vale preencher:
+
+    | Campo | O que é |
+    |---|---|
+    | **CNPJ** | CNPJ do veículo/projeto. |
+    | **ASSET_TYPE** | Tipo de ativo (ex.: recebíveis, imóvel). |
+    | **CITY** / **STATE** | Cidade e UF. |
+    | **ADDRESS** / **ZIP_CODE** | Endereço e CEP. Ao preencher o **CEP**, o app tenta completar o endereço automaticamente. |
+    | **INFO_GERAIS** / **ESTRATEGIA** | Textos livres para anotações sobre a operação. |
+  </Step>
+  <Step title="Ajuste os parâmetros CNAB apenas se necessário">
+    Os campos **CNAB_CONTRACT_ID**, **CNAB_INSTALLMENT_ID** e **CNAB_CESSAO_DATE** já vêm com **valores padrão** e, na maioria dos casos, **não precisam ser alterados**.
+
+    <Warning>
+      Só ajuste esses três campos se a operação exigir uma configuração específica de leitura do CNAB. Na dúvida, mantenha os valores padrão e valide com a Astecha.
+    </Warning>
+  </Step>
+  <Step title="Salve">
+    Clique em **Salvar**. O novo projeto aparece na tabela e já fica disponível nos seletores de projeto do app.
+  </Step>
+</Steps>
+
+## O que acontece depois
+
+<Check>
+  Projeto criado. O próximo passo é enviar os arquivos CNAB do período. → [Upload de arquivos](/securitizacao/upload)
+</Check>
+
+Alguns pontos que costumam gerar dúvida:
+
+<AccordionGroup>
+  <Accordion title="Minha equipe não está vendo o projeto novo" icon="lock">
+    O acesso de cada equipe aos projetos é **liberado pela Astecha**. Se o projeto foi criado mas não aparece para o seu time, **fale com o seu contato Astecha** para liberar o acesso. Veja os canais na página de [Suporte](/suporte).
+  </Accordion>
+  <Accordion title="O arquivo do banco tem um layout diferente" icon="sliders">
+    Cada layout de CNAB precisa estar **parametrizado** para ser lido. Se o originador desta operação usa um layout novo, veja [Parametrizar novo CNAB](/securitizacao/parametrizar-cnab).
+  </Accordion>
+</AccordionGroup>
+
+## Editar um projeto
+
+Para ajustar um cadastro: em **Registry → Securitization → Projects**, clique na **linha** do projeto, altere os campos e **salve**. As alterações passam a valer nos relatórios a partir do próximo carregamento.
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Ao subir um arquivo aparece 'Projeto não cadastrado'" icon="triangle-exclamation">
+    O projeto ainda não existe no Registry (ou você selecionou outro no Upload). Cadastre a operação por aqui **antes** de enviar arquivos, ou confira o projeto selecionado na tela de Upload.
+  </Accordion>
+  <Accordion title="O Deal não aparece na lista ao criar o projeto" icon="list">
+    O dropdown de **DEAL_ID** só mostra Deals **já cadastrados**. Volte ao **Passo 1** e crie o Deal antes de vincular o projeto.
+  </Accordion>
+</AccordionGroup>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Upload de arquivos" icon="upload" href="/securitizacao/upload">
+    Enviar as cessões e liquidações do projeto recém‑criado.
+  </Card>
+  <Card title="Ativos em CNAB" icon="file-invoice-dollar" href="/securitizacao/ativos-cnab">
+    Como os recebíveis entram e são organizados.
+  </Card>
+  <Card title="Parametrizar novo CNAB" icon="sliders" href="/securitizacao/parametrizar-cnab">
+    Criar o template de leitura para um layout novo.
+  </Card>
+  <Card title="Visão geral do app" icon="building-columns" href="/securitizacao/visao-geral">
+    O fluxo de ponta a ponta da securitização.
+  </Card>
+</Columns>
