@@ -31,7 +31,8 @@
           "securitizacao/passivos-registry",
           "securitizacao/upload",
           "securitizacao/parametrizar-cnab",
-          "securitizacao/investigacao"
+          "securitizacao/investigacao",
+          "securitizacao/baixar-cnab"
         ]
       },
       {
