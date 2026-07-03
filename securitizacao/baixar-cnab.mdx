@@ -1,0 +1,80 @@
+---
+title: "Baixar um arquivo CNAB importado"
+sidebarTitle: "Baixar um CNAB"
+description: "Como recuperar o arquivo CNAB original (cessão ou liquidação) que já foi importado, pela aba Check da Carteira."
+icon: "file-arrow-down"
+---
+
+Depois que um arquivo CNAB é enviado e **processado**, o sistema guarda o conteúdo importado e permite **baixá‑lo de volta** — útil para reenviar a outro sistema, conferir o que foi lido, arquivar ou auditar. O download fica na aba **Check** da **Carteira**.
+
+<Info>
+  **Onde fica:** **Credit → Securitização → Carteira → Check → Inspeção**. Só aparece para arquivos com status **Processado**.
+</Info>
+
+## Passo a passo
+
+<Steps>
+  <Step title="Abra a Carteira → Check">
+    No app de **Securitização**, na barra de abas da **Carteira**, clique em **Check**. A tela abre na sub‑aba **Qualidade**.
+  </Step>
+  <Step title="Selecione o projeto e vá para Inspeção">
+    Confirme o **Projeto** no seletor do topo (a lista de arquivos é por projeto) e clique na sub‑aba **Inspeção**. Ela lista todos os arquivos CNAB daquele projeto.
+  </Step>
+  <Step title="Encontre o arquivo">
+    A tabela traz uma linha por arquivo, com as colunas:
+
+    | Coluna | O que mostra |
+    |---|---|
+    | **Arquivo** | Nome do arquivo CNAB (ex.: `CESSAO_2024-05.REM`). |
+    | **Tipo** | **Cessão** ou **Liquidação**. |
+    | **CNAB** | O layout (400, 444, 500, 600…). |
+    | **Data** | Data do arquivo. |
+    | **Registros** | Quantidade de linhas lidas. |
+    | **Valor Total** | VP total (cessão) ou valor pago (liquidação). |
+    | **Status** | **Processado** ou **Pendente**. |
+
+    Use os filtros de **status** e **tipo** no topo para localizar mais rápido.
+  </Step>
+  <Step title="Clique no arquivo">
+    Clique na **linha do arquivo**. Abre um **pop‑up** com os detalhes: nome, tipo, layout CNAB, data e os indicadores (registros, VP/valor pago, contratos/pagamentos, parcelas).
+  </Step>
+  <Step title="Clique em Download">
+    No canto superior direito do pop‑up, clique em **Download**. O navegador baixa o arquivo com o **nome original**.
+  </Step>
+</Steps>
+
+<Note>
+  O botão **Download** (assim como **Arquivo Bruto**) só aparece quando o arquivo está **Processado**. Um arquivo apenas enviado, ainda **Pendente**, não pode ser baixado por aqui — [processe‑o antes](/securitizacao/investigacao#1-processar).
+</Note>
+
+## Download × Arquivo Bruto
+
+No mesmo pop‑up há dois botões parecidos, com propósitos diferentes:
+
+<CardGroup cols={2}>
+  <Card title="Download" icon="file-arrow-down">
+    Baixa o **arquivo completo** para o seu computador, com todas as linhas e o nome original. Use para guardar, reenviar ou auditar fora do sistema.
+  </Card>
+  <Card title="Arquivo Bruto" icon="scroll">
+    Mostra só uma **prévia** das primeiras linhas do arquivo, dentro da tela. Use para uma conferência rápida do conteúdo sem baixar nada.
+  </Card>
+</CardGroup>
+
+<Tip>
+  O arquivo baixado é reconstruído fielmente a partir do conteúdo importado — é a mesma origem da prévia do **Arquivo Bruto**, porém com o arquivo inteiro.
+</Tip>
+
+## Onde mais dá para baixar arquivos
+
+<Columns cols={2}>
+  <Card title="Rastreio de contrato → Baixar Pacote" icon="box-archive" href="/securitizacao/investigacao#4-auditoria-investigar-a-origem">
+    Na sub‑aba **Rastreio** do Check, ao abrir um contrato, o botão **Baixar Pacote** exporta tudo daquele contrato (cessões, liquidações, parcelas e pagamentos) em um `.zip`.
+  </Card>
+  <Card title="Estoque → Excel" icon="file-excel" href="/securitizacao/ativos-cnab">
+    As telas de **Carteira → Estoque** e **Analítica** exportam as tabelas de recebíveis em Excel, para análise fora do sistema.
+  </Card>
+</Columns>
+
+<Note>
+  Precisa **remover** um arquivo importado (não baixar)? Isso é feito em **Operação → Processar** com **Remover selecionados**, que apaga o bronze e reprocessa a carteira. Veja em [Investigação e checagens](/securitizacao/investigacao#1-processar).
+</Note>
