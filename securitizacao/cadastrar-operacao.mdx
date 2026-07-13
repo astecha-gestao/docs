@@ -1,32 +1,44 @@
 ---
 title: "Cadastrar uma nova operação"
 sidebarTitle: "Cadastrar operação"
-description: "Como cadastrar uma nova operação de securitização no Registry: criar o Deal, criar o Projeto (veículo que recebe os CNABs) e o que acontece depois."
+description: "Como cadastrar uma nova operação de securitização no Registry: criar o Deal, criar o Projeto (veículo que recebe os CNABs) e cadastrar a debênture no Fixed Income (para os passivos)."
 icon: "folder-plus"
 ---
 
-Cadastrar uma **operação** é o primeiro passo antes de qualquer upload: é aqui que você cria o **Projeto** que vai receber os arquivos CNAB. Sem o projeto cadastrado, o sistema recusa o envio de arquivos.
+Cadastrar uma **operação** é o primeiro passo antes de qualquer upload: é aqui que você cria o **Projeto** que vai receber os arquivos CNAB e a **debênture** que vai receber os lançamentos de passivo. Sem o projeto cadastrado, o sistema recusa o envio de arquivos; sem a debênture, não há como registrar aportes e resgates.
 
 <Info>
-  **Onde fica:** **Controller → Registry → Securitization**. É lá que ficam as tabelas **Deals** e **Projects**. Você também chega pelo atalho **+ Novo projeto** na tela de [Upload](/securitizacao/upload).
+  **Onde fica:** **Controller → Registry**. As tabelas **Deals** e **Projects** ficam na seção **Securitization**; a debênture é cadastrada na seção **Fixed Income** (tabela **Registry**). Você também chega pelo atalho **+ Novo projeto** na tela de [Upload](/securitizacao/upload).
 </Info>
 
-## Deal e Projeto — a estrutura da operação
+## Deal, Projeto e Debênture — a estrutura da operação
 
-Uma operação tem dois níveis. Você cadastra os dois no **Registry**, nessa ordem:
+Uma operação tem três registros. Você cadastra os três no **Registry**, nessa ordem:
 
-<Columns cols={2}>
+<Columns cols={3}>
   <Card title="Deal — a emissão" icon="diagram-project">
     A securitização como um todo (ex.: "ABC Recebíveis 2024"). Um **Deal** agrupa **um ou mais projetos** e concentra os dados bancários e as fórmulas de cálculo da operação.
   </Card>
   <Card title="Projeto — o veículo" icon="folder">
     A unidade que **recebe e processa os recebíveis**. Todo arquivo CNAB é enviado **para um projeto**. Um projeto pertence a **um** Deal.
   </Card>
+  <Card title="Debênture — o passivo" icon="file-contract">
+    O **título emitido** pela operação (identificado pelo **CODIGO_IF**). É a ela que os **aportes e resgates** dos investidores são vinculados no módulo de Passivos.
+  </Card>
 </Columns>
 
 <Note>
   Se a operação é de um **Deal novo**, cadastre o Deal **primeiro** (Passo 1). Se o Deal já existe e você só está adicionando mais um veículo, pule direto para o Passo 2.
 </Note>
+
+<Info>
+  **O que cada cadastro libera:**
+
+  - Para o **upload de CNABs** (ativos), basta o **Projeto** (Passos 1 e 2).
+  - Para o **cadastro de passivos** — aportes, resgates e boletins — é preciso ter a **debênture** cadastrada no **Fixed Income** (Passo 3).
+
+  Com os três registros feitos, a operação está pronta para usar a plataforma de ponta a ponta.
+</Info>
 
 ## Antes de começar
 
@@ -36,6 +48,9 @@ Uma operação tem dois níveis. Você cadastra os dois no **Registry**, nessa o
   </Step>
   <Step title="Tenha os dados do projeto em mãos">
     O **nome** do projeto e o **Deal** ao qual ele pertence. Só isso já basta para criar — **CNPJ**, tipo de ativo e localização podem ser completados depois.
+  </Step>
+  <Step title="Tenha o CODIGO_IF da debênture">
+    Para o Passo 3, você vai precisar do **CODIGO_IF** (ticker) da debênture emitida pela operação (ex.: `23F1025725`). Com ele, o app busca os dados do título na **B3** e pré‑preenche o cadastro.
   </Step>
 </Steps>
 
@@ -102,10 +117,54 @@ Uma operação tem dois níveis. Você cadastra os dois no **Registry**, nessa o
   </Step>
 </Steps>
 
+## Passo 3 — Cadastrar a debênture (Fixed Income)
+
+A debênture é o **registro de passivo** da operação: é a ela que os aportes e resgates dos cotistas são vinculados. Sem esse cadastro, o título **não aparece** no campo **Ativo** do [Registry de subscrições](/securitizacao/passivos-registry) e os lançamentos de passivo ficam bloqueados.
+
+<Steps>
+  <Step title="Abra o Fixed Income">
+    Em **Controller → Registry**, selecione a seção **Fixed Income** (tabela **Registry**) e clique em **New**. Um assistente em **três etapas** se abre: **Identificar → Revisar → Gravar**.
+  </Step>
+  <Step title="Identifique o título pelo CODIGO_IF">
+    Digite o **CODIGO_IF** (ticker) da debênture e clique em **Buscar dados**. O app procura o título na **B3** e pré‑preenche os campos encontrados.
+
+    <Note>
+      Se o título **não for encontrado**, o app aplica os **valores padrão do motor de cálculo** e você preenche os dados manualmente na etapa seguinte.
+    </Note>
+
+    <Warning>
+      Se já existir um registro com o mesmo **CODIGO_IF**, o app avisa. Não crie um segundo cadastro para alterar condições do título — alterações são versionadas via **Aditamentos**.
+    </Warning>
+  </Step>
+  <Step title="Revise os campos">
+    A etapa **Revisar** agrupa os campos em quatro blocos — confira principalmente os dois primeiros:
+
+    | Bloco | Campos |
+    |---|---|
+    | **Identificação** | **CODIGO_IF** *(obrigatório)*, **NOME_GESTAO** *(obrigatório)*, ISIN, **EMISSOR**, EMISSAO, SERIE, AGENTE_FIDUCIARIO. |
+    | **Economia** | **VALOR_EMISSAO**, **QUANTIDADE**, **PU** (recalculados entre si ao editar), **TAXA (%)**, **INDEXADOR**, BASE_REMUNERACAO. |
+    | **Datas** | DATA_EMISSAO, DATA_VENCIMENTO, DATA_INTEGRALIZACAO, DIA_ANIVERSARIO. |
+    | **Parâmetros do motor** | Tipos de arredondamento, casas decimais, defasagem do indexador, senioridade. |
+
+    <Note>
+      Os **parâmetros do motor** já vêm com valores padrão e normalmente **não precisam ser alterados**. Na dúvida, valide com a Astecha antes de mudar.
+    </Note>
+
+    Pendências (campo obrigatório vazio, valor inválido) aparecem listadas no rodapé — o botão **Avançar** só libera quando tudo estiver resolvido.
+  </Step>
+  <Step title="Grave o registro">
+    A etapa **Gravar** mostra um **resumo** de todos os campos preenchidos. Confira e clique em **Gravar registro**. A debênture aparece na tabela e já fica disponível no campo **Ativo** do Registry de subscrições.
+  </Step>
+</Steps>
+
+<Check>
+  Debênture cadastrada. Os aportes e resgates da operação já podem ser lançados. → [Passivos no Registry](/securitizacao/passivos-registry)
+</Check>
+
 ## O que acontece depois
 
 <Check>
-  Projeto criado. O próximo passo é enviar os arquivos CNAB do período. → [Upload de arquivos](/securitizacao/upload)
+  Operação cadastrada. Com o **projeto**, envie os arquivos CNAB do período → [Upload de arquivos](/securitizacao/upload). Com a **debênture**, registre os aportes e resgates → [Passivos no Registry](/securitizacao/passivos-registry).
 </Check>
 
 Alguns pontos que costumam gerar dúvida:
@@ -119,9 +178,10 @@ Alguns pontos que costumam gerar dúvida:
   </Accordion>
 </AccordionGroup>
 
-## Editar um projeto
+## Editar um cadastro
 
-Para ajustar um cadastro: em **Registry → Securitization → Projects**, clique na **linha** do projeto, altere os campos e **salve**. As alterações passam a valer nos relatórios a partir do próximo carregamento.
+- **Projeto** — em **Registry → Securitization → Projects**, clique na **linha** do projeto, altere os campos e **salve**. As alterações passam a valer nos relatórios a partir do próximo carregamento.
+- **Debênture** — correções pontuais podem ser feitas clicando na linha em **Registry → Fixed Income**. Mudanças nas **condições do título** (taxa, indexador, datas), porém, devem ser registradas como **Aditamento** — assim o histórico do papel fica versionado. Na dúvida, fale com a Astecha.
 
 ## Problemas comuns
 
@@ -132,6 +192,9 @@ Para ajustar um cadastro: em **Registry → Securitization → Projects**, cliqu
   <Accordion title="O Deal não aparece na lista ao criar o projeto" icon="list">
     O dropdown de **DEAL_ID** só mostra Deals **já cadastrados**. Volte ao **Passo 1** e crie o Deal antes de vincular o projeto.
   </Accordion>
+  <Accordion title="A debênture não aparece no campo Ativo ao lançar um aporte" icon="file-circle-question">
+    O seletor de **Ativo** do Registry de subscrições só lista os títulos cadastrados no **Fixed Income**. Se a debênture não aparece, ela ainda não foi cadastrada — volte ao **Passo 3**.
+  </Accordion>
 </AccordionGroup>
 
 ## Por onde continuar
@@ -140,8 +203,8 @@ Para ajustar um cadastro: em **Registry → Securitization → Projects**, cliqu
   <Card title="Upload de arquivos" icon="upload" href="/securitizacao/upload">
     Enviar as cessões e liquidações do projeto recém‑criado.
   </Card>
-  <Card title="Ativos em CNAB" icon="file-invoice-dollar" href="/securitizacao/ativos-cnab">
-    Como os recebíveis entram e são organizados.
+  <Card title="Passivos no Registry" icon="users" href="/securitizacao/passivos-registry">
+    Lançar os aportes e resgates na debênture recém‑cadastrada.
   </Card>
   <Card title="Parametrizar novo CNAB" icon="sliders" href="/securitizacao/parametrizar-cnab">
     Criar o template de leitura para um layout novo.
