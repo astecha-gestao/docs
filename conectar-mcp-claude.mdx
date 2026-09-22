@@ -1,0 +1,142 @@
+---
+title: "Conectar o MCP Astecha ao Claude"
+sidebarTitle: "Conectar o MCP ao Claude"
+description: "Em dez passos, o Claude passa a consultar os dados da sua operação na plataforma Astecha, com o seu próprio login e as suas permissões."
+icon: "plug"
+---
+
+Em todo o processo, você só vai digitar **três valores** e fazer **login na plataforma**. O resto são cliques. Tempo estimado: **5 minutos**.
+
+<Card title="Prefere o guia em PDF?" icon="file-pdf" href="/files/tutorial-conectar-mcp-astecha-claude.pdf">
+  Baixe a versão para imprimir ou enviar ao seu time.
+</Card>
+
+## Antes de começar
+
+<Columns cols={3}>
+  <Card title="URL do servidor MCP" icon="link">
+    Endereço do servidor que o Claude vai acessar. Usado no **passo 4**.
+
+    **Onde pegar:** Plataforma Astecha → **User › Docs › MCPs › Conectar**
+  </Card>
+
+  <Card title="OAuth Client ID" icon="id-card">
+    Identificador público da integração. Usado no **passo 5**.
+
+    **Onde pegar:** Plataforma Astecha → **User › Docs › MCPs › Conectar**
+  </Card>
+
+  <Card title="OAuth Client Secret" icon="key">
+    Chave secreta da integração. Usada no **passo 5**. Guarde-a com cuidado e não a compartilhe.
+
+    **Onde pegar:** enviado pelo time Astecha
+  </Card>
+</Columns>
+
+<Info>
+  **Login na plataforma.** Depois do passo 8, o navegador pede o seu login na plataforma Astecha. Use o mesmo usuário e senha que você já usa no dia a dia.
+
+  **Os passos também estão na plataforma.** Em **User › Docs › MCPs › Conectar** você encontra a URL, o Client ID e este mesmo passo a passo.
+</Info>
+
+## Passo a passo
+
+<Steps>
+  <Step title="Abra as configurações do Claude">
+    No canto inferior esquerdo, clique no seu nome para abrir o menu e escolha **Settings**. Atalho: `⌘ ,` no Mac ou `Ctrl ,` no Windows.
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-01.png" alt="Menu do perfil do Claude com a opção Settings destacada" />
+    </Frame>
+  </Step>
+
+  <Step title="Vá até Connectors">
+    Digite `con` na busca de configurações e clique em **Connectors**. Se preferir, o item também aparece no menu lateral, em **Customize**.
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-02.png" alt="Busca das configurações com o resultado Connectors destacado" />
+    </Frame>
+  </Step>
+
+  <Step title="Adicione um conector personalizado">
+    No canto superior direito, clique em **Add** e depois em **Add custom connector**.
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-03.png" alt="Tela Connectors com o menu Add e a opção Add custom connector destacados" />
+    </Frame>
+  </Step>
+
+  <Step title="Informe o nome e a URL do servidor">
+    No primeiro campo, dê um nome ao conector, por exemplo **Astecha**. No segundo, cole a **URL do servidor MCP** copiada da plataforma. Depois clique em **Continue**.
+
+    <Tip>**Preencher:** URL do servidor MCP</Tip>
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-04.png" alt="Janela Add custom connector com os campos de nome e MCP server URL destacados" />
+    </Frame>
+  </Step>
+
+  <Step title="Informe o Client ID e o Client Secret">
+    O Claude detecta a autenticação sozinho. Deixe **Sign in now** e **Use your own OAuth client** marcados, como vêm por padrão. Nos campos em destaque, cole o **OAuth Client ID** (da plataforma) e o **OAuth Client Secret** (enviado pelo time Astecha).
+
+    <Tip>**Preencher:** OAuth Client ID e OAuth Client Secret</Tip>
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-05.png" alt="Opções de autenticação com os campos OAuth client ID e OAuth client secret destacados" />
+    </Frame>
+  </Step>
+
+  <Step title="Salve o conector">
+    Confira os dois campos preenchidos. Não é preciso adicionar headers nem mexer em **Advanced**. Clique em **Add**.
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-06.png" alt="Campos de Client ID e Client Secret preenchidos e o botão Add" />
+    </Frame>
+  </Step>
+
+  <Step title="Conecte">
+    O conector Astecha aparece na sua lista, ainda desconectado. Clique em **Connect**. O navegador vai abrir.
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-07.png" alt="Conector Astecha ainda não conectado, com o botão Connect destacado" />
+    </Frame>
+  </Step>
+
+  <Step title="Confirme a conexão no navegador e faça login">
+    Uma página do Claude pergunta se você quer concluir a conexão. Como foi você que iniciou o processo no passo 7, clique em **Continuar conectando**.
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-08.png" alt="Página Concluir a conexão de um conector, com o botão Continuar conectando" />
+    </Frame>
+
+    <Note>
+      **Faça login na plataforma Astecha.** Em seguida aparece a tela de login da plataforma. Entre com o seu usuário e senha de sempre. Este é o único login do processo.
+    </Note>
+  </Step>
+
+  <Step title="Autorize o acesso">
+    A plataforma mostra o que o Claude poderá fazer em seu nome, sempre com as permissões do seu usuário. Clique em **Allow**.
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-09.png" alt="Tela de autorização CLAUDE_MCP_OAUTH com o botão Allow" />
+    </Frame>
+  </Step>
+
+  <Step title="Pronto: o conector está ativo">
+    De volta ao Claude, o conector Astecha aparece conectado, com a lista de ferramentas. Por padrão, cada ferramenta pede a sua aprovação antes de rodar (**Needs approval**). Se quiser, mude para **Always allow** nas ferramentas que você usa com frequência.
+
+    <Frame>
+      <img src="/images/conectar-mcp-claude/passo-10.png" alt="Conector Astecha conectado, com as permissões das ferramentas" />
+    </Frame>
+  </Step>
+</Steps>
+
+<Check>
+  **Tudo certo.** Abra uma conversa nova e peça algo sobre a sua operação, por exemplo: _"Quais são os meus projetos na Astecha?"_.
+</Check>
+
+## Precisa de ajuda?
+
+<Card title="Fale com o seu contato Astecha" icon="headset" href="/suporte">
+  Se algo não funcionar, entre em contato com o time Astecha. Teremos prazer em ajudar.
+</Card>
