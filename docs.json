@@ -48,6 +48,12 @@
         ]
       },
       {
+        "group": "Registry",
+        "pages": [
+          "registry/nomes-antigos-de-fundo"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
