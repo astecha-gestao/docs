@@ -1,0 +1,118 @@
+---
+title: "Aba Por Fundo"
+sidebarTitle: "Por Fundo"
+description: "Como ler a aba Por Fundo do Dashboard de Carteira Recomendada: quem recomenda o fundo, o peso em cada casa, a comparação com os pares e os dados de mercado."
+icon: "bullseye"
+---
+
+A aba **Por Fundo** analisa um fundo seu contra os pares do setor dele. Use para responder: quem recomenda este fundo, com que peso, desde quando, como ele está contra os pares e como ele negocia no mercado.
+
+<Info>
+  **Onde fica:** **Investor Relations → Carteira Recomendada → Dashboard**, aba **Por Fundo**. Também abre pelo submenu **Por Fundo** do Dashboard.
+</Info>
+
+## Filtros desta aba
+
+| Filtro | O que faz |
+|---|---|
+| **Setor / Segmento** | Define o agrupamento do cohort do fundo. |
+| Seletor de **Fundo próprio** | Escolhe o fundo. Ao abrir, a aba escolhe o primeiro fundo que tem cohort. |
+| **Data-base** | Escolhe o mês. |
+| **PDF** | Exporta esta aba, em duas páginas. Veja [Exportar em PDF](/carteira-recomendada/exportar-pdf). |
+
+<Note>
+  O cohort de um fundo é o setor dele. Por isso as entradas e saídas do setor não aparecem aqui. Veja-as na aba [Por Setor](/carteira-recomendada/por-setor).
+</Note>
+
+## O resumo do fundo
+
+No topo, um cartão mostra o **Ticker**, o nome do setor e a linha `<mês> · N fundos no cohort`. Ao lado ficam os indicadores do fundo:
+
+| Indicador | O que mostra |
+|---|---|
+| **Posição no cohort** | A posição do fundo no ranking do setor, por número de carteiras. A nota mostra `de N`. |
+| **Carteiras** | Em quantas carteiras o fundo está. A nota mostra a variação vs o mês anterior, com seta. |
+| **Casas** | Quantas casas o recomendam. A nota mostra `de N ativas`. |
+| **Peso médio** | O peso médio por carteira. Só aparece quando o dado existe. |
+| **Na carteira desde** | O mês da primeira recomendação contínua. A nota mostra quantos meses contínuos. |
+| **Consenso** | Percentual das casas que recomendam o fundo. Só aparece quando o dado existe. |
+| **Gap para o líder** | Quantas carteiras faltam para o fundo líder do cohort. Se o seu fundo for o líder, o indicador diz **Líder**. |
+
+## Capítulo 01 — Quem recomenda
+
+<Columns cols={2}>
+  <Card title="Instituições ao longo do tempo" icon="chart-line">
+    Duas linhas, de casas e de carteiras, ao longo de 12 meses.
+  </Card>
+  <Card title="Quem carrega hoje" icon="list">
+    Tabela com **Casa**, **Carteira**, **Peso** e **Desde** (a data de entrada de cada carteira). A lista rola dentro do cartão.
+  </Card>
+</Columns>
+
+## Capítulo 02 — Peso por casa
+
+<Columns cols={2}>
+  <Card title="Mês a mês" icon="table-cells">
+    Matriz com uma linha por casa e uma coluna por mês. A intensidade da cor mostra o peso. Quadrado vazio quer dizer que a casa estava fora da carteira naquele mês. A coluna **Hoje** traz o valor atual.
+  </Card>
+  <Card title="Aumentou ou cortou" icon="arrow-trend-up">
+    Δ de peso vs o mês anterior, em p.p., por casa. Uma frase destaca o maior movimento.
+  </Card>
+</Columns>
+
+### Como ler a matriz
+
+A legenda abaixo dela tem três estados: **peso baixo**, **peso alto** e **fora da carteira**. Passe o mouse sobre um quadrado para ver o peso exato daquele mês. A lista de casas rola dentro do cartão.
+
+Se nenhuma casa mudou o peso, o bloco **Aumentou ou cortou** diz **Nenhuma casa mudou o peso.** Sem mês anterior, diz **Sem mês anterior para comparar.**
+
+## Capítulo 03 — Contra os pares
+
+<Columns cols={2}>
+  <Card title="Posição entre os pares" icon="ranking-star">
+    Tabela do cohort com **#**, **Fundo**, **Carteiras**, **Casas** e **Δ**. Ela abre já na altura do seu fundo, que leva a etiqueta **Em foco**. A lista inteira rola.
+  </Card>
+  <Card title="Contra a mediana dos pares" icon="scale-balanced">
+    Para cada métrica, duas barras: o seu fundo e a mediana do cohort. A legenda mostra quantos pares formam a mediana.
+  </Card>
+</Columns>
+
+As métricas comparadas são **DY 12m**, **P/VP**, **ADTV 3m**, **Peso no IFIX** e **Consenso**. As duas barras de cada métrica usam a mesma régua, em que o maior valor do cohort vale 100%. Comparar o comprimento é comparar o número. Sem dado de mercado do cohort, o bloco diz **Sem dado de mercado do cohort para comparar.**
+
+## Capítulo 04 — Mercado
+
+<Columns cols={2}>
+  <Card title="Preço e liquidez" icon="chart-column">
+    Fechamento diário do preço sobre o volume negociado.
+  </Card>
+  <Card title="Janela de 12 meses" icon="calendar">
+    Seis números do período, listados abaixo.
+  </Card>
+</Columns>
+
+A **Janela de 12 meses** traz: **Preço de fechamento**, **Mínimo no período**, **Máximo no período**, **Liquidez média diária**, **Pregões no período** e **Valor de mercado**.
+
+Abaixo dela, o bloco **Liquidez por mês** mostra o volume médio diário de cada mês, em R$ milhões. É média e não soma: meses com menos pregões não parecem menos líquidos.
+
+Sem negociação no período, os blocos dizem **Sem negociação no período.** e **Sem pregão no período.**
+
+## Quando o fundo não aparece
+
+<AccordionGroup>
+  <Accordion title="Nenhum fundo próprio cadastrado — nada para comparar." icon="circle-info">
+    Não há fundo seu no cadastro. Sem ele, a aba não tem o que analisar.
+  </Accordion>
+  <Accordion title="Sem setor cadastrado" icon="tag">
+    O fundo escolhido ainda não tem setor, então não há cohort. A aba mostra o botão **Cadastrar setor**, que leva à tela **Setores**.
+  </Accordion>
+  <Accordion title="N fundo(s) próprio(s) sem setor cadastrado" icon="triangle-exclamation">
+    Aparece no pé da aba com a lista dos tickers sem setor e o link **Cadastrar →**. Passe o mouse sobre um ticker para ver o motivo: sem linha no cadastro de fundos ou setor não preenchido.
+  </Accordion>
+  <Accordion title="O fundo não está em nenhuma carteira neste mês" icon="circle-info">
+    No bloco **Posição entre os pares**, a aba avisa e mostra o topo do cohort no lugar da posição do fundo.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Exportar em PDF" icon="file-pdf" href="/carteira-recomendada/exportar-pdf">
+  Esta aba gera um PDF de duas páginas.
+</Card>
