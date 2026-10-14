@@ -1,0 +1,95 @@
+---
+title: "Razão de garantia"
+sidebarTitle: "Razão de garantia"
+description: "Como ler a aba Razão de Garantia da Gestão: a posição na data-base, o semáforo contra o mínimo contratual, a série até o fim da operação e a parte projetada."
+icon: "shield-check"
+---
+
+A **razão de garantia** responde a uma pergunta: **o lastro cobre a dívida, e com quanta folga?** Ela é a divisão do que a operação tem (lastro e, conforme o contrato, o caixa) pelo saldo devedor do CR. Acima de 100%, o lastro cobre a dívida; abaixo, falta garantia.
+
+<Info>
+  **Onde fica:** **Securitização → Gestão → Razão de Garantia**. No canto superior direito, escolha o **Deal** e a **Data base**.
+</Info>
+
+## 1. A posição na data-base
+
+O primeiro bloco, **Posição em dd/mm/aaaa**, mostra a razão **na data-base escolhida**. Ele não muda quando você mexe no período dos gráficos: a posição é sempre a da data-base.
+
+<Steps>
+  <Step title="Leia a razão em destaque">
+    **Razão de garantia total** é o número principal. A variante usada (só a curva do lastro, ou lastro mais caixa) é a que está cadastrada no deal. Veja [Configurar no Registry](#4-configurar-no-registry).
+  </Step>
+  <Step title="Confira o selo do semáforo">
+    O selo compara a razão com o **mínimo contratual**:
+
+    | Selo | O que significa |
+    |---|---|
+    | **OK** | A razão está acima do mínimo e fora da faixa de atenção. |
+    | **Atenção** | A razão está acima do mínimo, mas dentro da faixa de atenção. |
+    | **Violado** | A razão está abaixo do mínimo contratual. |
+    | **Em carência** | O mínimo ainda não vale nesta data (janela entre integralizar o CR e comprar o lastro). |
+    | **Sem semáforo** | Nenhum mínimo foi cadastrado para o deal. |
+  </Step>
+  <Step title="Leia as células ao lado">
+    As células mostram o **mínimo** cadastrado, a **taxa do lastro** (média ponderada quando há mais de um título) e a **taxa do passivo**.
+  </Step>
+</Steps>
+
+<Tip>
+  Selo **Sem semáforo**? Clique em **Cadastrar mínimo**: o link abre o cadastro do deal no Registry.
+</Tip>
+
+## 2. Série e projeção
+
+Abaixo da posição ficam dois gráficos e o seletor de período.
+
+- **Período:** use **6M**, **YTD**, **12M** ou **Tudo**, ou digite as datas no seletor ao lado. As janelas curtas terminam **hoje**; **Tudo** vai até o **fim da operação** (o último dia da curva da dívida).
+- **Razão de garantia:** a razão dia a dia nas duas variantes (**Curva** e **Curva + caixa**), com a linha de **100% (paridade)** e o mínimo, quando cadastrado.
+- **Lastro, caixa e passivo:** os mesmos números em reais. É aqui que você vê o tamanho da folga, que a razão em percentual esconde.
+
+### A parte projetada
+
+Tudo o que vem **depois de hoje** é **projeção**, marcada nos dois gráficos por uma faixa sombreada com o rótulo **projeção**. A nota acima dos gráficos diz até quando a série vai.
+
+<Note>
+  Na projeção, o lastro segue o fluxo contratual das parcelas em aberto, e a dívida segue a curva do CR. O caixa é o saldo de hoje mais o que o lastro paga, menos o PMT da dívida. Ele inclui o rendimento do fundo de caixa, pela taxa que o fundo rendeu no último período fechado. Não há projeção de inadimplência nem de despesas futuras.
+</Note>
+
+## 3. A tabela diária
+
+A tabela mostra, dia a dia, de onde vem cada número:
+
+| Coluna | O que é |
+|---|---|
+| **Lastro** | Valor dos títulos de lastro marcados. |
+| **Ativo · taxa cessão** | Carteira de CNAB pela taxa de cessão. Contábil: fica fora da razão. |
+| **Ativo · taxa passivo** | Carteira de CNAB a valor presente pela taxa do CR. É a parte de CNAB que entra na razão. |
+| **PMT do ativo / PMT do passivo** | O que o lastro pagou (entra no caixa) e o que a operação pagou à dívida (sai do caixa). |
+| **Conta corrente (B)** e **Investimentos (C)** | O caixa, separado entre conta corrente e fundo de caixa. **Caixa** é B + C. |
+| **Passivo (D)** | Saldo devedor do CR. |
+| **R.G. total** e **R.G. carteira** | A razão com e sem o caixa: (lastro + CNAB + B + C) ÷ D e (lastro + CNAB) ÷ D. |
+
+## 4. Configurar no Registry
+
+Os parâmetros da razão ficam no cadastro do deal, em **Controller → Registry → Securitization → Deals**:
+
+| Campo | Para que serve |
+|---|---|
+| **RAZAO_GARANTIA_BASE** | A variante que vale para o semáforo: `CURVA` (só o lastro) ou `CURVA_MAIS_CAIXA` (lastro mais caixa). Em branco, vale `CURVA`. |
+| **RAZAO_GARANTIA_MINIMA** | O mínimo contratual, em fração (ex.: `1.2` para 120%). Em branco, não há semáforo. |
+| **RAZAO_GARANTIA_BANDA** | A faixa de atenção acima do mínimo, em fração. Em branco, vale `0.05` (5 p.p.); `0` desliga a faixa. |
+| **RAZAO_GARANTIA_CARENCIA_ATE** | Última data em que o mínimo ainda não vale. Use para a janela entre integralizar o CR e comprar o lastro. |
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Aviso: Não há posição em dd/mm/aaaa">
+    A data-base escolhida é anterior ao primeiro dado da operação. O aviso diz o intervalo com dados: escolha uma **Data base** dentro dele.
+  </Accordion>
+  <Accordion title="O selo diz Sem semáforo">
+    O deal não tem **RAZAO_GARANTIA_MINIMA** cadastrado. Clique em **Cadastrar mínimo** ou preencha o campo no Registry.
+  </Accordion>
+  <Accordion title="A razão cai a zero e volta">
+    Pode ser a janela de carência: entre integralizar o CR e comprar o lastro, o dinheiro está no caixa e ainda não virou lastro. Cadastre **RAZAO_GARANTIA_CARENCIA_ATE** para o semáforo não acusar violação nessa janela.
+  </Accordion>
+</AccordionGroup>
