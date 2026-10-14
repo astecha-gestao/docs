@@ -1,0 +1,131 @@
+---
+title: "Aba Por Setor"
+sidebarTitle: "Por Setor"
+description: "Como ler a aba Por Setor do Dashboard de Carteira Recomendada: o ranking do cohort, as bolhas de tamanho e presença, o contexto do setor e as movimentações."
+icon: "layer-group"
+---
+
+A aba **Por Setor** mergulha em um setor (ou em um segmento). Use para responder: quais fundos do setor as casas mais recomendam, em que posição estão os seus e quem entrou ou saiu no mês.
+
+<Info>
+  **Onde fica:** **Investor Relations → Carteira Recomendada → Dashboard**, aba **Por Setor**. Também abre pelo submenu **Por Setor** do Dashboard, ou pelo nome do setor na tabela de Detalhamento do [Panorama](/carteira-recomendada/panorama).
+</Info>
+
+## Filtros desta aba
+
+| Filtro | O que faz |
+|---|---|
+| **Setor / Segmento** | Define o agrupamento. Com **Segmento**, o seletor passa a listar segmentos. |
+| Seletor de **Setor** | Escolhe o setor. Os setores em que você já tem fundo vêm primeiro. Depois vem o resto do universo, inclusive setores em que você não tem nenhum fundo. |
+| **Data-base** | Escolhe o mês. |
+| **PDF** | Exporta esta aba. Veja [Exportar em PDF](/carteira-recomendada/exportar-pdf). |
+
+Se nenhum setor estiver escolhido, a aba mostra **Selecione um setor para comparar.** Ao abrir, a aba escolhe sozinha o primeiro setor em que você tem fundo.
+
+<Note>
+  O filtro **Posições / Peso** só existe na aba [Geral](/carteira-recomendada/geral).
+</Note>
+
+## Os seis indicadores
+
+A faixa **Setor** resume o setor escolhido.
+
+| Indicador | O que mostra |
+|---|---|
+| **Fundos no setor** | O universo de fundos classificados no setor. |
+| **Recomendados** | Quantos desses fundos estão em ao menos uma carteira. A nota mostra `de N`. |
+| **Posições** | Posições recomendadas no setor. A nota mostra quanto isso representa do total. |
+| **Nosso share** | Suas posições divididas pelas posições do setor. |
+| **Δ vs anterior** | Variação do share em p.p. Alta em verde, queda em vermelho. |
+| **Seus fundos** | Quantos fundos seus estão classificados no setor. A nota mostra `melhor: Nº`, a melhor posição entre eles. |
+
+## Capítulo 01 — Presença em carteiras
+
+<Columns cols={2}>
+  <Card title="Presença em carteiras" icon="ranking-star">
+    Ranking do cohort por número de carteiras. A legenda mostra o mês, quantos fundos estão recomendados e a sua melhor posição.
+  </Card>
+  <Card title="Tamanho × presença" icon="chart-scatter">
+    Bolhas do cohort. Seus fundos aparecem na cor da marca e os pares em cinza.
+  </Card>
+</Columns>
+
+### Como ler o ranking
+
+As colunas são:
+
+| Coluna | O que mostra |
+|---|---|
+| **#** | A posição no ranking. |
+| **Fundo** | O ticker. Seus fundos levam a etiqueta **Própria** e uma faixa de destaque. |
+| (barra) | O tamanho relativo do número de carteiras. |
+| **Carteiras** | Em quantas carteiras o fundo está. |
+| **Casas** | Quantas casas o recomendam. |
+| **Σ Peso** | A soma do peso do fundo nas carteiras do mês. |
+| **Δ** | Variação de carteiras vs o mês anterior, com seta. |
+| **Valor de mercado** | O valor de mercado do fundo. |
+
+Só entram fundos com ao menos uma carteira. O rodapé conta os fundos sem recomendação e, se um deles for seu, **diz o nome dele**. A lista rola dentro do cartão.
+
+### Como ler as bolhas
+
+- O **eixo horizontal** é o valor de mercado, em escala logarítmica.
+- O **eixo vertical** é o número de carteiras.
+- O **tamanho** da bolha é o Σ Peso.
+- Só seus fundos levam o nome escrito.
+
+Fundos sem valor de mercado não cabem no gráfico. A nota abaixo dele conta quantos ficaram de fora (`+N sem valor de mercado`).
+
+## Capítulo 02 — O setor em contexto
+
+<Columns cols={3}>
+  <Card title="O setor entre os demais" icon="list-ol">
+    Tabela com **Setor**, uma barra, **Share** e **Δ p.p.** O setor em foco fica destacado. A lista mostra os maiores setores e sempre inclui o setor em foco, mesmo que ele seja pequeno.
+  </Card>
+  <Card title="Seus fundos neste setor" icon="bullseye">
+    Uma linha por fundo seu, com **Posição**, **Carteiras**, **Casas**, **Σ Peso** e **Δ**. Fundo seu sem nenhuma carteira aparece com travessão na posição. Abaixo, uma frase diz onde seus fundos caem no setor.
+  </Card>
+  <Card title="Concentração da recomendação" icon="chart-pie">
+    Rosca com as carteiras do setor em quatro fatias: **Top 3**, **4º e 5º**, **6º ao 10º** e **Demais**. A manchete diz quanto os 5 mais citados somam.
+  </Card>
+</Columns>
+
+Quando o setor tem poucos fundos recomendados, a manchete diz `Só N fundos recomendados no setor.` em vez de calcular a fatia dos cinco maiores.
+
+## Capítulo 03 — Movimentações
+
+Este capítulo compara com o mês anterior.
+
+<Columns cols={2}>
+  <Card title="Quem entrou no setor" icon="arrow-right-to-bracket">
+    Fundos que passaram a estar em uma carteira. Cada linha traz o fundo e `casa · carteira`.
+  </Card>
+  <Card title="Quem saiu do setor" icon="arrow-right-from-bracket">
+    Fundos que deixaram uma carteira, no mesmo formato.
+  </Card>
+</Columns>
+
+Cada coluna mostra a contagem no cabeçalho. Seus fundos levam a etiqueta **Própria**. Se não houve nenhuma entrada nem saída, a aba mostra `Nenhuma entrada ou saída neste setor vs <mês>.`
+
+## Mensagens que você pode ver
+
+Quando o setor não tem cohort, a legenda do ranking explica o motivo:
+
+<AccordionGroup>
+  <Accordion title="Nenhum fundo classificado neste setor." icon="circle-info">
+    O setor existe, mas nenhum fundo está classificado nele.
+  </Accordion>
+  <Accordion title="Setor sem peers fora do livro próprio." icon="circle-info">
+    Só há fundos seus no setor. Não há pares para comparar.
+  </Accordion>
+  <Accordion title="Setor não encontrado no cadastro de fundos." icon="circle-info">
+    O setor escolhido não está no cadastro.
+  </Accordion>
+  <Accordion title="Setor em branco no cadastro." icon="circle-info">
+    O cadastro tem a linha, mas o setor está em branco.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Próxima aba: Por Fundo" icon="bullseye" href="/carteira-recomendada/por-fundo">
+  Analise um fundo seu em detalhe.
+</Card>

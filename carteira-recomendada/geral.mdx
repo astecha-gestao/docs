@@ -1,0 +1,125 @@
+---
+title: "Aba Geral"
+sidebarTitle: "Geral"
+description: "Como ler a aba Geral do Dashboard de Carteira Recomendada: os seis indicadores, os cinco capítulos e os filtros Posições/Peso e Data-base."
+icon: "chart-pie"
+---
+
+A aba **Geral** mostra a posição da sua gestora nas carteiras recomendadas do mês. Use para responder: quanto do recomendado é nosso, quem nos recomenda, o que mudou e quão sólida é a nossa presença.
+
+<Info>
+  **Onde fica:** **Investor Relations → Carteira Recomendada → Dashboard**, aba **Geral**. É a aba que abre por padrão.
+</Info>
+
+## Filtros desta aba
+
+| Filtro | O que faz |
+|---|---|
+| **Posições / Peso** | Define a base da Importância Própria. Muda o primeiro indicador, o bloco **Posição** e o destaque do bloco **Trajetória**. Os outros blocos não mudam. |
+| **Data-base** | Escolhe o mês. Todos os blocos são recalculados. |
+| **PDF** | Exporta esta aba. Veja [Exportar em PDF](/carteira-recomendada/exportar-pdf). |
+
+<Note>
+  Os filtros **Setor / Segmento** e o seletor de setor ou de fundo não existem nesta aba. Eles aparecem nas outras três.
+</Note>
+
+## Os seis indicadores
+
+A faixa do topo tem seis cartões. O primeiro é a manchete. Os outros cinco são os números que a sustentam, para você conferir o numerador e o denominador na mesma linha.
+
+| Indicador | O que mostra |
+|---|---|
+| **Importância Própria** | Quanto do recomendado é seu, na base escolhida (**Posições** ou **Peso**). O Δ é a variação em pp. |
+| **Instituições** | Casas ativas no mês. |
+| **Carteiras** | Combinações de casa e carteira. |
+| **Posições** | Total de posições recomendadas. |
+| **Posições Próprias** | Posições dos seus fundos. |
+| **Fundos Próprios** | Quantos dos seus fundos foram recomendados no mês. |
+
+Cada cartão traz uma pequena linha com a trilha dos últimos meses. Quando existe mês anterior, a legenda mostra **vs** e o mês de comparação (por exemplo, `vs mai/26`) e o cartão mostra a variação. Sem mês anterior, a legenda é fixa e não há variação.
+
+## Capítulo 01 — Posição da gestora
+
+<Columns cols={2}>
+  <Card title="Posição" icon="chart-pie">
+    Rosca com **Próprios** e **Outros** no mês, na base escolhida. Abaixo dela, a frase de leitura mostra a variação vs o mês anterior e de onde a série partiu.
+  </Card>
+  <Card title="Trajetória" icon="chart-line">
+    Linha da Importância Própria nos últimos 36 meses. A legenda tem **Por posições** e **Por peso**. A base escolhida fica na cor da marca e a outra em cinza.
+  </Card>
+</Columns>
+
+## Capítulo 02 — Quem nos recomenda
+
+<Columns cols={2}>
+  <Card title="Fundos próprios" icon="ranking-star">
+    Ranking dos seus fundos recomendados no mês. Mostra as colunas **Carteiras**, o Δ de carteiras vs o mês anterior, **Δ peso** (em pp) e **3 meses** (a trilha). O rodapé traz o total de carteiras.
+  </Card>
+  <Card title="Casas" icon="building-columns">
+    Ranking das casas. A barra mostra o percentual das posições da casa que são suas. A linha tracejada marca a média geral. Casas sem fundo seu ficam no fim, em cinza.
+  </Card>
+</Columns>
+
+<Note>
+  Fundos sem nenhuma recomendação no mês não aparecem em **Fundos próprios**. Quem saiu aparece no capítulo 03.
+</Note>
+
+Nas duas listas, se houver mais linhas do que cabem no cartão, a lista rola dentro dele.
+
+## Capítulo 03 — Movimento do mês
+
+Este capítulo compara com o mês anterior. Sem mês anterior, os blocos dizem **Sem mês anterior para comparar.**
+
+<Columns cols={2}>
+  <Card title="Entradas × saídas" icon="right-left">
+    Quantas carteiras entraram e saíram, por fundo. A legenda traz o saldo do mês.
+  </Card>
+  <Card title="Peso ganho e perdido" icon="scale-balanced">
+    Δ de peso por fundo, somado nas carteiras, em pp. O peso é normalizado pelo total de cada carteira.
+  </Card>
+</Columns>
+
+Abaixo dos dois blocos há o link **ver detalhe casa a casa**. Ele abre uma tabela com as colunas **Entradas** e **Saídas**. Cada linha traz o fundo e a casa com a carteira. Clique em **ocultar detalhe** para fechar.
+
+## Capítulo 04 — Origem da recomendação
+
+<Columns cols={2}>
+  <Card title="Origem" icon="table-cells">
+    Mosaico de casa por fundo próprio. Quando há dados de peso, a intensidade da cor mostra o peso, de **peso baixo** a **peso alto**. Ao lado de cada casa fica o número de fundos seus que ela recomenda.
+  </Card>
+  <Card title="Casas sem fundo próprio" icon="user-plus">
+    Casas que publicam carteira e não recomendam nenhum fundo seu. A tabela tem **Casa**, **Carteiras** e **Setores que mais recomenda**. É uma lista de prospecção.
+  </Card>
+</Columns>
+
+## Capítulo 05 — Solidez da presença
+
+<Columns cols={3}>
+  <Card title="Permanência" icon="clock">
+    Posições próprias por tempo contínuo na carteira, em cinco faixas: `0–3 m`, `3–6 m`, `6–12 m`, `12–24 m` e `24 m +`. A frase de leitura diz quantas posições estão há mais de um ano.
+  </Card>
+  <Card title="Concentração" icon="chart-pie">
+    De quais fundos depende a sua presença. Rosca em quatro fatias: **Top 3**, **4º e 5º**, **6º ao 10º** e **Demais**.
+  </Card>
+  <Card title="Consenso" icon="people-group">
+    Para cada fundo seu, quantas casas ativas o recomendam. As colunas são **Fundo**, **Casas** (por exemplo, `x/y`) e **Consenso**.
+  </Card>
+</Columns>
+
+## Mensagens que você pode ver
+
+<AccordionGroup>
+  <Accordion title="Análise ainda não disponível para este mês." icon="circle-info">
+    Aparece em **Casas sem fundo próprio**, **Permanência** e **Consenso** quando o dado daquele mês ainda não chegou. O bloco avisa em vez de desaparecer.
+  </Accordion>
+  <Accordion title="Nenhum dado de carteira recomendada disponível." icon="inbox">
+    A aba não recebeu dados de carteira. Troque a **Data-base** e confira se há carteira carregada para o mês.
+  </Accordion>
+  <Accordion title="Nenhuma entrada ou saída no mês." icon="right-left">
+    Nada entrou nem saiu em relação ao mês anterior.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Próxima aba: Panorama" icon="map" href="/carteira-recomendada/panorama">
+  Veja todos os setores de uma vez.
+</Card>

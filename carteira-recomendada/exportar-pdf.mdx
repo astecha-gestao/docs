@@ -1,0 +1,154 @@
+---
+title: "Exportar o Dashboard em PDF"
+sidebarTitle: "Exportar em PDF"
+description: "Como gerar o PDF de cada aba do Dashboard de Carteira Recomendada, o que sai em cada uma, por que a aba Por Fundo gera duas páginas e como o arquivo é nomeado."
+icon: "file-pdf"
+---
+
+O botão **PDF** gera um relatório da aba que você está olhando. Cada aba tem a sua própria folha: o PDF **não é uma foto da tela**. Ele é montado à parte, em tema claro, em formato A4 retrato.
+
+<Info>
+  **Onde fica:** no cabeçalho do Dashboard, no canto direito, depois do seletor de **Data-base**. Há um único botão. Ele exporta a aba ativa.
+</Info>
+
+## Como exportar
+
+<Steps>
+  <Step title="Escolha a aba e os filtros">
+    Abra a aba que quer exportar e ajuste os filtros: **Data-base** e, conforme a aba, **Posições / Peso**, **Setor / Segmento** e o seletor de setor ou de fundo.
+  </Step>
+  <Step title="Passe o mouse sobre o botão (opcional)">
+    A dica mostra a aba que sairá: `Exportar a aba Geral como PDF`. Nas outras abas, o nome é **Panorama**, **Setor** ou **Fundo**.
+  </Step>
+  <Step title="Clique em PDF">
+    O botão fica com o texto **Gerando…** e uma cortina cobre a tela com a mensagem **Gerando o PDF…**. A geração leva alguns segundos. Deixe a aba do navegador em primeiro plano até terminar.
+  </Step>
+  <Step title="Pegue o arquivo">
+    Quando termina, o navegador baixa o arquivo. A cortina some e a tela volta como estava.
+  </Step>
+</Steps>
+
+<Note>
+  O botão fica desabilitado enquanto o Dashboard ainda não carregou os dados. Durante a geração, os filtros **Data-base** e **Posições / Peso** ficam bloqueados.
+</Note>
+
+## O que sai em cada aba
+
+Todas as folhas têm o mesmo cabeçalho e rodapé. No cabeçalho ficam o título, a data-base por extenso (por exemplo, `Junho de 2026`), o recorte e a logo da sua gestora, à direita. No rodapé ficam a marca da Astecha, a fonte dos dados, o aviso de que o documento é informativo e não é recomendação de investimento, e a data e a hora de geração.
+
+As listas longas são cortadas no PDF, porque o papel não rola. A folha mostra o topo de cada lista e escreve quantos ficaram de fora, por exemplo `+N não exibidos`.
+
+<Tabs>
+  <Tab title="Geral">
+    **1 página.** O título é `Carteira Recomendada`. O recorte é `Importância por posições` ou `Importância por peso`, conforme o filtro **Posições / Peso**.
+
+    A folha tem os seis indicadores e os cinco capítulos da tela, na mesma ordem:
+
+    1. **Posição da gestora** — Posição e Trajetória.
+    2. **Quem nos recomenda** — Fundos próprios e Casas.
+    3. **Movimento do mês** — Entradas × saídas e Peso ganho e perdido.
+    4. **Origem da recomendação** — Origem e Casas sem fundo próprio.
+    5. **Solidez da presença** — Permanência, Concentração e Consenso.
+
+    A tabela aberta por **ver detalhe casa a casa** não sai no PDF.
+  </Tab>
+  <Tab title="Panorama">
+    **1 página.** O título é `Panorama`, com a sobrelinha `Carteira Recomendada`. O recorte é `Agrupamento: Setor` ou `Agrupamento: Segmento`.
+
+    A folha tem os seis indicadores e três capítulos:
+
+    1. **Mapa setorial** — Onde o mercado recomenda e Onde estamos sub ou sobre-representados.
+    2. **Share e variação** — Nosso share por setor, O que mudou no mês e Como o mercado distribui as posições.
+    3. **Detalhamento** — a tabela Setores.
+
+    A lista de fundos sem setor cadastrado fica só na tela.
+  </Tab>
+  <Tab title="Por Setor">
+    **1 página.** O título é o nome do setor, com a sobrelinha `Carteira Recomendada · Setor`. O recorte é o agrupamento.
+
+    A folha tem os seis indicadores e três capítulos:
+
+    1. **Presença em Carteiras** — Presença em carteiras e Tamanho × presença.
+    2. **O setor em contexto** — O setor entre os demais, Seus fundos neste setor e Concentração da recomendação.
+    3. **Movimentações** — Quem entrou no setor e Quem saiu do setor. Sem movimento, entra a frase de ausência no lugar.
+  </Tab>
+  <Tab title="Por Fundo">
+    **2 páginas.** O título é o ticker do fundo, com a sobrelinha `Carteira Recomendada · Fundo`. O recorte mostra o setor e `Página 1 de 2` ou `Página 2 de 2`.
+
+    A **página 1** tem o resumo do fundo e três capítulos:
+
+    1. **Quem Recomenda** — Instituições ao longo do tempo e Quem carrega hoje.
+    2. **Peso por Casa** — Mês a mês e Aumentou ou cortou.
+    3. **Contra os Pares** — Posição entre os pares e Contra a mediana dos pares.
+
+    A **página 2** tem o capítulo **Mercado** (Preço e liquidez, Janela de 12 meses e Liquidez por mês). Embaixo, entram as listas completas que a página 1 teve de cortar: Quem carrega hoje, Mês a mês e o cohort inteiro. Essas listas só aparecem quando algum cartão da página 1 escondeu linhas.
+  </Tab>
+</Tabs>
+
+<Tip>
+  Na aba **Por Fundo**, o bloco **Posição entre os pares** mostra no PDF só a vizinhança do fundo (4 posições para cima e 4 para baixo). Na tela, ele mostra o cohort inteiro.
+</Tip>
+
+## A aba Por Fundo gera duas páginas
+
+A folha do fundo é a única com duas páginas. A página 1 cobre quem recomenda o fundo, o peso em cada casa e a comparação com os pares. A página 2 traz os dados de mercado e as listas completas que a página 1 cortou.
+
+As outras três abas cabem em uma página.
+
+## O nome do arquivo
+
+O nome segue o padrão:
+
+```text
+carteira-recomendada[-recorte]-AAAA-MM-DD.pdf
+```
+
+`AAAA-MM-DD` é a **Data-base** escolhida. O trecho `recorte` só entra quando o PDF é diferente do padrão. Ele existe para dois PDFs do mesmo mês não terem o mesmo nome. Os trechos, na ordem em que aparecem:
+
+| Trecho | Quando entra |
+|---|---|
+| `peso` | Quando a base **Peso** está marcada. |
+| `panorama` | Na aba Panorama. |
+| `por-segmento` | Quando o agrupamento é **Segmento**. |
+| `setor-<nome>` | Na aba Por Setor. O nome do setor vai sem acento, em minúsculas e com hífens. |
+| `fundo-<ticker>` | Na aba Por Fundo. O ticker vai em minúsculas. |
+
+Exemplos fictícios:
+
+| Situação | Arquivo |
+|---|---|
+| Geral, base Posições | `carteira-recomendada-2026-06-01.pdf` |
+| Geral, base Peso | `carteira-recomendada-peso-2026-06-01.pdf` |
+| Panorama, agrupado por Segmento | `carteira-recomendada-panorama-por-segmento-2026-06-01.pdf` |
+| Por Setor, setor Lajes | `carteira-recomendada-setor-lajes-2026-06-01.pdf` |
+| Por Fundo, ticker XXXX11 | `carteira-recomendada-fundo-xxxx11-2026-06-01.pdf` |
+
+<Note>
+  A base **Posições / Peso** só aparece na aba Geral, mas a escolha continua valendo se você trocar de aba. Se a base **Peso** estiver marcada, o trecho `peso` entra no nome do arquivo de qualquer aba.
+</Note>
+
+## Avisos depois da geração
+
+Se algo no PDF merece atenção, a tela mostra um aviso logo abaixo das abas. Ele descreve o arquivo que você acabou de baixar e fica na tela até a próxima geração.
+
+<AccordionGroup>
+  <Accordion title="Escolha um setor / um fundo antes de gerar o relatório desta aba." icon="hand-pointer">
+    A aba Por Setor ou Por Fundo está sem seleção. Escolha um setor ou um fundo no seletor do cabeçalho e clique em **PDF** de novo. Nada é baixado.
+  </Accordion>
+  <Accordion title="Relatório gerado sem ... — a consulta não respondeu a tempo." icon="clock">
+    O PDF foi baixado, mas sem um dos dados, como o panorama, o cohort do setor, o histórico de recomendação ou a série de preço e liquidez. Gere de novo.
+  </Accordion>
+  <Accordion title="O PDF saiu com X de Y páginas." icon="file-circle-exclamation">
+    Uma página não pôde ser rasterizada a tempo. O arquivo foi baixado incompleto. Tente de novo com a aba do navegador em primeiro plano.
+  </Accordion>
+  <Accordion title="A folha excedeu em N px — parte do conteúdo saiu cortada." icon="scissors">
+    O conteúdo não coube na folha e parte dele saiu cortada. Confira o arquivo antes de enviá-lo.
+  </Accordion>
+  <Accordion title="Falha ao gerar o PDF da Carteira Recomendada." icon="circle-xmark">
+    A geração falhou. Tente de novo. Se persistir, fale com o suporte Astecha.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Precisa de ajuda?" icon="headset" href="/suporte">
+  Veja os canais de atendimento da Astecha.
+</Card>

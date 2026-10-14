@@ -37,6 +37,17 @@
         ]
       },
       {
+        "group": "App de Carteira Recomendada",
+        "pages": [
+          "carteira-recomendada/visao-geral",
+          "carteira-recomendada/geral",
+          "carteira-recomendada/panorama",
+          "carteira-recomendada/por-setor",
+          "carteira-recomendada/por-fundo",
+          "carteira-recomendada/exportar-pdf"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"

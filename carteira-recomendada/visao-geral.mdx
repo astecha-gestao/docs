@@ -1,0 +1,111 @@
+---
+title: "App de Carteira Recomendada — Visão geral"
+sidebarTitle: "Visão geral"
+description: "Para que serve o app de Carteira Recomendada, os conceitos que aparecem nas telas, como abrir o Dashboard e como funcionam as quatro abas e os filtros do cabeçalho."
+icon: "sparkles"
+---
+
+<Info>
+  Guia operacional interno da Astecha. Descreve o **Dashboard** do app de Carteira Recomendada, no Portal. Os nomes de abas, blocos, botões e campos seguem o que aparece na interface.
+</Info>
+
+## O que é o app de Carteira Recomendada
+
+O app monitora a **presença dos seus fundos nas carteiras recomendadas das casas**. Em vez de olhar carteira por carteira, você vê de uma vez:
+
+- quanto do que o mercado recomenda é seu;
+- quais casas recomendam seus fundos e quais não recomendam nenhum;
+- o que entrou, o que saiu e quanto o peso mudou de um mês para o outro;
+- como cada setor e cada fundo se comparam com os pares.
+
+O Dashboard tem **quatro abas**. Cada uma responde a uma pergunta diferente e tem o seu próprio PDF.
+
+## Conceitos que aparecem nas telas
+
+<AccordionGroup>
+  <Accordion title="Casa, carteira e posição" icon="building-columns">
+    - **Casa** — a instituição que publica carteiras recomendadas.
+    - **Carteira** — cada carteira publicada por uma casa. Uma casa pode ter mais de uma.
+    - **Posição** — um fundo dentro de uma carteira de uma casa. Se o mesmo fundo está em duas carteiras, são duas posições.
+  </Accordion>
+  <Accordion title="Fundo próprio" icon="bullseye">
+    É um fundo da sua gestora. Nas telas, os fundos próprios aparecem na **cor da sua marca**. Os demais aparecem em cinza.
+  </Accordion>
+  <Accordion title="Importância Própria e share" icon="percent">
+    - **Importância Própria** — quanto do total recomendado é seu. Na base **Posições**, é a quantidade de posições próprias dividida pelo total de posições. Na base **Peso**, é o peso dos fundos próprios dividido pelo peso total.
+    - **Share** — a mesma ideia, mas dentro de um setor: as posições dos seus fundos naquele setor, divididas pelas posições do setor.
+  </Accordion>
+  <Accordion title="Setor, segmento e cohort" icon="layer-group">
+    - **Setor** e **Segmento** são duas formas de agrupar os fundos. Você escolhe uma delas no cabeçalho.
+    - **Cohort** é o conjunto de fundos do setor (ou do segmento) em que você está olhando. Na aba **Por Fundo**, o cohort do fundo é o setor dele.
+  </Accordion>
+  <Accordion title="Consenso" icon="people-group">
+    Mostra quantas das casas ativas no mês recomendam um fundo ou um setor. É a razão entre as casas que recomendam e as casas ativas no mês.
+  </Accordion>
+  <Accordion title="Δ e pp" icon="arrow-trend-up">
+    **Δ** é a variação em relação ao mês anterior. **pp** significa pontos percentuais. As variações aparecem com seta (▲ alta, ▼ queda). Queda aparece em vermelho.
+  </Accordion>
+</AccordionGroup>
+
+## Como abrir o Dashboard
+
+<Steps>
+  <Step title="Abra o Portal e vá em Investor Relations → Carteira Recomendada">
+    Na tela inicial (grade de apps), abra a área **Investor Relations** e escolha o app **Carteira Recomendada**.
+  </Step>
+  <Step title="Abra o Dashboard">
+    No menu lateral do app, clique em **Dashboard**. Ele abre na aba **Geral**.
+  </Step>
+  <Step title="Escolha a aba">
+    Use as abas logo abaixo do cabeçalho: **Geral**, **Panorama**, **Por Setor** e **Por Fundo**.
+  </Step>
+</Steps>
+
+<Note>
+  O menu do app também tem **Processor** e **Setores**. Eles ficam fora deste guia. O Dashboard depende deles: o **Processor** carrega a tabela de alocação recomendada por casa, carteira, fundo e data-base, e a tela **Setores** é onde se cadastra o setor dos fundos.
+</Note>
+
+## As quatro abas
+
+<Columns cols={2}>
+  <Card title="Geral" icon="chart-pie" href="/carteira-recomendada/geral">
+    Quanto do recomendado é seu, quem recomenda, o que mudou no mês e quão sólida é a presença.
+  </Card>
+  <Card title="Panorama" icon="map" href="/carteira-recomendada/panorama">
+    Todos os setores de uma vez: onde o mercado recomenda e onde você está sub ou sobre-representado.
+  </Card>
+  <Card title="Por Setor" icon="layer-group" href="/carteira-recomendada/por-setor">
+    Um setor por inteiro: o ranking dos fundos, o contexto e as movimentações.
+  </Card>
+  <Card title="Por Fundo" icon="bullseye" href="/carteira-recomendada/por-fundo">
+    Um fundo seu: quem o recomenda, o peso em cada casa, como ele está contra os pares e o mercado.
+  </Card>
+</Columns>
+
+## Filtros do cabeçalho
+
+Os filtros ficam no topo da página, à direita do título. Alguns só aparecem em certas abas.
+
+| Filtro | Onde aparece | O que faz |
+|---|---|---|
+| **Setor / Segmento** | Panorama, Por Setor e Por Fundo | Define como os fundos são agrupados. |
+| Seletor de **Setor** | Por Setor | Escolhe o setor (ou segmento) a analisar. |
+| Seletor de **Fundo próprio** | Por Fundo | Escolhe o fundo a analisar. |
+| **Posições / Peso** | Geral | Define a base da Importância Própria: contagem de posições ou peso. |
+| **Data-base** | Todas | Escolhe o mês. Abre no mês mais recente. |
+| **PDF** | Todas | Exporta a aba aberta. Veja [Exportar em PDF](/carteira-recomendada/exportar-pdf). |
+
+<Tip>
+  A aba, o agrupamento e o setor ou fundo escolhidos ficam no endereço da página. Se você copiar o endereço, quem abrir o link vê o mesmo recorte.
+</Tip>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Aba Geral" icon="chart-pie" href="/carteira-recomendada/geral">
+    Os seis indicadores e os cinco capítulos da aba.
+  </Card>
+  <Card title="Exportar em PDF" icon="file-pdf" href="/carteira-recomendada/exportar-pdf">
+    O que sai em cada aba e o nome do arquivo.
+  </Card>
+</Columns>
