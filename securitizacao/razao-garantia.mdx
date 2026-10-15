@@ -17,21 +17,23 @@ O primeiro bloco, **Posição em dd/mm/aaaa**, mostra a razão **na data-base es
 
 <Steps>
   <Step title="Leia a razão em destaque">
-    **Razão de garantia total** é o número principal. A variante usada (só a curva do lastro, ou lastro mais caixa) é a que está cadastrada no deal. Veja [Configurar no Registry](#4-configurar-no-registry).
+    **Razão de garantia total** é o número principal: o lastro mais o caixa, dividido pela dívida. Ao lado fica a **razão de garantia carteira**, que é só o lastro, sem o caixa. O semáforo julga a variante cadastrada no deal, e a que vale vem marcada como **base do contrato**. Veja [Configurar no Registry](#4-configurar-no-registry).
+
+    Sob o número grande, uma linha em reais mostra o que sobra ou falta: **Lastro (+ caixa) de R$ X sobre dívida de R$ Y**, seguido de **folga de R$ Z sobre o mínimo** ou de **faltam R$ Z de lastro (ou caixa) para voltar ao mínimo**. Sem mínimo cadastrado, a folga é medida contra a dívida (100%). Em carência, a linha diz onde a razão ficaria hoje: **hoje ficaria N p.p. acima (ou abaixo) do mínimo**.
   </Step>
   <Step title="Confira o selo do semáforo">
     O selo compara a razão com o **mínimo contratual**:
 
     | Selo | O que significa |
     |---|---|
-    | **OK** | A razão está acima do mínimo e fora da faixa de atenção. |
+    | **OK** | A razão está acima do mínimo e fora da faixa de atenção. A frase ao lado diz quantos pontos percentuais (p.p.) acima. |
     | **Atenção** | A razão está acima do mínimo, mas dentro da faixa de atenção. |
-    | **Violado** | A razão está abaixo do mínimo contratual. |
-    | **Em carência** | O mínimo ainda não vale nesta data (janela entre integralizar o CR e comprar o lastro). |
+    | **Violado** | A razão está abaixo do mínimo contratual. A frase diz quantos p.p. abaixo, e a razão da carteira fica em vermelho quando é ela que o contrato julga. |
+    | **Em carência** | O mínimo ainda não vale nesta data (janela entre integralizar o CR e comprar o lastro). A frase diz até quando e a partir de quando ele passa a valer. |
     | **Sem semáforo** | Nenhum mínimo foi cadastrado para o deal. |
   </Step>
   <Step title="Leia as células ao lado">
-    As células mostram o **mínimo** cadastrado, a **taxa do lastro** (média ponderada quando há mais de um título) e a **taxa do passivo**.
+    As células mostram a **razão de garantia carteira**, o **mínimo** cadastrado, a **taxa do lastro** (média ponderada quando há mais de um título) e a **taxa passivo**, que é a taxa da dívida.
   </Step>
 </Steps>
 
@@ -43,7 +45,7 @@ O primeiro bloco, **Posição em dd/mm/aaaa**, mostra a razão **na data-base es
 
 Abaixo da posição ficam dois gráficos e o seletor de período.
 
-- **Período:** use **6M**, **YTD**, **12M** ou **Tudo**, ou digite as datas no seletor ao lado. As janelas curtas terminam **hoje**; **Tudo** vai até o **fim da operação** (o último dia da curva da dívida).
+- **Período:** use **6M**, **YTD**, **12M** ou **Tudo**, ou digite as datas no seletor ao lado. A tela abre em **6M**. As janelas se apoiam em **hoje**: **6M** e **12M** mostram esse tempo para trás e o mesmo tempo para frente (a projeção entra), sem sair da série; **YTD** vai de 1º de janeiro até hoje, só com dado realizado; **Tudo** vai até o **fim da operação** (o último dia da curva da dívida). Uma janela só fica ativa quando recorta alguma coisa: se a série inteira, projeção incluída, couber nela, o botão aparece desativado.
 - **Razão de garantia:** a razão dia a dia nas duas variantes (**Curva** e **Curva + caixa**), com a linha de **100% (paridade)** e o mínimo, quando cadastrado.
 - **Lastro, caixa e passivo:** os mesmos números em reais. É aqui que você vê o tamanho da folga, que a razão em percentual esconde.
 
@@ -55,9 +57,13 @@ Tudo o que vem **depois de hoje** é **projeção**, marcada nos dois gráficos 
   Na projeção, o lastro segue o fluxo contratual das parcelas em aberto, e a dívida segue a curva do CR. O caixa é o saldo de hoje mais o que o lastro paga, menos o PMT da dívida. Ele inclui o rendimento do fundo de caixa, pela taxa que o fundo rendeu no último período fechado. Não há projeção de inadimplência nem de despesas futuras.
 </Note>
 
+<Note>
+  A carteira de CNAB só é projetada quando o CR do deal é prefixado, porque é a taxa do CR que traz as parcelas a valor presente. Sem taxa prefixada, o lastro e a razão ficam em branco depois de hoje, e o aviso acima dos gráficos diz o motivo.
+</Note>
+
 ## 3. A tabela diária
 
-A tabela mostra, dia a dia, de onde vem cada número:
+A tabela mostra, dia a dia, de onde vem cada número. Ela lista a série toda do período escolhido numa caixa de altura fixa, com o cabeçalho preso no topo: role dentro dela para ver os outros dias. Ao abrir, a caixa já está rolada até o divisor **Hoje · dd/mm, acima projeção**. Acima dele ficam os dias projetados, em cinza; abaixo, os dias realizados. A linha da **data-base** vem destacada.
 
 | Coluna | O que é |
 |---|---|
