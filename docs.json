@@ -24,6 +24,12 @@
         ]
       },
       {
+        "group": "Astecha AI",
+        "pages": [
+          "astecha-ai/rotinas-por-email"
+        ]
+      },
+      {
         "group": "App de Securitização",
         "pages": [
           "securitizacao/visao-geral",
