@@ -1,0 +1,129 @@
+---
+title: "Investimentos"
+sidebarTitle: "Investimentos"
+description: "Como ler a aba Investimentos da Gestão: a posição do caixa do deal aplicado em fundo, o movimento do mês, a posição dia a dia e o extrato com o saldo depois de cada lançamento."
+icon: "piggy-bank"
+---
+
+A aba **Investimentos** responde a uma pergunta: **quanto do caixa do deal está aplicado em fundo, e como o saldo chegou nesse valor?** Ela mostra a posição no fundo na data-base, a evolução dia a dia e o extrato de cada aplicação, resgate e rendimento.
+
+<Info>
+  **Onde fica:** **Securitização → Gestão → Investimentos**. No canto superior direito, escolha o **Deal** e a **Data Base**. Ao escolher o deal, a Data Base abre no último dia do mês anterior (se cair no fim de semana, na sexta-feira). Tudo na aba acumula até ela: lançamentos depois da Data Base não entram.
+</Info>
+
+<Note>
+  A aba é **só de leitura**. Os lançamentos são cadastrados e corrigidos no Registry. Veja [Editar no Registry](#4-editar-no-registry).
+</Note>
+
+## 1. O fundo e a posição na data-base
+
+<Steps>
+  <Step title="Confira o fundo e o último lançamento">
+    A faixa no topo mostra o **Fundo aplicado** (ou **Fundos aplicados**, com a quantidade, quando há mais de um) e um resumo como **8 lançamentos · último em 30/09/2026, por NOME**. A data do último lançamento ajuda a ver se o livro está em dia.
+  </Step>
+  <Step title="Leia a posição no fundo">
+    **Posição no fundo** é o número em destaque: o valor do fundo na Data Base. Ela é o **saldo aplicado** (tudo o que foi aplicado menos tudo o que foi resgatado) mais o **rendimento apropriado** (accrual) sobre o que ainda não saiu do fundo.
+  </Step>
+  <Step title="Leia as células ao lado">
+    | Célula | O que é |
+    |---|---|
+    | **Aplicado em (mês)** | O que entrou no fundo no mês da Data Base. Sem lançamento no mês, mostra zero. |
+    | **Resgatado em (mês)** | O que saiu do fundo no mês da Data Base. |
+    | **% resgatado** | Quanto do total aplicado já saiu do fundo, **acumulado desde o primeiro lançamento** (não só do mês). A barrinha abaixo acompanha o percentual. |
+    | **Rendimento** | O rendimento total: o recebido (caixa) mais o apropriado (accrual). |
+
+    Os valores aparecem abreviados (mil, mi). Passe o mouse sobre um valor em reais para ver o número completo.
+  </Step>
+</Steps>
+
+### Os tipos de lançamento
+
+Cada linha do livro tem um dos quatro tipos:
+
+| Tipo | O que significa | Mexe na posição? |
+|---|---|---|
+| **Aplicação** | Dinheiro do deal que entra no fundo. | Sim, soma. |
+| **Resgate** | Dinheiro que sai do fundo. | Sim, subtrai. |
+| **Rentabilidade Accrual** | Rendimento apropriado sobre o que ainda não foi resgatado. É rendimento ainda não realizado. | Sim, soma. |
+| **Rentabilidade Caixa** | Rendimento realizado, que veio junto de um resgate. Vai para a conta corrente do deal. | Não. |
+
+## 2. Posição diária no fundo
+
+O gráfico mostra a **Posição** em degraus: um ponto por dia com lançamento, com a posição depois do último lançamento daquele dia. A linha segue reta até a Data Base, porque o saldo continua aplicado depois do último movimento.
+
+- **Aplicação** (verde) e **Resgate** (amarelo) marcam os dias de movimento, com a soma movimentada no dia: **+** para aplicação, **−** para resgate.
+- O eixo vertical se ajusta aos dados, em vez de começar no zero. Por isso um degrau pequeno também aparece.
+- O eixo de datas só traz os dias com movimento e a Data Base.
+- Passe o mouse sobre o gráfico para ver a posição de cada dia.
+
+<Note>
+  A linha é a **posição**, e não só o saldo aplicado: ela inclui o rendimento accrual. Um dia só com **Rentabilidade Accrual** também move a linha.
+</Note>
+
+## 3. Extrato do fundo
+
+O extrato lista os lançamentos do **mais novo para o mais antigo**.
+
+| Coluna | O que é |
+|---|---|
+| **Data** | O dia do lançamento. |
+| **Movimento** | O tipo do lançamento: **Aplicação**, **Resgate** ou **Rentabilidade Accrual**. A **Rentabilidade Caixa** só aparece aqui quando é uma linha normal, como explicado abaixo. |
+| **Fundo** | O fundo do lançamento. Só aparece quando o deal tem mais de um fundo. |
+| **Descrição** | A observação do lançamento. Só aparece quando algum lançamento tem descrição. |
+| **Valor** | O valor do movimento: **+** na aplicação e **−** no resgate. As rentabilidades levam o sinal do lançamento, negativo quando o fundo rendeu abaixo de zero. |
+| **Saldo após** | A **posição no fundo logo depois daquela linha**, acumulada desde o primeiro lançamento do livro. |
+| **Lançado por** | Quem fez o lançamento. |
+
+No rodapé, **Posição em dd/mm/aaaa** repete a posição da Data Base: ela fecha com o número em destaque no alto da aba.
+
+### O rendimento recebido
+
+A **Rentabilidade Caixa** não tem saldo próprio. Quando há outro lançamento no mesmo dia, ela aparece logo abaixo dos lançamentos do dia, numa linha menor: **Rendimento recebido · vai ao C/C**, com o valor e a nota **não muda o saldo**. Se o dia não tem outro lançamento, ela vira uma linha normal, com data.
+
+### Exemplo
+
+Um deal com estes lançamentos (valores ilustrativos), do mais novo para o mais antigo:
+
+| Data | Movimento | Valor | Saldo após |
+|---|---|---|---|
+| 28/01/2026 | Resgate | −R$ 40.000,00 | R$ 61.000,00 |
+| ↳ | Rendimento recebido · vai ao C/C | +R$ 300,00 | não muda o saldo |
+| 20/01/2026 | Rentabilidade Accrual | +R$ 1.000,00 | R$ 101.000,00 |
+| 05/01/2026 | Aplicação | +R$ 100.000,00 | R$ 100.000,00 |
+
+Com a Data Base em 30/01/2026, a **Posição no fundo** é de **R$ 61.000,00**: saldo aplicado de R$ 60.000,00 (100.000 − 40.000) mais R$ 1.000,00 de accrual. Em janeiro, **Aplicado** é R$ 100.000,00 e **Resgatado** é R$ 40.000,00 (abreviados nas células); **% resgatado** é **40,0%** e **Rendimento** é R$ 1.300,00 (300 de caixa mais 1.000 de accrual).
+
+## 4. Editar no Registry
+
+Para lançar ou corrigir um movimento, clique em **Editar lançamentos no Registry**, no canto da faixa do topo. O botão abre **Controller → Registry → Securitization → Investments**. Cada lançamento tem data, tipo, valor, fundo e descrição.
+
+- **Aplicação** e **Resgate** exigem valor **positivo**: a direção é o próprio tipo.
+- As duas **rentabilidades** aceitam valor **negativo**. Use para um fundo que rendeu abaixo de zero ou para estornar um accrual lançado a maior.
+- Lançamento em **mês já fechado** do deal é recusado. Reabra o mês na aba **Fechamento** antes de lançar.
+
+<Tip>
+  Ao voltar para a aba depois de editar no Registry, ela busca o livro de novo: um lançamento recém-feito aparece sem esperar.
+</Tip>
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Selecione um deal para visualizar os Investimentos">
+    A aba é filtrada por **Deal**. Escolha um no canto superior direito.
+  </Accordion>
+  <Accordion title="Nenhum investimento lançado para este deal">
+    O livro do deal está vazio na Data Base. Cadastre os lançamentos em **Controller → Registry → Securitization → Investments**. Se já existem lançamentos, confira se a **Data Base** não é anterior ao primeiro deles.
+  </Accordion>
+  <Accordion title="Não foi possível carregar os Investimentos">
+    A busca falhou e não há cópia anterior para mostrar. Tente de novo em instantes ou troque a **Data Base**.
+  </Accordion>
+  <Accordion title="Não foi possível atualizar agora — mostrando a última cópia carregada">
+    A tela não conseguiu buscar o livro de novo e mostra a última versão que carregou. Um lançamento feito há pouco pode não estar nela. Recarregue a página ou volte à aba em instantes.
+  </Accordion>
+  <Accordion title="Lancei o rendimento recebido e a posição não mudou">
+    É assim por desenho: **Rentabilidade Caixa** é rendimento realizado, que vai para a conta corrente do deal, e não entra na posição do fundo. Só a **Rentabilidade Accrual** soma na posição. O valor aparece em **Rendimento**, nas células do topo.
+  </Accordion>
+  <Accordion title="Lancei um resgate e Resgatado em (mês) continua zero">
+    A célula mostra o movimento do **mês da Data Base**. Um resgate de outro mês aparece no extrato e entra em **% resgatado**, que é acumulado, mas não nessa célula. Escolha uma Data Base dentro do mês do resgate.
+  </Accordion>
+</AccordionGroup>
