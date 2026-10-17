@@ -24,6 +24,12 @@
         ]
       },
       {
+        "group": "Astecha AI",
+        "pages": [
+          "astecha-ai/limite-de-gasto"
+        ]
+      },
+      {
         "group": "App de Securitização",
         "pages": [
           "securitizacao/visao-geral",
