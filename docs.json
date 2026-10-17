@@ -48,6 +48,12 @@
         ]
       },
       {
+        "group": "App de Pricing",
+        "pages": [
+          "pricing/aprovar-pmt-agente-fiduciario"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
