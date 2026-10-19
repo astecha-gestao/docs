@@ -54,6 +54,13 @@
         ]
       },
       {
+        "group": "App de Boletagem",
+        "pages": [
+          "boletagem/registrar-e-liquidar-operacao",
+          "boletagem/comprar-lastro-de-deal"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"

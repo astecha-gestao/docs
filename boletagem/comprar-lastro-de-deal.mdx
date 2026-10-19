@@ -1,0 +1,63 @@
+---
+title: "Registrar a compra de um título de lastro"
+sidebarTitle: "Compra de lastro"
+description: "Como lançar na Boletagem a compra de um título de lastro por um deal e onde ela aparece na Rentabilidade e na DRE."
+icon: "file-invoice-dollar"
+---
+
+Quando um deal compra um título que passa a ser o seu lastro, a compra entra na **Boletagem** como qualquer outra operação: o comprador é o deal, o ativo é o título, a operação é **Buy**. Não existe tela própria para lastro.
+
+<Warning>
+  **Nunca lance a compra de um ativo em Despesas.** O caixa e o patrimônio ficam certos, mas a compra aparece como despesa e o ganho na aquisição fica escondido.
+</Warning>
+
+<Info>
+  **Onde fica:** o lançamento é em **Controller → Boletagem**. O resultado aparece na **Rentabilidade** e na **DRE** do deal, em **Credit → Securitization**.
+</Info>
+
+## Lançar a compra
+
+<Steps>
+  <Step title="Registre a operação na Trade Entry">
+    Em **Controller → Boletagem → Trade Entry**, preencha:
+
+    | Campo | Valor |
+    |---|---|
+    | **Portfolio** | O deal que comprou o título. |
+    | **Asset** | O código do título de lastro. |
+    | **Operation Type** | **Buy**. |
+    | **Trade Date** | A data do negócio. |
+    | **Settlement Date** | O dia em que o dinheiro saiu do caixa do deal. |
+    | **Quantity** e **Unit Price** | A quantidade e o preço unitário pagos. |
+    | **Amount (R$)** | O valor realmente pago. Ele manda no caixa. |
+  </Step>
+  <Step title="Valide e liquide no Pipeline">
+    No **Pipeline**, clique em **Validate** e depois em **Settle**, confirmando a data de liquidação.
+  </Step>
+</Steps>
+
+Só a operação **Settled** conta. Enquanto estiver **Pending** ou **Validated**, o deal não muda.
+
+## O que muda no deal depois de liquidar
+
+* **O caixa** sai pela data de liquidação, como acontece com a cessão da carteira de recebíveis. Se a data cai em dia não útil, vale o próximo dia útil.
+* **O lastro** passa a valer a partir da liquidação da compra.
+* **O patrimônio** reflete a troca: o valor pago sai do caixa e o título entra pelo valor da curva.
+* **A diferença** entre a curva do título no dia e o valor pago é o **ganho na aquisição**. Ele sobe o patrimônio nesse dia, não mexe na conta corrente e não é rendimento comum: aparece em linha própria.
+
+## Onde conferir
+
+<CardGroup cols={2}>
+  <Card title="Rentabilidade" icon="chart-line">
+    No grupo **Lastro**, a coluna **Compra** mostra o valor pago no dia da liquidação, marcado como saída do caixa. A coluna **Ganho na aquisição** mostra a curva menos o valor pago.
+  </Card>
+  <Card title="DRE" icon="table">
+    A linha **Ganho na aquisição do lastro** aparece separada de **Rendimentos**, e o resultado total não muda. A Gestão e o PDF mostram a mesma linha.
+  </Card>
+</CardGroup>
+
+## Quando a compra não vira lastro
+
+Só uma **compra (Buy) liquidada**, com data de liquidação e valor, de um título que é lastro do **próprio deal**, entra no patrimônio. Uma venda, uma operação de veículo ou de outro ativo fica registrada na Boletagem, mas não muda o patrimônio do deal.
+
+Se o deal já tinha o lastro lançado em **Despesas**, peça à equipe Astecha para migrar o lançamento. Os dois lançamentos juntos contam a compra em dobro no caixa.
