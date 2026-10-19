@@ -1,0 +1,70 @@
+---
+title: "Ler o painel Geral do Compliance"
+sidebarTitle: "Painel Geral"
+description: "O que vence, o que atrasou e quais fundos estão desenquadrados, num só lugar, e como receber um aviso no assistente quando um prazo vence."
+icon: "gauge"
+---
+
+O **Geral** é a primeira tela do Compliance. Ele junta o que a sua gestora precisa ver ao abrir o app: quantas obrigações estão em dia, quais já passaram do prazo, o que vence nas próximas semanas e quais fundos estão fora dos limites dos regulamentos.
+
+<Info>
+  **Onde fica:** **Legal → Compliance → Geral**. Os indicadores aparecem depois que você adota a primeira obrigação na [Agenda](/compliance/agenda). Antes disso, a tela mostra só a orientação de primeiro acesso.
+</Info>
+
+## Os indicadores
+
+A faixa no topo tem cinco números:
+
+| Indicador | O que conta |
+|---|---|
+| **Obrigações ativas** | Obrigações que a sua gestora adotou e não desativou. |
+| **Vencendo em 30 dias** | Ocorrências em aberto que vencem de hoje até daqui a 30 dias. As atrasadas não entram. |
+| **Atrasadas** | Ocorrências em aberto com vencimento anterior a hoje. O número fica vermelho quando é maior que zero. |
+| **Cumpridas neste mês** | Ocorrências em que você deu baixa neste mês. |
+| **Fundos desenquadrados** | Quantos fundos têm ao menos uma regra de limite violada, no formato `2 de 5`. |
+
+"Em aberto" quer dizer **Pendente** ou **Em andamento**. O dia de hoje é o de Brasília, e o vencimento já considera o ajuste para dia útil.
+
+## Próximos prazos
+
+Logo abaixo, a tabela mostra até oito ocorrências em aberto, **as atrasadas primeiro**, da mais antiga para a mais recente, e depois as que ainda vão vencer. Cada linha traz o vencimento, a obrigação, quem responde, quanto falta (ou há quantos dias atrasou) e a situação.
+
+Quando faltam menos dias que a antecedência combinada para a obrigação, a situação passa a mostrar **Vence em N dias**. Para ver todas as ocorrências, filtrar e dar baixa, clique em **Ver todos na Agenda**.
+
+## Fundos desenquadrados
+
+Este bloco lê o Enquadramento. O Compliance não recalcula nada: ele mostra o resultado que o app **Enquadramento** já calculou na posição mais recente da carteira.
+
+- **Com violação:** a tabela lista o fundo, a regra, o valor atual e o limite (**máx.** ou **mín.**). Aparecem até dez linhas. Se houver mais, o texto abaixo avisa e você abre o Enquadramento pelo link **Abrir no Enquadramento**.
+- **Tudo enquadrado:** o bloco diz "Todos os fundos enquadrados" e a data da posição.
+- **Fundo sem posição:** um fundo em que nenhuma regra pôde ser calculada (sem carteira ou sem patrimônio na data) não conta como enquadrado. O bloco avisa quantos fundos estão nessa situação, e o indicador mostra `sem posição` na legenda.
+- **Sem regras aprovadas, sem posição ou falha de leitura:** o bloco explica o motivo. Nesses casos ele nunca diz que está tudo enquadrado, porque não há como saber.
+
+<Note>
+  O bloco e o indicador **Fundos desenquadrados** só aparecem para quem tem acesso ao app Enquadramento. Sem esse acesso, os demais indicadores e a tabela de prazos continuam iguais.
+</Note>
+
+## Receber um aviso no assistente
+
+Em vez de abrir o Geral todo dia, você pode pedir ao Astecha AI que avise quando algum prazo vencer.
+
+<Steps>
+  <Step title="Abra as Rotinas">
+    Clique em **Receber aviso no assistente quando algo atrasar**, abaixo da faixa de indicadores. Você vai para a página **Rotinas** do Astecha AI.
+  </Step>
+  <Step title="Ligue o alerta do Compliance">
+    No cartão **Alerta de check vermelho · Compliance**, ligue a chave, marque **Obrigações com prazo vencido** e clique em **Ativar**.
+  </Step>
+</Steps>
+
+A cada duas horas, a plataforma confere se há obrigação com prazo vencido. Quando o check passa de verde para vermelho, chega um aviso na sua **Caixa de entrada** do Astecha AI, com a contagem de ocorrências atrasadas. Quando todas voltam ao prazo, o aviso passa a "voltou a verde".
+
+<Note>
+  O aviso sai na **mudança** de verde para vermelho. Se uma segunda obrigação atrasar enquanto a primeira ainda está atrasada, você não recebe um aviso novo: a contagem aparece no Geral. O alerta é opcional e vale só para a sua pessoa.
+</Note>
+
+O cartão do Compliance só aparece para quem tem acesso à Agenda.
+
+## Perguntar ao assistente
+
+O Astecha AI lê os mesmos números. Experimente: "como está a minha agenda de compliance?" ou "o que vence nos próximos 30 dias?". Para os fundos desenquadrados, ele consulta o Enquadramento.
