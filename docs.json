@@ -56,7 +56,8 @@
       {
         "group": "App de Compliance",
         "pages": [
-          "compliance/agenda"
+          "compliance/agenda",
+          "compliance/dar-baixa"
         ]
       },
       {
