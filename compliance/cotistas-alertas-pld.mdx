@@ -1,0 +1,217 @@
+---
+title: "Cotistas › Alertas PLD"
+sidebarTitle: "Alertas PLD"
+description: "Como a plataforma aponta movimentações atípicas de cotistas, como configurar os limites da gestora, analisar cada alerta, registrar a comunicação ao COAF dentro de 24 horas e tratar a declaração negativa."
+icon: "bell"
+---
+
+A aba **Alertas PLD** compara a posição de cada cotista em cada fundo com a posição anterior e abre um **alerta** quando a variação foge do que a política da gestora espera. O alerta é só um **indício**: quem analisa, arquiva ou conclui que há sérios indícios é você, com análise escrita, e tudo fica na trilha de auditoria.
+
+<Info>
+  **Onde fica:** **Legal → Compliance → Cotistas**, aba **Alertas PLD**. É a terceira aba da mesma página do [Cadastro e risco](/compliance/cotistas-cadastro-e-risco) e da [Triagem](/compliance/cotistas-triagem). Se o item **Compliance** não aparece no seu menu, o seu usuário ainda não tem acesso: fale com o seu contato Astecha (veja [Suporte](/suporte)). Sem acesso, a tela diz "Você não tem acesso a esta página".
+</Info>
+
+{/* TODO: print — aba Alertas PLD com a faixa de números, os filtros e a tabela de alertas */}
+
+## O que a plataforma faz e o que não faz
+
+| A plataforma faz | A plataforma **não** faz |
+|---|---|
+| Compara duas posições seguidas de cada cotista em cada fundo (cotas e subclasses) e abre o alerta pelas [quatro regras](#as-quatro-regras). | **Não transmite nada ao COAF.** Você envia pelo canal da gestora e registra aqui o protocolo. |
+| Conta as 24 horas do COAF a partir da conclusão da sua análise e mostra o relógio. | **Não bloqueia ordem nem movimentação.** |
+| Guarda análise, autor, protocolo e horários, sem apagar nada. | **Não avisa o cotista.** O sigilo vale para ele (RCVM 50, art. 22, § 2º). |
+
+<Warning>
+  **A base de posições é mensal.** O alerta mostra o **saldo líquido entre duas posições**, e não a operação do dia. Aplicação e resgate dentro do intervalo se anulam e **não aparecem**. Como o alerta só nasce quando a posição seguinte chega à base, ele surge cerca de um mês depois do fato. A aba é um apoio à sua diligência, e não um monitoramento operação a operação.
+</Warning>
+
+Nome e CPF reais não chegam à tela: o cotista aparece **mascarado**, como no cadastro de risco.
+
+## Limites e prazos
+
+A Resolução CVM 50 **não fixa valor em reais** (art. 20, § 1º: "independentemente de seu valor"). Por isso os limites são **da política da sua gestora**. Clique em **Limites e prazos**, no alto da aba, para abri-los.
+
+<Warning>
+  **Valores sugeridos só valem depois de confirmados.** Enquanto a gestora não confirma, a gaveta mostra os valores sugeridos pela Astecha e **só a regra de sanção roda**. A tela diz **Monitoramento não confiável**. Clique em **Confirmar limites** (ou em **Confirmar os limites**, na faixa de aviso) para valer como a regra da sua gestora.
+</Warning>
+
+{/* TODO: print — gaveta Limites e prazos com os valores sugeridos ainda não confirmados */}
+
+| Campo na gaveta | O que define | Sugerido |
+|---|---|---|
+| **Risco baixo**, **Risco médio**, **Risco alto** (em **Aplicação líquida que gera alerta (R$)**) | Aplicação líquida, em reais, a partir da qual um cotista daquele risco gera alerta. | R$ 1.000.000, R$ 500.000 e R$ 100.000 |
+| **Movimentação a partir de** (em **PEP, alto risco e cadastro vencido (R$)**) | Limite menor, para aplicação ou resgate de PEP e de cotista de alto risco, e para aplicação com o cadastro vencido. | R$ 50.000 |
+| **Variação de fundo inteiro: a partir de quantos % dos cotistas variando junto** | Acima desse percentual, a variação é do **fundo** (amortização, come-cotas) e não vira alerta. De 1 a 100. | 30% |
+| **Prazo interno de análise (dias corridos)** | Em quantos dias você se compromete a concluir cada alerta (a norma pede análise "regular e tempestiva", art. 21, sem número). De 1 a 90. | 10 dias |
+| **Primeiro monitoramento: olhar as posições dos últimos (dias)** | Até onde o primeiro monitoramento olha para trás. De 1 a 365. | 90 dias |
+
+O valor do alerta é a **variação em cotas vezes o valor da cota** (patrimônio líquido dividido pelas cotas, do informe mensal à CVM). Os limites seguem duas regras, que o servidor confere ao salvar:
+
+* **Quem arrisca mais tem limite menor: alto ≤ médio ≤ baixo.**
+* **O limite de PEP, alto risco e cadastro vencido não passa do limite do risco alto** e precisa ser maior que zero.
+
+Digite os valores sem separador de milhar (por exemplo, 100000,00). Salvar cria uma **versão nova**, que vale a partir do **próximo monitoramento**. Os alertas já abertos não mudam. A gaveta mostra "Versão N, salva por … em …", e a mudança fica na trilha. O **prazo de 24 horas do COAF não é configurável**.
+
+## Quando o monitoramento roda
+
+**Todo dia**, logo depois da sincronização diária do cadastro de cotistas (a rotina das 6h30, horário de Brasília), na mesma sequência da [triagem](/compliance/cotistas-triagem). Para rodar fora do horário (por exemplo, depois de confirmar os limites), use **Monitorar agora**. O botão passa a mostrar "Monitorando…" e a tela acompanha sozinha.
+
+| Resultado na tela | Quando |
+|---|---|
+| "Monitoramento concluído: N variações avaliadas, N alertas novos." | Rodou normalmente. |
+| "Os limites não estão confirmados: só a regra de sanção rodou (N alertas novos). Confirme os limites para as demais." | Limites ainda sugeridos. |
+| "Não há posições de cotistas para comparar: nada foi avaliado." | A base de posições está vazia. |
+| "Já existe um monitoramento em andamento. Aguarde terminar e confira o resultado." | Outra execução (a diária ou a de outra pessoa) está rodando. |
+
+Abaixo da faixa de números, a linha **Último monitoramento** informa quando rodou, até que posição, quantas variações avaliou e quantos alertas novos abriu. O mesmo alerta (cotista, fundo, regra e posição) não se repete.
+
+## As quatro regras
+
+Cada variação abre **no máximo um alerta**, pela regra **mais forte** que alcança o cotista. A ordem, da mais forte para a mais fraca:
+
+| Regra (rótulo da tela) | Quando alerta |
+|---|---|
+| **Sanção confirmada** | Cotista com sanção confirmada, ou com acerto pendente na CSNU ([triagem](/compliance/cotistas-triagem)). **Qualquer variação**, de qualquer valor e mesmo sem preço da cota. É a única regra que roda sem limites confirmados. |
+| **PEP ou alto risco** | PEP (marcado **Sim**) ou risco final **Alto**: aplicação **ou resgate** a partir de **Movimentação a partir de**. |
+| **Cadastro vencido** | **Aplicação** de cotista com o cadastro **Vencido**, a partir do mesmo limite menor. Resgate e encerramento ficam de fora (art. 11, § 3º). |
+| **Aplicação acima do limite** | Aplicação líquida a partir do limite do risco do cotista (**baixo**, **médio** ou **alto**; sem risco calculado, vale o do baixo). |
+
+Três situações que **não** geram alerta, e que você precisa conhecer:
+
+* **Evento do fundo.** Se muitos cotistas variam ao mesmo tempo (a partir do percentual da gaveta), a variação é do fundo, e não do cotista. A tela diz "N variações de fundo inteiro (amortização, come-cotas) não geraram alerta". Isso vale também para cotista com sanção confirmada.
+* **Fundo sem preço da cota.** Sem o informe mensal, a plataforma não estima o valor e as regras de valor não rodam. A tela diz "N sem preço da cota (não geraram alerta de valor)". A regra de sanção continua valendo, e o alerta dela mostra **sem preço da cota** no lugar do valor.
+* **Cotista fora do cadastro de risco.** A variação de quem ainda não está no [Cadastro e risco](/compliance/cotistas-cadastro-e-risco) é ignorada. **Sincronize os cotistas antes** de monitorar.
+
+## Quando o monitoramento é confiável
+
+Se algo não está em ordem, aparece a faixa **Monitoramento não confiável**, com o motivo. **Nunca leia lista vazia como "nenhum movimento atípico".**
+
+| Motivo mostrado | O que fazer |
+|---|---|
+| O monitoramento ainda não foi executado nesta conta. | Clique em **Monitorar agora**. |
+| Não há posições de cotistas para comparar. Ausência de alertas não quer dizer que não houve movimentação atípica. | Carregar as posições no app Cotistas. |
+| Os limites ainda não foram confirmados pela gestora: só a regra de sanção roda. Confirme os limites e rode o monitoramento de novo. | **Confirmar os limites** e **Monitorar agora**. |
+| A última execução do monitoramento falhou. Tente de novo; se continuar, avise o suporte. | **Monitorar agora**; se falhar de novo, [Suporte](/suporte). |
+| Há fundos sem posição nova há mais de 45 dias: o que aconteceu neles depois da última posição ainda não foi avaliado. | Pedir a posição atrasada. A faixa lista até 5 fundos ("última posição em dd/mm/aaaa (N dias)"). |
+
+Sem alertas e sem confiança, a tabela diz **O monitoramento não está ativo**. Só com o monitoramento em ordem a tabela vazia diz **Nenhum alerta**.
+
+## A faixa de números e os filtros
+
+A faixa **Alertas de movimentação** traz **Abertos** (com "N com o prazo de análise vencido", se houver), **Em análise**, **Comunicar ao COAF** (com o menor prazo restante), **Comunicados no ano** e **Arquivados no ano**. Clique numa célula para filtrar; clique de novo para tirar o filtro.
+
+| Filtro | Opções |
+|---|---|
+| **Situação** | **Todas**, **Aberto**, **Em análise**, **Comunicar ao COAF**, **Comunicado**, **Arquivado**. |
+| **Regra** | **Todas** e as quatro regras acima. |
+
+A tabela traz **Cotista**, **Fundo** (com a data da posição), **Regra**, **Variação** (em cotas e em reais), **Situação** e **Prazo**. Os alertas **Comunicar ao COAF** vêm primeiro, pelo prazo mais curto; depois os abertos e em análise. A coluna **Prazo** mostra o relógio do COAF (em vermelho, "venceu há …", quando passou) ou o prazo interno de análise. Clique na linha para abrir o alerta. Use **Limpar filtros**, **Anterior** e **Próxima** (50 por página).
+
+## Analisar um alerta
+
+O painel mostra o **Risco quando o alerta abriu**, o **Cadastro quando o alerta abriu**, a regra e **O movimento**: **Posição anterior**, **Posição nova**, **Variação em cotas** e **Valor estimado** (a quanto por cota).
+
+{/* TODO: print — painel de um alerta aberto, com O movimento e a Análise fundamentada */}
+
+<Steps>
+  <Step title="Confira o movimento e o cadastro do cotista">
+    Compare com o perfil do cotista no [Cadastro e risco](/compliance/cotistas-cadastro-e-risco). Lembre que o painel mostra só o saldo entre duas posições.
+  </Step>
+  <Step title="Escreva a análise">
+    Em **Análise fundamentada**, registre o que foi conferido e por quê. Para concluir, o mínimo é de **30 caracteres** (até 4.000). O painel mostra o prazo interno ("vence em N dias").
+  </Step>
+  <Step title="Escolha o que fazer">
+    * **Salvar rascunho:** guarda o texto e põe o alerta em **Em análise**, sem concluir.
+    * **Arquivar:** fecha o alerta com a análise. Nada é enviado.
+    * **Há sérios indícios: comunicar ao COAF:** conclui que há indício e **abre o prazo de 24 horas**.
+  </Step>
+</Steps>
+
+Depois da conclusão, a análise fica só para leitura, com quem concluiu e quando. A seção **Histórico** lista, com autor e data: **A rotina abriu o alerta**, **Salvou um rascunho da análise**, **Arquivou o alerta com a análise**, **Concluiu que há sérios indícios: comunicar ao COAF em 24 horas** e **Registrou a comunicação ao COAF** (com o protocolo). **Nada é apagado**: a guarda é de 5 anos (art. 26).
+
+## A comunicação ao COAF
+
+Ao concluir com **Há sérios indícios**, o alerta vai para **Comunicar ao COAF** e a RCVM 50 (art. 22, § 3º) dá **24 horas corridas**, contadas da **conclusão da análise**. Não há horas úteis.
+
+Enquanto houver alerta nessa situação, uma **faixa vermelha** aparece no alto da página, **em qualquer aba**: "N alertas com comunicação ao COAF pendente". Ela mostra até 3 alertas, com o tempo que falta e o botão **Registrar a comunicação**. Os demais ficam na aba, filtrados por **Comunicar ao COAF**.
+
+<Steps>
+  <Step title="Envie a comunicação ao COAF pelo canal da gestora">
+    A plataforma não envia nada. **Não avise o cotista.**
+  </Step>
+  <Step title="Abra o alerta e preencha o registro">
+    **Protocolo do COAF** (mínimo de 3 e máximo de 120 caracteres) e **Data e hora do envio**. A hora é a de Brasília.
+  </Step>
+  <Step title="Clique em Registrar a comunicação">
+    O alerta vira **Comunicado** e mostra "Protocolo …, enviado em … por …", com **dentro do prazo de 24 horas** ou **depois do prazo de 24 horas**.
+  </Step>
+</Steps>
+
+* A data e hora do envio **não podem ser futuras** nem **anteriores à conclusão da análise**.
+* **Dentro ou depois do prazo** compara a hora do **envio** que você informou com o fim das 24 horas, e não a hora do registro. Registrar depois do prazo é possível, e fica marcado como **depois do prazo**.
+* O registro **não se altera** depois de salvo. Confira o protocolo antes de clicar.
+
+## Declaração negativa à CVM (art. 23)
+
+Se, no ano, a gestora **não comunicou nada ao COAF**, a RCVM 50 (art. 23) pede a **declaração negativa**. Ela é feita **à CVM**, **até o último dia útil de abril do ano seguinte**.
+
+A tela mostra o aviso "Nenhuma comunicação ao COAF em" seguido do ano, "a declaração negativa à CVM vale" e o prazo ("até o último dia útil de abril" do ano seguinte) quando **nenhuma comunicação foi registrada no ano** e o monitoramento esteve **confiável**.
+
+<Note>
+  **A plataforma não marca a obrigação sozinha.** A declaração está na **Agenda**, como a obrigação **Comunicação de não ocorrência**: marque-a lá, com o comprovante. A plataforma só conta as comunicações **registradas aqui**: uma comunicação feita fora da plataforma, ou um alerta ainda em **Comunicar ao COAF** sem registro, não entra na conta.
+</Note>
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Aparece 'Monitoramento não confiável' e a tabela está vazia" icon="bell-slash">
+    Leia o motivo na faixa e use a tabela da seção [Quando o monitoramento é confiável](#quando-o-monitoramento-e-confiavel). Enquanto a faixa estiver lá, **não** trate a ausência de alertas como ausência de movimentação atípica.
+  </Accordion>
+  <Accordion title="'Os limites devem diminuir com o risco: alto menor ou igual ao médio, e médio ao baixo.'" icon="sliders">
+    Ajuste **Risco alto** ≤ **Risco médio** ≤ **Risco baixo**.
+  </Accordion>
+  <Accordion title="'O limite de PEP e alto risco não pode passar do limite do risco alto.' / '… precisa ser maior que zero.'" icon="scale-balanced">
+    O campo **Movimentação a partir de** deve ficar entre zero (exclusive) e o valor de **Risco alto**.
+  </Accordion>
+  <Accordion title="'Informe limite baixo em reais.' (ou médio, alto, pep)" icon="coins">
+    O valor está vazio ou não é um número. Digite só dígitos e a vírgula ou o ponto dos centavos, **sem separador de milhar**. Fora de 0 a 999.999.999.999,99 a tela diz "… fora do intervalo aceito."
+  </Accordion>
+  <Accordion title="'Evento fundo pct deve ficar entre 1 e 100.' / 'Prazo analise dias deve ficar entre 1 e 90.' / 'Janela inicial dias deve ficar entre 1 e 365.'" icon="hashtag">
+    Os nomes saem como no sistema, sem acento. Corrija o campo citado, com número inteiro, dentro do intervalo.
+  </Accordion>
+  <Accordion title="'A análise precisa de pelo menos 30 caracteres.'" icon="pen">
+    Os botões **Arquivar** e **Há sérios indícios: comunicar ao COAF** só ficam ativos com 30 caracteres ou mais (espaços nas pontas não contam). **Salvar rascunho** aceita qualquer texto. Acima de 4.000 a tela diz "A análise passa de 4000 caracteres."
+  </Accordion>
+  <Accordion title="'Este alerta já foi concluído.' / 'Só um alerta aberto ou em análise aceita rascunho.'" icon="circle-exclamation">
+    O alerta já foi arquivado ou concluído, talvez por outra pessoa. Recarregue e veja a **Situação**.
+  </Accordion>
+  <Accordion title="'Informe o protocolo da comunicação ao COAF.'" icon="file-signature">
+    O protocolo precisa de pelo menos 3 caracteres. Acima de 120, a tela diz "O protocolo passa de 120 caracteres."
+  </Accordion>
+  <Accordion title="'A data e hora do envio não podem estar no futuro.' / 'O envio não pode ser anterior à conclusão da análise.'" icon="calendar-xmark">
+    Informe o momento real do envio ao COAF: depois da conclusão da análise e até agora.
+  </Accordion>
+  <Accordion title="'Só um alerta a comunicar aceita o registro da comunicação.'" icon="check">
+    A comunicação já foi registrada (ou o alerta não está em **Comunicar ao COAF**). Recarregue a página.
+  </Accordion>
+  <Accordion title="'Outra gravação igual está em andamento. Aguarde um instante e confira a lista.'" icon="clock">
+    Duas pessoas gravaram o mesmo alerta (ou os limites) ao mesmo tempo. Aguarde, recarregue e confira o que ficou gravado.
+  </Accordion>
+  <Accordion title="'O monitoramento falhou' / 'Não consegui acompanhar o monitoramento. Atualize a página em instantes.'" icon="triangle-exclamation">
+    Atualize a página e confira o **Último monitoramento**. Se a faixa disser que a última execução falhou, rode **Monitorar agora** de novo e, se continuar, avise o [Suporte](/suporte).
+  </Accordion>
+  <Accordion title="Um cotista que movimentou muito não gerou alerta" icon="magnifying-glass">
+    Confira: o cotista está no [Cadastro e risco](/compliance/cotistas-cadastro-e-risco) (sincronize); a posição seguinte já chegou à base; o fundo não teve **evento do fundo** nem está **sem preço da cota**; o valor passa do limite da regra (e, para as regras de aplicação, a variação é de **aplicação**, e não de resgate); aplicação e resgate dentro do mesmo intervalo se anulam.
+  </Accordion>
+</AccordionGroup>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Triagem" icon="shield-halved" href="/compliance/cotistas-triagem">
+    Conferir os cotistas contra as listas de PEP e de sanções e decidir cada acerto.
+  </Card>
+  <Card title="Cadastro e risco" icon="user-check" href="/compliance/cotistas-cadastro-e-risco">
+    Entender o risco de cada cotista e manter o cadastro em dia.
+  </Card>
+</Columns>

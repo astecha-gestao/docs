@@ -59,7 +59,8 @@
           "compliance/pessoas-colaboradores",
           "compliance/pessoas-politicas-aceites",
           "compliance/cotistas-cadastro-e-risco",
-          "compliance/cotistas-triagem"
+          "compliance/cotistas-triagem",
+          "compliance/cotistas-alertas-pld"
         ]
       },
       {
