@@ -5,7 +5,7 @@ description: "Como fazer uma rotina do Astecha AI enviar o resumo do resultado p
 icon: "envelope"
 ---
 
-Uma rotina do Astecha AI sempre entrega o resultado na sua **caixa de entrada** do portal. Quem não abre o portal todo dia pode pedir também o **e-mail**: a cada execução, a rotina manda um resumo e o link para o resultado completo.
+Uma rotina do Astecha AI sempre entrega o resultado na sua **caixa de entrada** do portal. Quem não abre o portal todo dia pode pedir também o **e-mail**: a cada execução, a rotina manda o resumo do resultado para você e um aviso com o link para os colegas que você escolher.
 
 <Info>
   **Onde fica:** no portal, **Astecha AI › Rotinas**. Ao criar ou editar uma rotina, a seção **Entregar em** mostra a caixa de entrada (sempre ligada) e o **E-mail**.
@@ -42,17 +42,43 @@ A lista de colegas mostra quem está habilitado e tem e-mail cadastrado. Um cole
 
 ## O que o e-mail leva
 
-| Leva | Não leva |
-|---|---|
-| O nome da rotina e a data da execução. | Anexo. |
-| Um **resumo** do resultado, de até 600 caracteres. | Tabelas e gráficos. |
-| O **link** para a conversa com o resultado completo. | O dado em si, linha a linha. |
+O e-mail muda conforme quem recebe. O resultado da rotina é lido com o **seu** acesso, então só **você**, o dono da rotina, recebe o texto.
 
-O resumo é o texto da resposta sem as tabelas, e o e-mail sai em texto simples. Os números que a resposta cita em frases podem aparecer no resumo, então escolha com cuidado quem recebe.
+| | Você (dono) | Colega |
+|---|---|---|
+| Nome da rotina e data da execução | Sim | Sim |
+| **Resumo** do resultado, de até 600 caracteres | Sim | **Não** |
+| **Link** para a conversa com o resultado completo | Sim | Link da rotina no app (só você abre a conversa) |
+| Link **Não quero mais receber** | Não | Sim |
+| Anexo, tabelas, gráficos | Não | Não |
+
+O seu resumo é o texto da resposta sem as tabelas, e o e-mail sai em texto simples. O dado em si, linha a linha, nunca vai por e-mail.
 
 <Warning>
-  **O link abre só para o dono da rotina.** A conversa do resultado pertence a quem criou a rotina. Os colegas leem o resumo no e-mail, mas não conseguem abrir a conversa; o e-mail deles avisa isso.
+  **O colega não recebe o resultado por e-mail.** O e-mail dele só avisa que a rotina rodou e diz quem o incluiu. A conversa pertence a você, e quem não é o dono não consegue abri-la.
 </Warning>
+
+## Sair da lista de uma rotina
+
+Todo e-mail de colega traz o link **Não quero mais receber**. Quem o recebe:
+
+<Steps>
+  <Step title="Abre o link">
+    O link leva ao portal, onde é preciso estar logado com o **mesmo usuário** que recebeu o e-mail. Abrir o link **não tira ninguém**: a tela só pede a confirmação.
+  </Step>
+  <Step title="Confirma">
+    Clique em **Não quero mais receber**. Você sai só **daquela rotina**; as outras que incluem você continuam.
+  </Step>
+  <Step title="Se mudar de ideia, desfaça">
+    Na mesma tela, o botão **Desfazer** retira a sua saída. Isso **não** devolve você à lista: depois dele, o dono da rotina pode incluir você de novo.
+  </Step>
+</Steps>
+
+O link só funciona para o usuário a quem o e-mail foi enviado e para aquela rotina. Em qualquer outro caso (link de outra pessoa, adulterado ou de rotina apagada) a tela diz que o link não vale.
+
+<Note>
+  **Quem saiu não volta sozinho para a lista.** Se você, dono, tentar incluir de novo alguém que saiu, o portal recusa e diz que só a própria pessoa pode voltar a receber. Peça a ela que use **Desfazer** no link do e-mail; depois disso você pode incluí-la.
+</Note>
 
 O botão **Rodar agora** também envia o e-mail, como qualquer outra execução.
 
@@ -83,6 +109,9 @@ Trocar os destinatários e religar zeram a contagem de falhas.
   </Accordion>
   <Accordion title="Uma execução com erro manda e-mail?">
     Não. O e-mail só sai quando a execução termina bem. Execução com erro continua avisando na caixa de entrada, e três erros seguidos pausam a rotina.
+  </Accordion>
+  <Accordion title="Um colega saiu da rotina. Posso incluí-lo de novo?">
+    Só depois que ele mesmo clicar em **Desfazer** na tela do link **Não quero mais receber**. Antes disso, o portal recusa a inclusão.
   </Accordion>
   <Accordion title="Mudei o e-mail de um colega. Preciso editar a rotina?">
     Não. A rotina guarda o usuário, não o endereço, e lê o e-mail atual da conta a cada envio.
