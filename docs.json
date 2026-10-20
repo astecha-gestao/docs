@@ -58,7 +58,9 @@
         "pages": [
           "compliance/pessoas-colaboradores",
           "compliance/pessoas-politicas-aceites",
-          "compliance/pessoas-treinamentos-certificacoes"
+          "compliance/pessoas-treinamentos-certificacoes",
+          "compliance/cotistas-cadastro-e-risco",
+          "compliance/cotistas-triagem"
         ]
       },
       {

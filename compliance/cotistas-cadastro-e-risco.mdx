@@ -1,0 +1,273 @@
+---
+title: "Cotistas › Cadastro e risco"
+sidebarTitle: "Cadastro e risco"
+description: "Como sincronizar os cotistas, registrar a revisão do cadastro, entender o risco calculado, ajustá-lo com justificativa e configurar a matriz de risco da gestora."
+icon: "user-check"
+---
+
+A aba **Cadastro e risco** mostra cada cotista com o seu **risco de lavagem de dinheiro**, a data da **próxima revisão do cadastro** e a **situação** dessa revisão (em dia, a vencer, vencida). Ela responde a duas perguntas: quem está com o cadastro vencido e quais cotistas são de risco alto.
+
+Quem opera é o compliance officer. O cotista **não faz login** na plataforma.
+
+<Info>
+  **Onde fica:** **Legal → Compliance → Cotistas**, aba **Cadastro e risco**. Se o item **Compliance** não aparece no seu menu, o seu usuário ainda não tem acesso: fale com o seu contato Astecha (veja [Suporte](/suporte)). Sem acesso, a tela diz "Você não tem acesso a esta página".
+</Info>
+
+<Note>
+  **Os cotistas vêm do app Cotistas.** Esta aba não cadastra ninguém: ela lê o cadastro de cotistas já carregado na plataforma. Se ele ainda não foi carregado, a aba aparece vazia ("Nenhum cotista no cadastro").
+
+  Além disso, **a plataforma não bloqueia ordens nem movimentações** por causa do risco ou da situação do cadastro. A tela é o seu controle de compliance, não uma trava operacional.
+</Note>
+
+{/* TODO: print — aba Cadastro e risco com a faixa de números, os filtros e a tabela de cotistas */}
+
+## A faixa de números
+
+No alto, a faixa resume os cotistas **ativos** no cadastro:
+
+| Célula | O que conta |
+|---|---|
+| **Ativos** | Cotistas que estão no cadastro de cotistas. |
+| **Em dia** | Revisão dentro do prazo. |
+| **A vencer** | Faltam menos dias que o aviso da matriz para a próxima revisão. |
+| **Vencidos** | A data da próxima revisão já passou. O número fica em vermelho. |
+| **Sem revisão** | Esperando a primeira revisão. |
+| **Alto risco** | Risco final alto (calculado ou ajustado). |
+
+Clique numa célula para filtrar a tabela por ela. Clique de novo para tirar o filtro.
+
+## O que a tabela mostra
+
+A lista abre pelos casos que pedem ação: **Vencido**, **Sem revisão**, **A vencer**, **Em dia**, **Com o distribuidor**. Cada linha traz:
+
+* **Cotista**: o nome e o documento, sempre mascarados.
+* **Tipo** e **Relacionamento** (**Direto**, **Via distribuidor**, **Via administrador** ou **Não informado**).
+* **Risco**: **Baixo**, **Médio** ou **Alto**. Abaixo aparece **ajustado** (você mexeu no risco) ou **provisório** (ninguém revisou o cadastro ainda).
+* **PEP**: **Não**, **Sim**, **Relacionado a PEP** ou **Não avaliado**.
+* **Próxima revisão**: a data, quanto falta ("vence em 12 dias", "venceu há 3 dias") e a data da **última** revisão.
+* **Situação**.
+
+<Note>
+  **O documento aparece mascarado.** A pessoa física aparece só com iniciais e os dois últimos dígitos do CPF, do mesmo jeito que no app Cotistas. O número inteiro não é exibido nem guardado aqui.
+</Note>
+
+### As situações do cadastro
+
+| Situação | Quando aparece |
+|---|---|
+| **Sem revisão** | Cotista novo: ninguém registrou a primeira revisão. |
+| **Em dia** | Existe revisão e a próxima ainda está longe. |
+| **A vencer** | A próxima revisão está dentro do aviso da matriz (60 dias, na matriz sugerida). |
+| **Vencido** | A data da próxima revisão passou. |
+| **Com o distribuidor** | O relacionamento é **Via distribuidor** ou **Via administrador**: o cadastro é mantido por eles. O cotista não entra no ciclo de revisão, mas continua classificado por risco. |
+| **Fora do cadastro** | O cotista saiu do cadastro de cotistas. O histórico fica guardado. |
+
+A lista não mostra os **Fora do cadastro** enquanto o filtro **Situação** está em **Todas**. Para vê-los, escolha **Fora do cadastro**.
+
+## Buscar e filtrar
+
+| Filtro | Como funciona |
+|---|---|
+| **Situação** | Uma das situações acima, ou **Todas**. |
+| **Risco** | **Baixo**, **Médio**, **Alto** ou **Todos**. |
+| **Tipo** | **Pessoa física**, **Pessoa jurídica** ou **Todos**. |
+| **Relacionamento** | Direto, via distribuidor, via administrador ou não informado. |
+| **Nome ou documento** | Procura por parte do nome ou do documento mascarado. Campo **Buscar cotista**. |
+
+Para voltar ao padrão, clique em **Limpar filtros**. A tabela mostra 50 cotistas por página; use **Anterior** e **Próxima**.
+
+## Sincronizar os cotistas
+
+O botão **Sincronizar cotistas** (no alto da página) traz o cadastro de cotistas para a aba: cria quem é novo, atualiza nome, tipo, perfil e UF de quem mudou e marca como **Fora do cadastro** quem não aparece mais. Nenhuma linha é apagada.
+
+<Steps>
+  <Step title="Clique em Sincronizar cotistas">
+    O botão passa a mostrar "Sincronizando…". Em cadastros grandes pode levar alguns minutos; a tela acompanha sozinha.
+  </Step>
+  <Step title="Leia o resumo">
+    A tela mostra "Cadastro sincronizado: N novos, N atualizados, N saíram do cadastro." No pé da lista fica a data e a hora da **Última sincronização**.
+  </Step>
+</Steps>
+
+Cotista novo entra como **Sem revisão** e com risco **provisório**. Se a matriz define um **Relacionamento dos cotistas novos**, ele já entra com esse relacionamento.
+
+**A rotina diária faz isso sozinha**, todo dia às 6h30 (horário de Brasília). Ela sincroniza o cadastro, passa para **A vencer** e **Vencido** quem chegou na data e, depois disso, dispara a [triagem contra PEP e sanções](/compliance/cotistas-triagem). O botão manual só sincroniza o cadastro.
+
+<Warning>
+  **Saída em massa fica esperando a sua confirmação.** Se mais da metade dos cotistas ativos (a partir de 20) não aparece no cadastro, a plataforma **não** os marca como **Fora do cadastro**. A tela avisa quantos sumiram e mostra o botão **Confirmar a saída**. Antes de confirmar, veja com o app Cotistas se a saída é real. Se nenhum dos cotistas ativos aparece, a sincronização é recusada e nada é alterado: avise o suporte.
+</Warning>
+
+Se já houver uma sincronização em andamento, a tela diz "Já há uma sincronização de cotistas em andamento." Aguarde terminar.
+
+## Abrir um cotista
+
+Clique na linha para abrir o painel do cotista. No alto ficam a situação, o risco, o documento, o tipo, o perfil, a UF e as datas da **Última revisão** e da **Próxima revisão**. Abaixo, em ordem: **Risco**, **Registrar revisão** e **Histórico**.
+
+{/* TODO: print — painel do cotista com os fatores de risco, o ajuste e o formulário Registrar revisão */}
+
+## Registrar a revisão do cadastro
+
+A revisão é o seu registro de que o cadastro foi conferido naquela data. É ela que faz a próxima revisão ser contada. O formulário abre com o que já está gravado: revisar é confirmar ou corrigir, não recomeçar.
+
+<Steps>
+  <Step title="Abra o cotista e vá em Registrar revisão">
+    Cotistas **Fora do cadastro** não têm esse formulário.
+  </Step>
+  <Step title="Preencha os dados">
+    | Campo | Regra |
+    |---|---|
+    | **Data da revisão** | Vem com a data de hoje. Não pode ser futura nem anterior à última revisão já registrada. |
+    | **Relacionamento com o cotista** | Obrigatório: **Direto**, **Via distribuidor** ou **Via administrador**. Nos dois últimos aparece o campo opcional com o nome de quem é o distribuidor ou administrador. |
+    | **Pessoa exposta politicamente (PEP)** | Obrigatório: **Não**, **Sim** ou **Relacionado a PEP**. |
+    | **De onde veio a informação** | Só aparece com PEP **Sim** ou **Relacionado**. Obrigatório: **Declaração do cliente**, **Lista da CGU** ou **Outra**. |
+    | **Data em que foi verificado** | Também só com PEP **Sim** ou **Relacionado**. Obrigatória; não pode ser futura. |
+    | **Beneficiário final** | Só para pessoa jurídica. Obrigatório: **Identificado** ou **Não identificado**. |
+    | **Não residente em jurisdição que não aplica, ou aplica mal, as recomendações do GAFI** | Caixa de marcação. |
+    | **Organização sem fins lucrativos** | Caixa de marcação. |
+    | **Observação** | Opcional, até 1.000 caracteres. |
+  </Step>
+  <Step title="Se o risco estiver ajustado, escolha o que fazer com o ajuste">
+    Aparece a pergunta "O que fazer com o ajuste?", com **Manter o ajuste** e **Remover o ajuste**. Ao remover, informe **Por que remover?** (mínimo de 15 caracteres).
+  </Step>
+  <Step title="Clique em Registrar revisão">
+    A tela confirma com "Revisão registrada." O risco, a **Próxima revisão** e a **Situação** são recalculados na hora.
+  </Step>
+</Steps>
+
+A **próxima revisão** é a data da revisão mais o prazo do risco final do cotista, conforme a matriz. Para cotista **Com o distribuidor**, a próxima revisão fica em branco.
+
+## Como o risco é calculado
+
+O risco é uma **soma de pontos com pisos**, sem caixa-preta. Cada fator da [matriz de risco](#a-matriz-de-risco) vale pontos e, em alguns casos, impõe um risco mínimo (o **piso**). O risco calculado é o **maior** entre:
+
+* o maior piso entre os fatores presentes no cotista; e
+* o nível da soma de pontos: **Alto** a partir do limite de Alto, **Médio** a partir do limite de Médio, senão **Baixo**.
+
+Com a matriz sugerida pela Astecha:
+
+| Fator | Pontos | Piso |
+|---|---|---|
+| **Pessoa jurídica** | 1 | Sem piso |
+| **Pessoa exposta politicamente** | 5 | No mínimo alto |
+| **Relacionado a pessoa exposta politicamente** | 2 | No mínimo médio |
+| **Não residente em jurisdição do GAFI** | 5 | No mínimo alto |
+| **Beneficiário final não identificado** | 5 | No mínimo alto |
+| **Organização sem fins lucrativos** | 2 | Sem piso |
+
+Os limites sugeridos são **Médio a partir de 2** pontos e **Alto a partir de 5**. Os prazos sugeridos entre revisões são **60 meses** para risco baixo, **36** para médio e **12** para alto.
+
+Dois exemplos, com a matriz sugerida:
+
+* Uma pessoa jurídica comum: 1 ponto, risco **Baixo**, próxima revisão em 60 meses.
+* Uma pessoa jurídica que é organização sem fins lucrativos: 1 + 2 = 3 pontos, risco **Médio**, próxima revisão em 36 meses.
+
+O painel do cotista lista os fatores que pesaram, com os pontos e o piso de cada um ("2 pontos · no mínimo médio"). Se nenhum fator está presente, diz "Nenhum fator de risco presente."
+
+<Note>
+  **O que a plataforma não sabe não pontua.** PEP **Não avaliado** não vale "Não" nem "Sim": o fator só entra quando a revisão registra **Sim** ou **Relacionado**. Por isso o risco de um cotista **sem revisão** é **provisório**: ele só reflete o que o cadastro já informa (por exemplo, ser pessoa jurídica). O painel avisa "Risco provisório: ninguém revisou este cadastro ainda. Registre a revisão para confirmar os fatores."
+</Note>
+
+<Warning>
+  **Sanção confirmada vale risco Alto em qualquer matriz.** Quando você confirma um acerto numa lista de sanções (CSNU ou OFAC) na [triagem](/compliance/cotistas-triagem), o risco do cotista fica **Alto** e não pode ser ajustado para baixo. O fator aparece no painel como "Sanção confirmada (CSNU ou OFAC)".
+</Warning>
+
+## Ajustar o risco
+
+Quando o seu julgamento difere do cálculo, você pode fixar outro risco para o cotista. O ajuste vale **no lugar do calculado**, e a próxima revisão passa a seguir o prazo do risco ajustado.
+
+<Steps>
+  <Step title="No painel do cotista, vá em Ajustar o risco">
+    Se já há um ajuste, o bloco se chama **Mudar o ajuste**.
+  </Step>
+  <Step title="Escolha o Risco que vale no lugar do calculado">
+    **Baixo**, **Médio** ou **Alto**.
+  </Step>
+  <Step title="Escreva o motivo e clique em Salvar ajuste">
+    O campo **Por quê? (mínimo de 15 caracteres)** é obrigatório. A tela confirma com "Risco ajustado." e a justificativa, o autor e a data ficam à vista no painel e no histórico.
+  </Step>
+</Steps>
+
+Para desfazer, clique em **Remover o ajuste**: o botão também pede a justificativa. A confirmação é "Ajuste removido."
+
+* O ajuste **não some sozinho**. Se a matriz mudar e passar a calcular outro risco, o painel avisa: "A matriz calcula hoje risco …". Revise o ajuste quando isso acontecer.
+* Ajustar **abaixo** do calculado é permitido, mas fica marcado na trilha como ajuste abaixo do calculado.
+* Ao **registrar uma revisão**, a plataforma pergunta se você mantém ou remove o ajuste.
+
+## A matriz de risco
+
+A matriz é a regra da gestora: quais fatores pontuam, quanto, onde estão os limites e de quanto em quanto tempo o cadastro é revisado. Clique em **Matriz de risco** no alto da página.
+
+Enquanto a gestora não a confirma, a página mostra "A matriz de risco ainda é a sugerida pela Astecha. Confirme-a para valer como a regra da sua gestora." com o botão **Revisar a matriz**. Os valores sugeridos já valem para o cálculo, mas **confirme** a matriz para que ela passe a ser a regra da sua gestora.
+
+<Steps>
+  <Step title="Clique em Matriz de risco">
+    O painel abre com a versão vigente (ou a sugerida, se ainda não foi confirmada).
+  </Step>
+  <Step title="Ajuste os valores">
+    | Bloco | O que você define |
+    |---|---|
+    | **Fatores** | Para cada fator, os **Pontos** (de 0 a 20) e o **Piso**: **Sem piso** ou **No mínimo baixo**, **médio** ou **alto**. |
+    | **Limites da soma de pontos** | **Médio a partir de** e **Alto a partir de**. O de Alto precisa ser maior que o de Médio. |
+    | **Prazo entre revisões (em meses)** | Um prazo para risco **baixo**, **médio** e **alto**, de 1 a 60 meses. |
+    | **Aviso de revisão a vencer (dias antes)** | De 0 a 365 dias. É o que define quando o cotista passa para **A vencer**. |
+    | **Relacionamento dos cotistas novos** | **Não informado (cada um é preenchido)**, **Direto**, **Via distribuidor** ou **Via administrador**. Vale só para quem entra depois de salvar. |
+  </Step>
+  <Step title="Clique em Confirmar matriz (ou Salvar nova versão)">
+    A tela confirma com "Matriz salva. O risco dos cotistas foi recalculado."
+  </Step>
+</Steps>
+
+* **O prazo máximo é de 60 meses (5 anos)**, o intervalo máximo entre atualizações cadastrais da RCVM 50 (art. 4º, III). A matriz não aceita mais que isso.
+* **Risco maior não pode ter prazo maior** que o de risco menor: o prazo do alto não passa o do médio, que não passa o do baixo.
+* Salvar **cria uma versão nova** e recalcula o risco calculado, a próxima revisão e a situação de **todos** os cotistas. Os **ajustes** que você fez não mudam. A versão, o autor e a data aparecem no alto do painel ("Versão 2, salva por … em …"), e a mudança fica na trilha de auditoria.
+* Fatores não se acrescentam nem se removem pelo painel: você ajusta pontos e piso dos seis fatores existentes.
+
+## Histórico do cotista
+
+A seção **Histórico** do painel lista o que foi feito, com autor e data: **Registrou a revisão**, **Mudou o relacionamento**, **Ajustou o risco**, **Removeu o ajuste de risco**, **Registrou a condição de PEP** e, vindos da triagem, **Confirmou o cotista numa lista de sanções** e **Levantou a sanção do cotista**. O motivo de ajustes e remoções aparece embaixo ("Motivo: …"). Nada é apagado.
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="A aba está vazia: 'Nenhum cotista no cadastro'" icon="users">
+    O cadastro de cotistas ainda não foi carregado no app Cotistas, ou ainda não foi sincronizado. Depois de carregar as posições lá, clique em **Sincronizar cotistas**.
+  </Accordion>
+  <Accordion title="Informe o relacionamento / se o cotista é PEP / se o beneficiário final foi identificado" icon="clipboard-list">
+    Faltou um campo obrigatório da revisão. O botão **Registrar revisão** só fica ativo com **Relacionamento**, **PEP** e, para pessoa jurídica, **Beneficiário final** preenchidos. Com PEP **Sim** ou **Relacionado**, informe também a fonte e a data de verificação.
+  </Accordion>
+  <Accordion title="A data da revisão não pode estar no futuro / Já existe revisão mais recente que essa data" icon="calendar-xmark">
+    Escolha uma data até hoje e que não seja anterior à última revisão do cotista (ela aparece como **Última revisão** no painel).
+  </Accordion>
+  <Accordion title="Explique o motivo do ajuste (mínimo de 15 caracteres)" icon="pen">
+    A justificativa tem menos de 15 caracteres (espaços nas pontas não contam) ou passa de 1.000. Escreva o motivo com clareza: ele fica na trilha.
+  </Accordion>
+  <Accordion title="Com sanção confirmada o risco vale ALTO e não pode ser ajustado para baixo" icon="ban">
+    O cotista tem um acerto de sanção confirmado na [triagem](/compliance/cotistas-triagem). O risco fica **Alto** enquanto a sanção não for levantada.
+  </Accordion>
+  <Accordion title="Esse cotista não tem ajuste de risco a remover" icon="rotate-left">
+    O risco já está no valor calculado. Atualize a página: outra pessoa pode ter removido o ajuste.
+  </Accordion>
+  <Accordion title="O limite de Alto deve ser maior que o de Médio / Risco maior não pode ter prazo de revisão maior…" icon="sliders">
+    Ajuste os campos da matriz: **Alto a partir de** precisa ser maior que **Médio a partir de**, e os prazos precisam diminuir do risco baixo para o alto, sem passar de 60 meses.
+  </Accordion>
+  <Accordion title="Esse cotista saiu do cadastro de cotistas: não há revisão a registrar" icon="user-slash">
+    O cotista está **Fora do cadastro**. Se ele voltar ao cadastro de cotistas, a próxima sincronização o reativa com o histórico anterior.
+  </Accordion>
+  <Accordion title="'Outra gravação igual está em andamento'" icon="clock">
+    Duas pessoas gravaram o mesmo cotista ao mesmo tempo. Aguarde um instante, recarregue e confira o que ficou gravado.
+  </Accordion>
+  <Accordion title="Um cotista ainda aparece 'Em dia' no dia em que a revisão venceu" icon="hourglass-half">
+    A passagem para **A vencer** e **Vencido** acontece na rotina diária, às 6h30 (horário de Brasília), e também quando você registra uma revisão ou salva a matriz. O botão **Sincronizar cotistas** não faz essa passagem.
+  </Accordion>
+</AccordionGroup>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Triagem" icon="shield-halved" href="/compliance/cotistas-triagem">
+    Conferir os cotistas contra as listas de PEP e de sanções e decidir cada acerto.
+  </Card>
+  <Card title="Suporte" icon="headset" href="/suporte">
+    Canais de atendimento para dúvidas e pedidos de acesso.
+  </Card>
+</Columns>
