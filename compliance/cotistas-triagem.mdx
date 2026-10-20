@@ -1,0 +1,241 @@
+---
+title: "Cotistas › Triagem"
+sidebarTitle: "Triagem"
+description: "Como a plataforma confere os cotistas com as listas públicas de PEP e de sanções, como decidir cada acerto, o checklist da lista da ONU (CSNU) e o levantamento quando a pessoa sai da lista."
+icon: "shield-halved"
+---
+
+A aba **Triagem** confere cada cotista do cadastro com as listas públicas de **PEP** (CGU) e de **sanções** (**CSNU** e **OFAC**). Quando o nome de um cotista bate com o de alguém numa lista, a plataforma registra um **acerto**. O acerto é só um **indício**: quem confirma ou descarta é você, com justificativa, e a decisão fica na trilha de auditoria.
+
+<Info>
+  **Onde fica:** **Legal → Compliance → Cotistas**, aba **Triagem**. É a segunda aba da mesma página do [Cadastro e risco](/compliance/cotistas-cadastro-e-risco). Se o item **Compliance** não aparece no seu menu, o seu usuário ainda não tem acesso: fale com o seu contato Astecha (veja [Suporte](/suporte)).
+</Info>
+
+<Warning>
+  **A triagem só vale quando as listas públicas estão carregadas.** Sem elas, a plataforma não tem contra o que conferir. Nesse caso a tela mostra **Triagem não confiável** e a mensagem "Ausência de acertos não quer dizer cotista limpo". **Nunca leia lista vazia como "nenhum acerto".** Enquanto a faixa de aviso estiver na tela, a triagem não substitui a sua conferência.
+</Warning>
+
+{/* TODO: print — aba Triagem com a faixa de números, os filtros e a tabela de acertos */}
+
+## Quando a triagem é confiável
+
+A tela confere o estado das três listas (**PEP (CGU)**, **CSNU** e **OFAC**). Se alguma coisa não está em ordem, aparece a faixa **Triagem não confiável**, com o motivo e o estado de cada lista:
+
+| Motivo mostrado | O que significa |
+|---|---|
+| A triagem ainda não foi executada nesta conta. | Nenhuma triagem rodou até agora. |
+| Há listas públicas não carregadas: a triagem não está ativa para elas. | Pelo menos uma lista não existe ou não respondeu. A lista aparece como **não carregada**. |
+| Há listas que vieram com bem menos linhas que a última carga boa. | A carga parece quebrada (menos de 80% das linhas da última boa). Até a carga normalizar, a plataforma **não encerra nem levanta acertos** por causa dessa lista. |
+| Há listas públicas desatualizadas: um acerto novo pode não ter aparecido ainda. | A última carga passou do limite de dias da lista: **45 dias** para PEP (CGU) e **3 dias** para CSNU e OFAC. A tela mostra "carga de dd/mm/aaaa — passou de N dias". |
+
+Sem acertos e sem confiança, a tabela mostra "A triagem não está ativa", e não "Nenhum acerto". Só quando as listas estão em ordem a tabela vazia diz **Nenhum acerto**: "Nenhum cotista do cadastro bateu com as listas na última triagem."
+
+Com a triagem confiável, uma linha embaixo da faixa informa a data de carga de cada lista e a **Última triagem**, com quantos cotistas foram conferidos.
+
+## Rodar a triagem
+
+**A triagem roda sozinha todo dia**, logo depois da sincronização diária do cadastro. Quando quiser conferir fora do horário (por exemplo, depois de uma carga nova dos cotistas), use **Triar agora**, no alto da aba.
+
+<Steps>
+  <Step title="Sincronize o cadastro, se for o caso">
+    Só gera acerto o cotista que já está no cadastro de [Cadastro e risco](/compliance/cotistas-cadastro-e-risco). Se o cotista é novo no app Cotistas, clique antes em **Sincronizar cotistas**.
+  </Step>
+  <Step title="Clique em Triar agora">
+    O botão passa a mostrar "Triando…". A tela acompanha sozinha até o fim.
+  </Step>
+  <Step title="Leia o resultado">
+    A tela mostra "Triagem concluída: N cotistas conferidos, N acertos novos." Se nenhuma lista estiver carregada, diz "Nenhuma lista pública está carregada: nada foi triado" e não conta como triagem feita.
+  </Step>
+</Steps>
+
+Se já houver uma triagem rodando, a tela diz "Já existe uma triagem em andamento. Aguarde terminar e confira o resultado."
+
+## Como o casamento funciona
+
+A plataforma compara o **nome** do cotista com o das listas. Nome e CPF reais são usados só na hora da comparação: o acerto guarda apenas dados públicos da lista, e o cotista aparece mascarado, como no cadastro.
+
+* **Normalização.** Maiúsculas e minúsculas, acentos, pontuação e as partículas **de, da, do, dos, das, e** não contam.
+* **PEP (CGU), só para pessoa física.** Se o nome bate **e** os dígitos do CPF que a lista da CGU divulga também batem, o indício é **Forte**. Se o nome bate mas falta o CPF de um dos lados, o indício é **Fraco** (provável homônimo). Se o nome bate e os dígitos são **diferentes**, é outra pessoa e não gera acerto.
+* **Sanções (CSNU e OFAC), pessoa física ou jurídica.** O nome (ou apelido) da lista tem de ser igual, ou ter as mesmas palavras em outra ordem, com **pelo menos duas palavras**. As listas de sanções não trazem CPF e o cadastro não tem data de nascimento, então o indício é sempre **Possível**.
+
+<Note>
+  **Limites que você precisa conhecer.** A comparação é **só por nome**, sem aproximação fonética nem transliteração: o mesmo nome escrito de outro jeito (por exemplo, outra grafia de um nome estrangeiro) **não casa**. A triagem ajuda, mas não esgota a sua diligência.
+</Note>
+
+### Os indícios
+
+| Indício | O que significa |
+|---|---|
+| **Forte** | Nome e dígitos visíveis do CPF conferem. |
+| **Fraco** | Só o nome confere: provável homônimo. |
+| **Possível** | As listas de sanções casam só pelo nome. |
+
+### As situações de um acerto
+
+| Situação | Quando aparece |
+|---|---|
+| **Aguardando decisão** | O acerto acabou de ser achado. Falta você decidir. |
+| **Confirmado** | Você confirmou que a pessoa da lista é o cotista. |
+| **Descartado** | Você descartou (homônimo, falso positivo), ou a pessoa saiu da lista. |
+| **Levantar a indisponibilidade** | Só na CSNU: a pessoa confirmada saiu da lista e falta levantar a indisponibilidade. |
+| **Levantado** | A indisponibilidade foi levantada e o acerto se encerrou. |
+
+## O que a aba mostra
+
+No alto, a faixa **Triagem de cotistas** traz **Aguardando decisão**, **Confirmados**, **Descartados** e **CSNU com ação pendente** ("decidir, cumprir o checklist ou levantar"). Clique numa célula para filtrar a tabela; clique de novo para tirar o filtro.
+
+| Filtro | Opções |
+|---|---|
+| **Lista** | **Todas**, **PEP (CGU)**, **CSNU**, **OFAC**. |
+| **Indício** | **Todos**, **Forte**, **Fraco**, **Possível**. |
+| **Situação** | **Todas**, **Aguardando decisão**, **Confirmado**, **Descartado**, **Levantar a indisponibilidade**, **Levantado**. |
+
+A tabela traz **Cotista** (nome e documento mascarados), **Lista** (com "urgente" em vermelho nos acertos da CSNU que pedem ação), **Como a lista escreve** (o nome na lista), **Indício**, **Situação** e **Detectado em**. A CSNU vem primeiro e, dentro de cada lista, o que espera decisão vem antes. Clique numa linha para abrir o acerto.
+
+## Decidir um acerto
+
+No painel do acerto você vê a situação, a lista, o indício, o **Risco hoje** do cotista, **Como a lista escreve o nome** e o que a lista pública diz:
+
+* **Lista da CGU:** cada função exercida, com órgão, nível, período e **carência** (quando a lista informa). A plataforma **não calcula** prazo de carência: ele vem da própria lista.
+* **CSNU e OFAC:** **País**, **Programa**, **Incluído na lista em** e **Tipo** (pessoa ou entidade).
+
+{/* TODO: print — painel de um acerto aguardando decisão, com a justificativa e os botões Confirmar o acerto e Descartar */}
+
+<Steps>
+  <Step title="Confira se a pessoa da lista é o cotista">
+    Compare o nome, as funções ou o programa e o documento. Em indício **Fraco** ou **Possível**, busque outro dado que distinga ou confirme a pessoa.
+  </Step>
+  <Step title="Escreva a justificativa">
+    O campo é obrigatório, com no mínimo **15 caracteres**, e fica na trilha.
+  </Step>
+  <Step title="Clique em Confirmar o acerto ou em Descartar">
+    **Descartar** é para homônimo ou falso positivo.
+  </Step>
+</Steps>
+
+### O que confirmar faz no cadastro de risco
+
+| Lista | Efeito de **Confirmar o acerto** |
+|---|---|
+| **PEP (CGU)** | Grava o cotista como **PEP**, com fonte **Lista da CGU** e a data de hoje como verificação, e o risco sobe pela [matriz](/compliance/cotistas-cadastro-e-risco#a-matriz-de-risco) da gestora. **Não** conta como revisão do cadastro: a data da próxima revisão não muda. |
+| **CSNU ou OFAC** | Fixa o risco do cotista em **Alto**, em qualquer matriz. Esse risco não pode ser ajustado para baixo enquanto a sanção estiver confirmada. |
+
+Descartar não muda nada no cadastro de risco.
+
+Só um acerto em **Aguardando decisão** pode ser confirmado ou descartado. Depois, o painel mostra a **Justificativa da decisão**, quem decidiu e quando.
+
+<Note>
+  **Descartar não é para sempre.** Se a lista mudar os dados da pessoa (por exemplo, uma nova função na lista da CGU), o acerto **reabre** em **Aguardando decisão** para você olhar de novo, e o histórico registra "O acerto reabriu (a lista mudou ou a pessoa voltou a ela)".
+</Note>
+
+## A faixa vermelha da CSNU
+
+Um acerto na lista de sanções da ONU (CSNU) **pede ação agora**. Enquanto houver acerto da CSNU que exige ação, uma **faixa vermelha** aparece no alto da página, **em qualquer aba**: "N acertos com a lista de sanções da ONU (CSNU) pede ação agora". Entram na faixa os acertos **Aguardando decisão**, os **Confirmados** com algum passo do checklist por fazer e os que estão em **Levantar a indisponibilidade**.
+
+A faixa lembra o que a RCVM 50 (art. 27) manda: **cumprir a indisponibilidade imediatamente e sem aviso ao sancionado**, e **comunicar a CVM, o MJSP e o COAF**. Ela mostra até 3 acertos, cada um com o botão **Abrir o checklist**. Os demais ficam na aba **Triagem**, filtrados por CSNU.
+
+<Warning>
+  **A plataforma não bloqueia ativos.** Quem bloqueia é o administrador e o custodiante. O checklist abaixo serve para **registrar e provar** o que foi feito, com data, autor e protocolo.
+</Warning>
+
+## O checklist da indisponibilidade (CSNU)
+
+Todo acerto da **CSNU** vem com o checklist **Checklist da indisponibilidade (CSNU)**. (Os acertos de PEP e de OFAC não têm checklist.)
+
+| Passo | Protocolo |
+|---|---|
+| Cumprir a indisponibilidade dos ativos imediatamente e sem aviso ao sancionado (art. 27, caput) | Opcional |
+| Comunicar a indisponibilidade à CVM (art. 27, § 3º, II, a) | **Obrigatório** |
+| Comunicar a indisponibilidade ao MJSP (art. 27, § 3º, II, b) | **Obrigatório** |
+| Comunicar a indisponibilidade ao COAF (art. 27, § 3º, II, c) | **Obrigatório** |
+| Manter sob verificação os ativos que surgirem depois (art. 27, § 3º, III) | Opcional |
+
+<Steps>
+  <Step title="Abra o acerto e vá ao checklist">
+    Pela faixa vermelha, clique em **Abrir o checklist**. Ou abra o acerto na tabela.
+  </Step>
+  <Step title="No passo cumprido, clique em Marcar como feito">
+    Abre o formulário do passo.
+  </Step>
+  <Step title="Informe o protocolo e, se quiser, a observação">
+    **Protocolo (obrigatório)** nas três comunicações, com pelo menos 3 caracteres; nos outros passos, **Protocolo (opcional)**. **Observação (opcional)**.
+  </Step>
+  <Step title="Clique em Registrar">
+    O passo mostra **Feito**, com data e hora, o autor, o protocolo e a observação.
+  </Step>
+</Steps>
+
+* Dá para marcar os passos **mesmo antes de decidir** o acerto: não espere a confirmação para cumprir a indisponibilidade.
+* **Um passo marcado não se desmarca.** A trilha é a prova. Confira o protocolo antes de clicar em **Registrar**.
+* Sem protocolo nas comunicações, a tela diz "Informe o protocolo da comunicação."
+
+## Levantar a indisponibilidade
+
+Se uma pessoa **confirmada** na CSNU **sai da lista** numa triagem confiável, o acerto vai para **Levantar a indisponibilidade** e volta a aparecer na faixa vermelha. O checklist ganha o passo "Levantar imediatamente a indisponibilidade: a pessoa saiu da lista CSNU (art. 27, § 4º)". O mesmo vale para um acerto ainda **Aguardando decisão** que já tenha algum passo cumprido.
+
+<Steps>
+  <Step title="Peça ao administrador e ao custodiante que levantem a indisponibilidade">
+    A plataforma não faz isso por você.
+  </Step>
+  <Step title="Marque o passo de levantamento">
+    Em **Marcar como feito**, no passo "Levantar imediatamente a indisponibilidade…". O acerto vira **Levantado**.
+  </Step>
+</Steps>
+
+Ao levantar, se o cotista **não tem outra sanção confirmada**, a plataforma **tira a sanção** dele e o risco volta a ser o calculado (ou o seu ajuste). O histórico registra "Levantou a sanção do cotista".
+
+Em qualquer lista, quando a pessoa sai e o acerto **não** tinha confirmação nem passo cumprido, ele se **encerra sozinho** como **Descartado**, com a justificativa "A pessoa saiu da lista na carga de …". Se ela voltar à lista, o acerto reabre.
+
+<Note>
+  Só a CSNU tem o fluxo de levantamento. Um acerto **confirmado** de PEP ou de OFAC cuja pessoa sai da lista continua confirmado: a plataforma não o altera sozinha.
+</Note>
+
+## A trilha de auditoria
+
+A seção **Histórico** do acerto lista, em ordem, tudo o que aconteceu, com autor e data: **A triagem achou o acerto**, **Confirmou o acerto**, **Descartou o acerto**, **O acerto reabriu…**, **A pessoa saiu da lista e o acerto se encerrou**, **A pessoa saiu da lista CSNU: falta levantar a indisponibilidade** e **Marcou um passo do checklist**. Os motivos e os protocolos aparecem embaixo ("Motivo: …", "Protocolo: …"). O que a rotina automática fez vem com o autor **ROTINA_DIARIA**. Nada é apagado.
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Aparece 'Triagem não confiável' e a tabela está vazia" icon="shield-halved">
+    As listas públicas não estão carregadas, estão desatualizadas ou vieram incompletas. Leia o motivo e o estado de cada lista na faixa. Enquanto a faixa estiver lá, **não** trate a ausência de acertos como cotista limpo. Se a carga está atrasada, avise o suporte.
+  </Accordion>
+  <Accordion title="'Nenhuma lista pública está carregada: nada foi triado'" icon="database">
+    Nenhuma das três listas está disponível. A triagem volta a valer sozinha quando elas forem carregadas, e depois roda todo dia.
+  </Accordion>
+  <Accordion title="Um cotista que eu sei que está na lista não gerou acerto" icon="magnifying-glass">
+    A comparação é só por nome, sem fonética nem transliteração: grafias diferentes não casam. Outros motivos: o cotista ainda não está no [Cadastro e risco](/compliance/cotistas-cadastro-e-risco) (sincronize), na lista da CGU o nome bate mas os dígitos do CPF são diferentes (outra pessoa), ou o nome de sanção tem uma palavra só.
+  </Accordion>
+  <Accordion title="'A justificativa precisa de pelo menos 15 caracteres'" icon="pen">
+    Escreva o motivo da decisão com 15 caracteres ou mais (até 1.000). Os botões **Confirmar o acerto** e **Descartar** só ficam ativos com a justificativa preenchida.
+  </Accordion>
+  <Accordion title="'Só um acerto possível pode ser confirmado' (ou descartado)" icon="circle-exclamation">
+    O acerto já foi decidido, talvez por outra pessoa. Recarregue e veja a **Situação**.
+  </Accordion>
+  <Accordion title="'Informe o protocolo da comunicação'" icon="hashtag">
+    As comunicações à CVM, ao MJSP e ao COAF exigem o protocolo, com ao menos 3 caracteres.
+  </Accordion>
+  <Accordion title="'Este passo já foi marcado'" icon="check">
+    O passo já está **Feito**. Os passos não se desmarcam nem se repetem.
+  </Accordion>
+  <Accordion title="Confirmei um PEP e a próxima revisão do cadastro não mudou" icon="calendar">
+    É assim mesmo: confirmar o acerto grava o PEP, mas não conta como revisão. Para registrar a revisão do cadastro, use **Registrar revisão** no painel do cotista.
+  </Accordion>
+  <Accordion title="Descartei um acerto e ele voltou" icon="rotate">
+    A lista mudou os dados da pessoa, ou a pessoa saiu da lista e voltou depois. O acerto reabre para nova decisão.
+  </Accordion>
+  <Accordion title="Já existe uma triagem em andamento" icon="clock">
+    Há uma triagem rodando (a diária ou o **Triar agora** de outra pessoa). Aguarde terminar e confira o resultado.
+  </Accordion>
+</AccordionGroup>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Cadastro e risco" icon="user-check" href="/compliance/cotistas-cadastro-e-risco">
+    Registrar a revisão, entender o risco de cada cotista e configurar a matriz.
+  </Card>
+  <Card title="Suporte" icon="headset" href="/suporte">
+    Canais de atendimento para dúvidas e pedidos de acesso.
+  </Card>
+</Columns>
