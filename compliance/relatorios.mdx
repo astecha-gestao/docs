@@ -1,0 +1,112 @@
+---
+title: "Relatórios anuais: controles internos e avaliação de risco de PLD"
+sidebarTitle: "Relatórios anuais"
+description: "Como gerar o rascunho, revisar, aprovar e congelar o relatório de controles internos e a avaliação interna de risco de PLD/FTP."
+icon: "file-lines"
+---
+
+A página **Relatórios** monta, a cada ano, os dois relatórios que a regulação exige do diretor responsável. O sistema levanta os números nos módulos do Compliance, a IA ajuda a escrever as partes que dependem de leitura desses números, e **você** revisa, completa o que só você sabe e aprova. Aprovado, o relatório vira um PDF congelado, que fica guardado como evidência na Agenda.
+
+<Info>
+  **Onde fica:** **Legal → Compliance → Relatórios**. Cada relatório tem a sua aba:
+
+  - **Controles internos**: relatório anual de controles internos (Resolução CVM 21, art. 25).
+  - **AIR PLD**: avaliação interna de risco de PLD/FTP (Resolução CVM 50, art. 6).
+</Info>
+
+<Warning>
+  A plataforma **não envia** o relatório a ninguém. O encaminhamento aos órgãos da administração é um ato seu, e a baixa da obrigação na Agenda também.
+</Warning>
+
+## Gerar o rascunho
+
+<Steps>
+  <Step title="Escolha o ano-base">
+    O ano-base é o ano civil que o relatório descreve. Os dois relatórios são entregues até o último dia útil de abril do ano seguinte.
+  </Step>
+  <Step title="Clique em Gerar rascunho">
+    O rascunho leva alguns instantes: o sistema levanta os números e pede o texto de cada seção. A tela mostra **Montando o rascunho** e se atualiza sozinha.
+  </Step>
+  <Step title="Se a montagem falhar">
+    Aparece o motivo. Clique em **Montar de novo**: o sistema retoma o mesmo relatório, sem criar outro.
+  </Step>
+</Steps>
+
+Só existe um relatório de cada tipo por ano-base. Para corrigir um relatório já congelado, use **Retificar** (veja abaixo).
+
+## Os números do relatório
+
+Todo número que aparece no texto vem de uma consulta aos módulos, **nunca da IA**. A IA escreve o texto e cita cada número por referência; o servidor troca a referência pelo valor. Se um texto da IA trouxer um número que não está no levantamento, a seção ganha o aviso **Revise: número fora do levantamento** e **a aprovação fica travada** até você editar o texto.
+
+Abra **Números do levantamento** no fim da página para conferir cada valor. Três coisas valem ser lidas com cuidado:
+
+- **Posição na data.** O que é "na data do levantamento" (cadastros ativos, colaboradores ativos, alertas em aberto) é a posição do dia em que os números foram levantados, não a de 31 de dezembro. O PDF imprime essa data.
+- **Sem dados.** Um módulo que ainda não está disponível ou que não tem nada cadastrado aparece como **Sem dados no período**, com o motivo. Isso **não** é zero.
+- **Atualizar números.** Se algo mudou depois do rascunho, clique em **Atualizar números**. As seções da IA que dependem do que mudou ficam marcadas como **Números mudaram**; o seu texto não é apagado.
+
+## Revisar as seções
+
+Cada seção diz quem a escreveu: **Rascunho da IA**, **IA, editado por você**, **Escrito por você**, **Texto-base do sistema** ou **Montada pelo sistema**.
+
+- **Salvar** grava a sua edição. Se você alterar um texto da IA, ele passa a **IA, editado por você**.
+- **Redigir de novo** descarta o texto atual e pede outro à IA com os números de agora.
+- **Descartar alterações** volta ao último texto salvo.
+- Nas seções que só o diretor escreve, o sistema deixa um texto-base. Leia, complete e clique em **Salvar**; se o texto-base já serve como está, clique em **Confirmar texto**. Enquanto você não fizer uma das duas coisas, a aprovação continua travada e a lista **O que falta para aprovar** diz qual seção é.
+- Seções **montadas pelo sistema** só se leem: elas saem direto do levantamento e se refazem sozinhas quando você usa **Atualizar números**.
+
+## Aprovar e congelar
+
+Quando a lista **O que falta para aprovar** estiver vazia, clique em **Aprovar e congelar** e confirme. É uma ação só e **não tem volta**: o sistema grava quem aprovou, gera o PDF, guarda o arquivo com o hash e congela o relatório. Depois disso o texto não muda mais.
+
+Se a geração do PDF falhar, o relatório fica **Aprovado, PDF por gerar**. Clique em **Concluir o congelamento** para tentar de novo.
+
+O PDF fica anexado como **evidência** na ocorrência da obrigação correspondente na Agenda (a do prazo de abril seguinte), se a obrigação estiver adotada. O sistema **não dá baixa**: abra a ocorrência, informe o protocolo e a data do encaminhamento e dê baixa você mesmo. Sem a obrigação adotada, o PDF fica guardado com o relatório e dá para baixá-lo pelo botão **Baixar o PDF**.
+
+## Retificar um relatório congelado
+
+Para corrigir um relatório congelado, clique em **Retificar este relatório**. O sistema cria um novo rascunho a partir dele; o original fica como está, para sempre. Corrija, aprove e congele o novo.
+
+## AIR PLD: o que é diferente
+
+A avaliação interna de risco segue a ordem do art. 6º da Resolução CVM 50 e traz, antes dos incisos, o que o art. 5º pede: produtos, serviços e canais por risco, e clientes por grau de risco.
+
+| Seção | Quem escreve |
+|---|---|
+| Produtos, serviços, canais e ambientes por risco | Você |
+| Clientes por grau de risco | Sistema |
+| I. Situações de risco | IA, com a sua revisão |
+| II. Prepostos, assessores e prestadores; cadastro simplificado | Você (diga também quando não se aplica) |
+| III. Atipicidades, análises, comunicações e declaração negativa | Sistema |
+| Complemento do inciso III | Você |
+| IV. Medidas de conhecimento de clientes, funcionários e prestadores | IA, com a sua revisão |
+| V. Indicadores de efetividade | IA, com a sua revisão |
+| VI. Recomendações e cronograma de saneamento | IA, com a sua revisão; o cronograma é seu |
+| VII. Efetividade das recomendações do relatório anterior | Você (o ponto de partida lista as recomendações do ano anterior) |
+
+### A tabela do inciso III
+
+A tabela mostra, para o ano-base, as situações atípicas detectadas por hipótese do art. 20, as análises concluídas, as comunicações ao COAF e a data da declaração negativa. Ela vem do monitoramento de movimentações dos cotistas e da Agenda.
+
+<Warning>
+  **Se o monitoramento automático não rodou no ano, a tabela não traz número nenhum.** Ela diz que não há número a informar, e não "0": um zero que ninguém mediu não significa que não houve atipicidades. Se o monitoramento só começou a rodar no meio do ano, o relatório informa a data de início.
+</Warning>
+
+Três avisos que acompanham a tabela:
+
+- **O enquadramento das regras do sistema nas hipóteses do art. 20 é uma proposta**, a ser confirmada pelo oficial de compliance da sua gestora.
+- O sistema monitora só parte das hipóteses do art. 20. As demais ficam por sua conta: registre no **Complemento do inciso III** o que você detectou por outros meios, ou que não houve.
+- Comunicações ao COAF feitas **fora** da plataforma não entram na contagem.
+
+A **declaração negativa** vem da Agenda: se você deu baixa na obrigação do prazo de abril, a tabela mostra a data do cumprimento; senão, diz que ainda não foi reportada.
+
+### Indicadores de efetividade
+
+O sistema calcula um conjunto padrão: percentual de análises concluídas no prazo de análise, de comunicações feitas em até 24 horas, de cadastros em dia e de beneficiários finais identificados. **Confira se correspondem aos indicadores definidos na política de PLD/FTP da sua gestora.** O sistema informa os números e não julga se estão bons.
+
+## No assistente da Astecha
+
+O assistente responde perguntas como "já temos o relatório de controles internos de 2026?", "quem aprovou a avaliação de risco de PLD?" ou "por que ainda não dá para aprovar?". Ele lê os relatórios, mas **não gera, edita nem aprova**: aprovar é decisão do diretor e é feito pela tela.
+
+## Guarda
+
+A CVM exige que a documentação do relatório fique à sua disposição por, no mínimo, cinco anos. Os relatórios congelados, os PDFs e o histórico de quem fez o quê não se apagam nem se editam.
