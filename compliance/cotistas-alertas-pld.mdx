@@ -43,7 +43,7 @@ A Resolução CVM 50 **não fixa valor em reais** (art. 20, § 1º: "independent
 | **Movimentação a partir de** (em **PEP, alto risco e cadastro vencido (R$)**) | Limite menor, para aplicação ou resgate de PEP e de cotista de alto risco, e para aplicação com o cadastro vencido. | R$ 50.000 |
 | **Variação de fundo inteiro: a partir de quantos % dos cotistas variando junto** | Acima desse percentual, a variação é do **fundo** (amortização, come-cotas) e não vira alerta. De 1 a 100. | 30% |
 | **Prazo interno de análise (dias corridos)** | Em quantos dias você se compromete a concluir cada alerta (a norma pede análise "regular e tempestiva", art. 21, sem número). De 1 a 90. | 10 dias |
-| **Primeiro monitoramento: olhar as posições dos últimos (dias)** | Até onde o primeiro monitoramento olha para trás. De 1 a 365. | 90 dias |
+| **Janela de leitura: reler as posições dos últimos (dias)** | A cada monitoramento a plataforma relê as posições dos últimos dias, a contar da mais recente, para pegar as que um administrador entregou com atraso. Alerta que já existe não se repete nem reabre. De 1 a 365. | 90 dias |
 
 O valor do alerta é a **variação em cotas vezes o valor da cota** (patrimônio líquido dividido pelas cotas, do informe mensal à CVM). Os limites seguem duas regras, que o servidor confere ao salvar:
 
@@ -54,7 +54,7 @@ Digite os valores sem separador de milhar (por exemplo, 100000,00). Salvar cria 
 
 ## Quando o monitoramento roda
 
-**Todo dia**, logo depois da sincronização diária do cadastro de cotistas (a rotina das 6h30, horário de Brasília), na mesma sequência da [triagem](/compliance/cotistas-triagem). Para rodar fora do horário (por exemplo, depois de confirmar os limites), use **Monitorar agora**. O botão passa a mostrar "Monitorando…" e a tela acompanha sozinha.
+**Todo dia**, logo depois da sincronização diária do cadastro de cotistas (a rotina das 6h30, horário de Brasília), logo depois da [triagem](/compliance/cotistas-triagem), para usar as sanções do próprio dia. Para rodar fora do horário (por exemplo, depois de confirmar os limites), use **Monitorar agora**. O botão passa a mostrar "Monitorando…" e a tela acompanha sozinha.
 
 | Resultado na tela | Quando |
 |---|---|
@@ -155,7 +155,7 @@ Enquanto houver alerta nessa situação, uma **faixa vermelha** aparece no alto 
 
 Se, no ano, a gestora **não comunicou nada ao COAF**, a RCVM 50 (art. 23) pede a **declaração negativa**. Ela é feita **à CVM**, **até o último dia útil de abril do ano seguinte**.
 
-A tela mostra o aviso "Nenhuma comunicação ao COAF em" seguido do ano, "a declaração negativa à CVM vale" e o prazo ("até o último dia útil de abril" do ano seguinte) quando **nenhuma comunicação foi registrada no ano** e o monitoramento esteve **confiável**.
+A tela mostra o aviso "Nenhuma comunicação ao COAF em" seguido do ano, "a declaração negativa à CVM vale" e o prazo ("até o último dia útil de abril" do ano seguinte) quando **nenhuma comunicação foi registrada no ano** e o monitoramento esteve **confiável o ano todo**: a plataforma só sugere a declaração quando monitorou desde 1º de janeiro, sem lacuna maior que a janela de leitura entre uma rodada e outra. Monitoramento que começou no meio do ano não autoriza dizer "nenhuma comunicação" sobre o que veio antes.
 
 <Note>
   **A plataforma não marca a obrigação sozinha.** A declaração está na **Agenda**, como a obrigação **Comunicação de não ocorrência**: marque-a lá, com o comprovante. A plataforma só conta as comunicações **registradas aqui**: uma comunicação feita fora da plataforma, ou um alerta ainda em **Comunicar ao COAF** sem registro, não entra na conta.
