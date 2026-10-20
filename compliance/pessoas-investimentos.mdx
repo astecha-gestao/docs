@@ -1,0 +1,227 @@
+---
+title: "Pessoas › Investimentos pessoais"
+sidebarTitle: "Investimentos pessoais"
+description: "Como controlar os investimentos pessoais dos colaboradores: manter a lista restrita, registrar e decidir pedidos de pré-aprovação checados contra a carteira dos fundos e recolher as declarações anuais."
+icon: "scale-balanced"
+---
+
+A aba **Investimentos pessoais** reúne o controle da política de negociação dos colaboradores. Ela tem três blocos:
+
+* **Pré-aprovações**: o pedido de compra ou venda de um colaborador já chega checado contra a lista restrita, a carteira dos fundos e o período mínimo de manutenção. Você decide e a plataforma guarda a decisão com o motivo.
+* **Lista restrita**: os ativos em que ninguém da gestora pode negociar.
+* **Declarações anuais**: a declaração de conflitos de interesse e de investimentos pessoais de cada colaborador ativo.
+
+Quem registra e decide é o compliance officer. O colaborador **não faz login** na plataforma: ele pede e declara por e-mail ou documento assinado, e você registra aqui.
+
+<Info>
+  **Onde fica:** **Legal → Compliance → Pessoas**, aba **Investimentos pessoais**. Os colaboradores vêm da aba [Colaboradores](/compliance/pessoas-colaboradores): só quem está **Ativo** pede ou declara. O **CPF** nunca aparece nesta aba.
+</Info>
+
+{/* TODO: print — aba Investimentos pessoais, bloco Pré-aprovações, com o resumo e a tabela de pedidos */}
+
+## Pré-aprovações
+
+### O resumo e a tabela
+
+Acima da tabela, três números mostram o dia: **Pendentes de decisão**, **Aprovadas vigentes** e **Bloqueios no mês** (pedidos com o ativo na lista restrita). Eles ignoram os filtros da tabela.
+
+Cada pedido ocupa uma linha, com o colaborador, a operação e o ativo, a data, as **checagens** em etiquetas, a **Situação** e a **Validade**. Os filtros **Situação** e **Ativo** reduzem a lista.
+
+| Situação | Quando |
+|---|---|
+| **Pendente** | O pedido foi registrado e ainda não foi decidido. |
+| **Aprovada** | Foi aprovado e ainda está dentro da validade. |
+| **Expirada** | Foi aprovado, a validade passou e a operação não foi registrada como feita. |
+| **Executada** | Foi aprovado e você informou o dia em que a operação foi feita. |
+| **Negada** | Foi negado. |
+| **Anulada** | O registro estava errado e foi anulado. |
+
+### Registrar um pedido
+
+<Steps>
+  <Step title="Clique em Novo pedido">
+    O botão fica no alto do bloco **Pré-aprovações**.
+  </Step>
+  <Step title="Preencha o formulário">
+    | Campo | Regra |
+    |---|---|
+    | **Colaborador** | Obrigatório. Só aparecem colaboradores **ativos**. |
+    | **Ativo** | Obrigatório. Digite o código ou o nome. A tela sugere nomes da **carteira dos fundos**; escolha a sugestão quando o ativo estiver nela. |
+    | **Operação** | **Compra** ou **Venda**. |
+    | **Quantidade** | Opcional. Maior que zero. |
+    | **Data do pedido** | Já vem com hoje. Não pode ser futura. |
+  </Step>
+  <Step title="Clique em Registrar e checar">
+    O pedido é gravado e a janela do pedido abre já com o resultado das checagens.
+  </Step>
+</Steps>
+
+<Warning>
+  Só pode haver **um pedido pendente** do mesmo colaborador para o mesmo ativo e a mesma operação. Decida o pendente antes de registrar outro.
+</Warning>
+
+### As três checagens
+
+Cada checagem aparece com uma etiqueta e um texto que explica o que foi encontrado.
+
+| Resultado | O que significa |
+|---|---|
+| **Sem alerta** | Nada a apontar. |
+| **Alerta** | Há algo para você avaliar, mas não impede a aprovação. |
+| **Bloqueio** | Impede a aprovação (só a lista restrita bloqueia). |
+| **Não verificado** | A plataforma **não tinha dado para afirmar**. Não quer dizer que está tudo bem. |
+| **Não se aplica** | A checagem não vale para este pedido. |
+
+* **Lista restrita.** Se o ativo é o mesmo texto de um item **ativo** da lista, o resultado é **Bloqueio**. Se só se parece (por exemplo, o nome do pedido contém o do item), é **Alerta** e a tela pede para você conferir. Item agendado ou encerrado não bloqueia.
+* **Carteira dos fundos.** Compara o ativo com as posições dos fundos na **data mais recente** do book. Se os fundos detêm o ativo, o resultado é **Alerta**, com os veículos e a data. Uma correspondência apenas parecida vem marcada como **possível**.
+* **Período mínimo de manutenção.** Vale só para **venda**. Se o colaborador comprou o mesmo ativo (compra aprovada, **executada** e não anulada) há menos de **30 dias**, o resultado é **Alerta**, com a data em que a venda fica livre.
+
+<Warning>
+  **Ausência de correspondência na carteira não prova que os fundos não detêm o ativo.** O book dos fundos não tem ticker nem ISIN: ele chama o ativo pelo código (renda fixa, CRI) ou pelo nome do fundo. Um pedido por ticker pode não casar com o nome do book. Por isso o campo **Ativo** sugere os nomes da carteira, e a checagem só acerta quando o ativo é digitado como o book o chama.
+</Warning>
+
+<Note>
+  **Carteira desatualizada.** Se a última posição do book tem **mais de 5 dias úteis**, ou o book está vazio, e nada casa, a checagem da carteira fica **Não verificado** e diz a data da última posição. O mesmo aviso aparece no formulário do pedido.
+</Note>
+
+<Note>
+  O período mínimo só enxerga as compras que passaram por esta aba. Compras anteriores ao uso da plataforma não entram na conta.
+</Note>
+
+### Decidir o pedido
+
+<Steps>
+  <Step title="Abra o pedido">
+    Clique em **Decidir** na linha (em pedidos já decididos o botão se chama **Ver**).
+  </Step>
+  <Step title="Leia as checagens">
+    A janela mostra as três checagens. As checagens são **recalculadas na hora da decisão**: o book e a lista podem ter mudado desde o registro.
+  </Step>
+  <Step title="Escreva o motivo e decida">
+    O **motivo é sempre obrigatório**, para aprovar ou negar. Clique em **Aprovar** ou **Negar**.
+  </Step>
+</Steps>
+
+* Com o ativo na **lista restrita**, o botão **Aprovar** fica desabilitado: o pedido só pode ser **negado**. Para aprovar, encerre antes o item na [Lista restrita](#lista-restrita).
+* Com **Alerta** na carteira ou no período mínimo, você pode aprovar. Escreva no motivo por que aprova mesmo assim: o motivo e o resultado das checagens ficam registrados.
+* A aprovação **vale até o fim do próximo dia útil** depois da decisão (um pedido aprovado na sexta vale até a segunda). A data aparece na coluna **Validade**.
+
+### Registrar que a operação foi feita
+
+Depois de aprovado, informe o dia em que o colaborador fez a operação: abra o pedido, escolha o dia em **Registrar execução** e clique em **Registrar**. O dia não pode ser futuro, nem anterior ao pedido, nem posterior à validade da aprovação.
+
+É esse dia que sustenta o **período mínimo de manutenção** das vendas seguintes. Um pedido aprovado e não executado fica **Expirado** quando a validade passa e não conta como compra.
+
+### Anular um pedido
+
+Registrou o colaborador errado? Abra o pedido, clique em **Anular pedido**, escreva o **Motivo** e confirme. **Nada é apagado**: o pedido fica **Anulado**, com quem anulou e o motivo, e uma compra anulada deixa de contar no período mínimo. Em seguida registre o pedido certo.
+
+## Lista restrita
+
+Aqui ficam os ativos vedados a todos os colaboradores. Cada item mostra o **Ativo**, o **Motivo**, quando **Vale desde** e a **Situação**: **Ativa**, **Agendada** (começa numa data futura) ou **Encerrada**.
+
+<Steps>
+  <Step title="Clique em Incluir ativo">
+    O botão fica no alto do bloco.
+  </Step>
+  <Step title="Preencha o item">
+    | Campo | Regra |
+    |---|---|
+    | **Ativo** | Obrigatório. Código ou nome, como a gestora o chama. |
+    | **Tipo de motivo** | **Informação privilegiada**, **Relação com o emissor**, **Ativo dos fundos** ou **Outro**. |
+    | **Vale a partir de** | Já vem com hoje. Uma data futura deixa o item **Agendado**: ele só passa a bloquear nesse dia. |
+    | **Motivo** | Obrigatório. Por que o ativo está na lista. |
+    | **Observação** | Opcional: emissor, contexto. |
+  </Step>
+  <Step title="Clique em Incluir">
+    A partir da data de início, qualquer pedido desse ativo fica bloqueado.
+  </Step>
+</Steps>
+
+Para tirar um ativo da lista, clique em **Encerrar** na linha e escreva o motivo. O item **não é apagado**: fica **Encerrado**, com quem encerrou e por quê.
+
+<Note>
+  Não é possível ter o mesmo ativo duas vezes na lista (ativo ou agendado). Compare como o ativo foi digitado: a plataforma ignora maiúsculas, acentos e pontuação, então "kncr-11" e "KNCR 11" são o mesmo ativo.
+</Note>
+
+## Declarações anuais
+
+Neste bloco você acompanha a declaração anual de **Conflito de interesses** e a de **Investimentos pessoais**. Escolha o **Ano** no filtro. Para cada tipo, a tela mostra quantos colaboradores ativos **entregaram**, quem ainda **não entregou** e o histórico, com as declarações anuladas.
+
+### A campanha na Agenda
+
+Clique em **Configurar campanha** (ou **Ajustar campanha**, se já existe) e informe o **dia**, o **mês** e o **responsável**. A plataforma cria na **Agenda** uma obrigação anual, "Declarações anuais de conflitos e de investimentos pessoais", que vence nessa data todo ano (no dia útil anterior, se cair em fim de semana ou feriado).
+
+* Mudar apenas o **responsável** ajusta a obrigação que existe. Mudar o **dia** ou o **mês** cria uma obrigação nova e desativa a antiga (as ocorrências dela ficam no histórico).
+* A baixa da ocorrência é feita por você na Agenda (**Dar baixa**). O contador "entregaram de devem" desta aba é só uma referência: **ele não baixa nada sozinho**.
+
+### Registrar declarações
+
+<Steps>
+  <Step title="Clique em Registrar declaração">
+    O botão fica no tipo que tem pendentes.
+  </Step>
+  <Step title="Marque quem declarou">
+    Em **Nada a declarar** você pode marcar vários colaboradores de uma vez (**Marcar todos**). Em **Há itens a declarar** só cabe **um colaborador por vez**, porque a descrição é individual.
+  </Step>
+  <Step title="Informe os dados">
+    | Campo | Regra |
+    |---|---|
+    | **Descrição do que foi declarado** | Só com **Há itens a declarar**; obrigatória. O detalhe da carteira pessoal fica no documento assinado: anexe-o como prova. |
+    | **Data da declaração** | Já vem com hoje. Não pode ser futura nem anterior à entrada do colaborador. |
+    | **Como chegou** | **E-mail**, **Documento assinado** ou **Outro**. |
+    | **Referência da prova** | Texto livre, por exemplo: e-mail "Declaração anual", 12/01. |
+    | **Anexe a prova** | Opcional. Um arquivo vale para todos os marcados. |
+  </Step>
+  <Step title="Clique em Registrar">
+    Todos os marcados são registrados de uma vez.
+  </Step>
+</Steps>
+
+<Warning>
+  É preciso informar a **referência da prova** ou **anexar um arquivo** (ou os dois). O registro é **tudo ou nada**: se houver problema com um dos colaboradores, nenhuma declaração do grupo é registrada.
+</Warning>
+
+A plataforma guarda só o que foi declarado (**nada a declarar**, ou a descrição) e a prova. Não guarda a carteira pessoal do colaborador.
+
+Registrou a pessoa errada? Clique em **Anular** na linha, escreva o **Motivo** e confirme. A declaração fica **Anulada** (nada é apagado), a pessoa volta para quem ainda não entregou, e você registra a certa.
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="'O ativo está na lista restrita' ao aprovar" icon="ban">
+    O pedido está bloqueado. Negue o pedido, ou encerre o item na **Lista restrita** (com motivo) e aprove em seguida: a decisão recalcula as checagens.
+  </Accordion>
+  <Accordion title="'Já há um pedido pendente deste colaborador'" icon="clock">
+    Existe um pedido pendente para o mesmo ativo e a mesma operação. Abra-o em **Decidir** ou anule-o se estiver errado.
+  </Accordion>
+  <Accordion title="Carteira dos fundos 'Não verificado'" icon="circle-question">
+    O book dos fundos está vazio ou desatualizado (mais de 5 dias úteis). A checagem não confirma nem descarta que os fundos detêm o ativo: confira a carteira por outro meio antes de aprovar.
+  </Accordion>
+  <Accordion title="O ativo não aparece nas sugestões" icon="magnifying-glass">
+    As sugestões vêm só de posições dos fundos na data mais recente do book. Digite o ativo do jeito que você o conhece; a checagem compara o texto, e o book não tem ticker nem ISIN.
+  </Accordion>
+  <Accordion title="'Fulano está desligado(a)'" icon="user-slash">
+    Só colaborador **ativo** pede ou declara. Se a pessoa continua na gestora, vá em [Colaboradores](/compliance/pessoas-colaboradores) e use **Reativar** ou **Cancelar saída**.
+  </Accordion>
+  <Accordion title="'A execução ficou fora da validade'" icon="calendar-xmark">
+    A operação aprovada só pode ser registrada até o fim do dia útil seguinte à decisão. Se a validade passou, o pedido ficou **Expirado**: registre e decida um novo pedido.
+  </Accordion>
+  <Accordion title="'Fulano já tem declaração válida'" icon="circle-check">
+    Já existe uma declaração desse tipo e ano para a pessoa. Se estiver errada, anule-a e registre a certa.
+  </Accordion>
+  <Accordion title="'Dia e mês inválidos para uma data fixa anual'" icon="calendar-days">
+    A campanha precisa de uma data que exista todo ano: 29 de fevereiro, por exemplo, não serve. Escolha outro dia.
+  </Accordion>
+</AccordionGroup>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Políticas e aceites" icon="file-signature" href="/compliance/pessoas-politicas-aceites">
+    Publicar a política de investimentos pessoais e registrar quem aceitou cada versão.
+  </Card>
+  <Card title="Suporte" icon="headset" href="/suporte">
+    Canais de atendimento para dúvidas e pedidos de acesso.
+  </Card>
+</Columns>

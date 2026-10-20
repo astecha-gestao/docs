@@ -57,7 +57,8 @@
         "group": "App de Compliance",
         "pages": [
           "compliance/pessoas-colaboradores",
-          "compliance/pessoas-politicas-aceites"
+          "compliance/pessoas-politicas-aceites",
+          "compliance/pessoas-investimentos"
         ]
       },
       {
