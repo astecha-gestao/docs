@@ -1,0 +1,207 @@
+---
+title: "Pessoas › Treinamentos e certificações"
+sidebarTitle: "Treinamentos e certificações"
+description: "Como registrar as certificações dos colaboradores com validade, acompanhar quem está sem certificação, vencendo ou vencida, e registrar os treinamentos com a lista de participantes."
+icon: "graduation-cap"
+---
+
+A aba **Treinamentos e certificações** reúne dois assuntos, com um seletor no alto da aba:
+
+* **Certificações:** mostra quem está sem a certificação que a função exige, ou com ela vencendo ou vencida.
+* **Treinamentos:** guarda os treinamentos que a gestora realizou e quem participou de cada um. É a prova do programa de treinamento.
+
+Quem registra é o compliance officer. O colaborador **não faz login** na plataforma.
+
+<Info>
+  **Onde fica:** **Legal → Compliance → Pessoas**, aba **Treinamentos e certificações**. As funções reguladas vêm da aba [Colaboradores](/compliance/pessoas-colaboradores): a lista de pendências só inclui colaboradores **ativos** que têm uma função regulada que exige certificação.
+</Info>
+
+{/* TODO: print — aba Treinamentos e certificações com o seletor Certificações | Treinamentos, a faixa da ANBIMA, os contadores e a tabela */}
+
+## Certificações
+
+### Como ler a tela
+
+No alto da área **Certificações** aparecem, nesta ordem:
+
+* O botão **Registrar certificação**.
+* Uma faixa informativa sobre a **migração da ANBIMA**: a ANBIMA muda as certificações para o novo regime em 01/01/2027. A faixa só informa, não altera nenhuma situação, e some sozinha depois dessa data.
+* Um aviso de que a **lista de quais certificações cumprem cada função ainda não foi confirmada com a gestora** (veja o quadro abaixo).
+* Quatro **contadores**: **Em dia**, **Vencendo**, **Vencidas** e **Sem certificação**. Clique num contador para ver só aquela situação; clique de novo para voltar a ver todas.
+* Os filtros **Buscar** (nome ou e-mail) e **Função**. **Limpar filtros** volta ao padrão.
+
+A tabela tem **uma linha por colaborador e por função exigente** (quem acumula duas funções aparece duas vezes):
+
+| Coluna | O que mostra |
+|---|---|
+| **Colaborador** | Nome e e-mail. |
+| **Função** | A função regulada e as certificações aceitas para ela. |
+| **Melhor certificação** | A certificação mais favorável entre as aceitas e ainda não anuladas. |
+| **Vence em** | A data de validade da melhor certificação, ou **Não vence**. |
+| **Situação** | **Em dia**, **Vencendo**, **Vencida** ou **Sem certificação**. |
+
+| Situação | Quando |
+|---|---|
+| **Em dia** | Há uma certificação aceita, válida e que não vence nos próximos 90 dias (ou que não tem vencimento). |
+| **Vencendo** | A melhor certificação vence em **até 90 dias**. |
+| **Vencida** | Só existem certificações aceitas com a validade já passada. |
+| **Sem certificação** | Nenhuma certificação aceita para a função foi registrada, ou todas foram anuladas. |
+
+A situação é calculada pela data de validade, todo dia, na hora em que você abre a tela. Você não precisa marcar nada como "vencida".
+
+### Quais certificações cumprem cada função
+
+<Warning>
+  **Esta tabela ainda não foi confirmada com a gestora.** É a indicação inicial da Astecha e a tela avisa isso. Trate a pendência como uma indicação para você conferir, e não como parecer sobre a regra regulatória.
+</Warning>
+
+| Função | Basta ter uma destas certificações |
+|---|---|
+| **Gestor de carteira** | CGA, CGE ou C-Pro I |
+| **Distribuição** | CPA-10, CPA-20, CEA ou C-Pro R |
+| **Diretor de gestão**, **de risco**, **de compliance** e **de PLD** | Não há exigência de certificação nesta versão. Esses diretores não aparecem na tabela. |
+
+### Registrar uma certificação
+
+<Steps>
+  <Step title="Abra o registro">
+    Clique em **Registrar certificação** no alto da área, ou em **Registrar** na linha do colaborador (aí o colaborador já vem escolhido).
+  </Step>
+  <Step title="Preencha o formulário">
+    | Campo | Regra |
+    |---|---|
+    | **Colaborador** | Obrigatório. A lista traz os colaboradores ativos. |
+    | **Certificação** | CPA-10, CPA-20, CEA, C-Pro R, C-Pro I, CGA, CGE ou **Outra**. |
+    | **Obtida em** | Obrigatória. Não pode ser uma data futura. Pode ser **anterior à entrada** do colaborador na gestora, porque a certificação é da pessoa. |
+    | **Válida até** | Opcional. Informe a validade que está **no certificado**. A plataforma não calcula a validade. Não pode ser anterior à data de obtenção. |
+    | **Número do certificado** | Opcional. |
+    | **Certificado** | Opcional. Anexe o arquivo do certificado (até 50 MB). |
+  </Step>
+  <Step title="Clique em Registrar">
+    A certificação entra no histórico do colaborador e a tabela se atualiza.
+  </Step>
+</Steps>
+
+<Note>
+  **Deixou "Válida até" em branco?** A certificação é tratada como **sem vencimento** e aparece como **Não vence**. Preencha a validade sempre que o certificado trouxer uma.
+</Note>
+
+### Renovar uma certificação
+
+Para renovar, **registre outra certificação** com as novas datas. A anterior continua no histórico, e a tela passa a considerar a melhor entre as aceitas.
+
+### Ver as certificações de uma pessoa e anular
+
+Clique em **Ver certificações** na linha do colaborador. A janela lista tudo o que foi registrado: certificação e número, data de obtenção, validade, situação (**Não vence**, **Válida**, **Vencendo**, **Vencida** ou **Anulada**) e quem registrou.
+
+Registrou a certificação errada ou a data errada? **Nada se edita nem se apaga.** Anule e registre a certa:
+
+<Steps>
+  <Step title="Clique em Anular">
+    O botão fica na linha da certificação.
+  </Step>
+  <Step title="Escreva o Motivo da anulação">
+    O motivo é obrigatório.
+  </Step>
+  <Step title="Clique em Confirmar anulação">
+    A certificação fica marcada como **Anulada**, com quem anulou e o motivo, e deixa de contar para a exigência. Registre a certa em seguida.
+  </Step>
+</Steps>
+
+## Treinamentos
+
+### Como ler a tela
+
+A área **Treinamentos** tem o botão **Registrar treinamento**, os filtros **Tema**, **De** e **Até** (período), e a tabela:
+
+| Coluna | O que mostra |
+|---|---|
+| **Treinamento** | O título, a modalidade e o instrutor. |
+| **Tema** | **Ética**, **PLD/FTP**, **Segurança da informação**, **Continuidade de negócios**, **Investimentos pessoais**, **Certificação** ou **Outro**. |
+| **Data** | O dia em que o treinamento foi realizado. |
+| **Carga** | A carga horária, em horas. |
+| **Participantes** | Quantas pessoas têm participação válida. |
+
+### Registrar um treinamento
+
+<Steps>
+  <Step title="Clique em Registrar treinamento">
+    O botão fica no alto da área.
+  </Step>
+  <Step title="Preencha os dados">
+    | Campo | Regra |
+    |---|---|
+    | **Título** | Obrigatório (por exemplo, "Treinamento anual de PLD/FTP"). |
+    | **Tema** | Um dos temas acima. |
+    | **Modalidade** | **Presencial**, **Online** ou **Mista**. |
+    | **Data** | Obrigatória. Não pode ser uma data futura. |
+    | **Carga horária (horas)** | Opcional. |
+    | **Instrutor ou entidade** | Opcional. |
+    | **Lista de presença ou material** | Opcional. Anexe o arquivo (até 50 MB). |
+  </Step>
+  <Step title="Marque quem participou">
+    A lista traz os colaboradores, inclusive os desligados (com a data em que saíram). Só pode participar **quem estava na gestora na data do treinamento**: entrou até aquele dia e ainda não tinha saído.
+  </Step>
+  <Step title="Clique em Registrar">
+    O treinamento entra na tabela. Se nenhum participante foi marcado, dá para registrá-los depois.
+  </Step>
+</Steps>
+
+O registro dos participantes é **tudo ou nada**: se houver problema com uma das pessoas marcadas, **nenhuma** participação do grupo é gravada e a mensagem diz quem é o problema.
+
+{/* TODO: print — janela Registrar treinamento com os dados e a lista de participantes */}
+
+### Participantes, anulação e correção
+
+Clique em **Participantes** na linha do treinamento. A janela tem três partes:
+
+* **Dados do treinamento**, com o botão **Corrigir dados**: dá para mudar título, tema, modalidade, data, carga horária e instrutor. A **data** só muda se todos os participantes válidos ainda estiverem dentro do período em que estavam na gestora na nova data; senão a plataforma recusa e diz quem é. Nesse caso, anule antes a participação dessa pessoa.
+* **Participantes (N)**, com **Anular** em cada linha. Peça o **motivo** e confirme em **Confirmar anulação**. Nada é apagado: a participação fica marcada como **Anulada**, com quem anulou e o motivo, e você pode registrar a certa.
+* **Registrar mais participantes**: marque as pessoas que ficaram de fora e clique em **Registrar N participante(s)**. A lista mostra quem ainda não tem participação válida nesse treinamento.
+
+<Note>
+  Uma pessoa só pode ter **uma participação válida** por treinamento. Para trocar, anule a anterior e registre a certa.
+</Note>
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="'Fulano não estava na gestora em dd/mm/aaaa'" icon="user-clock">
+    A pessoa entrou depois da data do treinamento ou já tinha saído. Desmarque-a e registre o restante do grupo. Se a data de entrada ou de saída dela estiver errada, corrija na aba [Colaboradores](/compliance/pessoas-colaboradores) e registre de novo.
+  </Accordion>
+  <Accordion title="'Fulano já consta neste treinamento'" icon="user-check">
+    Essa pessoa já tem participação válida. Desmarque-a. Se o registro anterior estiver errado, anule-o em **Participantes** e registre o certo.
+  </Accordion>
+  <Accordion title="Não consigo mudar a data do treinamento" icon="calendar-xmark">
+    Algum participante não estava na gestora na nova data. A mensagem mostra o nome: anule a participação dele em **Participantes** e tente **Corrigir dados** de novo.
+  </Accordion>
+  <Accordion title="'A data de obtenção não pode ser no futuro' / 'A data do treinamento não pode ser no futuro'" icon="calendar-day">
+    Datas futuras não são aceitas nesses registros. Confira a data digitada.
+  </Accordion>
+  <Accordion title="'A validade não pode ser anterior à obtenção'" icon="calendar-xmark">
+    O campo **Válida até** está antes de **Obtida em**. Confira as duas datas no certificado.
+  </Accordion>
+  <Accordion title="Registrei a certificação, mas o colaborador continua 'Sem certificação'" icon="circle-question">
+    Confira três pontos: se a certificação registrada está entre as **aceitas para a função** dele (a coluna **Função** lista quais), se ela não foi **anulada** e se o colaborador está **ativo** e com a **função regulada** marcada na aba Colaboradores. Certificação do tipo **Outra** não cumpre a exigência de nenhuma função.
+  </Accordion>
+  <Accordion title="Um colaborador não aparece na tabela de certificações" icon="eye-slash">
+    A tabela só traz colaboradores **ativos** com função regulada que exige certificação (**Gestor de carteira** ou **Distribuição**). Os diretores e quem não tem função regulada não aparecem. Cadastre ou ajuste a função na aba [Colaboradores](/compliance/pessoas-colaboradores).
+  </Accordion>
+  <Accordion title="Registrei a certificação ou a participação errada" icon="rotate-left">
+    Não há edição nem exclusão. Use **Anular**, escreva o motivo e registre a certa.
+  </Accordion>
+  <Accordion title="Arquivo recusado (vazio ou acima de 50 MB)" icon="file-circle-xmark">
+    O certificado e a lista de presença têm limite de 50 MB e não podem estar vazios. Reduza ou troque o arquivo e envie de novo.
+  </Accordion>
+</AccordionGroup>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Colaboradores" icon="users" href="/compliance/pessoas-colaboradores">
+    Manter a lista de pessoas e as funções reguladas, que definem quem precisa de certificação.
+  </Card>
+  <Card title="Políticas e aceites" icon="file-signature" href="/compliance/pessoas-politicas-aceites">
+    Publicar as políticas da gestora e registrar quem aceitou cada versão.
+  </Card>
+</Columns>
