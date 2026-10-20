@@ -54,6 +54,13 @@
         ]
       },
       {
+        "group": "App de Compliance",
+        "pages": [
+          "compliance/pessoas-colaboradores",
+          "compliance/pessoas-politicas-aceites"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
