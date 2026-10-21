@@ -1,0 +1,87 @@
+---
+title: "Registrar e liquidar uma operação"
+sidebarTitle: "Registrar e liquidar"
+description: "Como registrar a compra ou a venda de qualquer ativo na Boletagem, validar, liquidar informando a data e cancelar com motivo."
+icon: "book-open"
+---
+
+A **Boletagem** é o livro único de compras e vendas da plataforma. Qualquer ativo (ação, FII, CRI, CRA, CCB, debênture, título público, cota de fundo) e qualquer comprador (um veículo ou um deal) entram na mesma tela, com o mesmo caminho: você digita, valida e liquida.
+
+<Info>
+  **Onde fica:** **Controller → Boletagem**, com quatro telas: **Trade Entry**, **Pipeline**, **Dashboard** e **Counterparty**.
+</Info>
+
+## As etapas de uma operação
+
+| Etapa | O que significa | Quem age |
+|---|---|---|
+| **Pending** | A operação foi digitada e aguarda conferência. | Você valida no Pipeline. |
+| **Validated** | A operação foi conferida e aguarda liquidação. | Você liquida no Pipeline. |
+| **Settled** | O dinheiro se moveu na data de liquidação. | — |
+| **Cancelled** | A operação foi cancelada, com motivo. | — |
+
+Uma operação **Pending** não pula direto para **Settled**: valide primeiro. Só a operação **Settled** é fato: **Pending**, **Validated** e **Cancelled** não mexem no caixa nem no patrimônio.
+
+## Registrar a operação
+
+<Steps>
+  <Step title="Abra a Trade Entry">
+    Em **Controller → Boletagem**, abra a tela **Trade Entry**.
+  </Step>
+  <Step title="Escolha a carteira">
+    No campo **Portfolio**, escolha o comprador. A lista traz os veículos do cadastro e os deals que você enxerga, com o tipo (**Vehicle** ou **Deal**) ao lado do nome. O nome escolhido é a chave da operação.
+  </Step>
+  <Step title="Informe o ativo">
+    Em **Asset**, digite o ticker, o código CETIP ou o ISIN. Em **Asset Type**, escolha uma das sugestões (ação, FII, CCB, CCE, CRI, CRA, debênture, título público, cota de fundo) ou digite outro tipo: o campo é livre.
+  </Step>
+  <Step title="Preencha o negócio">
+    Escolha **Buy** ou **Sell** em **Operation Type** e informe:
+
+    | Campo | O que é |
+    |---|---|
+    | **Trade Date** | A data do negócio. Obrigatória. |
+    | **Settlement Date** | O dia em que o dinheiro se move. Opcional na digitação: você pode informá-la ao liquidar. Não pode ser anterior à data do negócio. |
+    | **Quantity** | Quantidade inteira, maior que zero. |
+    | **Unit Price** | Preço unitário, maior que zero. |
+    | **Amount (R$)** | O valor financeiro. Em branco, vale quantidade vezes preço. Informado, é o que vale, e a tela avisa se ele diverge de quantidade vezes preço. |
+    | **Description** | Texto livre, opcional. |
+  </Step>
+  <Step title="Clique em Submit Trade">
+    A operação entra como **Pending** e aparece no **Pipeline**. Se o servidor recusar (carteira não encontrada, mês fechado, data inválida), a tela mostra o motivo de cada campo e nada é gravado.
+  </Step>
+</Steps>
+
+<Note>
+  Se o mesmo nome serve a mais de uma carteira (por exemplo, um veículo e um deal com o mesmo nome), o envio é recusado até o cadastro ser desambiguado.
+</Note>
+
+## Validar, liquidar e cancelar no Pipeline
+
+O **Pipeline** lista as operações **Pending** e **Validated**, com ID, data, carteira, ativo e etapa. Operação liquidada ou cancelada sai da lista.
+
+<CardGroup cols={3}>
+  <Card title="Validate" icon="circle-check">
+    Botão da linha **Pending**. Leva a operação para **Validated**. Não muda caixa nem patrimônio.
+  </Card>
+  <Card title="Settle" icon="money-check-dollar">
+    Botão da linha **Validated**. Abre a janela **Settle trade**, que pede a **Settlement Date** (já preenchida com a data da digitação ou, se não houve, a do negócio). Ao confirmar, a data é gravada e a operação é liquidada numa só ação.
+  </Card>
+  <Card title="Cancel" icon="ban">
+    Botão de qualquer linha. Exige um **Reason** e leva a operação para **Cancelled**.
+  </Card>
+</CardGroup>
+
+<Warning>
+  Em carteira que é **deal**, liquidar move o caixa e o patrimônio do deal. Confira a data antes de confirmar. Se o mês da data de liquidação (ou o da data do negócio) está fechado no deal, a tela mostra o motivo e a operação continua como estava. Para reabrir o mês, use o fechamento do deal.
+</Warning>
+
+Voltar uma operação **Settled** ou **Cancelled** exige um motivo e não está na tela: é feito pelo agente de IA da plataforma. Uma operação **Settled** só volta para **Validated**, e uma **Cancelled** só volta para **Pending**.
+
+## Dashboard e Counterparty
+
+* **Dashboard**: quatro indicadores (volume total, número de operações, quantas aguardam validação e volume liquidado) e dois gráficos, o volume por data de negócio e o volume por etapa.
+* **Counterparty**: lista de consulta das contrapartes ativas, com busca por nome ou CNPJ. A tela não edita nada.
+
+## Pelo agente de IA
+
+O agente faz o mesmo caminho da tela, com as mesmas regras e travas: consulta as carteiras disponíveis, lista as operações (por carteira, etapa e período) e cria, corrige, muda a etapa ou apaga uma operação. Antes de gravar em um deal, ele mostra o que vai fazer e espera a sua confirmação.
