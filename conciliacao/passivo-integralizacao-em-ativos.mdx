@@ -69,6 +69,43 @@ Com a chave em **Ativos**, o aporte do dia deixa de ser gravado em dinheiro: as 
 
 Se o valor que você digitou ficar **mais de 10% longe da referência**, a linha ganha um aviso. O aviso não bloqueia: ele lembra que o check 10 da Conciliação vai acusar a diferença e que **este valor vira o custo do lote no Income**.
 
+### Muitos ativos: distribua pela planilha
+
+Quando a integralização tem dezenas ou centenas de ativos, use o Excel em vez da grade. No bloco do modo **Ativos** há os botões **Baixar modelo** e **Subir planilha**.
+
+<Steps>
+  <Step title="Baixe o modelo">
+    **Baixar modelo** gera um `.xlsx` com todos os ativos candidatos do veículo e da data: ATIVO, NOME, MERCADO, Situação (Novo ou Aumento), ΔQTD, Referência (R$), H1 a H3 e **VALOR (R$)** vazio. Na linha 3 ficam Veículo, Data e Total, que o upload confere.
+  </Step>
+  <Step title="Apague o que não é da integralização">
+    **A linha presente no arquivo é a seleção.** Apague as linhas dos ativos que não fazem parte da integralização. Não use filtro nem oculte linhas: o que estiver no arquivo será lido.
+  </Step>
+  <Step title="Preencha o VALOR">
+    Digite o valor de cada ativo que ficou. O rodapé mostra **Distribuído** e **Diferença** contra o total, e a diferença fica verde quando chega a zero (até R$ 0,01). O rodapé é só para você conferir no Excel; o upload o ignora.
+  </Step>
+  <Step title="Suba a planilha">
+    **Subir planilha** lê o arquivo e mostra o preview, linha a linha, com o valor lido, o status e o motivo de cada erro. Nada é gravado nesta etapa.
+  </Step>
+  <Step title="Aplique">
+    Com o arquivo aceito, o botão vira **Aplicar N ativos**. Antes de gravar, a plataforma recalcula o aporte e os candidatos do dia: o que vale é o que está no sistema, não uma cópia do arquivo.
+  </Step>
+</Steps>
+
+O arquivo é recusado inteiro, com o número da linha, quando:
+
+* o VALOR está vazio, é zero, negativo ou não é número (use `1.234,56`; até duas casas decimais);
+* o ativo não faz parte da integralização do dia ou aparece em duas linhas;
+* ativo sem cadastro não traz NOME, MERCADO e H1 a H3;
+* a planilha é de outro veículo ou de outro dia;
+* a soma dos valores difere do total em mais de R$ 0,01;
+* não sobrou nenhuma linha de ativo.
+
+A planilha conferida fica disponível por uma hora. Depois disso, ou depois de aplicada, suba de novo.
+
+<Note>
+  O arquivo precisa ser o `.xlsx` do modelo (até 5 MB). Ativos como `00123` são lidos como texto: não converta a coluna ATIVO em número.
+</Note>
+
 ### Ativo sem cadastro
 
 Ativo novo cuja chave ainda não tem cadastro aparece com a etiqueta **Sem cadastro**. Ao marcá-lo, a linha abre os campos **ATIVO**, **NOME**, **MERCADO**, **H1**, **H2** e **H3**. Todos são obrigatórios. Em renda fixa, o ATIVO já vem preenchido no formato `CÓDIGO | data`, com a data do aporte.
