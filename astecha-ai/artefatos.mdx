@@ -1,0 +1,95 @@
+---
+title: "Artefatos salvos do Astecha AI"
+sidebarTitle: "Artefatos"
+description: "Como salvar um gráfico, indicador ou tabela de uma resposta, quem pode compartilhar, reexecutar e fixar, e por que um artefato de consulta SQL é só do dono."
+icon: "chart-simple"
+---
+
+Um **artefato** é um gráfico, uma faixa de indicadores ou uma tabela que você salvou de uma resposta do Astecha AI. Ele não é uma foto: ao abrir, o portal **lê o dado de novo**.
+
+<Info>
+  **Onde fica:** no portal, **Astecha AI › Artefatos**. A aba **Meus** lista o que você salvou; **Compartilhados comigo** lista o que colegas da conta compartilharam com você.
+</Info>
+
+## Salvar um artefato
+
+<Steps>
+  <Step title="Ache o item na resposta">
+    No gráfico, indicador ou tabela da resposta, use **Salvar**.
+  </Step>
+  <Step title="Abra em Artefatos">
+    O item aparece na aba **Meus**. Clique na linha para abrir; o portal mostra a data e a hora em que o dado foi lido.
+  </Step>
+</Steps>
+
+Um artefato que não guardou a fonte do dado mostra a resposta original e não se atualiza.
+
+## Dois tipos de fonte
+
+Todo artefato vem de uma de duas fontes, e a fonte define o que se pode fazer com ele.
+
+| | Fonte **tool** | Fonte **SQL** |
+|---|---|---|
+| De onde vem o dado | Uma consulta do assistente, feita com o acesso de quem abre | Uma consulta SQL, que roda com o acesso da plataforma |
+| **Compartilhar** com colegas | Sim | **Não** |
+| Colega **reexecuta** (atualiza) | Sim, com o acesso dele | **Não**; só o dono |
+| **Fixar** numa tela do app | Sim | **Só o dono** |
+| **Excluir** | Só o dono | Só o dono |
+
+<Warning>
+  **Artefato de consulta SQL é só seu.** Ele roda com o acesso da plataforma, e não com o de quem abre. Por isso o portal recusa compartilhá-lo e só o dono o atualiza ou fixa. A tela diz isso ao lado do campo de compartilhar.
+</Warning>
+
+<Warning>
+  **[CAPTURA PENDENTE 2]** Artefato de fonte SQL aberto, com o aviso ao lado de **Compartilhar com** e a recusa ao tentar compartilhar. Tirar na stage, conta de teste.
+</Warning>
+
+## Compartilhar um artefato de fonte tool
+
+<Steps>
+  <Step title="Abra o artefato">
+    Em **Meus**, clique na linha do artefato.
+  </Step>
+  <Step title="Escreva quem recebe">
+    Em **Compartilhar com**, digite os usuários da conta, separados por vírgula, e clique em **Salvar**.
+  </Step>
+</Steps>
+
+Quem recebe vê o artefato em **Compartilhados comigo** e o abre com o **próprio** acesso: se a pessoa não pode chamar a consulta, vê o erro, e não o seu dado. Para parar de compartilhar, esvazie o campo e salve; descompartilhar é sempre permitido.
+
+<Note>
+  Um artefato SQL que foi compartilhado ou fixado **antes** desta regra continua na lista de quem o recebeu, mas só mostra a forma, **sem dados**. Só o dono o abre com o dado.
+</Note>
+
+## Fixar numa tela
+
+O botão de fixar põe o artefato como cartão numa tela do app. O cartão **lê o dado de novo a cada abertura da tela**, e é por isso que um artefato SQL só se fixa pelo dono: cada abertura rodaria a consulta com o acesso da plataforma.
+
+## Excluir um artefato
+
+Só o dono vê o botão **Excluir artefato**. A exclusão **não passa pela Lixeira** e não tem volta: o artefato sai da lista, da resposta em que nasceu, de quem o recebeu e das telas em que alguém o fixou. Veja [Lixeira e exclusão](/astecha-ai/lixeira-e-exclusao).
+
+## Perguntas frequentes
+
+<AccordionGroup>
+  <Accordion title="Um colega compartilhou comigo e o artefato mostra erro. Por quê?">
+    O artefato abre com o **seu** acesso. Se a consulta usa algo a que você não tem acesso, o portal mostra o erro, e não o dado do colega. Fale com o administrador da conta.
+  </Accordion>
+  <Accordion title="Posso compartilhar uma consulta SQL com o time?">
+    Não. Salve a pergunta como artefato de fonte tool, ou peça ao colega que faça a pergunta no Astecha AI.
+  </Accordion>
+  <Accordion title="Excluí um artefato sem querer. Dá para voltar?">
+    Não. O artefato é apagado de vez, sem Lixeira. Salve de novo a partir da resposta, se ela ainda existir.
+  </Accordion>
+</AccordionGroup>
+
+## Veja também
+
+<CardGroup cols={2}>
+  <Card title="Lixeira e exclusão" icon="trash-can" href="/astecha-ai/lixeira-e-exclusao">
+    O que vai para a Lixeira e o que é apagado na hora.
+  </Card>
+  <Card title="Exportar em Excel" icon="file-excel" href="/astecha-ai/exportar-em-excel">
+    Levar um artefato ou uma resposta para uma planilha.
+  </Card>
+</CardGroup>

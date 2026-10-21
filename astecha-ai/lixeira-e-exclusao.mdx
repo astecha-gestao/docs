@@ -1,0 +1,120 @@
+---
+title: "Lixeira e exclusão no Astecha AI"
+sidebarTitle: "Lixeira e exclusão"
+description: "O que acontece ao excluir uma conversa, um projeto, uma memória ou um artefato, como restaurar da Lixeira em até 30 dias e o que é apagado de vez."
+icon: "trash-can"
+---
+
+No Astecha AI, **excluir** apaga de verdade, mas com uma rede de segurança: conversas, projetos e memórias vão para a **Lixeira** e esperam **30 dias** antes de sumirem de vez. Até lá você restaura. O **artefato** é a exceção: é apagado na hora.
+
+<Info>
+  **Onde fica:** no portal, **Astecha AI › Lixeira**. A Lixeira é só sua: ninguém da conta vê o que você excluiu.
+</Info>
+
+| O que você exclui | Vai para a Lixeira? | Quando some de vez |
+|---|---|---|
+| Conversa | Sim | 30 dias depois |
+| Projeto | Sim | 30 dias depois, com o contexto e as memórias dele |
+| Memória confirmada (**Esquecer**) | Sim | 30 dias depois |
+| Proposta de memória (**Descartar**) | **Não** | Na hora |
+| Artefato | **Não** | Na hora |
+
+## Excluir uma conversa
+
+<Steps>
+  <Step title="Abra o menu da conversa">
+    No trilho do menu, abra o menu da conversa e escolha **Excluir**.
+  </Step>
+  <Step title="Confirme">
+    O aviso diz que a conversa vai para a Lixeira e é apagada de vez em 30 dias, com as mensagens e as respostas. Confirme.
+  </Step>
+</Steps>
+
+Os **artefatos que você salvou** dessa conversa ficam.
+
+<Warning>
+  **[CAPTURA PENDENTE 3]** Diálogo de exclusão da conversa, com o aviso da Lixeira e dos 30 dias. Tirar na stage, conta de teste.
+</Warning>
+
+## Excluir um projeto
+
+No trilho de projetos, o menu do projeto tem **Excluir** (o que antes se chamava Arquivar). O projeto sai da lista na hora e vai para a Lixeira.
+
+- As **conversas** do projeto voltam para **Sem projeto**. Nenhuma é apagada.
+- O **contexto** e as **memórias** do projeto ficam na Lixeira com ele e são apagados com ele, no fim dos 30 dias.
+
+## Esquecer uma memória e descartar uma proposta
+
+Em **Astecha AI › Memórias**:
+
+- **Esquecer** uma memória já confirmada a tira das próximas respostas e a manda para a Lixeira. Depois de 30 dias ela é apagada de vez, e some também do "Usou: …" das respostas antigas. Até lá, esse "Usou: …" continua aparecendo.
+- **Descartar** uma proposta (ainda não confirmada) a **apaga na hora**. Ela nunca entrou numa resposta, então não há o que esperar.
+
+## A tela Lixeira
+
+A tela lista conversas, projetos e memórias, os que vencem antes primeiro, com as abas **Tudo**, **Conversas**, **Projetos** e **Memórias**. Cada linha mostra o tipo, quando foi excluído e quanto falta ("apagado de vez em N dias"; o prazo ganha destaque a 3 dias ou menos).
+
+<Warning>
+  **[CAPTURA PENDENTE 4]** Tela Lixeira com itens de cada tipo e o prazo em cada linha. Tirar na stage, conta de teste.
+</Warning>
+
+### Restaurar
+
+Clique em **Restaurar** na linha. Não pede confirmação, porque é desfazer, e o item volta na hora:
+
+- A **conversa** volta para o trilho. Se o projeto dela já não está ativo, volta em **Sem projeto**.
+- O **projeto** volta **sem as conversas**: elas já tinham ido para Sem projeto e não voltam para ele.
+- A **memória** volta a valer nas próximas respostas.
+
+<Warning>
+  **Memória de um projeto na Lixeira não se restaura sozinha.** O botão fica desligado e a linha diz "O projeto desta memória está na lixeira: restaure o projeto primeiro". Restaure o projeto, e a memória é liberada.
+</Warning>
+
+<Warning>
+  **[CAPTURA PENDENTE 5]** Linha de memória com o botão **Restaurar** desligado e o aviso "restaure o projeto primeiro". Tirar na stage, conta de teste.
+</Warning>
+
+<Note>
+  Se a conta tiver a retenção por inatividade ligada, uma conversa parada por muito tempo vai para a Lixeira sozinha e entra na mesma regra dos 30 dias. Restaurar conta como atividade, e a conversa não volta à Lixeira na hora. Quem liga a retenção é a equipe da Astecha; fale com o seu contato.
+</Note>
+
+## Excluir um artefato
+
+Só o dono vê **Excluir artefato**, em **Astecha AI › Artefatos**. O aviso diz que o artefato é apagado de vez e não dá para desfazer. **Não há Lixeira para artefato.** A exclusão tira o artefato:
+
+- da lista de **Artefatos**;
+- da resposta em que ele nasceu;
+- de quem o recebeu compartilhado;
+- de toda tela em que alguém o fixou.
+
+<Warning>
+  **[CAPTURA PENDENTE 6]** Diálogo **Excluir artefato**, com o aviso de que não dá para desfazer. Tirar na stage, conta de teste.
+</Warning>
+
+## Perguntas frequentes
+
+<AccordionGroup>
+  <Accordion title="Apaguei uma conversa sem querer. Ainda tenho?">
+    Sim, por 30 dias. Abra **Astecha AI › Lixeira**, ache a conversa e clique em **Restaurar**.
+  </Accordion>
+  <Accordion title="Um colega vê a minha Lixeira?">
+    Não. A Lixeira lista só o que você excluiu.
+  </Accordion>
+  <Accordion title="Excluí um projeto. As conversas dele foram apagadas?">
+    Não. Elas voltam para **Sem projeto**. O que vai embora com o projeto, no fim dos 30 dias, é o contexto e as memórias dele.
+  </Accordion>
+  <Accordion title="Posso apagar de vez antes dos 30 dias?">
+    Não pela tela. O item sai sozinho ao fim do prazo.
+  </Accordion>
+</AccordionGroup>
+
+## Veja também
+
+<CardGroup cols={2}>
+  <Card title="Artefatos" icon="chart-simple" href="/astecha-ai/artefatos">
+    Salvar, compartilhar e fixar.
+  </Card>
+  <Card title="Suporte" icon="headset" href="/suporte">
+    Se um item sumiu e não está na Lixeira.
+  </Card>
+</CardGroup>
