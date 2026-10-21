@@ -1,0 +1,103 @@
+---
+title: "Acompanhar as ofertas no relatório"
+sidebarTitle: "Relatório de ofertas"
+description: "Como ler o relatório das ofertas abertas de todos os fundos, separadas em pública CVM 160 e privada, e a posição de cada oferta por dia e por cotista."
+icon: "chart-line"
+---
+
+O **Relatório de ofertas** reúne, numa tela só, as ofertas de cotas de **todos os fundos**: quanto cada uma captou, quanto vale hoje e quem detém as cotas dela. As ofertas aparecem separadas em **pública CVM 160** e **privada**.
+
+<Info>
+  **Onde fica:** **Passivo → Fundos → Relatório de ofertas**, ou pelo botão **Relatório** no topo da tela **Ofertas**. Diferente das outras telas de Fundos, o relatório **não pede um fundo**: o fundo é um filtro opcional.
+</Info>
+
+O relatório só lê. Para cadastrar ou corrigir uma oferta, use a tela [Ofertas](/passivo/ofertas-cadastrar).
+
+## De onde vem a posição da oferta
+
+A posição de uma oferta vem das **movimentações marcadas com ela** na tela **Movimentações**, valorizadas pela cota do administrador. Uma movimentação sem oferta marcada não some do total: ela aparece como **fora da oferta** na posição por dia.
+
+<Warning>
+  Se a oferta mostra captado zero ou posição "—", confira se as movimentações dela estão marcadas. O relatório oferece o atalho **Marcar em Movimentações**.
+</Warning>
+
+## Escolher a data base
+
+A **data base** fica no topo da tela e vale para as três abas. Ela começa na data do filtro do Passivo (hoje, por padrão). Uma data futura é trocada por hoje, com aviso.
+
+## Aba Ofertas abertas
+
+Mostra as ofertas **em estruturação** e **em andamento** de todos os fundos.
+
+**Filtros:** **Tipo** (Todas, Pública CVM 160, Privada ou Tipo não informado), **Status** (marque **Encerrada** e **Cancelada** para incluir as fechadas) e **Fundo**.
+
+Os cartões do topo trazem o número de ofertas abertas e, para cada grupo, o número de ofertas, o alvo e o captado. A tabela é agrupada por tipo:
+
+| Grupo | O que entra |
+|---|---|
+| **Pública CVM 160** | Ofertas do tipo pública CVM 160. |
+| **Privada** | Ofertas privadas e ofertas sem oferta pública (o chip mostra **Privada · sem oferta pública**). |
+| **Tipo não informado** | Ofertas antigas, cadastradas sem tipo. Ficam fora das duas somas: informe o tipo na tela Ofertas. |
+
+| Coluna | O que mostra |
+|---|---|
+| **Alvo** | O valor da oferta: o da CVM quando a oferta está ligada a ela, senão o do cadastro. Passe o mouse para ver a fonte. |
+| **Captado · % do alvo** | O que entrou pelas movimentações marcadas com a oferta. |
+| **Cotas integralizadas · a integralizar** | As cotas já integralizadas e as que faltam, quando a CVM informa o total registrado. |
+| **Falta captar** | Alvo menos captado. |
+| **Posição na data base** | Cotas da oferta multiplicadas pela cota do dia, somadas em reais. Fica "—" quando falta cota de alguma classe ou a oferta não tem movimentação marcada. |
+| **Próximo vencimento** | O vencimento mais próximo entre as classes. |
+
+Clique em **+** para abrir as classes da oferta, com alvo, captado, cotas, preço pago, cota na data base, posição, benchmark e vencimento de cada uma. Dali, **Ver posição por dia** e **Ver posição por cotista** abrem as outras abas já nessa oferta.
+
+<Note>
+  Os totais entre classes são sempre em reais. Cotas de classes diferentes não se somam, porque cada classe tem a sua cota.
+</Note>
+
+## Aba Posição por dia
+
+Escolha a **Oferta**, a **Classe** (opcional) e o período em **De** e **Até**. O período padrão são os últimos 30 dias até a data base, e o limite é de **366 dias**.
+
+O gráfico mostra o valor da oferta por dia, uma linha por classe. A tabela traz uma linha por **dia útil** e classe:
+
+| Coluna | O que mostra |
+|---|---|
+| **Cotas da oferta** | As cotas das movimentações marcadas com a oferta, acumuladas até o dia. |
+| **Cota** | A cota da classe no dia. Quando o administrador não publicou cota naquele dia, vale a última anterior, e a célula mostra **cota de dd/mm**. Sem nenhuma cota até o dia, aparece **sem cota**. |
+| **Valor da oferta** | Cotas da oferta × cota. "—" quando não há cota. |
+| **Aportes do dia** e **Saídas do dia** | Em reais e em cotas. O que foi cotizado num fim de semana ou feriado entra no próximo dia útil. |
+| **Amortizações** | Amortizações e distribuições do dia, que não mudam a quantidade de cotas. |
+| **Total da classe** | A posição da classe inteira no dia, com ou sem oferta. |
+| **Fora da oferta** | O total da classe menos as ofertas abertas dela. É aqui que aparece o que não está marcado. |
+
+O rodapé da tabela soma, em reais, o último dia do período e avisa quantas classes estavam sem cota.
+
+## Aba Posição por cotista
+
+Escolha a **Oferta**, a **Classe** (opcional) e a **Data**. A tabela mostra quem detém cotas da oferta naquela data: cotista, documento (CPF mascarado, CNPJ completo), classe, cotas, cota do dia, posição em reais, quanto aportou pela oferta e a fatia das cotas da classe. Cotista com cotas zeradas na data não aparece.
+
+Abaixo vêm os totais por classe e o **total geral em reais**. Clique no nome do cotista para abrir a tela **Posição** já no fundo, na classe e na data.
+
+<Tip>
+  A posição por cotista bate com a tela **Posição** quando todas as movimentações do cotista estão marcadas com a oferta.
+</Tip>
+
+## Exportar em Excel
+
+Em cada aba, **Exportar Excel** baixa o que está na tela, com os filtros aplicados. O arquivo traz no cabeçalho os filtros, a data base e quem o gerou.
+
+| Aba | Arquivo |
+|---|---|
+| **Ofertas abertas** | `Relatorio_ofertas_AAAA-MM-DD.xlsx`, com uma aba de ofertas e outra de classes. |
+| **Posição por dia** | `Posicao_diaria_`, com o nome da oferta e o período, em `.xlsx`. |
+| **Posição por cotista** | `Posicao_cotistas_`, com o nome da oferta e a data, em `.xlsx`, com a tabela e os totais. |
+
+## Quando algo não aparece
+
+| A tela mostra | O que fazer |
+|---|---|
+| **Nenhuma oferta aberta com estes filtros.** | Confira o tipo e o status, ou cadastre a oferta em **Cadastrar oferta**. |
+| **Nenhuma movimentação marcada com esta oferta no período.** | Marque as movimentações em **Marcar em Movimentações**. |
+| **Nenhum cotista com cotas desta oferta nesta data.** | Confira a data e se as movimentações estão marcadas. |
+| **Dados da CVM indisponíveis agora** | O relatório segue com os valores do cadastro. Tente de novo mais tarde. |
+| **Escolha um período de até 366 dias** | Encurte o período em **De** e **Até**. |
