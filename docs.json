@@ -33,6 +33,7 @@
           "securitizacao/upload",
           "securitizacao/parametrizar-cnab",
           "securitizacao/investigacao",
+          "securitizacao/razao-garantia",
           "securitizacao/baixar-cnab"
         ]
       },
