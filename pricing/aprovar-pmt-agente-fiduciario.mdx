@@ -1,0 +1,110 @@
+---
+title: "Aprovar o PMT com o Agente Fiduciário por e-mail"
+sidebarTitle: "Aprovação do AF por e-mail"
+description: "Como enviar os eventos de pagamento para o Agente Fiduciário aprovar por e-mail, um ou vários de uma vez, e seguir até o pagamento."
+icon: "envelope-circle-check"
+---
+
+Depois que o PMT de um evento é calculado, o **Agente Fiduciário (AF)** precisa aprovar os valores antes do pagamento. A plataforma manda os eventos por e-mail ao AF. Ele confere os valores e responde pela página de aprovação com um código de confirmação, e a resposta volta sozinha para a plataforma.
+
+<Info>
+  **Onde fica:** **Pricing → Connect → PMT & IR**, na lista **Cálculos gravados**.
+</Info>
+
+## A ordem das aprovações
+
+Cada evento passa por quatro situações, nesta ordem:
+
+| Situação | O que significa | Quem age |
+|---|---|---|
+| **Calculado** | O PMT do evento está calculado e pronto para ir ao AF. | Você envia ao AF. |
+| **Aprovado AF** | O AF aprovou os valores pela página de aprovação. | O financeiro aprova. |
+| **Aprovado financeiro** | O financeiro deu o OK final. | Você confirma o pagamento. |
+| **Pago** | O pagamento foi confirmado na data informada. | — |
+
+Na lista, as colunas **AF** e **Fin.** mostram quem aprovou cada etapa.
+
+## Enviar para aprovação do AF
+
+<Steps>
+  <Step title="Selecione os cálculos">
+    Na lista **Cálculos gravados**, marque a caixa de seleção dos eventos em **Calculado** que vão para o AF. Podem ser eventos de títulos e datas diferentes. Uma barra aparece no rodapé da lista com as ações disponíveis para a seleção.
+  </Step>
+  <Step title="Clique em Enviar para aprovação do AF">
+    A plataforma separa a seleção em **um pedido por AF**. Eventos com o mesmo aprovador e o mesmo e-mail do financeiro vão juntos no mesmo e-mail, mesmo que sejam de datas diferentes.
+  </Step>
+  <Step title="Revise cada pedido">
+    Cada pedido aparece num cartão, com os deals agrupados por data e os valores em 8 casas decimais. Confira os e-mails do cartão:
+
+    | Campo | O que é |
+    |---|---|
+    | **Para** | E-mail do aprovador do AF. Ele recebe o pedido e o código de confirmação. |
+    | **respostas para** | E-mail do financeiro. Recebe as respostas do AF e o comprovante. |
+    | **cópia para** | Opcional. E-mails que acompanham o pedido, separados por vírgula. |
+
+    Se um campo estiver vazio, preencha antes de enviar. Os e-mails ficam salvos no cadastro de cada título e já vêm preenchidos no próximo envio. Você ainda pode editá-los e salvar a qualquer momento. Antes de enviar, dá para tirar uma linha ou um pedido inteiro.
+  </Step>
+  <Step title="Envie">
+    Clique em **Enviar N pedido(s)**. A tela mostra o resultado de cada pedido (enviado ou falhou). Um pedido com problema não impede o envio dos outros.
+  </Step>
+</Steps>
+
+<Note>
+  Se você **recalcular** um evento depois de enviar, o pedido anterior é substituído e o link antigo deixa de aprovar. Envie de novo para o AF.
+</Note>
+
+## O que o AF recebe
+
+O AF recebe um e-mail de **aprovacoes@astecha.com.br** com uma linha por deal, a data de pagamento e os valores em 8 casas decimais: PU, PU ex, PMT, juros, amortização, amortização extraordinária, multa e mora. O e-mail leva anexo o **Excel do PMT**, só com os deals daquele pedido, e o botão **Aprovar eventos**.
+
+<Steps>
+  <Step title="O AF abre o link do e-mail">
+    A página de aprovação lista os deals do pedido, sem os valores, e manda na hora um **código de 6 dígitos** para o e-mail do AF.
+  </Step>
+  <Step title="O AF decide">
+    Ele pode **aprovar todos**, **recusar todos** ou decidir **deal a deal**. Toda recusa exige um motivo.
+  </Step>
+  <Step title="O AF confirma com o código">
+    Com o código certo, a resposta é gravada e o pedido se fecha. O AF responde **uma única vez**: o mesmo link não aceita uma segunda resposta.
+  </Step>
+</Steps>
+
+O código vale 10 minutos e aceita 5 tentativas. Depois de 60 segundos, o AF pode pedir um novo código.
+
+Ao final, o AF e o financeiro recebem o **comprovante** da resposta, com a decisão de cada deal.
+
+<Tip>
+  Para pedir correção, o AF pode simplesmente **responder o e-mail**: a resposta vai para o e-mail do financeiro.
+</Tip>
+
+## Quem está em cópia
+
+Os e-mails do campo **cópia para** recebem o mesmo pedido, com os valores e o Excel, e depois o comprovante. Eles **não** recebem o link de aprovação nem o código, porque só o AF pode responder.
+
+## Depois da resposta do AF
+
+A plataforma aplica a resposta quando você abre a tela de **PMT & IR**, e também sozinha a cada 2 horas.
+
+* **Deals aprovados** passam para **Aprovado AF**.
+* **Deals recusados** continuam em **Calculado**, com o motivo da recusa no histórico do cálculo. Corrija, recalcule se precisar e envie de novo.
+
+O pedido aparece como **Aprovado**, **Aprovado parcial** ou **Recusado** no painel de aprovação do AF, dentro do detalhe do cálculo.
+
+## Aprovar o financeiro e confirmar o pagamento
+
+As duas etapas seguintes também funcionam em lote, pela mesma barra de seleção:
+
+<CardGroup cols={2}>
+  <Card title="Aprovar financeiro" icon="circle-check">
+    Selecione os eventos em **Aprovado AF** e clique em **Aprovar financeiro**. Você pode deixar uma observação.
+  </Card>
+  <Card title="Confirmar pagamento" icon="money-check-dollar">
+    Selecione os eventos em **Aprovado financeiro**, clique em **Confirmar pagamento** e escolha a data: a **data do evento de cada cálculo** ou **a mesma data para todos**.
+  </Card>
+</CardGroup>
+
+Para levar os números para fora da plataforma, selecione os eventos e clique em **Exportar Excel**. A planilha tem uma aba de resumo e uma aba por deal, no mesmo formato do anexo enviado ao AF.
+
+<Note>
+  Se o AF aprovou por outro canal, dá para registrar a aprovação à mão no detalhe do cálculo, em **Registrar aprovação manual do AF**. O caminho principal continua sendo o e-mail, porque ele guarda o comprovante da resposta.
+</Note>
