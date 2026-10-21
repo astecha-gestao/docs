@@ -51,9 +51,9 @@
         "group": "Registry",
         "pages": [
           "registry/nomes-antigos-de-fundo"
-          ]
-        },
-        {
+        ]
+      },
+      {
         "group": "App de Pricing",
         "pages": [
           "pricing/aprovar-pmt-agente-fiduciario"
