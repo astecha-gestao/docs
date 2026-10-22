@@ -54,6 +54,12 @@
         ]
       },
       {
+        "group": "App de Relatório Gerencial",
+        "pages": [
+          "relatorio-gerencial/montar-relatorio-mensal"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
