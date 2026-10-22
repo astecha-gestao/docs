@@ -51,7 +51,8 @@
         "group": "App de Passivo",
         "pages": [
           "passivo/ofertas-cadastrar",
-          "passivo/ofertas-pricing"
+          "passivo/ofertas-pricing",
+          "passivo/ofertas-documentos"
         ]
       },
       {
