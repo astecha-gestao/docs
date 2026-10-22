@@ -30,6 +30,7 @@
           "securitizacao/cadastrar-operacao",
           "securitizacao/ativos-cnab",
           "securitizacao/passivos-registry",
+          "securitizacao/demonstrativo-resgate",
           "securitizacao/upload",
           "securitizacao/parametrizar-cnab",
           "securitizacao/investigacao",
