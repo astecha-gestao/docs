@@ -54,6 +54,12 @@
         ]
       },
       {
+        "group": "App RentRoll Hub",
+        "pages": [
+          "rentroll/conferencia"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
