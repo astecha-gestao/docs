@@ -1,0 +1,59 @@
+---
+title: "Documentos e conferência da oferta"
+sidebarTitle: "Documentos e conferência"
+description: "Como guardar os documentos da oferta com versão e status, conferir o suplemento contra o cadastro e abrir a oferta sem divergência."
+icon: "file-check"
+---
+
+Antes de abrir uma oferta, a plataforma confere se o que foi **cadastrado** é o que o **suplemento** diz. A página **Documentos e conferência** reúne o checklist do que a oferta exige, os documentos guardados com versão e a conferência do suplemento, campo a campo.
+
+<Info>
+  **Onde fica:** **Passivo → Fundos → Ofertas**. No bloco da oferta, clique em **Documentos** (ou, no chip de documentos, em **Checklist e conferência**). A página tem quatro abas: **Checklist**, **Documentos**, **Conferência** e **Histórico**. Abaixo de 640 px de largura, as abas viram um seletor.
+</Info>
+
+## Checklist
+
+O checklist mostra o que a oferta exige, conforme o **tipo**, o **rito** e o **público-alvo** cadastrados: o documento, a fase (antes de abrir, na abertura, na integralização, no encerramento), se é obrigatório, opcional ou dispensado e a situação (**Pendente**, **Minuta**, **Final**, **Assinado**). Documento dispensado aparece esmaecido, com o motivo. Por exemplo, prospecto e lâmina são dispensados para público profissional em rito automático, e uma oferta privada dispensa requerimento, anúncios, aviso, prospecto e lâmina.
+
+No topo, a plataforma conta quantos documentos obrigatórios ainda faltam **antes de abrir**. Use **Adicionar** para anexar o documento já com o tipo escolhido.
+
+<Note>
+  Regulamento e suplemento de cada classe ficam em **Passivo → Fundos → Regulamentos**. O checklist mostra a situação deles e leva até lá.
+</Note>
+
+## Documentos
+
+Cada documento é uma lista de **versões**. A mais recente aparece em cima; as anteriores ficam recolhidas.
+
+- **Adicionar documento**: escolha o tipo, anexe o arquivo (PDF, DOC ou DOCX, até 50 MB) e informe nome, data, status e, se for o caso, a classe. O status pode ser **Minuta**, **Final** ou **Assinado**. **Assinado** só entra no envio de uma versão.
+- **Nova versão**: o arquivo novo vira a versão seguinte e o anterior continua guardado. Enviar o mesmo arquivo de novo é recusado.
+- **Marcar como final**: a plataforma procura campos **[•]** sem preencher no texto. Se achar, recusa e diz quantos são e em que páginas. Se o texto não puder ser lido (por exemplo, PDF sem texto), marca como final com um aviso.
+- **Voltar para minuta**: exige o motivo.
+- **Excluir**: exige o motivo. A exclusão é lógica, e a versão anterior passa a ser a corrente.
+
+## Conferência do suplemento
+
+Na aba **Conferência** há um bloco por classe da oferta. Clique em **Conferir suplemento**: a plataforma lê o suplemento em uso da classe e extrai tipo, rito, público, valor total, quantidade, valor unitário, prazo, benchmark, carência e cronograma. Cada termo vem com o trecho citado e a página, e a citação é conferida no texto do documento. A plataforma só usa um número se ele estiver na própria citação.
+
+| Situação | O que significa | O que fazer |
+|---|---|---|
+| **Confere** | O suplemento e o cadastro dizem o mesmo. | Nada. |
+| **Diverge** | Os dois têm valor e são diferentes. | **Aplicar ao cadastro**, **Corrigir o cadastro** ou **Justificar**. |
+| **Não consta no suplemento** | O documento não traz o campo, ou a citação não foi verificada. | **Justificar**, se o campo for obrigatório. |
+| **Sem cadastro** | O suplemento tem o valor e o cadastro não. | **Aplicar ao cadastro** ou **Justificar**. |
+| **Conferir à mão** | O benchmark é texto livre: a tela mostra os dois lados. | **Marcar como conferido** ou **Justificar**. |
+| **Campo em branco [•]** | O suplemento tem campos sem preencher. | Enviar uma nova versão do suplemento e conferir de novo. |
+
+<Warning>
+  Campo em branco **não se justifica**. A justificativa exige pelo menos 10 caracteres e só vale enquanto o suplemento e o cadastro continuarem com os mesmos valores.
+</Warning>
+
+Se o suplemento ou o cadastro mudar depois da conferência, o bloco fica **Desatualizado** e é preciso conferir de novo. Se a execução falhar, a tela mostra o motivo, mantém a conferência anterior visível e oferece **Tentar novamente**.
+
+## Abrir a oferta
+
+O botão **Abrir oferta** (mudar o status para **Em andamento**) só vale sem **bloqueios**. Cada bloqueio vem com um atalho para resolvê-lo: documento obrigatório pendente, minuta mais nova que a versão final, suplemento ausente ou em minuta, regulamento não vigente, conferência não feita, desatualizada ou com falha, campo em branco e divergência sem justificativa. A mesma regra vale para quem muda o status pelo formulário da oferta ou pelo MCP. Voltar a oferta para **Em estruturação** não passa por essa verificação.
+
+## Histórico
+
+A aba **Histórico** guarda quem fez o quê e quando: envios, novas versões, mudanças de status, downloads, exclusões, justificativas, valores aplicados ao cadastro e a abertura da oferta.
