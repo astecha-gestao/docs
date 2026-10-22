@@ -48,6 +48,12 @@
         ]
       },
       {
+        "group": "App de Cotistas",
+        "pages": [
+          "cotistas/cadastro-e-perfis"
+        ]
+      },
+      {
         "group": "App de Pricing",
         "pages": [
           "pricing/aprovar-pmt-agente-fiduciario"
