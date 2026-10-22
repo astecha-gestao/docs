@@ -50,7 +50,8 @@
       {
         "group": "App de Pricing",
         "pages": [
-          "pricing/aprovar-pmt-agente-fiduciario"
+          "pricing/aprovar-pmt-agente-fiduciario",
+          "pricing/check-pu-mtm"
         ]
       },
       {
