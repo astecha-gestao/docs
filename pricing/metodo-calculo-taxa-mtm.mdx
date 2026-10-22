@@ -1,0 +1,70 @@
+---
+title: "Escolher o método de cálculo da taxa de MtM"
+sidebarTitle: "Método da taxa de MtM"
+description: "A diferença entre o Solver e o Cálculo direto na taxa de MtM, quando usar cada um e como ler o resultado."
+icon: "scale-balanced"
+---
+
+A taxa de MtM de um ativo é a taxa que reproduz o preço do ativo na carteira na data de posição. A plataforma calcula essa taxa de dois jeitos, e você escolhe qual usar em cada rodada.
+
+<Info>
+  **Onde fica:** **Pricing → MtM → Rate**, no passo **4 · Método de cálculo**. O **Processar todos** da etapa MtM no Pipeline abre esta mesma tela.
+</Info>
+
+## Os dois métodos
+
+| Método | Como funciona | Quando usar |
+|---|---|---|
+| **Solver** · *Recomendado* | Refaz a curva do ativo dia a dia até achar a taxa que reproduz o preço, passando por todas as verificações do sistema. | Sempre que possível. É o método de referência e já vem marcado. |
+| **Cálculo direto** · *Rápido* | Acha a taxa de uma vez, descontando os pagamentos já projetados na curva BASE do ativo. Cerca de 5 vezes mais rápido no processo inteiro. | Quando o tempo importa, por exemplo em muitos ativos ou em ativos longos. |
+
+<Warning>
+  O Cálculo direto é um **atalho de desempenho**, não um método mais certo. Ele confia que a curva BASE do ativo está correta. Pode diferir do Solver em 1 dia útil de convenção de data (0,5 a 5 bp do PU) e, com uma BASE incoerente, em mais de 20 bp. Para a taxa de referência, use o Solver.
+</Warning>
+
+## Rodar a taxa
+
+<Steps>
+  <Step title="Escolha os ativos, a data e a curva alvo">
+    Preencha os passos **1 · Ativos**, **2 · Data de posição** e **3 · Curva alvo** (MTM ou MTM_FORWARD).
+  </Step>
+  <Step title="Escolha o método">
+    No passo **4 · Método de cálculo**, deixe o **Solver** ou marque o **Cálculo direto**. Com o Cálculo direto marcado, um aviso amarelo lembra a diferença entre os dois.
+  </Step>
+  <Step title="Calcule">
+    Clique em **Calcular & salvar taxa**. A taxa é gravada e as curvas MTM e MTM_FORWARD são geradas do mesmo jeito nos dois métodos.
+  </Step>
+</Steps>
+
+## Quando o Cálculo direto não roda
+
+Antes de calcular, a plataforma confere a curva BASE de cada ativo. Se ela não passar, o ativo não fica sem taxa:
+
+| Situação da BASE | O que acontece | O que aparece |
+|---|---|---|
+| Ausente ou desatualizada | O ativo é calculado pelo Solver. | **Solver · caiu do direto**, com o motivo |
+| Incoerente (os pagamentos da BASE não fecham com o próprio PU da BASE por mais de 20 bp) | O ativo é calculado pelo Solver. | **Solver · caiu do direto**, com o motivo |
+| Taxa encontrada fora do plausível | O ativo é calculado pelo Solver. | **Solver · caiu do direto**, com o motivo |
+| Quebrada (PU negativo ou saldo final diferente de zero) | O ativo não é calculado, nos dois métodos. | **Não calculado**, com o motivo |
+
+## Ler o resultado
+
+Cada ativo da rodada mostra:
+
+- o **método usado**: Direto, Solver, Solver · caiu do direto ou Não calculado;
+- a **diferença para o outro método**, em bp e em R$ (nas rodadas do Solver, a plataforma também faz o Cálculo direto ao lado, em cerca de 2 segundos por ativo);
+- a **observação**, que explica a diferença:
+
+| Observação | O que significa |
+|---|---|
+| **Igual** | Diferença de até 0,5 bp do PU. |
+| **1 dia útil** / **Convenção de data** | Os dois métodos contam a data de forma diferente (D ou D+1). Diferença de até 5 bp do PU, esperada. |
+| **BASE incoerente** | A curva BASE do ativo precisa ser revista. O resultado do Solver é o que vale. |
+
+## Calculadora
+
+Em **Pricing → MtM → Calculate**, a calculadora mostra o **Solver** e o **Cálculo direto** lado a lado, sem gravar nada. O Cálculo direto aparece inclusive nos ativos longos em que o Solver passa do limite de tempo da calculadora.
+
+<Note>
+  A aba **Process** e a **Agenda** reaproveitam a taxa já gravada para gerar a curva. Nelas não há escolha de método.
+</Note>
