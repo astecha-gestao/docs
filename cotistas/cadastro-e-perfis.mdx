@@ -1,0 +1,46 @@
+---
+title: "Ver o cadastro e os perfis dos cotistas e baixar o Excel"
+sidebarTitle: "Cadastro e perfis"
+description: "Como ver quantos cotistas, instituições e quanto de patrimônio há por tipo e perfil, com os filtros que você escolher, e baixar a mesma base em Excel."
+icon: "users"
+---
+
+A aba **Cadastro e perfis** responde, num só lugar, a "quem são os cotistas" dos fundos: quantos são, quantas instituições aparecem e como o patrimônio se divide por tipo e perfil. Os filtros que você aplica valem para os números da tela **e** para o Excel que você baixa.
+
+<Info>
+  **Onde fica:** **Investor Relations → Cotistas → Dashboard → Cadastro e perfis**. A mesma aba existe no **Diário**, com a data da posição no lugar do mês.
+</Info>
+
+## Filtrar a base
+
+Os filtros são os mesmos da aba **Completa**. Escolha o que precisar e clique em **Aplicar filtros**; **Limpar** volta ao padrão.
+
+- **Mês** (ou **Data**, no Diário), **Fundo**, **Tipo de cotista**, **Perfil** e **UF**. Cada um aceita mais de uma opção.
+- **Tipo de registro**: cotas, recibos, subclasses ou todos.
+- **Instituição** e **Buscar cotista** (nome ou CPF/CNPJ).
+- **Quantidade de cotas**, com mínimo e máximo.
+- **CPF/CNPJ em lote**: cole uma lista, com ou sem pontuação.
+
+## O que a tela mostra
+
+| Bloco | O que é |
+|---|---|
+| **Cotistas** | Quantos CPF/CNPJ diferentes há no filtro. Quem tem posição em dois fundos conta uma vez. |
+| **Instituições** | Quantas instituições diferentes aparecem. Só entram os perfis institucionais (Gestora, Family-Office, Plataforma, Pensão e PJ - Estrangeiro); em pessoa física e nos demais perfis a "instituição" é o próprio investidor e não é contada. |
+| **Posições** | Quantas linhas (cotista em cada fundo) o filtro tem. É o mesmo total da tabela da aba Completa. |
+| **R$ AUM** | Cotas multiplicadas pelo valor da cota informado à CVM. |
+| **Perfil** | A composição do patrimônio por tipo e perfil, com a participação de cada um e o número de cotistas. |
+
+Enquanto a consulta roda aparece um esqueleto de carregamento, e uma falha mostra uma mensagem de erro em vez de números zerados.
+
+## Baixar o Excel
+
+Clique em **Baixar Excel**. O arquivo é gerado em segundo plano, com os **mesmos filtros** da tela, e baixa quando fica pronto.
+
+<Warning>
+  Se a base filtrada for maior que o limite do arquivo, o Excel traz só as primeiras linhas e a tela avisa quantas foram incluídas. Estreite o filtro para exportar o restante.
+</Warning>
+
+<Note>
+  Pessoas físicas aparecem **anonimizadas** (nome, CPF e contato mascarados), em linha com a LGPD. O arquivo segue as mesmas colunas da aba **Completa**.
+</Note>
