@@ -54,6 +54,12 @@
         ]
       },
       {
+        "group": "App de Conciliação",
+        "pages": [
+          "conciliacao/passivo-integralizacao-em-ativos"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
