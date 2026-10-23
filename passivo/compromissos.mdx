@@ -1,0 +1,77 @@
+---
+title: "Compromissos de investimento"
+sidebarTitle: "Compromissos"
+description: "Como registrar o compromisso de investimento de cada cotista por classe, guardar o documento assinado e definir o aviso das chamadas de capital."
+icon: "handshake"
+---
+
+Em uma classe fechada, o cotista pode assumir um **compromisso de investimento**: ele se obriga a subscrever e integralizar cotas até o valor comprometido, à medida que o gestor faz as chamadas de capital. A página **Compromissos** guarda esse compromisso, o documento assinado e a regra de aviso das chamadas.
+
+<Info>
+  **Onde fica:** **Passivo → Fundos → Compromissos**. Escolha o fundo no filtro do topo. A página mostra os compromissos do fundo, a regra de chamada de cada classe e o resumo dos vigentes.
+</Info>
+
+<Note>
+  **Comprometido não é subscrito nem integralizado.** Esta página guarda só o valor comprometido. O que foi chamado e o que entrou em caixa vêm das chamadas e dos boletins.
+</Note>
+
+## Registrar um compromisso
+
+Clique em **Novo compromisso** e preencha:
+
+- **Classe**: uma das classes do fundo.
+- **Oferta** (opcional): só aparecem as ofertas do fundo que têm a classe e que não estão encerradas nem canceladas. Deixe em branco para um compromisso fora de oferta.
+- **Valor comprometido** e **Data de assinatura**. A data não pode ser futura. Escreva os centavos com vírgula, por exemplo `1.500.000,00`.
+- **Cotista**: busque no cadastro de investidores por nome, CPF ou CNPJ, ou digite direto quem ainda não está lá. O documento deve ter 11 (CPF) ou 14 (CNPJ) dígitos.
+- **Observação** (opcional): por exemplo, as penalidades de inadimplência previstas no documento.
+- **Documento assinado** (opcional): PDF, DOC ou DOCX, até 50 MB. Pode ser anexado depois.
+
+A plataforma recusa um compromisso igual a outro vigente (mesmo cotista, classe, oferta, valor e data) e diz o número do existente.
+
+Depois de salvar, a plataforma pode avisar, sem bloquear:
+
+- que o **documento** ainda não foi anexado;
+- que os compromissos da classe somam **mais que o valor da emissão** da oferta.
+
+Se o regulamento vigente do fundo tiver o termo **chamada de capital** confirmado como **não**, uma faixa no topo avisa para você conferir antes de registrar compromissos.
+
+## Situação do compromisso
+
+| Situação | O que significa |
+|---|---|
+| **Vigente** | Admite chamadas. É a única situação que se edita. |
+| **Cumprido** | O comprometido foi chamado e integralizado. Só a plataforma marca; não há botão. |
+| **Cancelado** | Desfeito, com o motivo registrado. Continua na lista. |
+
+- **Editar** muda valor, data de assinatura, oferta e observação. O cotista e a classe não mudam: cancele o compromisso e registre outro.
+- **Cancelar** exige o motivo (mínimo de 5 caracteres) e mantém o registro na lista.
+- **Excluir** serve para lançamento errado, exige o motivo e tira o compromisso da lista. Compromisso cumprido não se exclui.
+
+A lista abre mostrando só os **vigentes**. Use o filtro de situação para ver cumpridos, cancelados ou **Todos**, e filtre também por classe, oferta e cotista. Quando há mais de 500 compromissos, a página mostra os mais recentes e avisa para refinar pelos filtros.
+
+## Documento do compromisso
+
+Em **Documento**, na linha do compromisso, ficam as **versões** do arquivo assinado, com o SHA-256 de cada uma.
+
+- **Enviar nova versão**: o arquivo novo vira a versão seguinte e a anterior continua guardada. Enviar o mesmo arquivo de novo é recusado, com a versão que já o tem.
+- **Baixar** abre o arquivo guardado.
+- **Excluir** uma versão exige o motivo. Se for a vigente, a anterior passa a ser a vigente.
+
+Compromisso cancelado não recebe documento novo.
+
+## Regra de chamada de capital
+
+No quadro **Regra de chamada de capital** há uma linha para o fundo todo e uma para cada classe. Clique em **Definir** ou **Editar** e informe:
+
+| Campo | O que define |
+|---|---|
+| **Aviso contado em** | Dias úteis ou dias corridos. |
+| **Dias de aviso** | A antecedência mínima da chamada, de 0 a 365 dias. |
+| **Se a data cair em dia não útil** | Usar o dia útil anterior ou o próximo dia útil. |
+| **Aceita integralização parcial** | Se o cotista pode integralizar a chamada em mais de um aporte ou em valor menor que o chamado. |
+
+A classe sem regra própria usa a do **fundo todo** e aparece marcada como **herdada do fundo**. A regra vale para as chamadas futuras; ela não calcula nenhuma data por si só.
+
+## Pelo assistente de IA
+
+As mesmas operações existem como ferramentas do assistente, na rota **Compromissos de capital**: listar os compromissos, ver as classes, as ofertas e as regras do fundo, registrar, alterar (inclusive cancelar e excluir) e gravar a regra de chamada. O envio do arquivo do documento só se faz pela página.
