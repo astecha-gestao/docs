@@ -1,0 +1,71 @@
+---
+title: "Conciliar as chamadas de capital"
+sidebarTitle: "Conciliar chamadas"
+description: "Como casar cada chamada de capital com o aporte do administrador e acompanhar o comprometido, o chamado, o integralizado e o que falta chamar."
+icon: "scale-balanced"
+---
+
+Depois que a chamada de capital sai, o cotista paga e o administrador registra o **aporte**. A conciliação **casa cada chamada com os aportes** que o administrador registrou e mostra, por fundo, oferta e classe, quanto foi **comprometido**, **chamado**, **integralizado** e quanto ainda dá para **chamar**.
+
+<Info>
+  **Onde fica:** **Passivo → Fundos → Compromissos**, na seção **Conciliação com o administrador**, abaixo da lista de compromissos. Na oferta que tem compromisso, os mesmos números aparecem no **Painel da oferta** (**Passivo → Fundos → Ofertas → Abrir painel**).
+</Info>
+
+## Os quatro números
+
+| Número | O que é |
+|---|---|
+| **Comprometido** | Soma dos compromissos vigentes e cumpridos. |
+| **Chamado** | Soma das chamadas abertas, parciais e quitadas. Chamada cancelada ou substituída não conta. |
+| **Integralizado** | Soma dos casamentos que você confirmou, ou seja, o dinheiro do administrador ligado às chamadas. |
+| **A chamar** | Comprometido menos chamado. Nunca fica negativo. |
+
+Os números aparecem no total e por classe. Os três valores são diferentes: comprometido não é chamado, e chamado não é integralizado.
+
+## Confirmar um casamento
+
+A plataforma **calcula** as propostas de casamento ao abrir a tela. Só o que você confirma é gravado, com quem confirmou e quando.
+
+Uma chamada casa com um aporte quando:
+
+- é da **mesma classe** e do **mesmo cotista** (pelo documento; pelo nome só com revisão);
+- a **data de cotização** do aporte está entre 5 dias antes da data da chamada e 10 dias depois da data-limite (depois da data-limite casa, mas a proposta vem marcada como **Fora do prazo**);
+- o valor fecha o saldo da chamada, com tolerância de R$ 0,01: um aporte igual ao saldo, ou vários aportes que somam o saldo. Menos que o saldo é uma proposta **Parcial**; mais que o saldo vira um aviso de valor divergente.
+
+Na área da chamada, escolha uma das opções:
+
+- **Confirmar casamento**, na proposta da linha;
+- **Confirmar todos os exatos**, que confirma de uma vez as propostas exatas e inequívocas;
+- para a proposta **Ambígua** (dois conjuntos de aportes possíveis, ou duas chamadas iguais do mesmo cotista), escolha o conjunto na própria linha e confirme.
+
+Ao confirmar, a chamada passa a **Parcial** ou **Quitada**. Se ela tem boletim de subscrição, o boletim vai a **Integralizado** quando a chamada quita. Quando o total casado fecha o valor comprometido, o compromisso passa a **Cumprido**.
+
+<Note>
+  **Um aporte tem um só destino:** ou paga um boletim, ou paga uma chamada. Um aporte já ligado a um boletim não aparece como proposta de chamada, e o contrário. Se alguém vincular o aporte antes de você, a plataforma recusa e diz onde ele está.
+</Note>
+
+## Desfazer um casamento
+
+Em **Desfazer casamento**, na linha do aporte casado, informe o **motivo** (mínimo de 5 caracteres). O vínculo fica registrado como desfeito, o aporte volta a ser candidato, e a chamada, o boletim e o compromisso voltam à situação anterior (por exemplo, de **Quitada** para **Parcial**).
+
+## Chamada vencida e inadimplência
+
+Se a data-limite passou e ainda há saldo, a chamada aparece como **Inadimplente**, com os **dias de atraso**. A situação é calculada ao abrir a tela; não existe botão para marcá-la. A chamada que vence sem aporte também entra na aba **Chamadas vencidas**.
+
+<Warning>
+  Por enquanto a plataforma só **marca o atraso**. Ela não calcula multa, correção nem juros de mora.
+</Warning>
+
+## Pendências
+
+| Aba | O que mostra |
+|---|---|
+| **Chamadas** | Todas as chamadas, com situação, saldo, aportes casados e a proposta de casamento. |
+| **Chamadas vencidas** | Chamadas com a data-limite vencida e saldo: sem aporte, ou pagas em parte. |
+| **Aporte sem chamada** | Aporte de cotista com compromisso vigente que não casa com nenhuma chamada nem boletim. O aporte anterior à assinatura do compromisso não entra. |
+
+No painel da oferta essas abas só aparecem quando a oferta tem compromisso. O **boletim de uma chamada** não casa direto com aporte: o integralizado dele é o da chamada, e ele não tem **Cancelar saldo**.
+
+## Pelo assistente de IA
+
+As mesmas operações existem como ferramentas do assistente, na rota **Compromissos de capital**: ler a conciliação (números, chamadas, propostas e pendências), confirmar casamentos e desfazer um casamento. Elas têm as mesmas travas e mensagens da página.

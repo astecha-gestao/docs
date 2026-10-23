@@ -53,7 +53,8 @@
           "passivo/ofertas-cadastrar",
           "passivo/ofertas-pricing",
           "passivo/ofertas-documentos",
-          "passivo/compromissos"
+          "passivo/compromissos",
+          "passivo/chamadas-conciliar"
         ]
       },
       {
