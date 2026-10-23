@@ -8,7 +8,7 @@ icon: "folder-plus"
 Cadastrar uma **operação** é o primeiro passo antes de qualquer upload: é aqui que você cria o **Projeto** que vai receber os arquivos CNAB e a **debênture** que vai receber os lançamentos de passivo. Sem o projeto cadastrado, o sistema recusa o envio de arquivos; sem a debênture, não há como registrar aportes e resgates.
 
 <Info>
-  **Onde fica:** **Controller → Registry**. As tabelas **Deals** e **Projects** ficam na seção **Securitization**; a debênture é cadastrada na seção **Fixed Income** (tabela **Registry**). Você também chega pelo atalho **+ Novo projeto** na tela de [Upload](/securitizacao/upload).
+  **Onde fica:** **Controller → Registry**. A aba **Projects** fica na seção **Securitization**; **Deals** e a debênture ficam na seção **Fixed Income** (abas **Deals** e **Registry**). Todas as telas seguem o mesmo molde: **lista → ficha → editar com revisão**. Você também chega pelo atalho **+ Novo projeto** na tela de [Upload](/securitizacao/upload).
 </Info>
 
 ## Deal, Projeto e Debênture — a estrutura da operação
@@ -44,7 +44,7 @@ Uma operação tem três registros. Você cadastra os três no **Registry**, nes
 
 <Steps>
   <Step title="Confirme se o Deal já existe">
-    Em **Registry → Securitization → Deals**, procure pelo nome da operação. Se não encontrar, você vai criá‑lo no Passo 1.
+    Em **Registry → Fixed Income → Deals**, procure pelo nome da operação. Se não encontrar, você vai criá‑lo no Passo 1.
   </Step>
   <Step title="Tenha os dados do projeto em mãos">
     O **nome** do projeto e o **Deal** ao qual ele pertence. Só isso já basta para criar — **CNPJ**, tipo de ativo e localização podem ser completados depois.
@@ -58,23 +58,23 @@ Uma operação tem três registros. Você cadastra os três no **Registry**, nes
 
 <Steps>
   <Step title="Abra a tabela de Deals">
-    Em **Controller → Registry**, selecione a seção **Securitization** e a tabela **Deals**.
+    Em **Controller → Registry**, selecione a seção **Fixed Income** e a aba **Deals**.
   </Step>
-  <Step title="Clique em Novo">
-    Um formulário se abre com os campos do Deal.
+  <Step title="Clique em Nova operação">
+    A ficha de cadastro se abre, em seções: **Identificação**, **Prestadores e região**, **Conta**, **Razão de garantia**, **Fórmulas** e **Informações gerais**.
   </Step>
   <Step title="Preencha os campos do Deal">
     O único campo obrigatório é o **nome** — mas, sempre que possível, já deixe o **máximo de informações** preenchido:
 
-    - **DEAL_NAME** *(obrigatório)* — o nome da operação (ex.: "ABC Recebíveis 2024").
-    - **BANCO**, **AGENCIA**, **CONTA_CORRENTE** — os dados da conta da operação.
+    - **Nome da operação** *(obrigatório)* — como a operação aparece nas telas (ex.: "ABC Recebíveis 2024").
+    - **Banco**, **Agência**, **Conta corrente** — os dados da conta da operação.
 
     <Note>
       Os campos de **fórmula** (recebíveis, estoque, LTV, inadimplência, cobertura) definem como os indicadores do Deal são calculados. São **avançados** e normalmente configurados **com apoio da equipe Astecha** — deixe em branco se não tiver essa informação.
     </Note>
   </Step>
-  <Step title="Salve">
-    O Deal aparece na tabela. Guarde o **nome**: você vai selecioná‑lo ao criar o projeto.
+  <Step title="Revise e cadastre">
+    Clique em **Revisar e cadastrar**, confira o que será gravado e confirme. O número da operação é gerado ao gravar e a ficha dela se abre. Guarde o **nome**: você vai selecioná‑lo ao criar o projeto.
   </Step>
 </Steps>
 
@@ -82,16 +82,17 @@ Uma operação tem três registros. Você cadastra os três no **Registry**, nes
 
 <Steps>
   <Step title="Abra a tabela de Projects">
-    Em **Controller → Registry → Securitization**, selecione a tabela **Projects** e clique em **Novo**.
+    Em **Controller → Registry → Securitization**, selecione a aba **Projects** e clique em **Novo projeto**.
   </Step>
   <Step title="Preencha os campos essenciais">
-    Para a maioria das operações, só **dois campos** importam:
+    Para a maioria das operações, só **três campos** importam:
 
-    - **PROJECT_NAME** — o nome do projeto.
-    - **DEAL_ID** — o Deal ao qual o projeto pertence. Escolha na lista suspensa (ela mostra `Deal — Nome`); é esse vínculo que faz o projeto somar dentro da operação nos relatórios de Gestão.
+    - **ID do projeto** *(obrigatório)* — o identificador do projeto. É a chave que o CNAB e as unidades usam, então **não se troca depois**.
+    - **Nome do projeto** — como o projeto aparece nas telas.
+    - **Operação** — o Deal ao qual o projeto pertence. Escolha na lista (ela mostra `Deal — Nome`); é esse vínculo que faz o projeto somar dentro da operação nos relatórios de Gestão.
 
     <Note>
-      Quando os **parâmetros CNAB padrão** atendem a operação (o caso mais comum), **nome + Deal já bastam** para criar o projeto. O sistema cuida do identificador interno — você não precisa digitar um código.
+      Quando os **parâmetros CNAB padrão** atendem a operação (o caso mais comum), **ID + nome + operação já bastam** para criar o projeto: a seção **Leitura do CNAB** já vem preenchida com o padrão.
     </Note>
   </Step>
   <Step title="Complete os dados do veículo (opcional)">
@@ -99,21 +100,21 @@ Uma operação tem três registros. Você cadastra os três no **Registry**, nes
 
     | Campo | O que é |
     |---|---|
-    | **CNPJ** | CNPJ do veículo/projeto. |
-    | **ASSET_TYPE** | Tipo de ativo (ex.: recebíveis, imóvel). |
-    | **CITY** / **STATE** | Cidade e UF. |
-    | **ADDRESS** / **ZIP_CODE** | Endereço e CEP. Ao preencher o **CEP**, o app tenta completar o endereço automaticamente. |
-    | **INFO_GERAIS** / **ESTRATEGIA** | Textos livres para anotações sobre a operação. |
+    | **CNPJ** | CNPJ do veículo/projeto, validado na hora. |
+    | **Tipo de ativo** | Ex.: recebíveis, imóvel. |
+    | **Cidade** / **UF** | Cidade e UF. |
+    | **CEP** / **Endereço** | Ao sair do campo **CEP**, o app completa o endereço automaticamente. |
+    | **Informações gerais** / **Estratégia** | Textos livres para anotações. |
   </Step>
   <Step title="Ajuste os parâmetros CNAB apenas se necessário">
-    Os campos **CNAB_CONTRACT_ID**, **CNAB_INSTALLMENT_ID** e **CNAB_CESSAO_DATE** já vêm com **valores padrão** e, na maioria dos casos, **não precisam ser alterados**.
+    Na seção **Leitura do CNAB**, os campos **Fórmula do contrato**, **Fórmula da parcela** e **Origem da data de cessão** já vêm com **valores padrão** e, na maioria dos casos, **não precisam ser alterados**.
 
     <Warning>
       Só ajuste esses três campos se a operação exigir uma configuração específica de leitura do CNAB. Na dúvida, mantenha os valores padrão e valide com a Astecha.
     </Warning>
   </Step>
-  <Step title="Salve">
-    Clique em **Salvar**. O novo projeto aparece na tabela e já fica disponível nos seletores de projeto do app.
+  <Step title="Revise e cadastre">
+    Clique em **Revisar e cadastrar**, confira e confirme. O novo projeto abre na ficha e já fica disponível nos seletores de projeto do app.
   </Step>
 </Steps>
 
@@ -180,8 +181,8 @@ Alguns pontos que costumam gerar dúvida:
 
 ## Editar um cadastro
 
-- **Projeto** — em **Registry → Securitization → Projects**, clique na **linha** do projeto, altere os campos e **salve**. As alterações passam a valer nos relatórios a partir do próximo carregamento.
-- **Debênture** — correções pontuais podem ser feitas clicando na linha em **Registry → Fixed Income**. Mudanças nas **condições do título** (taxa, indexador, datas), porém, devem ser registradas como **Aditamento** — assim o histórico do papel fica versionado. Na dúvida, fale com a Astecha.
+- **Projeto** — em **Registry → Securitization → Projects**, clique na **linha** do projeto para abrir a ficha, use **Editar**, altere os campos e clique em **Revisar e salvar**: a revisão mostra o antes e o depois e só grava o que mudou. As alterações passam a valer nos relatórios a partir do próximo carregamento. Em mês fechado, a alteração é recusada e o aviso aparece na própria revisão.
+- **Debênture** — correções pontuais podem ser feitas abrindo a ficha (clique na linha) em **Registry → Fixed Income** e usando **Editar**. Mudanças nas **condições do título** (taxa, indexador, datas), porém, devem ser registradas como **Aditamento** — assim o histórico do papel fica versionado. Na dúvida, fale com a Astecha.
 
 ## Problemas comuns
 
@@ -190,7 +191,7 @@ Alguns pontos que costumam gerar dúvida:
     O projeto ainda não existe no Registry (ou você selecionou outro no Upload). Cadastre a operação por aqui **antes** de enviar arquivos, ou confira o projeto selecionado na tela de Upload.
   </Accordion>
   <Accordion title="O Deal não aparece na lista ao criar o projeto" icon="list">
-    O dropdown de **DEAL_ID** só mostra Deals **já cadastrados**. Volte ao **Passo 1** e crie o Deal antes de vincular o projeto.
+    A lista de **Operação** só mostra Deals **já cadastrados**. Volte ao **Passo 1** e crie o Deal antes de vincular o projeto.
   </Accordion>
   <Accordion title="A debênture não aparece no campo Ativo ao lançar um aporte" icon="file-circle-question">
     O seletor de **Ativo** do Registry de subscrições só lista os títulos cadastrados no **Fixed Income**. Se a debênture não aparece, ela ainda não foi cadastrada — volte ao **Passo 3**.
@@ -205,6 +206,9 @@ Alguns pontos que costumam gerar dúvida:
   </Card>
   <Card title="Passivos no Registry" icon="users" href="/securitizacao/passivos-registry">
     Lançar os aportes e resgates na debênture recém‑cadastrada.
+  </Card>
+  <Card title="Despesas, PDD e investimentos" icon="table-list" href="/securitizacao/cadastros-da-operacao">
+    Os demais cadastros da Securitization.
   </Card>
   <Card title="Parametrizar novo CNAB" icon="sliders" href="/securitizacao/parametrizar-cnab">
     Criar o template de leitura para um layout novo.
