@@ -54,6 +54,12 @@
         ]
       },
       {
+        "group": "App de Compliance",
+        "pages": [
+          "compliance/agenda"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
