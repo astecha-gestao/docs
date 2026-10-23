@@ -66,6 +66,14 @@ Se a data-limite passou e ainda há saldo, a chamada aparece como **Inadimplente
 
 No painel da oferta essas abas só aparecem quando a oferta tem compromisso. O **boletim de uma chamada** não casa direto com aporte: o integralizado dele é o da chamada, e ele não tem **Cancelar saldo**.
 
+## Ver as chamadas no extrato do cotista
+
+No **extrato do cotista** (abra pelo nome do cotista em **Posição**, **Movimentações** ou **Cotistas**), cada chamada de capital dele aparece como uma linha do tipo **Chamada de capital**, com o **valor chamado**, a **data-limite** e a situação (**Aberta**, **Parcial**, **Quitada** ou **Inadimplente**, com os dias de atraso). O botão **N aporte(s)** abre os aportes casados com a chamada, e a linha de cada aporte casado diz a que chamada ele pertence. O resumo da classe mostra o **comprometido**, o **chamado**, o **integralizado**, o que falta **integralizar** e o que dá para **chamar**, na data base do filtro, os mesmos números do painel.
+
+<Note>
+  A chamada é a **cobrança**, não um movimento: o dinheiro é o aporte casado, que já aparece nas linhas de **Aporte**. Por isso o **valor chamado** fica numa coluna própria e **não se soma ao valor bruto**. O total aportado, o resgatado e o saldo de cotas são os mesmos com ou sem chamadas, e o Excel e o PDF do extrato trazem as mesmas linhas. Chamada cancelada ou substituída não aparece.
+</Note>
+
 ## Pelo assistente de IA
 
-As mesmas operações existem como ferramentas do assistente, na rota **Compromissos de capital**: ler a conciliação (números, chamadas, propostas e pendências), confirmar casamentos e desfazer um casamento. Elas têm as mesmas travas e mensagens da página.
+As mesmas operações existem como ferramentas do assistente, na rota **Compromissos de capital**: ler a conciliação (números, chamadas, propostas e pendências), confirmar casamentos e desfazer um casamento. Elas têm as mesmas travas e mensagens da página. O extrato do cotista, com as chamadas, também está disponível para o assistente (consulta e download em Excel ou PDF).
