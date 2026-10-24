@@ -1,0 +1,66 @@
+---
+title: "Servicer Hub — Carteira"
+sidebarTitle: "Carteira"
+description: "Como ler a Carteira do Servicer Hub: o resumo Deal → Projeto de todos os deals numa data-base, com recebíveis, estoque, % vendido, cobertura e LTV."
+icon: "table"
+---
+
+A **Carteira** (Portfolio) mostra todos os deals e seus projetos lado a lado, na mesma data-base. É o ponto de partida para comparar deals e escolher qual aprofundar na [Análise do deal](/servicer/deal-analysis-geral).
+
+<Info>
+  **Onde fica:** **Servicer Hub → Carteira**.
+</Info>
+
+## Filtros desta tela
+
+| Filtro | O que faz |
+| --- | --- |
+| **Data-base** | O mês da posição. Só aparecem as datas com dados carregados; **Mais recente** usa a última. |
+| **Base do passivo** | **Integralizada** (padrão) ou **Emitida**. Muda a dívida, o LTV e a cobertura. Veja o [glossário](/servicer/glossario#passivo-o-que-o-deal-deve). |
+| **Atualizar** | Relê os dados sem trocar os filtros. |
+
+{/* PRINT: servicer/portfolio/passo-01: barra de filtros com Data-base e Base do passivo */}
+
+## Indicadores do topo
+
+| Indicador | O que é |
+| --- | --- |
+| **Deals** e **Projetos** | Quantos deals e projetos têm dados na data-base. |
+| **Recebíveis totais** | A soma dos recebíveis de todos os deals. |
+| **Estoque total** | A soma do valor do estoque. |
+| **LTV médio (Sub.)** | O LTV da dívida inteira (até a série subordinada). |
+| **Cobertura mediana (Sub.)** | A mediana do índice de cobertura subordinado entre os deals. |
+| **% Vendido** | Calculado sobre a carteira inteira, como razão de somas. |
+
+## A tabela Deal → Projeto
+
+Cada deal é uma linha que abre nos seus projetos. As colunas:
+
+| Coluna | O que é |
+| --- | --- |
+| **Deal / Projeto** | O nome do deal e, abaixo dele, os projetos. Clique no deal para abrir a **Análise do deal**. |
+| **Setor** | O setor cadastrado no deal. |
+| **Dívida total** | O saldo devedor das séries na base do passivo escolhida. |
+| **Recebíveis** | O valor dos recebíveis, pela fórmula do deal. |
+| **Valor do estoque** | O valor das unidades em estoque. |
+| **Unidades** e **Unid. em estoque** | O total de unidades e quantas estão em estoque. |
+| **% Vendido** | Contratos não distratados sobre o total de unidades. |
+| **Preço médio m²** | O preço médio de venda por metro quadrado. |
+| **VP inelegível / total** | Quanto do valor presente está em contratos inelegíveis. |
+| **Índice de cobertura** e **LTV** | Os índices do deal no mês. |
+
+{/* PRINT: servicer/portfolio/passo-02: tabela com um deal aberto nos projetos (dados de demonstração) */}
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="A tabela está vazia na data-base escolhida">
+    Nada foi processado para aquela posição. Escolha outra data-base ou confira se a série temporal foi reprocessada. Veja [Reprocessamento e agendamentos](/servicer/reprocessamento-e-agendamentos).
+  </Accordion>
+  <Accordion title="Um deal não aparece">
+    O deal precisa ter projetos vinculados no cadastro e dados carregados na data-base. Confira em [Cadastro](/servicer/registry) e em [Qualidade dos dados](/servicer/data-quality).
+  </Accordion>
+  <Accordion title="% Vendido vazio">
+    O projeto não tem unidades carregadas na data-base, e sem unidades o percentual não é calculado.
+  </Accordion>
+</AccordionGroup>

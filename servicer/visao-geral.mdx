@@ -1,0 +1,110 @@
+---
+title: "Servicer Hub — Visão geral"
+sidebarTitle: "Visão geral"
+description: "O que o Servicer Hub faz, como chegar nele e o fluxo de ponta a ponta: extrair os dados dos servicers, conferir a qualidade e analisar a carteira de cada deal."
+icon: "building-circle-check"
+---
+
+<Info>
+  Descreve as telas do **Servicer Hub** no Portal. Os nomes de menus, abas, botões e campos seguem o que aparece na interface em português. Entre parênteses, quando ajuda, o nome da tela em inglês.
+</Info>
+
+## O que é o Servicer Hub
+
+O Servicer Hub reúne, num lugar só, a carteira de crédito imobiliário que está por trás de cada operação. Ele recebe os dados dos **servicers** (as empresas que administram os contratos de venda das unidades), confere esses dados e calcula, mês a mês, como está o lastro de cada deal frente à dívida.
+
+<Columns cols={2}>
+  <Card title="Entrada: os dados do servicer" icon="file-import">
+    Contratos, unidades e parcelas chegam por **upload de planilha** (MONITORI, NEO) ou por **extração via API** (AZTronic, Proton). Tudo fica na área **Extração**.
+  </Card>
+  <Card title="Saída: a análise da carteira" icon="chart-line">
+    Com os dados carregados, o Hub calcula a **série temporal** de cada projeto e deal: recebíveis, estoque, inadimplência, LTV e cobertura. Você lê tudo em **Carteira** e **Análise do deal**.
+  </Card>
+</Columns>
+
+<Note>
+  **Regra mental:** o servicer manda a foto da carteira de um mês (a **data-base**). O Hub guarda essa foto, confere e transforma em indicadores. Se a foto de um mês não foi carregada, aquele mês não aparece nas análises.
+</Note>
+
+## Conceitos essenciais
+
+<AccordionGroup>
+  <Accordion title="Deal e Projeto" icon="diagram-project">
+    - **Deal**: a operação como um todo (por exemplo, uma emissão de CRI). Tem séries de dívida (sênior, mezanino, subordinada) e as fórmulas de LTV e cobertura.
+    - **Projeto**: o empreendimento imobiliário cujas unidades e contratos formam o lastro. Um deal agrupa um ou mais projetos.
+    - Deals e projetos são cadastrados no **Cadastro** do Controller. Veja [Cadastro](/servicer/registry).
+  </Accordion>
+  <Accordion title="Servicer" icon="building-user">
+    A empresa que administra os contratos de venda e envia a posição da carteira. O Hub lê quatro servicers: **MONITORI** e **NEO** (planilha Excel), **AZTronic** e **Proton** (API).
+  </Accordion>
+  <Accordion title="Data-base" icon="calendar">
+    O mês da posição da carteira. Toda tela de análise pede uma data-base, e só aparecem as datas que já têm dados carregados. **Mais recente** escolhe a última disponível.
+  </Accordion>
+  <Accordion title="Série temporal" icon="wave-square">
+    Os indicadores mensais de cada projeto e deal, calculados a partir dos dados extraídos. Ela é recalculada sozinha depois de cada extração e pode ser reprocessada sob demanda. Veja [Reprocessamento e agendamentos](/servicer/reprocessamento-e-agendamentos).
+  </Accordion>
+</AccordionGroup>
+
+Os termos de crédito (lastro, VP, LTV, cobertura, faixas de atraso) estão no [Glossário e regras de cálculo](/servicer/glossario).
+
+## Como chegar no app
+
+<Steps>
+  <Step title="Abra o Portal e vá em Credit → Servicer Hub">
+    Na grade de apps, abra a área **Credit** e selecione **Servicer Hub**. A tela inicial é **Extração › Geral**.
+  </Step>
+  <Step title="Use o menu lateral do app">
+    O app tem quatro áreas:
+
+    - **Extração**: **Geral** (status do pipeline, reprocessamento e agendamentos), **Extração** (upload e APIs), **Fila** e **Qualidade dos dados**.
+    - **Cadastro**: **Deals** e **Projetos** da carteira.
+    - **Carteira**: o resumo Deal → Projeto numa data-base.
+    - **Análise do deal**: **Geral**, **Unidades** e **Contratos** de um deal.
+  </Step>
+</Steps>
+
+{/* PRINT: servicer/visao-geral/passo-01: menu lateral do Servicer Hub aberto, com as quatro áreas */}
+
+<Tip>
+  A barra de filtros de **Carteira** e **Análise do deal** (data-base, base do passivo e deal) é a mesma nas duas telas e acompanha você quando troca de uma para a outra.
+</Tip>
+
+## Fluxo de trabalho de ponta a ponta
+
+<Steps>
+  <Step title="Confira o cadastro">
+    O deal e os projetos precisam existir no cadastro antes da primeira carga. → [Cadastro](/servicer/registry)
+  </Step>
+  <Step title="Carregue a posição do mês">
+    Envie as planilhas do servicer ou dispare a extração pela API. → [Upload MONITORI e NEO](/servicer/extracao-upload), [AZTronic](/servicer/extracao-aztronic), [Proton](/servicer/extracao-proton)
+  </Step>
+  <Step title="Acompanhe a execução">
+    Veja o que está rodando, o que vem a seguir e o que terminou. → [Fila](/servicer/fila)
+  </Step>
+  <Step title="Confira a qualidade dos dados">
+    Verifique duplicidades, órfãos e campos faltando na data-base carregada. → [Qualidade dos dados](/servicer/data-quality)
+  </Step>
+  <Step title="Analise a carteira">
+    Compare os deals na **Carteira** e aprofunde um deal na **Análise do deal**. → [Carteira](/servicer/portfolio), [Análise do deal](/servicer/deal-analysis-geral)
+  </Step>
+  <Step title="Automatize o que se repete">
+    Agende o reprocessamento da série e a extração AZTronic. → [Reprocessamento e agendamentos](/servicer/reprocessamento-e-agendamentos)
+  </Step>
+</Steps>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Glossário e regras de cálculo" icon="book" href="/servicer/glossario">
+    O que significa cada indicador e como o Hub o calcula.
+  </Card>
+  <Card title="Carregar dados" icon="upload" href="/servicer/extracao-upload">
+    Upload das planilhas MONITORI e NEO.
+  </Card>
+  <Card title="Carteira" icon="table" href="/servicer/portfolio">
+    Todos os deals e projetos numa data-base.
+  </Card>
+  <Card title="Análise do deal" icon="magnifying-glass-chart" href="/servicer/deal-analysis-geral">
+    Lastro, cobertura, inadimplência e vendas de um deal.
+  </Card>
+</Columns>

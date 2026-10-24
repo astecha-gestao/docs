@@ -1,0 +1,103 @@
+---
+title: "Extração — Reprocessamento e agendamentos"
+sidebarTitle: "Reprocessamento e agendamentos"
+description: "Como usar a tela Extração › Geral do Servicer Hub: o status do pipeline por extração, a exclusão dos dados de uma extração, o reprocessamento da série temporal e os agendamentos recorrentes."
+icon: "rotate"
+---
+
+A tela **Extração › Geral** reúne três coisas: o status de cada extração já feita, o reprocessamento da série temporal sob demanda e os agendamentos que fazem isso sozinhos.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Extração → Geral**. É a tela inicial do app.
+</Info>
+
+## Status do pipeline por extração
+
+Cada linha é uma extração concluída, com o resultado de cada etapa: **Extração → Processamento → Processamento da série**. As colunas: **Projeto**, **Deal**, **Servicer**, **Data-base**, **Extração**, **Processamento**, **Processamento da série**, **Usuário** e **Quando**. Passe o mouse sobre uma etapa para ver as contagens de contratos, unidades e parcelas.
+
+{/* PRINT: servicer/reprocessamento-e-agendamentos/passo-01: tabela de status do pipeline (dados de demonstração) */}
+
+### Excluir os dados de uma extração
+
+**Excluir dados** remove os contratos, as unidades e as parcelas daquela extração e recalcula a série temporal do deal naquela data. Os arquivos brutos são mantidos.
+
+<Warning>
+  **Não dá para desfazer.** Para restaurar, extraia de novo. Se o projeto não tem deal, a linha da série temporal dele naquela data também é excluída.
+</Warning>
+
+Se o recálculo automático falhar, a tela avisa. Reprocesse a data-base no painel abaixo.
+
+## Reprocessar a série temporal
+
+O reprocessamento recalcula os indicadores dos projetos e deals **a partir dos dados já extraídos**. Ele não busca nada no servicer. Use depois de mudar um cadastro (fórmulas do deal, vínculo de projeto, gabarito) ou quando uma série ficou faltando.
+
+<Steps>
+  <Step title="Escolha as datas-base">
+    Em **Datas-base**, selecione os meses. Vazio inclui todas.
+  </Step>
+  <Step title="Escolha os deals">
+    Em **Deals**, selecione os deals. Vazio inclui todos os deals com dados nos meses escolhidos.
+  </Step>
+  <Step title="Clique em Reprocessar agora">
+    O Hub dispara uma tarefa por data-base. Acompanhe na [Fila](/servicer/fila), no filtro **Timeseries**.
+  </Step>
+</Steps>
+
+## Agendamentos recorrentes
+
+Em **Agendamentos recorrentes**, clique em **Novo agendamento** e escolha o **Tipo**.
+
+<Tabs>
+  <Tab title="Reprocessamento da Timeseries">
+    Recalcula a série a partir dos dados já extraídos, sem rodar extração.
+
+    - **Datas-base**: **Último mês carregado de cada deal** ou **Todas as datas-base**.
+    - **Deals**: vazio inclui todos.
+  </Tab>
+  <Tab title="Extração AZTronic">
+    Coloca as operações escolhidas na fila da AZTronic a cada disparo, depois do que já estiver nela.
+
+    - **IDs das operações**: colocadas na fila nesta ordem.
+    - **Data de posição**: **Mês fechado** (último dia do mês anterior), **Dia anterior** ou **Dia útil anterior** ao disparo. O formulário mostra a data que o próximo disparo vai extrair.
+    - **Opções**: **Tentativas por operação** (de 1 a 5), **Pular se extraída nas últimas (horas)** (de 1 a 720, ou vazio para nunca pular) e **Pular um disparo enquanto o anterior ainda estiver na fila**.
+    - **Duração prevista**: a estimativa pelo histórico. Se não couber antes da suspensão do serviço, o formulário avisa.
+  </Tab>
+</Tabs>
+
+Em **Quando**, escolha **Diário**, **Semanal** ou **Mensal**, e o horário. Os horários são no fuso de Brasília.
+
+{/* PRINT: servicer/reprocessamento-e-agendamentos/passo-02: formulário de Novo agendamento do tipo Extração AZTronic */}
+
+<Note>
+  **Janela de serviço:** o serviço do Hub fica suspenso à noite e nos fins de semana, e os horários dos agendamentos precisam estar dentro da janela que a tela mostra. Um horário perdido num dia sem serviço roda **uma vez** na próxima retomada, marcado como **recuperação**.
+</Note>
+
+### Acompanhar e controlar
+
+A tabela mostra **Nome**, **Agendamento**, **Escopo**, **Próxima execução**, **Última execução**, **Estado** e **Ativo**. Nas **Ações**, você pode pausar ou retomar, rodar agora (uma vez, sem consumir o próximo horário), editar e excluir.
+
+| Estado | O que significa |
+| --- | --- |
+| **Armado** | O agendador está com o agendamento e vai dispará-lo no horário. |
+| **Não armado** | O agendador não está com ele agora (acontece depois de cada retomada do serviço). A próxima reconciliação o arma de novo, e um horário perdido nesse meio-tempo roda uma vez. |
+| **Pausado** | Não dispara nem recupera horários perdidos até ser retomado. |
+
+**Última execução** diz o que o disparo fez: por exemplo, quantas operações foram para a fila, quais foram puladas por já estarem extraídas, ou que não havia dados para reprocessar.
+
+<Tip>
+  Excluir um agendamento só para os próximos disparos. O que ele já colocou na fila, extraiu ou reprocessou é mantido.
+</Tip>
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Agendador fora do ar">
+    Nenhum processo de agendamento está rodando, então nada dispara até ele voltar. Quando voltar, um horário perdido roda uma vez. Se o aviso persistir, fale com o suporte da Astecha.
+  </Accordion>
+  <Accordion title="Pode não caber na janela">
+    A previsão das operações passa do horário de suspensão do serviço. O agendamento roda assim mesmo, mas o que estiver na fila na suspensão pode não rodar. Antecipe o horário ou divida as operações.
+  </Accordion>
+  <Accordion title="O horário que eu quero não é aceito">
+    Ele está fora da janela de serviço. Escolha um horário dentro dela.
+  </Accordion>
+</AccordionGroup>

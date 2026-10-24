@@ -1,0 +1,87 @@
+---
+title: "Extração — Qualidade dos dados"
+sidebarTitle: "Qualidade dos dados"
+description: "Como conferir na Qualidade dos dados do Servicer Hub se a carga de uma data-base está íntegra e completa: as verificações, o mapa de cobertura e o tratamento de cada servicer."
+icon: "clipboard-check"
+---
+
+A **Qualidade dos dados** (Data Quality) confere a carga bruta de uma data-base: se os contratos, as unidades e as parcelas se referenciam entre si e se os campos que entram nos cálculos estão preenchidos.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Extração → Qualidade dos dados**.
+</Info>
+
+## Conferir uma data-base
+
+<Steps>
+  <Step title="Escolha a data-base">
+    Em **Data-base**, escolha o mês. **Mais recente** usa a última carga.
+  </Step>
+  <Step title="Leia o resumo">
+    O topo diz quantas verificações tiveram ocorrência e quantos **Contratos verificados**, **Unidades verificadas** e **Parcelas verificadas** entraram na conta.
+  </Step>
+  <Step title="Abra uma verificação com ocorrência">
+    Clique na verificação para ver as linhas afetadas.
+  </Step>
+</Steps>
+
+{/* PRINT: servicer/data-quality/passo-01: resumo e lista de verificações com uma ocorrência aberta (dados de demonstração) */}
+
+## As verificações
+
+<Tabs>
+  <Tab title="Integridade referencial">
+    | Verificação | O que aponta |
+    | --- | --- |
+    | **CONTRACT_IDs duplicados** | O mesmo contrato mais de uma vez na posição. |
+    | **UNIT_IDs duplicados** | A mesma unidade mais de uma vez. |
+    | **Parcelas órfãs (contrato não encontrado)** | Parcelas cujo contrato não veio na carga. |
+    | **Contratos sem unidade** | Contratos cuja unidade não veio na carga. |
+    | **Projetos sem cadastro (órfãos)** | Projetos com contratos carregados, mas sem cadastro no Hub. |
+    | **Unidades vendidas em duplicidade** | Unidades ligadas a mais de um contrato ativo. |
+    | **Unidades divergentes do gabarito** | Unidades que divergem do gabarito do projeto (contagem, área total ou status). |
+  </Tab>
+  <Tab title="Completude">
+    | Verificação | Por que importa |
+    | --- | --- |
+    | **Projetos sem unidades** | Sem unidades, não há estoque nem % vendido. |
+    | **Parcelas sem vencimento** | Sem vencimento, não dá para calcular a inadimplência. |
+    | **Unidades sem status** | Sem status, a unidade não é classificada como cedida ou não cedida. |
+    | **Unidades sem área** | Afeta o preço por m². |
+    | **Contratos sem valor** | Afeta os recebíveis e o preço de venda. |
+    | **Contratos sem data** | Afeta a curva de vendas. |
+  </Tab>
+</Tabs>
+
+<Note>
+  **Não verificado** quer dizer que nada daquele tipo foi carregado na data-base. Não é aprovação: carregue os dados e confira de novo.
+</Note>
+
+## Mapa de cobertura
+
+**Cobertura dos dados (disponibilidade)** mostra, por projeto e mês, se há dados: **Com dados**, **Ausente**, **Sem dados** ou **Incompleto** (sem contratos, sem parcelas ou sem unidades). Passe o mouse numa célula para ver as contagens e o servicer de origem. Use para achar meses que faltam carregar.
+
+{/* PRINT: servicer/data-quality/passo-02: mapa de cobertura por projeto e mês (claro e escuro) */}
+
+## Como validamos e tratamos seus dados
+
+Abra esta seção para ver o catálogo: as mesmas verificações valem para todos os servicers, e só o tratamento (a limpeza) muda de uma origem para outra. Para cada servicer, o catálogo mostra, por exemplo:
+
+- como a linha de cabeçalho da planilha é encontrada;
+- o que acontece com uma parcela sem contrato (o arquivo é rejeitado ou a linha é descartada);
+- de onde vem a data-base;
+- o que a data-base realmente seleciona: na AZTronic, as unidades refletem o dia da extração.
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Sem carga bruta na data-base">
+    Nenhum contrato, unidade ou parcela foi carregado naquela data. Escolha outra data ou carregue o mês em **Extração**.
+  </Accordion>
+  <Accordion title="Projetos sem cadastro">
+    Cadastre o projeto em [Cadastro](/servicer/registry) com o identificador que o servicer usa e reprocesse a data-base.
+  </Accordion>
+  <Accordion title="Corrigi a planilha: como atualizar a conferência?">
+    Reenvie o arquivo (ou use **Reprocessar** em **Arquivos na pasta**) e clique em **Atualizar** nesta tela.
+  </Accordion>
+</AccordionGroup>

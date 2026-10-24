@@ -1,0 +1,76 @@
+---
+title: "Extração — Fila"
+sidebarTitle: "Fila"
+description: "Como acompanhar na Fila do Servicer Hub tudo o que está rodando, o que vem a seguir e o que terminou: extrações AZTronic e Proton, uploads e reprocessamentos, com a previsão de término e o histórico."
+icon: "list-ol"
+---
+
+A **Fila** reúne tudo o que o Hub está processando: extrações da AZTronic e da Proton, uploads de planilha, reprocessamentos da série temporal e disparos de agendamento. Para cada item, ela mostra a previsão de término e permite parar ou rodar de novo.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Extração → Fila**. O ícone de jobs no topo do Portal mostra um resumo da mesma fila em qualquer tela.
+</Info>
+
+## Como a fila se organiza
+
+| Seção | O que mostra |
+| --- | --- |
+| **Em execução agora** | O que está rodando, com o tempo decorrido e quanto falta. |
+| **A seguir** | O que está na fila, na ordem, com a hora prevista de início. |
+| **Concluídos recentemente** | O que terminou nas últimas 24 horas. |
+| **Histórico** | Toda execução guardada, por período, com origem, status, duração, espera e quem disparou. |
+
+Filtre por origem: **Todos**, **AZTronic**, **Proton**, **Uploads** ou **Timeseries**.
+
+{/* PRINT: servicer/fila/passo-01: as três seções da fila com itens de tipos diferentes (dados de demonstração) */}
+
+## Status de cada item
+
+| Status | O que significa |
+| --- | --- |
+| **Na fila** | Esperando a vez. |
+| **Aguardando worker** | Na fila há mais de um minuto e nenhum processador o pegou ainda (eles são compartilhados com outros jobs). |
+| **Em execução** | Rodando. |
+| **Cancelando…** | A parada foi pedida e acontece no próximo ponto seguro. |
+| **Sem resposta** | Sem sinal de progresso há mais de 45 minutos (1 hora enquanto grava). O serviço confere a cada 2 minutos e, se o processador parou, devolve o item à fila uma vez, sozinho. |
+| **Concluído** | Terminou e gravou. |
+| **Parcial** | Os dados foram gravados, mas a série temporal falhou para algum deal. |
+| **Sem dados** | O servicer respondeu e confirmou que não há nada para a data. Não é falha. |
+| **Erro de API** | O servicer nunca respondeu. A situação dos dados é **desconhecida**, não vazia. |
+| **Falhou** | Deu erro. Abra o item para ver o motivo. |
+| **Cancelado** | Parado antes de gravar. |
+| **Perdido** | O serviço reiniciou ou o processador parou antes de terminar. |
+| **Ignorado** | Um agendamento disparou, mas não havia nada a enfileirar (por exemplo, já extraído há pouco). Não é falha. |
+
+Cada item também diz a origem: **Manual**, **Agendado**, **Recuperação de atraso**, **Nova tentativa**, **Recuperação** ou **Automático**.
+
+## Parar e rodar de novo
+
+<Steps>
+  <Step title="Parar um item">
+    Clique em **Parar** e confirme. Se o item ainda não começou, ele sai da fila na hora. Se está rodando, para no próximo ponto seguro, **antes de gravar**: os dados já carregados ficam como estavam.
+  </Step>
+  <Step title="Se ele já está gravando">
+    Um pedido de parada nessa hora chega tarde: a execução termina, os dados são mantidos e o item fica marcado como **Cancelamento tardio**.
+  </Step>
+  <Step title="Rodar de novo">
+    **Reprocessar** recoloca o item no fim da fila com os mesmos parâmetros: a mesma operação da AZTronic, o mesmo deal da Proton, o mesmo arquivo do upload ou o mesmo mês da série temporal.
+  </Step>
+</Steps>
+
+## Avisos que podem aparecer
+
+<AccordionGroup>
+  <Accordion title="O serviço reiniciou e a fila foi reconstruída">
+    Depois de um reinício, o Hub refaz a fila a partir do histórico: o que estava esperando volta na ordem, e o que estava rodando é verificado de novo. Uploads e reprocessamentos interrompidos ficam como perdidos: envie o arquivo ou rode o reprocessamento de novo.
+  </Accordion>
+  <Accordion title="Após a suspensão">
+    O serviço do Hub é suspenso à noite e nos fins de semana. Um item marcado assim deve terminar depois da suspensão e retoma no próximo início.
+  </Accordion>
+  <Accordion title="Gravando no Snowflake">
+    Operações grandes demoram para gravar, e o processador só volta a reportar quando a gravação termina. Não precisa fazer nada.
+  </Accordion>
+  <Accordion title="Sem sinal do worker da AZTronic">
+    O serviço está conferindo o processador. Se ele estiver vivo, é só uma etapa lenta. Se tiver parado, a operação volta para a fila sozinha, uma vez.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,66 @@
+---
+title: "Análise do deal — Contratos"
+sidebarTitle: "Análise do deal: Contratos"
+description: "Como usar a aba Contratos da Análise do deal: a carteira por contrato com pago, vencido, a vencer e valor presente, a exportação em XLSX e a análise de um contrato."
+icon: "file-contract"
+---
+
+A aba **Contratos** abre a carteira do deal contrato a contrato. Ela tem duas visões: **Geral**, com todos os contratos da data-base, e **Individual**, com o cronograma de um contrato.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Análise do deal → Contratos**. Os filtros de **Data-base** e **Deal** são os da [aba Geral](/servicer/deal-analysis-geral).
+</Info>
+
+## Visão Geral: carteira por contrato
+
+<Steps>
+  <Step title="Filtre a carteira">
+    Use **Projeto**, **Situação** (**Ativo**, **Quitado**, **Distratado**) e **Faixa de atraso** (**Em dia**, **0–30 dias** … **91+ dias**, **N/A**). Os filtros aceitam vários valores.
+  </Step>
+  <Step title="Leia os totais">
+    Os indicadores somam a seleção: **Contratos** (e quantos estão ativos), **Valor do contrato**, **Pago**, **Vencido**, **A vencer (nominal)** e **Valor presente**, com o percentual dos ativos inadimplentes.
+  </Step>
+  <Step title="Percorra a tabela">
+    Uma linha por contrato: **Contrato**, **Projeto**, **Unidade**, **Comprador**, **Valor do contrato**, **Data do contrato**, **Pago**, **Vencido**, **A vencer (nominal)**, **Valor presente**, **Faixa de atraso** e **Situação**. Clique num contrato para abrir a visão **Individual**.
+  </Step>
+  <Step title="Exporte, se precisar">
+    **Baixar XLSX** gera a planilha com a curva de recebíveis. Ela segue os filtros de projeto, situação e faixa de atraso. A caixa de busca não entra no arquivo.
+  </Step>
+</Steps>
+
+{/* PRINT: servicer/deal-analysis-contratos/passo-01: filtros, KPIs e botão Baixar XLSX (dados de demonstração) */}
+
+<Note>
+  **Valor presente** é o saldo vencido pelo valor de face mais o cronograma futuro descontado pelo cupom ponderado das séries. Contratos distratados e quitados não têm posição (**N/A**): **Vencido**, **A vencer** e **Valor presente** somam só os ativos, enquanto **Pago** e **Valor do contrato** somam todas as linhas exibidas.
+</Note>
+
+## Visão Individual: um contrato
+
+Escolha o **Projeto** e o **Contrato**, ou clique num contrato na visão Geral.
+
+| Bloco | O que mostra |
+| --- | --- |
+| **Resumo do contrato** | Comprador, unidade, área, atraso atual, parcela média, início e distrato. Indicadores de valor, pago acumulado, saldo em aberto, LTV do contrato, vencido e valor por m² comparado à média do projeto. |
+| **Fluxo de pagamentos** | Previsto (pelo vencimento) contra recebido (pela data de pagamento), por mês, com as curvas acumuladas. |
+| **Classificação das parcelas** | Quantas parcelas estão antecipadas, em dia, pagas em atraso, a vencer e vencidas, com a faixa de atraso do vencido. |
+| **Cronograma de parcelas** | O cronograma completo. Alterne entre **Todas**, **Histórico (pagas)** e **Em aberto**. |
+
+{/* PRINT: servicer/deal-analysis-contratos/passo-02: visão Individual com fluxo e cronograma (dados de demonstração) */}
+
+<Tip>
+  Se o contrato não tem posição na data-base pedida, o Hub mostra a posição mais recente dele e avisa a data usada.
+</Tip>
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Aviso de parcelas sem contrato">
+    Algumas parcelas do retrato pertencem a contratos que não vieram na carga. Elas ficam fora da tabela e dos totais. É um problema da carga, não do cálculo: confira a extração em [Qualidade dos dados](/servicer/data-quality).
+  </Accordion>
+  <Accordion title="Percentual cedido inválido">
+    Um projeto da Proton está com o **% cedido** fora do intervalo aceito (maior que 0 e até 100). Os valores dos contratos dele não são publicados até o cadastro ser corrigido.
+  </Accordion>
+  <Accordion title="Unidade fora da carteira cedida">
+    O contrato é de uma unidade que não está cedida à operação. Ele aparece, mas não tem posição no deal.
+  </Accordion>
+</AccordionGroup>

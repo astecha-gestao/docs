@@ -1,0 +1,85 @@
+---
+title: "Extração — AZTronic"
+sidebarTitle: "Extração AZTronic"
+description: "Como extrair a carteira da AZTronic pela API no Servicer Hub: cadastrar as credenciais, testar a conexão, colocar operações na fila e usar o Explorador."
+icon: "plug"
+---
+
+A AZTronic entrega a carteira por **API**. Você informa as operações e a data de posição, e o Hub busca contratos, parcelas e unidades direto na AZTronic, numa fila que roda uma operação por vez.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Extração → Extração → AZTRONIC**, com três visões: **Fila**, **Configuração** e **Explorador**.
+</Info>
+
+## Antes de começar: credenciais e conexão
+
+O topo da aba mostra a saúde da conexão (DNS, HTTPS e **Autenticação**). Se aparecer **A AZTronic não está configurada nesta conta Snowflake**, a conexão da sua conta ainda não foi preparada: fale com o suporte da Astecha.
+
+<Steps>
+  <Step title="Abra a Configuração">
+    Clique em **Configuração** (ou em **Configurar credenciais →**).
+  </Step>
+  <Step title="Cole o login e o token">
+    Preencha o **Login** e o **User token** que a AZTronic forneceu. Os dois valores são gravados juntos: não dá para atualizar só um.
+  </Step>
+  <Step title="Salve e confira">
+    Clique em **Salvar credenciais** e confirme em **Substituir**. Se a AZTronic não autenticar, a tela avisa **Salvas, mas a AZTronic não autenticou com esses valores**. Use **Testar conexão** para conferir a qualquer momento.
+  </Step>
+</Steps>
+
+<Note>
+  As credenciais ficam guardadas como segredo no Snowflake da sua conta. **Ninguém consegue lê-las de volta**, nem pela tela: só substituí-las. **Configurada** quer dizer que alguém salvou um valor, não que ele funciona. Para isso, use **Testar conexão**.
+</Note>
+
+## Extrair operações
+
+<Steps>
+  <Step title="Abra a Fila">
+    Em **Fila**, informe os **IDs de operação**, separados por vírgula ou espaço.
+  </Step>
+  <Step title="Escolha a data de posição">
+    Em **Data de posição**, escolha a data da carteira. Contratos e parcelas vêm nessa posição.
+  </Step>
+  <Step title="Adicione à fila">
+    Clique em **Adicionar à fila**. As operações entram depois do que já está na fila, e o que está em execução não é afetado.
+  </Step>
+</Steps>
+
+{/* PRINT: servicer/extracao-aztronic/passo-01: formulário com IDs de operação e data de posição */}
+
+A **Fila de extração** mostra cada operação com o status (**Na fila**, **Em execução**, **Gravada**, **Sem dados nesta data**, **Erro de API — não extraída**, **Falhou**, **Cancelada**), a posição na fila e a previsão de término. Cada operação costuma levar de 20 a 60 minutos.
+
+- **Cancelar** para a operação antes de gravar. Se a gravação já começou, ela termina e fica marcada como **cancelamento chegou tarde demais**.
+- **Executar de novo** recoloca a operação no fim da fila. **Executar de novo as que falharam** faz isso com todas as que falharam.
+- **Limpar concluídas** tira da lista o que já terminou.
+
+<Tip>
+  A fila fica no servidor e é compartilhada: todos da sua conta veem a mesma lista. A visão completa, com o histórico, está na [Fila](/servicer/fila).
+</Tip>
+
+## Erro de API não é carteira vazia
+
+| Status | O que significa | O que fazer |
+| --- | --- | --- |
+| **Sem dados nesta data** | A AZTronic respondeu e confirmou que não há registros para a data. | Confira a data de posição e o ID da operação. |
+| **Erro de API — não extraída** | A AZTronic não respondeu. A situação dos dados é **desconhecida**, não vazia. | **Executar de novo**. A AZTronic costuma recusar as primeiras chamadas. |
+
+## Unidades num mês fechado
+
+A API da AZTronic sempre devolve o **estoque atual** de unidades, qualquer que seja a data pedida. Por isso:
+
+- No mês corrente, as unidades refletem o dia da extração.
+- Num **mês fechado** que já tem retrato de unidades, o retrato existente é mantido, não substituído.
+- Num mês fechado sem retrato, o estoque atual é gravado nesse mês e sinalizado no registro da execução.
+
+Para ter o retrato histórico exato das unidades, cadastre o **gabarito de unidades** do projeto. Veja [Cadastro](/servicer/registry).
+
+## Explorador
+
+O **Explorador** mostra o que cada rota da AZTronic devolve e, coluna a coluna, o que a extração grava e onde. **Nada é gravado.** Escolha a **Rota**, o **ID da operação** e a **Data de posição**, e clique em **Buscar**.
+
+Cada coluna recebe um status: **Extraída**, **Transformada**, **Lida, não gravada** ou **Não extraída**. Use para investigar um campo que veio vazio ou diferente do sistema da AZTronic.
+
+## Extração automática
+
+Para extrair as mesmas operações todo dia, semana ou mês, crie um agendamento do tipo **Extração AZTronic**. Veja [Reprocessamento e agendamentos](/servicer/reprocessamento-e-agendamentos).

@@ -1,0 +1,115 @@
+---
+title: "Servicer Hub — Glossário e regras de cálculo"
+sidebarTitle: "Glossário e regras"
+description: "O que significa cada termo e indicador do Servicer Hub (passivo integralizado e emitido, lastro, carteira, VP, LTV, cobertura, faixas de atraso) e as regras que o Hub usa para calculá-los."
+icon: "book"
+---
+
+Esta página explica os termos que aparecem em **Carteira** e **Análise do deal** e as regras por trás dos números. Os indicadores são sempre do mês da **data-base** escolhida.
+
+## Passivo: o que o deal deve
+
+<AccordionGroup>
+  <Accordion title="Dívida total e saldo devedor" icon="file-invoice-dollar">
+    O saldo devedor das séries de dívida do deal (os CRIs) no mês, somando as séries **Sênior**, **Mezanino** e **Subordinada**. O **PMT** é o pagamento devido da série no mês.
+  </Accordion>
+  <Accordion title="Base do passivo: Integralizada ou Emitida" icon="scale-balanced">
+    A barra de filtros tem o seletor **Base do passivo**:
+
+    - **Integralizada** (padrão): as métricas do passivo usam a quantidade de títulos **depositada na CETIP** na data-base. É o que de fato foi colocado no mercado.
+    - **Emitida**: as métricas usam a **quantidade emitida total** da série.
+
+    Quando a CETIP está atrás da posição dos fundos, ou não tem histórico, o Hub usa a melhor fonte disponível e mostra um **Aviso sobre os dados do passivo** no topo da análise. O quadro **Séries e quantidades** diz de onde veio o integralizado de cada série.
+  </Accordion>
+</AccordionGroup>
+
+## Lastro: o que o deal tem
+
+<AccordionGroup>
+  <Accordion title="Lastro" icon="building">
+    O que garante a dívida: os **recebíveis** (o que os compradores ainda vão pagar) mais o **estoque** (as unidades cedidas ainda não vendidas) e, quando o deal tem obra, o **saldo de obra**.
+  </Accordion>
+  <Accordion title="VP (valor presente), elegível e inelegível" icon="coins">
+    - **Valor presente (VP)**: o saldo vencido pelo valor de face mais as parcelas futuras trazidas a valor presente pelo cupom ponderado das séries do deal. Sem cupom cadastrado, as parcelas futuras não são descontadas.
+    - **VP elegível**: o VP dos contratos que passam no critério de elegibilidade do deal naquele mês.
+    - **VP inelegível**: o VP dos contratos vivos que não passam. A elegibilidade é reavaliada todo mês, com o atraso daquele mês.
+  </Accordion>
+  <Accordion title="Estoque e valor do estoque" icon="warehouse">
+    **Estoque** é a unidade **cedida** à operação que não tem contrato vigente ou quitado. O **valor do estoque** segue a fórmula de estoque cadastrada no deal.
+  </Accordion>
+  <Accordion title="NAV" icon="shield-halved">
+    O colchão que sobra depois da dívida: lastro menos saldo devedor. Aparece no quadro **NAV e LTV** e em **Composição do NAV**.
+  </Accordion>
+</AccordionGroup>
+
+## Índices
+
+<AccordionGroup>
+  <Accordion title="LTV" icon="percent">
+    Quanto do lastro a dívida consome (saldo devedor ÷ lastro). **Quanto menor, melhor.** O Hub calcula por série, com a dívida acumulada (a sênior primeiro, depois mezanino, depois subordinada). O **LTV (subordinado)** considera a dívida inteira. A fórmula exata é a cadastrada no deal e aparece no quadro **NAV e LTV** como **Fórmula do cadastro**.
+  </Accordion>
+  <Accordion title="Índice de cobertura" icon="umbrella">
+    Quanto do pagamento da dívida o fluxo dos recebíveis cobre: o fluxo projetado dos contratos elegíveis sobre a **PMT do mês seguinte**. **100% = PMT coberta**. Como o LTV, é calculado por série e segue a fórmula de cobertura do deal.
+  </Accordion>
+</AccordionGroup>
+
+## Carteira de contratos
+
+<AccordionGroup>
+  <Accordion title="Situação do contrato" icon="file-signature">
+    - **Ativo**: contrato vivo (elegível ou inelegível).
+    - **Quitado**: todas as parcelas pagas.
+    - **Distratado**: venda desfeita; a unidade volta para o estoque. Um contrato distratado nunca está quitado.
+  </Accordion>
+  <Accordion title="Faixa de atraso (aging)" icon="hourglass-half">
+    Cada contrato ativo cai numa faixa só, pelo **maior atraso** entre as suas parcelas vencidas e não pagas:
+
+    | Faixa | Dias de atraso |
+    | --- | --- |
+    | **0–30 dias** | de 1 a 30 |
+    | **31–60 dias** | de 31 a 60 |
+    | **61–90 dias** | de 61 a 90 |
+    | **91+ dias** | 91 ou mais |
+
+    **Em dia** é o contrato ativo sem parcela vencida há um dia inteiro. **N/A** é o contrato distratado ou quitado, que não tem cronograma vivo para medir.
+  </Accordion>
+  <Accordion title="Situação da parcela" icon="list-check">
+    **Antecipada**, **Em dia**, **Paga em atraso**, **A vencer** e **Vencida**. Uma parcela quitada não é vencida nem a vencer.
+  </Accordion>
+</AccordionGroup>
+
+## Unidades
+
+| Termo | O que é |
+| --- | --- |
+| **Cedida** | A unidade faz parte da carteira cedida ao deal (vem do cadastro de unidades). Unidade de permuta ou indisponível é **Não cedida**. |
+| **Vendida** | A unidade tem contrato vigente ou quitado. Cedida **e** vendida é o caso normal. |
+| **Estoque** | Unidade cedida sem contrato vigente ou quitado. |
+| **Desconhecida** | O Hub não conseguiu classificar a unidade com os dados da data-base. |
+
+## Regras de cálculo
+
+<Steps>
+  <Step title="A posição é o fim do mês da data-base">
+    A data-base é o dia 1º do mês, mas pagamentos, parcelas vencidas e dias de atraso contam até o **último dia** daquele mês. Um distrato com data posterior é ignorado: o contrato segue ativo, com o cronograma completo.
+  </Step>
+  <Step title="Quando uma parcela está quitada">
+    Uma parcela com pagamento está quitada qualquer que seja o valor ou a data, como no sistema do servicer (descontos por antecipação e pagamentos parciais incluídos). Uma parcela de valor zero também está quitada. Um contrato está quitado quando todas as parcelas estão quitadas.
+  </Step>
+  <Step title="Carteiras da Proton seguem a régua com desconto">
+    Para os projetos extraídos da Proton, o saldo de cada parcela é o valor menos o pago e o desconto concedido, como no cálculo da Proton. Os dias de atraso contam só as parcelas cujo saldo passava de **2,5%** do valor, e os valores são a parte cedida do projeto (**% cedido**). Quando um deal mistura servicers, a tela diz qual régua vale para cada um.
+  </Step>
+  <Step title="% vendido">
+    **(elegíveis + inelegíveis + quitados) ÷ (cedidas + não cedidas)**: todo contrato que não foi distratado, sobre o total de unidades do projeto. Sem unidades carregadas, o campo fica vazio, nunca 0%.
+  </Step>
+  <Step title="% inadimplente">
+    A soma das quatro faixas de atraso dividida pelos contratos **ativos**. Sem contrato ativo, o campo fica vazio.
+  </Step>
+  <Step title="Agregação é sempre razão de somas">
+    Ao juntar projetos ou deals, o Hub soma numeradores e denominadores antes de dividir. Ele nunca tira média de percentuais: um projeto de 10 unidades não pesa o mesmo que um de 1.000.
+  </Step>
+</Steps>
+
+<Note>
+  Na **Análise do deal**, o link **Como calculamos** ao lado de **Inadimplência** mostra a mesma régua, com o texto aplicado aos servicers daquele deal.
+</Note>

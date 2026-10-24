@@ -1,0 +1,58 @@
+---
+title: "Análise do deal — Unidades"
+sidebarTitle: "Análise do deal: Unidades"
+description: "Como ler a aba Unidades da Análise do deal: o estoque de unidades na data-base, quais estão cedidas, vendidas ou em estoque, e o contrato de cada uma."
+icon: "building"
+---
+
+A aba **Unidades** lista uma linha por unidade do deal na data-base. A classificação segue as mesmas regras que o Hub usa para contar o estoque na série temporal.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Análise do deal → Unidades**. Os filtros de **Data-base** e **Deal** são os da [aba Geral](/servicer/deal-analysis-geral).
+</Info>
+
+## Indicadores
+
+| Indicador | O que conta |
+| --- | --- |
+| **Unidades** | Todas as unidades dos projetos do deal. |
+| **Cedidas** | As que fazem parte da carteira cedida ao deal. |
+| **Estoque** | As cedidas sem contrato vigente ou quitado. |
+| **Vendidas** | As que têm contrato vigente ou quitado. |
+| **Não cedidas** | Permuta ou indisponível: fora da carteira do deal. |
+| **Desconhecidas** | As que o Hub não conseguiu classificar. |
+
+## A tabela
+
+Filtre por **Projeto** e por **Status**. As colunas:
+
+| Coluna | O que é |
+| --- | --- |
+| **Unidade**, **Projeto**, **Tipo**, **Área** | A identificação da unidade. |
+| **Cedida** | **Sim** ou **Não**, pelo cadastro de unidades. |
+| **Status** | **Estoque**, **Vendida**, **Não cedida, não vendida** ou **Desconhecida**. |
+| **Contrato** e **Comprador** | Só o contrato vigente ou quitado da unidade. |
+| **Distratos** | Quantos contratos daquela unidade foram distratados, com o último contrato distratado. |
+
+<Tip>
+  Uma unidade **cedida e vendida** é o caso normal. Um distrato não vende: a unidade volta para a prateleira e conta como estoque.
+</Tip>
+
+{/* PRINT: servicer/deal-analysis-unidades/passo-01: KPIs e tabela de unidades (dados de demonstração) */}
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Unidades e contratos estão em datas-base diferentes">
+    Não há contrato carregado na mesma data das unidades, então o Hub classifica vendidas e estoque com os contratos de uma data próxima e avisa qual. Carregue os contratos da data-base para ter a classificação exata.
+  </Accordion>
+  <Accordion title="Nenhuma unidade aparece como vendida">
+    As unidades foram carregadas, mas nenhum contrato do deal foi. Confira a extração da data-base em [Fila](/servicer/fila) ou em **Extração › Geral**.
+  </Accordion>
+  <Accordion title="Este deal não tem projeto vinculado no cadastro">
+    Vincule os projetos ao deal no [Cadastro](/servicer/registry).
+  </Accordion>
+  <Accordion title="As unidades da AZTronic são do dia da extração">
+    A API da AZTronic sempre devolve o estoque atual de unidades, qualquer que seja a data pedida. Veja [Extração AZTronic](/servicer/extracao-aztronic).
+  </Accordion>
+</AccordionGroup>
