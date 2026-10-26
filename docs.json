@@ -48,6 +48,12 @@
         ]
       },
       {
+        "group": "App de Passivo",
+        "pages": [
+          "passivo/resgates-converter-pagar"
+        ]
+      },
+      {
         "group": "App de Pricing",
         "pages": [
           "pricing/aprovar-pmt-agente-fiduciario"
