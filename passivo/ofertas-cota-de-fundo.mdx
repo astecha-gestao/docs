@@ -1,0 +1,81 @@
+---
+title: "Precificar a cota de um fundo da casa sem deal"
+sidebarTitle: "Cota de fundo sem deal"
+description: "Como cadastrar o título que é a cota de uma classe de fundo da casa, ligado à classe e não a uma operação, e como a senioridade da classe decide se a cota sai da curva ou da cota do dia anterior."
+icon: "layer-group"
+---
+
+O título de securitização pertence a uma operação (deal). A cota de um fundo da casa, não: ela é passivo do **fundo**, e o fundo está no **Fund Registry**. Por isso o título da cota fica ligado à **classe do fundo** e não precisa de deal. É a senioridade da classe que diz se ele é dívida, com o PU pela curva do Pricing, ou residual, com o PU pela cota do dia anterior.
+
+<Info>
+  **Onde fica:** a senioridade é cadastrada em **Controller → Registry → Funds → Fund Registry**, e o título em **Controller → Registry → Fixed Income → Sec Registry**. Depois, a situação aparece na tela **Passivo → Fundos → Ofertas** (veja [Pricing e liquidações](/passivo/ofertas-pricing)).
+</Info>
+
+## Antes de começar
+
+- A classe tem de estar no **Fund Registry**, com o mesmo nome que a oferta usa (a coluna **VEICULO**).
+- Todas as classes do fundo precisam ter o **mesmo CNPJ** no Fund Registry. É pelo CNPJ que o sistema reúne as classes de um fundo.
+
+## 1. Informe a senioridade das classes
+
+<Steps>
+  <Step title="Abra o Fund Registry">
+    Vá em **Controller → Registry → Funds → Fund Registry** e encontre as linhas das classes do fundo.
+  </Step>
+  <Step title="Preencha a Senioridade da classe">
+    Em cada classe, escolha **Sênior**, **Mezanino** ou **Subordinada**, conforme o regulamento. Preencha **todas** as classes do fundo, inclusive a subordinada, que normalmente não tem título.
+  </Step>
+  <Step title="Deixe vazia a linha que não é classe">
+    A linha consolidada do fundo, que repete o CNPJ das classes, fica sem senioridade. Linha sem senioridade não entra no grupo de classes.
+  </Step>
+</Steps>
+
+<Warning>
+  A classe subordinada precisa estar preenchida mesmo sem título. Sem ela, a classe Mezanino vira a mais subordinada do fundo e passa a ser tratada como residual, com o PU pela cota em vez da curva.
+</Warning>
+
+## Como a senioridade vira o papel do título
+
+Entre as classes do mesmo CNPJ com senioridade preenchida, a **mais subordinada** é a residual. As demais são dívida.
+
+| Situação no fundo | Papel do título | De onde sai o PU |
+|---|---|---|
+| Classe Sênior ou Mezanino, com uma classe mais subordinada no fundo | Dívida | Curva do Pricing |
+| A classe mais subordinada do fundo | Residual | Cota do dia anterior |
+| Fundo de classe única | Residual | Cota do dia anterior |
+| Duas classes empatadas na senioridade mais subordinada | Nenhuma vira dívida | Cota do dia anterior; é erro de cadastro, corrija a senioridade |
+
+## 2. Cadastre o título ligado à classe
+
+<Steps>
+  <Step title="Abra o cadastro do título">
+    Vá em **Controller → Registry → Fixed Income → Sec Registry** e cadastre o título, ou abra o que já existe.
+  </Step>
+  <Step title="Escolha a Classe do fundo">
+    No campo **Classe do fundo**, escolha a classe na lista (ela vem do Fund Registry). Deixe **Operação** (o deal) vazia.
+  </Step>
+  <Step title="Salve">
+    O título precisa ter **um** dono: a **Operação** (deal) **ou** a **Classe do fundo**. Sem nenhum dos dois, o cadastro pede: "Informe a operação (deal) ou a classe do fundo do título." Com os dois, ele recusa: "O título é de um deal ou de uma classe de fundo, nunca dos dois. Deixe só um."
+  </Step>
+</Steps>
+
+<Tip>
+  Para trocar um título de deal para classe, limpe a **Operação** e escolha a **Classe do fundo** na mesma edição.
+</Tip>
+
+A classe do fundo é herdada pelos aditamentos do título, como a operação: ela é editada só no registro base.
+
+## 3. Confira na oferta
+
+Na tela **Passivo → Fundos → Ofertas**, a classe da oferta mostra a situação do título como em qualquer outra oferta: **Em ordem**, **Cota do dia anterior** ou as pendências do cronograma e da curva. Há duas situações próprias da cota de fundo:
+
+| Selo | O que significa | O que fazer |
+|---|---|---|
+| **Título de outra classe** | O título está ligado a uma classe diferente da classe da oferta. O PU sairia da curva de outra classe. | Corrija a **Classe do fundo** do título ou o título informado na oferta. |
+| **Sem papel definido** | A classe do título está sem senioridade no Fund Registry, então não dá para saber se é dívida ou cota. | Preencha a **Senioridade da classe** (passo 1). |
+
+O **Ver liquidações** de um título de outra classe não mostra a agenda dele: ela não é a da classe da oferta.
+
+<Note>
+  A cota de fundo não recebe aporte pelo cadastro de aportes da securitização. A integralização vem da movimentação do administrador, no Passivo.
+</Note>
