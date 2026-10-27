@@ -50,7 +50,10 @@
       {
         "group": "App de Passivo",
         "pages": [
-          "passivo/resgates-converter-pagar"
+          "passivo/ofertas-cadastrar",
+          "passivo/ofertas-pricing",
+          "passivo/ofertas-cota-de-fundo",
+"passivo/resgates-converter-pagar"
         ]
       },
       {
