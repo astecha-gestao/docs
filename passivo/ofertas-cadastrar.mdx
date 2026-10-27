@@ -1,0 +1,65 @@
+---
+title: "Cadastrar uma oferta de cotas"
+sidebarTitle: "Cadastrar oferta"
+description: "Como cadastrar a oferta de cotas de um fundo em três etapas: dados da oferta, regras e classes participantes, com o título de cada classe no Pricing."
+icon: "file-signature"
+---
+
+A tela **Ofertas** reúne as emissões de cotas de um fundo. Em cada oferta você registra o tipo, o rito e o público-alvo, as regras de captação e **quais classes participam**, com quantidade, preço, prazo e vencimento de cada uma. O quanto a oferta já captou não se digita: a plataforma lê do razão de movimentações.
+
+<Info>
+  **Onde fica:** **Passivo → Fundos → Ofertas**. Escolha o fundo no filtro do topo da tela; sem fundo escolhido, a tela pede para você selecionar um.
+</Info>
+
+## Cadastrar a oferta
+
+Clique em **Nova oferta**. O cadastro tem três etapas e só deixa salvar quando as regras de cada uma estão cumpridas. A mensagem de erro aparece no próprio campo.
+
+<Steps>
+  <Step title="Etapa Oferta">
+    Informe o **Nome**, a **Emissão**, a **Série** e o **Coordenador**, e escolha o **Tipo de oferta**, o **Rito**, o **Público-alvo** e o **Status** (a oferta nova começa em **Em estruturação**).
+
+    Se a emissão já está registrada na CVM, escolha-a em **Emissão registrada na CVM**. A oferta fica ligada ao requerimento, e o valor, as datas, o rito, o público-alvo e o vencimento passam a vir da CVM.
+
+    | Tipo de oferta | Rito e público-alvo |
+    |---|---|
+    | **Pública CVM 160** | Obrigatórios. Rito **Automático** ou **Ordinário**; público **Profissional**, **Qualificado** ou **Geral**. |
+    | **Privada** | O rito não se aplica e é limpo ao salvar. |
+    | **Sem oferta pública** | O rito não se aplica e é limpo ao salvar. |
+  </Step>
+  <Step title="Etapa Regras">
+    Preencha o **Valor-alvo** (ou, com a oferta ligada à CVM, confira o **Valor ofertado**), o **Preço de emissão**, o **Lote adicional (%)**, o **Montante mínimo**, o **Prazo de integralização (dias)** e as datas de **Abertura** e **Encerramento**.
+
+    - **Lote adicional** vai de 0 a 100%. Para público **Profissional** não há teto.
+    - **Montante mínimo** não pode ser negativo nem passar do valor-alvo.
+    - **Prazo de integralização** é um número inteiro de dias, no mínimo 1.
+    - O **Encerramento** não pode ser anterior à **Abertura**.
+  </Step>
+  <Step title="Etapa Classes">
+    Marque as classes do fundo que participam da oferta e preencha, para cada uma:
+
+    | Campo | Regra |
+    |---|---|
+    | **Quantidade de cotas** | Número inteiro maior que zero. |
+    | **Valor da emissão (preço)** | Maior que zero. Vazio, herda o preço da oferta. |
+    | **Prazo (meses)** | Número inteiro, no mínimo 1. |
+    | **Integralização inicial** | Data da primeira integralização. |
+    | **Vencimento** | Calculado pela integralização inicial mais o prazo. Quando a oferta está ligada à CVM, vale o vencimento da CVM e a célula mostra o rótulo **CVM**. |
+    | **Benchmark** | Texto livre, por exemplo `CDI + 2,5% a.a.` |
+    | **Título no Pricing (CODIGO_IF)** | O título da classe no cadastro de ativos. Precisa existir no cadastro e não pode se repetir na mesma oferta. |
+  </Step>
+</Steps>
+
+<Tip>
+  Informe o **Título no Pricing** das classes de dívida (sênior e mezanino). É por ele que a tela mostra, depois, [a situação da oferta no Pricing](/passivo/ofertas-pricing). A classe subordinada pode ficar sem título: o PU dela é a cota do dia anterior.
+</Tip>
+
+## Ler a lista de ofertas
+
+Cada oferta é um bloco com:
+
+- o **cabeçalho**, com nome, status, tipo, rito e público-alvo, a origem do valor (**CVM · req. N** ou **valor digitado**) e as regras da oferta (coordenador, lote adicional, montante mínimo, prazo de integralização);
+- a **barra de integralização**, com o captado, o ofertado e o que falta captar;
+- a **tabela por classe**, com vencimento, preço pago, cota da classe, cotas emitidas, captado e número de aportes.
+
+Use **Editar** no cabeçalho para mudar a oferta. A exclusão é lógica e exige um **motivo**: a oferta some das listas, mas as movimentações que a referenciam continuam apontando para ela.
