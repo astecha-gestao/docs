@@ -1,0 +1,43 @@
+---
+title: "Ler as movimentações do fundo"
+sidebarTitle: "Movimentações"
+description: "Como ler a tela Movimentações: os quatro indicadores do resumo do recorte, os eventos de tipo não reconhecido e o que fazer quando a carga falha."
+icon: "right-left"
+---
+
+A tela **Movimentações** mostra o razão do passivo do fundo: cada aporte, resgate e demais eventos que o administrador publicou, um por linha. Acima da tabela, o **Resumo do recorte** soma o que está na tela em quatro indicadores.
+
+<Info>
+  **Onde fica:** **Passivo → Fundos → Movimentações**. Escolha o fundo no filtro do topo da tela; sem fundo escolhido, a tela pede para você selecionar um.
+</Info>
+
+## Resumo do recorte
+
+Os quatro indicadores acompanham a tabela. Quando você troca o fundo, a subclasse, o **Tipo** ou a **Custódia**, os números se recalculam para o que sobrou na tela.
+
+| Indicador | O que mostra |
+|---|---|
+| **Eventos** | Quantos eventos a tabela tem no recorte. |
+| **Aportado** | Soma da coluna **Valor** dos eventos do tipo **Aporte**. |
+| **Resgatado** | Soma da coluna **Valor** dos eventos do tipo **Resgate**. |
+| **Cotas líquidas** | As cotas que entraram menos as que saíram, pelo sinal de cada tipo de evento: o aporte soma, o resgate subtrai. |
+
+<Tip>
+  Os indicadores só somam o que está na tabela. Com o filtro **Tipo** em **Aporte**, por exemplo, **Resgatado** mostra R$ 0,00 porque nenhum resgate está no recorte. Volte o filtro para **Todos os tipos** para ver o fundo inteiro.
+</Tip>
+
+## Eventos de tipo não reconhecido
+
+Quando o administrador publica um evento cujo tipo a plataforma não reconhece, a tela avisa acima da tabela quantos são. Esses eventos aparecem com o tipo **OUTRO** e continuam na lista, mas ficam fora de **Cotas líquidas**, porque sem o tipo não há como saber se a cota entrou ou saiu. Para listar só eles, escolha **Não classificado** no filtro **Tipo**.
+
+Para classificar um evento, clique em **Classificar** na linha dele.
+
+## Quando a carga falha
+
+Se a tela não conseguir carregar as movimentações, ela mostra **Não foi possível carregar as movimentações**, com o motivo e o botão **Tentar novamente**. Nesse caso o resumo e a tabela não aparecem.
+
+<Warning>
+  Uma tela sem números por causa de uma falha **não** quer dizer que o fundo não tem movimentações. Clique em **Tentar novamente**. Se o erro continuar, confira a sua conexão e fale com o [suporte](/suporte).
+</Warning>
+
+Se a falha vier ao atualizar uma tela que já estava carregada, a tabela e o resumo que você já via continuam na tela.
