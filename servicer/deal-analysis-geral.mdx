@@ -1,21 +1,21 @@
 ---
-title: "Análise do deal — Geral"
-sidebarTitle: "Análise do deal: Geral"
-description: "Como ler a aba Geral da Análise do deal no Servicer Hub: passivo, lastro, NAV e LTV, pagamentos e cobertura, inadimplência e métricas por projeto."
+title: "Operação — Geral"
+sidebarTitle: "Operação: Geral"
+description: "Como ler a aba Geral da Operação no Servicer Hub: passivo, lastro, NAV e LTV, obras do deal, pagamentos e cobertura, inadimplência e métricas por projeto."
 icon: "magnifying-glass-chart"
 ---
 
-A **Análise do deal** (Deal Analysis) é a análise de crédito de um deal só. A aba **Geral** reúne o resumo do mês, a relação entre lastro e dívida, a cobertura dos pagamentos, a inadimplência e as vendas de cada projeto.
+A **Operação** (Operation, antes chamada Análise do deal) é a análise de crédito de um deal só. A aba **Geral** reúne o resumo do mês, a relação entre lastro e dívida, o andamento das obras, a cobertura dos pagamentos, a inadimplência e as vendas de cada projeto.
 
 <Info>
-  **Onde fica:** **Servicer Hub → Análise do deal → Geral**. As outras abas são [Unidades](/servicer/deal-analysis-unidades) e [Contratos](/servicer/deal-analysis-contratos).
+  **Onde fica:** **Servicer Hub → Operação → Geral**. As outras abas são [Unidades](/servicer/deal-analysis-unidades) e [Contratos](/servicer/deal-analysis-contratos).
 </Info>
 
 ## Abrir um deal
 
 <Steps>
   <Step title="Escolha o deal">
-    No filtro **Deal**, no canto superior direito, escolha o deal. Sem deal, a tela pede **Selecione um deal para abrir a análise de crédito.** Você também chega aqui clicando num deal na [Carteira](/servicer/portfolio).
+    No campo **Deal**, no canto superior direito, escolha o deal. Sem deal, a tela pede **Selecione um deal para abrir a análise de crédito.** Você também chega aqui clicando num deal na [Carteira](/servicer/portfolio).
   </Step>
   <Step title="Confira a data-base e a base do passivo">
     **Data-base** e **Base do passivo** (**Integralizada** ou **Emitida**) são os mesmos filtros da Carteira e valem para todas as abas.
@@ -44,12 +44,35 @@ A faixa do topo mostra os números da data-base em quatro grupos:
 
 No **Índice de cobertura** e no **LTV (subordinado)**, o Hub mostra a conta feita naquele mês com a fórmula do deal.
 
-Logo abaixo, **Séries e quantidades** lista as séries do deal (código do título, senioridade, indexador, taxa, emissão e vencimento) e as quantidades **Integralizado**, **Emitido** e **Em carteira dos fundos**.
+Logo abaixo, o bloco recolhível **Séries e quantidades** lista as séries do deal (código do título, senioridade, indexador, taxa, emissão e vencimento) e as quantidades **Integralizado**, **Emitido** e **Em carteira dos fundos**.
 
 ## NAV e LTV
 
-- **NAV e LTV** compara o que o deal tem (recebíveis e estoque) com o que ele deve (o saldo devedor do CRI). O LTV mostra quanto do lastro a dívida consome; o NAV, o colchão que sobra. O quadro **Lastro por projeto** abre o lastro em cada projeto.
+- **NAV e LTV** compara o que o deal tem (recebíveis e estoque) com o que ele deve (o saldo devedor do CRI). O LTV mostra quanto do lastro a dívida consome. O NAV é o colchão que sobra: **Recebíveis** + **Estoque** − **Saldo de obra** − **Saldo devedor**. O quadro **Lastro por projeto** abre o lastro em cada projeto.
 - **Composição do NAV** é o mesmo balanço ao longo do tempo: recebíveis e estoque contra o saldo devedor por série, com o LTV subordinado, no realizado e no projetado.
+
+O **Saldo de obra** é o que falta gastar para concluir as obras do deal. Embaixo do valor, a tela diz a base da conta (**a incorrer × % cedido** ou **a incorrer integral**) e, se só parte das obras tem relatório, quantas entraram (**{n} de {m} obras**). Sem relatórios de obra disponíveis para você, o termo mostra **não carregado**. Veja o [glossário](/servicer/glossario).
+
+{/* PRINT: servicer/deal-analysis-geral/passo-03: NAV e LTV com o termo Saldo de obra e a base da conta */}
+
+## Obras do deal
+
+Quando a conta tem o módulo de obras, o quadro **Obras do deal** mostra o andamento de cada obra do deal, pelos relatórios publicados até o mês da data-base.
+
+| Coluna | O que mostra |
+| --- | --- |
+| **Obra** | O projeto e, se for o caso, o aviso de que o relatório é de outro mês ou que há relatório ainda não revisado. |
+| **Relatório** | O mês do relatório usado. |
+| **Físico** e **Financeiro** | O avanço realizado contra o previsto. |
+| **Término** | A data prevista no cronograma contra a projetada hoje. |
+| **Marcos atrasados** e **Pendências altas** | Quantos marcos estão atrasados e quantas pendências de gravidade alta estão abertas. |
+| **A incorrer** | O custo que falta para concluir a obra. É a base do saldo de obra do NAV. |
+| **Alerta** | O nível do alerta mais grave da obra, de **Informativo** a **Crítico**, ou **Sem alerta**. |
+| **Ação** | **Abrir dossiê** leva ao acompanhamento completo da obra. |
+
+Obras sem relatório aparecem contadas no rodapé. Se o deal não tem projeto cadastrado, ou nenhuma obra tem relatório publicado até o mês, o quadro diz isso no lugar da tabela.
+
+{/* PRINT: servicer/deal-analysis-geral/passo-04: quadro Obras do deal com uma obra em alerta */}
 
 {/* PRINT: servicer/deal-analysis-geral/passo-02: Composição do NAV (claro e escuro) */}
 
@@ -57,7 +80,7 @@ Logo abaixo, **Séries e quantidades** lista as séries do deal (código do tít
 
 O gráfico mostra o histórico de pagamentos (**Pago (em dia)**, **Pago (em atraso)**, **Pago (antecipado)**), o fluxo projetado (**Fluxo elegível** e **Fluxo inelegível**) e o índice de cobertura subordinado. A linha **100% = PMT coberta** marca o ponto em que o fluxo paga a PMT do mês seguinte.
 
-Em **Gráfico**, escolha **Colunas** ou **Área**. Na visão em área, a cobertura fica num painel separado, embaixo.
+Acima do gráfico, uma faixa resume os números do mês. Em **Gráfico**, escolha **Colunas** ou **Área**. Quando há série por projeto, **Escopo** troca o deal inteiro por um projeto. Na visão em área, a cobertura fica num painel separado, embaixo.
 
 ## Inadimplência
 
@@ -71,7 +94,7 @@ A tabela e o gráfico mostram a inadimplência por faixa de atraso, por projeto.
 
 ## Métricas por projeto
 
-Em **Escopo**, escolha **Geral** (o deal inteiro) ou um projeto.
+Em **Projeto**, escolha **Geral** (o deal inteiro) ou um projeto.
 
 | Bloco | O que mostra |
 | --- | --- |
@@ -79,7 +102,8 @@ Em **Escopo**, escolha **Geral** (o deal inteiro) ou um projeto.
 | **Preço de venda** | Preço médio acumulado e média móvel de 6 meses, por **Preço/m²** ou **Preço/unidade**, com as vendas individuais. |
 | **Mapa de unidades** | A situação mensal das unidades (cedidas, ativas, elegíveis, quitadas, estoque, vendidas, distratadas), em **Nº de unidades**, **Área (m²)** ou **%**. |
 | **Métricas avançadas** | Pré-pagamento, saldo inadimplente, recebível futuro, velocidade de vendas, meses para esgotar o estoque, parcela média e prazo médio. |
-| **Concentração por comprador** | A exposição por comprador: quantos são, o peso dos **Top 5** e o **HHI**. |
+
+Antes desse grupo, o quadro **Concentração por comprador** mostra a exposição do deal inteiro por comprador: quantos são, o peso dos **Top 5** e o **HHI**. Ele não muda com o projeto escolhido.
 
 <Note>
   No **Mapa de unidades**, as linhas **Vendidas** e **Distratadas** não mostram percentual: são contadores acumulados e passariam de 100% sempre que uma unidade é revendida.
@@ -92,7 +116,7 @@ Em **Escopo**, escolha **Geral** (o deal inteiro) ou um projeto.
     Nada foi processado para o deal na data-base escolhida. Troque a data-base ou reprocesse a série temporal. Veja [Reprocessamento e agendamentos](/servicer/reprocessamento-e-agendamentos).
   </Accordion>
   <Accordion title="A seleção do deal foi limpa sozinha">
-    O deal não tem série temporal processada, então o Hub limpa a seleção nas três telas (Carteira, Análise do deal e Contratos). Escolha um deal com dados.
+    O deal não tem série temporal processada, então o Hub limpa a seleção na Carteira e em todas as abas da Operação. Escolha um deal com dados.
   </Accordion>
   <Accordion title="Uma série não aparece no gráfico de dívida">
     A série está no cadastro do deal, mas não tem curva calculada (**Sem curva do título**). A PMT e o saldo dela ficam fora do gráfico até a curva existir.

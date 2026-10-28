@@ -67,17 +67,17 @@
         "pages": [
           "servicer/visao-geral",
           "servicer/glossario",
-          "servicer/portfolio",
-          "servicer/deal-analysis-geral",
-          "servicer/deal-analysis-unidades",
-          "servicer/deal-analysis-contratos",
           "servicer/registry",
+          "servicer/fila",
+          "servicer/reprocessamento-e-agendamentos",
           "servicer/extracao-upload",
           "servicer/extracao-aztronic",
           "servicer/extracao-proton",
-          "servicer/fila",
           "servicer/data-quality",
-          "servicer/reprocessamento-e-agendamentos"
+          "servicer/deal-analysis-geral",
+          "servicer/deal-analysis-unidades",
+          "servicer/deal-analysis-contratos",
+          "servicer/portfolio"
         ]
       },
       {

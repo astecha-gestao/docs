@@ -18,7 +18,7 @@ O Servicer Hub reúne, num lugar só, a carteira de crédito imobiliário que es
     Contratos, unidades e parcelas chegam por **upload de planilha** (MONITORI, NEO) ou por **extração via API** (AZTronic, Proton). Tudo fica na área **Extração**.
   </Card>
   <Card title="Saída: a análise da carteira" icon="chart-line">
-    Com os dados carregados, o Hub calcula a **série temporal** de cada projeto e deal: recebíveis, estoque, inadimplência, LTV e cobertura. Você lê tudo em **Carteira** e **Análise do deal**.
+    Com os dados carregados, o Hub calcula a **série temporal** de cada projeto e deal: recebíveis, estoque, inadimplência, LTV e cobertura. Você lê tudo em **Carteira** e **Operação**.
   </Card>
 </Columns>
 
@@ -51,22 +51,22 @@ Os termos de crédito (lastro, VP, LTV, cobertura, faixas de atraso) estão no [
 
 <Steps>
   <Step title="Abra o Portal e vá em Credit → Servicer Hub">
-    Na grade de apps, abra a área **Credit** e selecione **Servicer Hub**. A tela inicial é **Extração › Geral**.
+    Na grade de apps, abra a área **Credit** e selecione **Servicer Hub**. O app abre na **Carteira**.
   </Step>
   <Step title="Use o menu lateral do app">
-    O app tem quatro áreas:
+    O app tem quatro áreas, na ordem do trabalho:
 
-    - **Extração**: **Geral** (status do pipeline, reprocessamento e agendamentos), **Extração** (upload e APIs), **Fila** e **Qualidade dos dados**.
     - **Cadastro**: **Deals** e **Projetos** da carteira.
+    - **Extração**: **Geral** (o que está rodando, o histórico, os dados carregados, o reprocessamento e os agendamentos), **Extração** (upload e APIs) e **Qualidade dos dados**.
+    - **Operação**: **Geral**, **Unidades** e **Contratos** de um deal.
     - **Carteira**: o resumo Deal → Projeto numa data-base.
-    - **Análise do deal**: **Geral**, **Unidades** e **Contratos** de um deal.
   </Step>
 </Steps>
 
 {/* PRINT: servicer/visao-geral/passo-01: menu lateral do Servicer Hub aberto, com as quatro áreas */}
 
 <Tip>
-  A barra de filtros de **Carteira** e **Análise do deal** (data-base, base do passivo e deal) é a mesma nas duas telas e acompanha você quando troca de uma para a outra.
+  A barra de filtros de **Carteira** e **Operação** (data-base, base do passivo e deal) é a mesma nas duas telas e acompanha você quando troca de uma para a outra.
 </Tip>
 
 ## Fluxo de trabalho de ponta a ponta
@@ -79,13 +79,13 @@ Os termos de crédito (lastro, VP, LTV, cobertura, faixas de atraso) estão no [
     Envie as planilhas do servicer ou dispare a extração pela API. → [Upload MONITORI e NEO](/servicer/extracao-upload), [AZTronic](/servicer/extracao-aztronic), [Proton](/servicer/extracao-proton)
   </Step>
   <Step title="Acompanhe a execução">
-    Veja o que está rodando, o que vem a seguir e o que terminou. → [Fila](/servicer/fila)
+    Em **Extração › Geral**, veja o que está rodando, o que vem a seguir e o que terminou. → [Fila e histórico](/servicer/fila)
   </Step>
   <Step title="Confira a qualidade dos dados">
-    Verifique duplicidades, órfãos e campos faltando na data-base carregada. → [Qualidade dos dados](/servicer/data-quality)
+    Veja o volume carregado e verifique duplicidades, órfãos, campos faltando e o cadastro de obras e projetos. → [Qualidade dos dados](/servicer/data-quality)
   </Step>
   <Step title="Analise a carteira">
-    Compare os deals na **Carteira** e aprofunde um deal na **Análise do deal**. → [Carteira](/servicer/portfolio), [Análise do deal](/servicer/deal-analysis-geral)
+    Compare os deals na **Carteira** e aprofunde um deal na **Operação**. → [Carteira](/servicer/portfolio), [Operação](/servicer/deal-analysis-geral)
   </Step>
   <Step title="Automatize o que se repete">
     Agende o reprocessamento da série e a extração AZTronic. → [Reprocessamento e agendamentos](/servicer/reprocessamento-e-agendamentos)
@@ -104,7 +104,7 @@ Os termos de crédito (lastro, VP, LTV, cobertura, faixas de atraso) estão no [
   <Card title="Carteira" icon="table" href="/servicer/portfolio">
     Todos os deals e projetos numa data-base.
   </Card>
-  <Card title="Análise do deal" icon="magnifying-glass-chart" href="/servicer/deal-analysis-geral">
+  <Card title="Operação" icon="magnifying-glass-chart" href="/servicer/deal-analysis-geral">
     Lastro, cobertura, inadimplência e vendas de um deal.
   </Card>
 </Columns>

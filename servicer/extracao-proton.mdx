@@ -42,7 +42,7 @@ A visão **Extrair** lista os deals que a Proton liberou para o token, com a **D
     Na coluna **Deal no HUB**, escolha o deal do Hub que esse deal da Proton alimenta e clique em **Salvar**.
   </Step>
   <Step title="Extraia">
-    Clique em **Extrair**. A extração entra na [Fila](/servicer/fila), e **Última execução** mostra quando o deal foi extraído pela última vez.
+    Clique em **Extrair**. A extração entra na fila de **Extração › Geral** ([Fila e histórico](/servicer/fila)), e **Última execução** mostra quando o deal foi extraído pela última vez.
   </Step>
 </Steps>
 
@@ -69,6 +69,6 @@ Para trocar o vínculo, escolha outro deal e salve. **Desvincular** faz o deal d
     A Proton não libera mais esse deal para o token. Os dados já carregados ficam, mas não dá para extrair de novo até a Proton liberar.
   </Accordion>
   <Accordion title="A extração falhou ao gravar">
-    Antes de gravar, a Proton passa por travas de integridade: por exemplo, o mesmo projeto e mês já carregados por outro servicer, ou um projeto que pertence a outra operação do Hub. Veja o motivo no item da [Fila](/servicer/fila).
+    Antes de gravar, a Proton passa por travas de integridade: por exemplo, o mesmo projeto e mês já carregados por outro servicer, ou um projeto que pertence a outra operação do Hub. Veja o motivo no item da fila, em **Extração › Geral**.
   </Accordion>
 </AccordionGroup>

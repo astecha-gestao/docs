@@ -1,14 +1,14 @@
 ---
-title: "Análise do deal — Unidades"
-sidebarTitle: "Análise do deal: Unidades"
-description: "Como ler a aba Unidades da Análise do deal: o estoque de unidades na data-base, quais estão cedidas, vendidas ou em estoque, e o contrato de cada uma."
+title: "Operação — Unidades"
+sidebarTitle: "Operação: Unidades"
+description: "Como ler a aba Unidades da Operação: o estoque de unidades na data-base, quais estão cedidas, vendidas ou em estoque, e o contrato de cada uma."
 icon: "building"
 ---
 
 A aba **Unidades** lista uma linha por unidade do deal na data-base. A classificação segue as mesmas regras que o Hub usa para contar o estoque na série temporal.
 
 <Info>
-  **Onde fica:** **Servicer Hub → Análise do deal → Unidades**. Os filtros de **Data-base** e **Deal** são os da [aba Geral](/servicer/deal-analysis-geral).
+  **Onde fica:** **Servicer Hub → Operação → Unidades**. Os filtros de **Data-base** e **Deal** são os da [aba Geral](/servicer/deal-analysis-geral).
 </Info>
 
 ## Indicadores
@@ -24,7 +24,7 @@ A aba **Unidades** lista uma linha por unidade do deal na data-base. A classific
 
 ## A tabela
 
-Filtre por **Projeto** e por **Status**. As colunas:
+O quadro **Estoque de unidades** traz a tabela. Filtre por **Status** e, quando o deal tem mais de um projeto, por **Projeto**: o nome do filtro fica dentro do campo. As colunas:
 
 | Coluna | O que é |
 | --- | --- |
@@ -47,7 +47,7 @@ Filtre por **Projeto** e por **Status**. As colunas:
     Não há contrato carregado na mesma data das unidades, então o Hub classifica vendidas e estoque com os contratos de uma data próxima e avisa qual. Carregue os contratos da data-base para ter a classificação exata.
   </Accordion>
   <Accordion title="Nenhuma unidade aparece como vendida">
-    As unidades foram carregadas, mas nenhum contrato do deal foi. Confira a extração da data-base em [Fila](/servicer/fila) ou em **Extração › Geral**.
+    As unidades foram carregadas, mas nenhum contrato do deal foi. Confira a extração da data-base em **Extração › Geral**, no **Histórico** ou em **Dados carregados**. Veja [Fila e histórico](/servicer/fila).
   </Accordion>
   <Accordion title="Este deal não tem projeto vinculado no cadastro">
     Vincule os projetos ao deal no [Cadastro](/servicer/registry).

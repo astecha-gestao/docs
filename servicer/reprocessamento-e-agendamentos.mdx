@@ -1,21 +1,23 @@
 ---
-title: "Extração — Reprocessamento e agendamentos"
-sidebarTitle: "Reprocessamento e agendamentos"
-description: "Como usar a tela Extração › Geral do Servicer Hub: o status do pipeline por extração, a exclusão dos dados de uma extração, o reprocessamento da série temporal e os agendamentos recorrentes."
+title: "Extração — Dados carregados, reprocessamento e agendamentos"
+sidebarTitle: "Dados, reprocessamento e agendamentos"
+description: "Como usar a tela Extração › Geral do Servicer Hub: os dados carregados por extração, a exclusão dos dados de uma extração, o reprocessamento da série temporal e os agendamentos recorrentes."
 icon: "rotate"
 ---
 
-A tela **Extração › Geral** reúne três coisas: o status de cada extração já feita, o reprocessamento da série temporal sob demanda e os agendamentos que fazem isso sozinhos.
+A tela **Extração › Geral** começa pela fila e pelo **Histórico** (veja [Fila e histórico](/servicer/fila)). Abaixo deles vêm os três quadros desta página: os **Dados carregados**, o reprocessamento da série temporal sob demanda e os agendamentos que fazem isso sozinhos.
 
 <Info>
-  **Onde fica:** **Servicer Hub → Extração → Geral**. É a tela inicial do app.
+  **Onde fica:** **Servicer Hub → Extração → Geral**, abaixo da fila e do histórico.
 </Info>
 
-## Status do pipeline por extração
+## Dados carregados
 
-Cada linha é uma extração concluída, com o resultado de cada etapa: **Extração → Processamento → Processamento da série**. As colunas: **Projeto**, **Deal**, **Servicer**, **Data-base**, **Extração**, **Processamento**, **Processamento da série**, **Usuário** e **Quando**. Passe o mouse sobre uma etapa para ver as contagens de contratos, unidades e parcelas.
+O quadro **Dados carregados** mostra o que está no banco hoje, por projeto, servicer e data-base, com o resultado de cada etapa: **Extração → Processamento → Processamento da série**. As colunas: **Projeto**, **Deal**, **Servicer**, **Data-base**, **Extração**, **Processamento** e **Processamento da série**. Passe o mouse sobre uma etapa para ver as contagens de contratos, unidades e parcelas; na **Extração**, a dica também diz quem carregou e quando.
 
-{/* PRINT: servicer/reprocessamento-e-agendamentos/passo-01: tabela de status do pipeline (dados de demonstração) */}
+O que rodou, e quando, fica no **Histórico**, acima.
+
+{/* PRINT: servicer/reprocessamento-e-agendamentos/passo-01: quadro Dados carregados (dados de demonstração) */}
 
 ### Excluir os dados de uma extração
 
@@ -39,7 +41,7 @@ O reprocessamento recalcula os indicadores dos projetos e deals **a partir dos d
     Em **Deals**, selecione os deals. Vazio inclui todos os deals com dados nos meses escolhidos.
   </Step>
   <Step title="Clique em Reprocessar agora">
-    O Hub dispara uma tarefa por data-base. Acompanhe na [Fila](/servicer/fila), no filtro **Timeseries**.
+    O Hub dispara uma tarefa por data-base. Acompanhe no topo desta aba, em **O que está rodando**, no filtro **Timeseries**. Veja [Fila e histórico](/servicer/fila).
   </Step>
 </Steps>
 

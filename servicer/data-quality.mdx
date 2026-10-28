@@ -1,31 +1,51 @@
 ---
 title: "Extração — Qualidade dos dados"
 sidebarTitle: "Qualidade dos dados"
-description: "Como conferir na Qualidade dos dados do Servicer Hub se a carga de uma data-base está íntegra e completa: as verificações, o mapa de cobertura e o tratamento de cada servicer."
+description: "Como conferir na Qualidade dos dados do Servicer Hub o volume carregado numa data-base, o cadastro de obras e projetos, as verificações de integridade, o mapa de cobertura e o tratamento de cada servicer."
 icon: "clipboard-check"
 ---
 
-A **Qualidade dos dados** (Data Quality) confere a carga bruta de uma data-base: se os contratos, as unidades e as parcelas se referenciam entre si e se os campos que entram nos cálculos estão preenchidos.
+A **Qualidade dos dados** (Data Quality) mostra, numa página só, quanto foi carregado numa data-base e se essa carga está íntegra: se os contratos, as unidades e as parcelas se referenciam entre si, se os campos que entram nos cálculos estão preenchidos e se o cadastro de obras e projetos fecha.
 
 <Info>
   **Onde fica:** **Servicer Hub → Extração → Qualidade dos dados**.
 </Info>
 
+A página tem, de cima para baixo: os filtros, o volume carregado, o **Cadastro de obras e projetos**, as **Checagens de integridade**, a **Cobertura dos dados (disponibilidade)** e, no fim, **Como validamos e tratamos seus dados**.
+
 ## Conferir uma data-base
 
 <Steps>
-  <Step title="Escolha a data-base">
-    Em **Data-base**, escolha o mês. **Mais recente** usa a última carga.
+  <Step title="Escolha o recorte">
+    Em **Data-base**, escolha o mês; vazio, o campo usa a **Última carga**. **Servicer** e **Deal** recortam o volume (**Todos os servicers** e **Todos os deals** por padrão).
   </Step>
-  <Step title="Leia o resumo">
-    O topo diz quantas verificações tiveram ocorrência e quantos **Contratos verificados**, **Unidades verificadas** e **Parcelas verificadas** entraram na conta.
+  <Step title="Confira o volume">
+    Os indicadores **Contratos**, **Unidades** e **Parcelas** mostram quantas linhas foram gravadas na data-base e a variação contra a carga anterior (ou **primeira carga**). Se algum servicer ainda não carregou a data, a tela avisa **Ainda sem carga nesta data-base**. Sem filtro de servicer e com mais de um servicer, a tabela **Volume por servicer** abre esses números por origem, com a **Carga anterior**.
   </Step>
-  <Step title="Abra uma verificação com ocorrência">
-    Clique na verificação para ver as linhas afetadas.
+  <Step title="Leia as checagens">
+    O quadro **Checagens de integridade** diz quantas verificações tiveram ocorrência na data e quantos **Contratos verificados**, **Unidades verificadas** e **Parcelas verificadas** entraram na conta. Clique numa verificação com ocorrência para ver as linhas afetadas.
   </Step>
 </Steps>
 
-{/* PRINT: servicer/data-quality/passo-01: resumo e lista de verificações com uma ocorrência aberta (dados de demonstração) */}
+{/* PRINT: servicer/data-quality/passo-01: filtros, faixa de volume e Volume por servicer (dados de demonstração) */}
+
+<Note>
+  O filtro de **Servicer** e de **Deal** vale só para o volume. As checagens e a cobertura valem para todos os servicers e deals; delas, o filtro só escolhe a data-base.
+</Note>
+
+## Cadastro de obras e projetos
+
+Este quadro não depende da data-base: confere o cadastro como está agora.
+
+| Checagem | O que aponta |
+| --- | --- |
+| **Relatórios de obra sem projeto** | Obras com relatório que não têm projeto no cadastro do Servicer. |
+| **Projetos sem deal** | Projetos sem deal vinculado. Eles não aparecem na Operação. |
+| **Projetos com deal inexistente** | Projetos que apontam para um deal que não existe. |
+
+Cada checagem fica como **Passou**, **Aviso** ou **Sem dados** (por exemplo, quando a conta não tem o módulo de obras). **Corrigir no cadastro** abre o cadastro de projetos para você ajustar.
+
+{/* PRINT: servicer/data-quality/passo-03: quadro Cadastro de obras e projetos com um aviso (dados de demonstração) */}
 
 ## As verificações
 
@@ -59,13 +79,13 @@ A **Qualidade dos dados** (Data Quality) confere a carga bruta de uma data-base:
 
 ## Mapa de cobertura
 
-**Cobertura dos dados (disponibilidade)** mostra, por projeto e mês, se há dados: **Com dados**, **Ausente**, **Sem dados** ou **Incompleto** (sem contratos, sem parcelas ou sem unidades). Passe o mouse numa célula para ver as contagens e o servicer de origem. Use para achar meses que faltam carregar.
+**Cobertura dos dados (disponibilidade)** mostra, por projeto e mês, se há dados na tabela escolhida em **Tabela** (**Contratos**, **Unidades** ou **Parcelas**): **Com dados**, **Ausente**, **Sem dados** ou **Incompleto** (sem contratos, sem parcelas ou sem unidades). Passe o mouse numa célula para ver as contagens e o servicer de origem. Use para achar meses que faltam carregar.
 
 {/* PRINT: servicer/data-quality/passo-02: mapa de cobertura por projeto e mês (claro e escuro) */}
 
 ## Como validamos e tratamos seus dados
 
-Abra esta seção para ver o catálogo: as mesmas verificações valem para todos os servicers, e só o tratamento (a limpeza) muda de uma origem para outra. Para cada servicer, o catálogo mostra, por exemplo:
+Esta seção recolhível fica no fim de todas as abas da Extração. Abra para ver o catálogo: as mesmas verificações valem para todos os servicers, e só o tratamento (a limpeza) muda de uma origem para outra. Para cada servicer, o catálogo mostra, por exemplo:
 
 - como a linha de cabeçalho da planilha é encontrada;
 - o que acontece com uma parcela sem contrato (o arquivo é rejeitado ou a linha é descartada);

@@ -1,28 +1,31 @@
 ---
-title: "Extração — Fila"
-sidebarTitle: "Fila"
-description: "Como acompanhar na Fila do Servicer Hub tudo o que está rodando, o que vem a seguir e o que terminou: extrações AZTronic e Proton, uploads e reprocessamentos, com a previsão de término e o histórico."
+title: "Extração — Fila e histórico"
+sidebarTitle: "Fila e histórico"
+description: "Como acompanhar no topo de Extração › Geral tudo o que o Servicer Hub está rodando, o que vem a seguir e o que terminou: extrações AZTronic e Proton, uploads e reprocessamentos, com a previsão de término e o histórico."
 icon: "list-ol"
 ---
 
-A **Fila** reúne tudo o que o Hub está processando: extrações da AZTronic e da Proton, uploads de planilha, reprocessamentos da série temporal e disparos de agendamento. Para cada item, ela mostra a previsão de término e permite parar ou rodar de novo.
+A fila reúne tudo o que o Hub está processando: extrações da AZTronic e da Proton, uploads de planilha, reprocessamentos da série temporal e disparos de agendamento. Para cada item, ela mostra a previsão de término e permite parar ou rodar de novo.
 
 <Info>
-  **Onde fica:** **Servicer Hub → Extração → Fila**. O ícone de jobs no topo do Portal mostra um resumo da mesma fila em qualquer tela.
+  **Onde fica:** **Servicer Hub → Extração → Geral**, no topo da aba: o quadro **O que está rodando** e, embaixo, o **Histórico**. O ícone de jobs no topo do Portal mostra um resumo da mesma fila em qualquer tela, e o link do rodapé dele abre esta aba.
 </Info>
 
 ## Como a fila se organiza
+
+O quadro **O que está rodando** tem três seções:
 
 | Seção | O que mostra |
 | --- | --- |
 | **Em execução agora** | O que está rodando, com o tempo decorrido e quanto falta. |
 | **A seguir** | O que está na fila, na ordem, com a hora prevista de início. |
-| **Concluídos recentemente** | O que terminou nas últimas 24 horas. |
-| **Histórico** | Toda execução guardada, por período, com origem, status, duração, espera e quem disparou. |
+| **Concluídos recentemente** | O que terminou nas últimas 24 horas. **Limpar concluídos** tira esses itens da vista. |
 
 Filtre por origem: **Todos**, **AZTronic**, **Proton**, **Uploads** ou **Timeseries**.
 
-{/* PRINT: servicer/fila/passo-01: as três seções da fila com itens de tipos diferentes (dados de demonstração) */}
+Embaixo, o **Histórico** lista toda execução guardada no período escolhido (**7 dias**, **30 dias** ou **90 dias**), com as colunas **Quando**, **Item**, **Tipo**, **Origem**, **Status**, **Duração**, **Espera** e **Por** (quem disparou).
+
+{/* PRINT: servicer/fila/passo-01: topo de Extração › Geral, com O que está rodando (três seções, itens de tipos diferentes) e o começo do Histórico (dados de demonstração) */}
 
 ## Status de cada item
 

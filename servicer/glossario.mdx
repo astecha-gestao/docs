@@ -1,11 +1,11 @@
 ---
 title: "Servicer Hub — Glossário e regras de cálculo"
 sidebarTitle: "Glossário e regras"
-description: "O que significa cada termo e indicador do Servicer Hub (passivo integralizado e emitido, lastro, carteira, VP, LTV, cobertura, faixas de atraso) e as regras que o Hub usa para calculá-los."
+description: "O que significa cada termo e indicador do Servicer Hub (passivo integralizado e emitido, lastro, carteira, VP, NAV, saldo de obra, LTV, cobertura, faixas de atraso) e as regras que o Hub usa para calculá-los."
 icon: "book"
 ---
 
-Esta página explica os termos que aparecem em **Carteira** e **Análise do deal** e as regras por trás dos números. Os indicadores são sempre do mês da **data-base** escolhida.
+Esta página explica os termos que aparecem em **Carteira** e **Operação** e as regras por trás dos números. Os indicadores são sempre do mês da **data-base** escolhida.
 
 ## Passivo: o que o deal deve
 
@@ -27,7 +27,7 @@ Esta página explica os termos que aparecem em **Carteira** e **Análise do deal
 
 <AccordionGroup>
   <Accordion title="Lastro" icon="building">
-    O que garante a dívida: os **recebíveis** (o que os compradores ainda vão pagar) mais o **estoque** (as unidades cedidas ainda não vendidas) e, quando o deal tem obra, o **saldo de obra**.
+    O que garante a dívida: os **recebíveis** (o que os compradores ainda vão pagar) mais o **estoque** (as unidades cedidas ainda não vendidas). É a base do LTV.
   </Accordion>
   <Accordion title="VP (valor presente), elegível e inelegível" icon="coins">
     - **Valor presente (VP)**: o saldo vencido pelo valor de face mais as parcelas futuras trazidas a valor presente pelo cupom ponderado das séries do deal. Sem cupom cadastrado, as parcelas futuras não são descontadas.
@@ -38,7 +38,13 @@ Esta página explica os termos que aparecem em **Carteira** e **Análise do deal
     **Estoque** é a unidade **cedida** à operação que não tem contrato vigente ou quitado. O **valor do estoque** segue a fórmula de estoque cadastrada no deal.
   </Accordion>
   <Accordion title="NAV" icon="shield-halved">
-    O colchão que sobra depois da dívida: lastro menos saldo devedor. Aparece no quadro **NAV e LTV** e em **Composição do NAV**.
+    O colchão que sobra depois da dívida: **Recebíveis** + **Estoque** − **Saldo de obra** − **Saldo devedor**. Aparece no quadro **NAV e LTV** e em **Composição do NAV**.
+  </Accordion>
+  <Accordion title="Saldo de obra" icon="helmet-safety">
+    O que ainda falta gastar para concluir as obras do deal (o custo **A incorrer** dos relatórios de obra). Entra no NAV com sinal negativo. Embaixo do valor, a tela diz a base da conta: **a incorrer × % cedido** ou **a incorrer integral**.
+
+    - Se só parte das obras tem relatório, aparece **{n} de {m} obras**: o NAV não desconta as obras sem relatório.
+    - Sem relatórios de obra disponíveis para você, o termo mostra **não carregado**; se a consulta falhar, **indisponível**. Nos dois casos o saldo de obra não é tratado como zero.
   </Accordion>
 </AccordionGroup>
 
@@ -111,5 +117,5 @@ Esta página explica os termos que aparecem em **Carteira** e **Análise do deal
 </Steps>
 
 <Note>
-  Na **Análise do deal**, o link **Como calculamos** ao lado de **Inadimplência** mostra a mesma régua, com o texto aplicado aos servicers daquele deal.
+  Na **Operação**, o link **Como calculamos** ao lado de **Inadimplência** mostra a mesma régua, com o texto aplicado aos servicers daquele deal.
 </Note>
