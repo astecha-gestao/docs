@@ -43,7 +43,7 @@ Esta página explica os termos que aparecem em **Carteira** e **Operação** e a
   <Accordion title="Saldo de obra" icon="helmet-safety">
     O que ainda falta gastar para concluir as obras do deal (o custo **A incorrer** dos relatórios de obra). Entra no NAV com sinal negativo. Embaixo do valor, a tela diz a base da conta: **a incorrer × % cedido** ou **a incorrer integral**.
 
-    - Se só parte das obras tem relatório, aparece **{n} de {m} obras**: o NAV não desconta as obras sem relatório.
+    - Se só parte das obras tem relatório, aparece a contagem (por exemplo, **3 de 5 obras**): o NAV não desconta as obras sem relatório.
     - Sem relatórios de obra disponíveis para você, o termo mostra **não carregado**; se a consulta falhar, **indisponível**. Nos dois casos o saldo de obra não é tratado como zero.
   </Accordion>
 </AccordionGroup>
@@ -52,7 +52,7 @@ Esta página explica os termos que aparecem em **Carteira** e **Operação** e a
 
 <AccordionGroup>
   <Accordion title="LTV" icon="percent">
-    Quanto do lastro a dívida consome (saldo devedor ÷ lastro). **Quanto menor, melhor.** O Hub calcula por série, com a dívida acumulada (a sênior primeiro, depois mezanino, depois subordinada). O **LTV (subordinado)** considera a dívida inteira. A fórmula exata é a cadastrada no deal e aparece no quadro **NAV e LTV** como **Fórmula do cadastro**.
+    Quanto do lastro a dívida consome (saldo devedor ÷ lastro). **Quanto menor, melhor.** O Hub calcula por série, com a dívida acumulada (a sênior primeiro, depois mezanino, depois subordinada). O **LTV (subordinado)** considera a dívida inteira. A fórmula exata é a cadastrada no deal e aparece no quadro **NAV e LTV**, termo a termo com os valores do mês (quando a fórmula não pode ser desenhada assim, a tela mostra o texto dela como **Fórmula do cadastro**).
   </Accordion>
   <Accordion title="Índice de cobertura" icon="umbrella">
     Quanto do pagamento da dívida o fluxo dos recebíveis cobre: o fluxo projetado dos contratos elegíveis sobre a **PMT do mês seguinte**. **100% = PMT coberta**. Como o LTV, é calculado por série e segue a fórmula de cobertura do deal.
@@ -112,7 +112,7 @@ Esta página explica os termos que aparecem em **Carteira** e **Operação** e a
     A soma das quatro faixas de atraso dividida pelos contratos **ativos**. Sem contrato ativo, o campo fica vazio.
   </Step>
   <Step title="Agregação é sempre razão de somas">
-    Ao juntar projetos ou deals, o Hub soma numeradores e denominadores antes de dividir. Ele nunca tira média de percentuais: um projeto de 10 unidades não pesa o mesmo que um de 1.000.
+    Ao juntar projetos ou deals, o Hub soma numeradores e denominadores antes de dividir. Ele não tira média de percentuais: um projeto de 10 unidades não pesa o mesmo que um de 1.000. As exceções são o **LTV médio (Sub.)** e a **Cobertura mediana (Sub.)** do topo da [Carteira](/servicer/portfolio), que resumem os deals com dívida por média simples e por mediana.
   </Step>
 </Steps>
 

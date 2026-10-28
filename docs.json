@@ -63,7 +63,7 @@
         ]
       },
       {
-        "group": "App Servicer Hub",
+        "group": "App de Servicer Hub",
         "pages": [
           "servicer/visao-geral",
           "servicer/glossario",

@@ -40,8 +40,8 @@ A faixa do topo mostra os números da data-base em quatro grupos:
 | Grupo | Indicadores |
 | --- | --- |
 | **Passivo** | **Dívida total**. |
-| **Lastro** | **VP elegível**, **VP inelegível** e **Valor do estoque**. |
-| **Carteira** | **Vendas líquidas (unid.)** do mês (vendidas menos distratadas) e **Unidades em estoque**. |
+| **Lastro** | **VP elegível** e **Valor do estoque**. |
+| **Carteira** | **VP inelegível**, **Vendas líquidas (unid.)** do mês (vendidas menos distratadas) e **Unidades em estoque**. |
 | **Índices** | **Índice de cobertura** e **LTV (subordinado)**. |
 
 No **Índice de cobertura** e no **LTV (subordinado)**, o Hub mostra a conta feita naquele mês com a fórmula do deal.
@@ -53,7 +53,12 @@ Logo abaixo, o bloco recolhível **Séries e quantidades** lista as séries do d
 - **NAV e LTV** compara o que o deal tem (recebíveis e estoque) com o que ele deve (o saldo devedor do CRI). O LTV mostra quanto do lastro a dívida consome. O NAV é o colchão que sobra: **Recebíveis** + **Estoque** − **Saldo de obra** − **Saldo devedor**. O quadro **Lastro por projeto** abre o lastro em cada projeto.
 - **Composição do NAV** é o mesmo balanço ao longo do tempo: recebíveis e estoque contra o saldo devedor por série, com o LTV subordinado, no realizado e no projetado.
 
-O **Saldo de obra** é o que falta gastar para concluir as obras do deal. Embaixo do valor, a tela diz a base da conta (**a incorrer × % cedido** ou **a incorrer integral**) e, se só parte das obras tem relatório, quantas entraram (**{n} de {m} obras**). Sem relatórios de obra disponíveis para você, o termo mostra **não carregado**. Veja o [glossário](/servicer/glossario).
+<Frame>
+  <img className="block dark:hidden" src="/images/servicer/deal-analysis-geral/passo-02.png" alt="Composição do NAV" />
+  <img className="hidden dark:block" src="/images/servicer/deal-analysis-geral/passo-02-escuro.png" alt="Composição do NAV" />
+</Frame>
+
+O **Saldo de obra** é o que falta gastar para concluir as obras do deal. Embaixo do valor, a tela diz a base da conta (**a incorrer × % cedido** ou **a incorrer integral**) e, se só parte das obras tem relatório, quantas entraram (por exemplo, **3 de 5 obras**). Sem relatórios de obra disponíveis para você, o termo mostra **não carregado**. Veja o [glossário](/servicer/glossario).
 
 <Frame>
   <img src="/images/servicer/deal-analysis-geral/passo-03.png" alt="quadro NAV e LTV, com o termo Saldo de obra no NAV" />
@@ -61,7 +66,7 @@ O **Saldo de obra** é o que falta gastar para concluir as obras do deal. Embaix
 
 ## Obras do deal
 
-Quando a conta tem o módulo de obras, o quadro **Obras do deal** mostra o andamento de cada obra do deal, pelos relatórios publicados até o mês da data-base.
+Quando a conta tem o módulo de obras e você tem acesso a ele, o quadro **Obras do deal** mostra o andamento de cada obra do deal, pelos relatórios publicados até o mês da data-base.
 
 | Coluna | O que mostra |
 | --- | --- |
@@ -78,11 +83,6 @@ Obras sem relatório aparecem contadas no rodapé. Se o deal não tem projeto ca
 
 {/* PRINT: servicer/deal-analysis-geral/passo-04: quadro Obras do deal com uma obra em alerta */}
 
-<Frame>
-  <img className="block dark:hidden" src="/images/servicer/deal-analysis-geral/passo-02.png" alt="Composição do NAV" />
-  <img className="hidden dark:block" src="/images/servicer/deal-analysis-geral/passo-02-escuro.png" alt="Composição do NAV" />
-</Frame>
-
 ## Pagamentos e cobertura
 
 O gráfico mostra o histórico de pagamentos (**Pago (em dia)**, **Pago (em atraso)**, **Pago (antecipado)**), o fluxo projetado (**Fluxo elegível** e **Fluxo inelegível**) e o índice de cobertura subordinado. A linha **100% = PMT coberta** marca o ponto em que o fluxo paga a PMT do mês seguinte.
@@ -97,7 +97,7 @@ A tabela e o gráfico mostram a inadimplência por faixa de atraso, por projeto.
 - **Valor presente**: o VP dos contratos ativos em cada faixa.
 - **Saldo vencido**: o valor vencido em aberto, pelo valor de face.
 
-**Adimplente + Inadimplente = 100%** dos contratos ativos (nas duas primeiras medidas). O link **Como calculamos** explica as faixas, os distratos e a quitação. Veja também o [glossário](/servicer/glossario).
+**Adimplente + Inadimplente = 100%** dos contratos ativos em **Nº de contratos**, e do VP dos contratos ativos em **Valor presente**. O link **Como calculamos** explica as faixas, os distratos e a quitação. Veja também o [glossário](/servicer/glossario).
 
 ## Métricas por projeto
 
