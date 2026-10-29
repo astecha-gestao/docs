@@ -1,0 +1,70 @@
+---
+title: "Conferir o último upload na carteira do administrador"
+sidebarTitle: "Conferência"
+description: "Como ver, de uma vez e para todos os fundos, se cada crédito do último arquivo do prestador baixou a provisão de aluguel na carteira do administrador."
+icon: "list-check"
+---
+
+A aba **Conferência** responde, para todos os fundos ao mesmo tempo, à pergunta que antes era feita fundo a fundo na Conciliação: **cada crédito do último upload baixou a provisão na carteira do administrador?** A regra é a mesma da **Conferência da baixa do aluguel** da Conciliação.
+
+<Info>
+  **Onde fica:** **RentRoll Hub → Arquivo de conciliação → Conferência**.
+</Info>
+
+## O que a aba compara
+
+Para cada dia de pagamento do arquivo, a tela compara duas coisas:
+
+| | De onde vem |
+|---|---|
+| **Esperado (recebido)** | O aluguel (líquido do desconto) ou o reembolso que o arquivo do prestador diz que o locatário pagou no dia. |
+| **Baixou na carteira** | Quanto a linha de provisão a receber desceu da carteira de D-1 para a carteira de D do administrador. |
+
+O locatário chega à linha de provisão pela mesma régua da Conciliação: o nome do locatário contra as linhas "Aluguel - …" da carteira de D-1.
+
+## Escolher os dias
+
+<Steps>
+  <Step title="Abra a aba">
+    No topo aparece o último upload de cada prestador (o arquivo e a hora da carga) e até que dia a carteira do administrador já chegou. A aba abre conferindo **todos os dias** do último upload.
+  </Step>
+  <Step title="Filtre por dia">
+    Clique num dia para ver só aquele dia, ou em **Todos** para voltar. Para conferir um dia fora do último upload, use **Outro dia**.
+  </Step>
+  <Step title="Confira de novo, se precisar">
+    O resultado de cada dia fica guardado até o arquivo ou as carteiras mudarem. **Reconferir** refaz a conta na hora.
+  </Step>
+</Steps>
+
+## O resumo por tipo de crédito
+
+Os quatro cartões do topo somam os dias escolhidos por tipo: **Aluguel**, **Multa e juros**, **Reembolso** e **Repasse**. Cada um mostra o **recebido**, quanto **baixou** da provisão e quanto ficou **pendente**. Clique num cartão para filtrar a tabela por aquele tipo.
+
+<Note>
+  Multa e juros não baixam provisão. O cartão mostra só o recebido.
+</Note>
+
+## A tabela
+
+É uma tabela só, com uma linha por fundo, locatário ou contrato e dia. O fundo aparece em todas as linhas, e cada linha tem o link **Conciliação**, que abre a Conciliação daquele fundo naquele dia.
+
+Quando vários contratos baixam a **mesma linha de provisão** (por exemplo, várias lojas do mesmo locatário numa linha "Aluguel - …"), a tabela mostra a linha de provisão com a baixa e o status uma vez só, e os contratos logo abaixo. A baixa é da linha inteira, conferida contra a soma deles.
+
+O ícone ⓘ em **Baixou na carteira** mostra o saldo da provisão em D-1 e em D. **Diferença** é o que baixou menos o esperado: zero quer dizer que bateu.
+
+## Os status
+
+| Status | O que significa |
+|---|---|
+| **Baixa ok** | A provisão baixou o que o locatário pagou. Inclui a baixa que veio junto com um pagamento de dia anterior. |
+| **Baixa parcial** | A provisão baixou, mas não o valor recebido (a menos ou a mais). |
+| **Sem baixa** | O locatário pagou, o caixa chegou e a provisão não baixou. |
+| **Recebido sem linha de provisão** | O crédito não achou linha de provisão de aluguel na carteira de D-1. |
+| **Pendência de carteira** | A baixa ainda não pode ser conferida: a carteira de D não chegou, ou o pagamento é do dia e a transferência do prestador só cai no dia útil seguinte. |
+| **Não resolvido** | O código do fundo no arquivo não chega a nenhum fundo cadastrado, ou o crédito veio sem código de contrato e não achou linha. |
+
+Ligue **Só o que precisa de ação** para esconder as linhas com **Baixa ok**.
+
+<Tip>
+  O resultado pode ser diferente do da Conciliação quando houve ajuste manual na Conciliação daquele dia: a aba confere contra a carteira do administrador, e a Conciliação contra o livro que ela mesma consolida.
+</Tip>
