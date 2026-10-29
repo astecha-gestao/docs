@@ -24,6 +24,17 @@
         ]
       },
       {
+        "group": "Astecha AI",
+        "pages": [
+          "astecha-ai/visao-geral",
+          "astecha-ai/rotinas-por-email",
+          "astecha-ai/artefatos",
+          "astecha-ai/lixeira-e-exclusao",
+          "astecha-ai/exportar-em-excel",
+          "astecha-ai/limite-de-gasto"
+        ]
+      },
+      {
         "group": "App de Securitização",
         "pages": [
           "securitizacao/visao-geral",
