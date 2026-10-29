@@ -1,0 +1,72 @@
+---
+title: "Conferir o PU do MtM contra o administrador"
+sidebarTitle: "Check de PU do MtM"
+description: "Como a plataforma calcula o PU de cada ativo a partir do spread do fechamento e compara com o PU que o administrador publica na carteira, no MtM e na Conciliação."
+icon: "scale-unbalanced"
+---
+
+O Check de PU compara, ativo a ativo e dia a dia, dois preços:
+
+- **o PU calculado pela plataforma**;
+- **o PU que o administrador do fundo publica na carteira**.
+
+Quando a diferença passa da tolerância, o ativo aparece como **Diverge**. Divergir não quer dizer que o preço está errado. Quer dizer que vale olhar o ativo.
+
+<Info>
+  **Onde fica:** **Pricing → MtM → Check**, por fundo e por fechamento. O mesmo resultado aparece na **Conciliação**, na tabela do **Management Book** e no bloco **Conciliação Final**.
+</Info>
+
+## Como o PU é calculado
+
+1. **No fechamento do mês**, a plataforma pega o PU do administrador na carteira do último dia útil. Ela acha a taxa que reproduz esse preço com os pagamentos da curva BASE do ativo. Depois, transforma essa taxa em um **spread sobre a NTN-B** do prazo do ativo. Esse spread fica **travado** para o mês seguinte.
+2. **Nos dias seguintes**, a taxa do dia é a NTN-B daquele dia mais o spread travado. Nos ativos atrelados ao CDI, a taxa é o próprio spread. Os pagamentos futuros do ativo são descontados por essa taxa, e assim sai o PU do dia.
+3. **A comparação** é feita contra o PU do administrador do mesmo dia. A diferença aparece em pontos-base (bp) de taxa.
+
+<Note>
+  Cada fechamento vale até o fechamento seguinte. Por exemplo, a trava de 31/08 é usada para conferir os dias de 31/08 a 30/09.
+</Note>
+
+## Conferir no MtM
+
+<Steps>
+  <Step title="Escolha o fechamento e o fundo">
+    Em **Pricing → MtM → Check**, escolha a **Referência (fechamento)**, por exemplo 31/08, e o **Fundo**.
+  </Step>
+  <Step title="Calcule, se ainda não estiver calculado">
+    Clique em **Calcular PU próprio**. A plataforma trava o spread do fechamento, se ainda não estiver travado, e calcula os dias que faltam. Quando a curva BASE do fundo é gerada pela Agenda, esse cálculo roda sozinho em seguida.
+  </Step>
+  <Step title="Leia a tabela">
+    Cada linha é um ativo. Ela mostra o **spread do fechamento**, a **Situação** no dia em foco e, para cada dia, a diferença em bp contra o administrador. Clique numa célula para abrir a **memória de cálculo** do dia: taxa, NTN-B, pagamentos e PU passo a passo.
+  </Step>
+</Steps>
+
+| Situação | O que significa |
+|---|---|
+| **Dentro da banda** | A diferença para o administrador está dentro da tolerância. |
+| **Diverge** | A diferença passou da tolerância. Vale olhar a memória de cálculo. |
+| **Revisar dado** | A diferença é grande demais para ser de preço. Em geral é um dado de cadastro ou de carteira. |
+| **Aguardando ADM** | A plataforma já calculou o PU, mas a carteira do administrador desse dia ainda não chegou. |
+| **Sem BASE**, **Sem NTN-B**, **Sem fórmula** | Faltou o que o cálculo precisa. O motivo aparece ao passar o mouse. |
+
+- **≈ (estimado):** o dia não tinha curva BASE própria, então o PU foi calculado com a última BASE do ativo.
+- **\* ponta curta:** o prazo do ativo é menor que o primeiro vértice da curva de NTN-B. A diferença em bp tende a parecer maior do que é em preço.
+
+## Conferir na Conciliação
+
+O resultado do Check aparece **antes e depois** de gravar a conciliação. A tela não muda quando você grava.
+
+<Steps>
+  <Step title="Abra o fundo e o dia">
+    Em **Reconciliation → Conciliação**, escolha o **Veículo** e a **Data-base**.
+  </Step>
+  <Step title="Antes de gravar: Management Book">
+    Abra o bloco **Processamento** e desça até a tabela **Management Book**. Ao lado do **MTM Final** aparece o selo **Check de PU** com o resumo do dia, por exemplo "16 OK · 12 divergem". A coluna **Check PU** mostra a situação de cada ativo e a diferença em bp.
+  </Step>
+  <Step title="Depois de gravar: Conciliação Final">
+    O bloco **Conciliação Final** mostra o mesmo selo e a mesma coluna. Passe o mouse sobre a etiqueta para ver o PU calculado, o PU do administrador e a diferença.
+  </Step>
+</Steps>
+
+<Tip>
+  Os números da Conciliação são os mesmos da aba **MtM → Check** no mesmo dia. Se um ativo diverge, abra a memória de cálculo dele no MtM para entender o porquê.
+</Tip>
