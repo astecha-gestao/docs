@@ -1,0 +1,114 @@
+---
+title: "Extração — Qualidade dos dados"
+sidebarTitle: "Qualidade dos dados"
+description: "Como conferir na Qualidade dos dados do Servicer Hub o volume carregado numa data-base, o cadastro de obras e projetos, as verificações de integridade, o mapa de cobertura e o tratamento de cada servicer."
+icon: "clipboard-check"
+---
+
+A **Qualidade dos dados** (Data Quality) mostra, numa página só, quanto foi carregado numa data-base e se essa carga está íntegra: se os contratos, as unidades e as parcelas se referenciam entre si, se os campos que entram nos cálculos estão preenchidos e se o cadastro de obras e projetos fecha.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Extração → Qualidade dos dados**.
+</Info>
+
+A página tem, de cima para baixo: os filtros, o volume carregado, o **Cadastro de obras e projetos**, as **Checagens de integridade**, a **Cobertura dos dados (disponibilidade)** e, no fim, **Como validamos e tratamos seus dados**.
+
+## Conferir uma data-base
+
+<Steps>
+  <Step title="Escolha o recorte">
+    Em **Data-base**, escolha o mês; vazio, o campo usa a **Última carga**. **Servicer** e **Deal** recortam o volume (**Todos os servicers** e **Todos os deals** por padrão).
+  </Step>
+  <Step title="Confira o volume">
+    Os indicadores **Contratos**, **Unidades** e **Parcelas** mostram quantas linhas foram gravadas na data-base e a variação contra a carga anterior (ou **primeira carga**). Se algum servicer ainda não carregou a data, a tela avisa **Ainda sem carga nesta data-base**. Sem filtro de servicer e com mais de um servicer, a tabela **Volume por servicer** abre esses números por origem, com a **Carga anterior**.
+  </Step>
+  <Step title="Leia as checagens">
+    O quadro **Checagens de integridade** diz quantas verificações tiveram ocorrência na data e quantos **Contratos verificados**, **Unidades verificadas** e **Parcelas verificadas** entraram na conta. Clique numa verificação com ocorrência para ver as linhas afetadas.
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/servicer/data-quality/passo-01.png" alt="filtros, faixa de volume e o começo do Cadastro de obras e projetos" />
+</Frame>
+
+<Note>
+  O filtro de **Servicer** e de **Deal** vale só para o volume. As checagens e a cobertura valem para todos os servicers e deals; delas, o filtro só escolhe a data-base.
+</Note>
+
+## Cadastro de obras e projetos
+
+Este quadro não depende da data-base: confere o cadastro como está agora.
+
+| Checagem | O que aponta |
+| --- | --- |
+| **Relatórios de obra sem projeto** | Obras com relatório que não têm projeto no cadastro do Servicer. |
+| **Projetos sem deal** | Projetos sem deal vinculado. Eles não aparecem na Operação. |
+| **Projetos com deal inexistente** | Projetos que apontam para um deal que não existe. |
+
+Cada checagem fica como **Passou**, **Aviso** ou **Sem dados** (por exemplo, quando a conta não tem o módulo de obras). **Corrigir no cadastro** abre o cadastro de projetos para você ajustar.
+
+<Frame>
+  <img src="/images/servicer/data-quality/passo-03.png" alt="quadro Cadastro de obras e projetos com as três checagens" />
+</Frame>
+
+## As verificações
+
+<Tabs>
+  <Tab title="Integridade referencial">
+    | Verificação | O que aponta |
+    | --- | --- |
+    | **CONTRACT_IDs duplicados** | O mesmo contrato mais de uma vez na posição. |
+    | **UNIT_IDs duplicados** | A mesma unidade mais de uma vez. |
+    | **Parcelas órfãs (contrato não encontrado)** | Parcelas cujo contrato não veio na carga. |
+    | **Contratos sem unidade** | Contratos cuja unidade não veio na carga. |
+    | **Projetos sem cadastro (órfãos)** | Projetos com contratos carregados, mas sem cadastro no Hub. |
+    | **Unidades vendidas em duplicidade** | Unidades ligadas a mais de um contrato ativo. |
+    | **Unidades divergentes do gabarito** | Unidades que divergem do gabarito do projeto (contagem, área total ou status). |
+  </Tab>
+  <Tab title="Completude">
+    | Verificação | Por que importa |
+    | --- | --- |
+    | **Projetos sem unidades** | Sem unidades, não há estoque nem % vendido. |
+    | **Parcelas sem vencimento** | Sem vencimento, não dá para calcular a inadimplência. |
+    | **Unidades sem status** | Sem status, a unidade não é classificada como cedida ou não cedida. |
+    | **Unidades sem área** | Afeta o preço por m². |
+    | **Contratos sem valor** | Afeta os recebíveis e o preço de venda. |
+    | **Contratos sem data** | Afeta a curva de vendas. |
+  </Tab>
+</Tabs>
+
+<Note>
+  **Não verificado** quer dizer que nada daquele tipo foi carregado na data-base. Não é aprovação: carregue os dados e confira de novo.
+</Note>
+
+## Mapa de cobertura
+
+**Cobertura dos dados (disponibilidade)** mostra, por projeto e mês, se há dados na tabela escolhida em **Tabela** (**Contratos**, **Unidades** ou **Parcelas**): **Com dados**, **Ausente**, **Sem dados** ou **Incompleto** (sem contratos, sem parcelas ou sem unidades). Passe o mouse numa célula para ver as contagens e o servicer de origem. Use para achar meses que faltam carregar.
+
+<Frame>
+  <img className="block dark:hidden" src="/images/servicer/data-quality/passo-02.png" alt="mapa de cobertura por projeto e mês" />
+  <img className="hidden dark:block" src="/images/servicer/data-quality/passo-02-escuro.png" alt="mapa de cobertura por projeto e mês" />
+</Frame>
+
+## Como validamos e tratamos seus dados
+
+Esta seção recolhível fica no fim de todas as abas da Extração. Abra para ver o catálogo: as mesmas verificações valem para todos os servicers, e só o tratamento (a limpeza) muda de uma origem para outra. Para cada servicer, o catálogo mostra, por exemplo:
+
+- como a linha de cabeçalho da planilha é encontrada;
+- o que acontece com uma parcela sem contrato (o arquivo é rejeitado ou a linha é descartada);
+- de onde vem a data-base;
+- o que a data-base realmente seleciona: na AZTronic, as unidades refletem o dia da extração.
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Sem carga bruta na data-base">
+    Nenhum contrato, unidade ou parcela foi carregado naquela data. Escolha outra data ou carregue o mês em **Extração**.
+  </Accordion>
+  <Accordion title="Projetos sem cadastro">
+    Cadastre o projeto em [Cadastro](/servicer/registry) com o identificador que o servicer usa e reprocesse a data-base.
+  </Accordion>
+  <Accordion title="Corrigi a planilha: como atualizar a conferência?">
+    Reenvie o arquivo (ou use **Reprocessar** em **Arquivos na pasta**) e clique em **Atualizar** nesta tela.
+  </Accordion>
+</AccordionGroup>

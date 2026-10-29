@@ -1,0 +1,74 @@
+---
+title: "Extração — Proton"
+sidebarTitle: "Extração Proton"
+description: "Como extrair a carteira da Proton pela API no Servicer Hub: cadastrar o token, vincular cada deal da Proton a um deal do Hub e disparar a extração."
+icon: "plug-circle-bolt"
+---
+
+A Proton entrega a carteira por **API**, um deal por vez. Cada deal da Proton é vinculado a um deal do Hub, e a extração busca os contratos, as parcelas e as unidades na data-base que a Proton liberou.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Extração → Extração → PROTON**, com duas visões: **Extrair** e **Configuração**.
+</Info>
+
+## Cadastrar o token da API
+
+<Steps>
+  <Step title="Emita o token na Proton">
+    Em **Proton › Admin › API Tokens**, com a conta da organização da sua empresa, emita um token. Os tokens da Proton valem **no máximo 365 dias**.
+  </Step>
+  <Step title="Cole o token no Hub">
+    Em **Configuração**, cole só o token, sem o prefixo, como a tela indica. Clique em **Salvar token** e confirme em **Substituir**.
+  </Step>
+  <Step title="Teste a conexão">
+    Clique em **Testar conexão**. **Autenticação** com **ok** confirma o token. Se a tela disser **A Proton está iniciando**, tente de novo em um minuto.
+  </Step>
+</Steps>
+
+<Warning>
+  Perto dos 365 dias, a **Configuração** avisa quantos dias faltam. Emita um novo token e salve-o antes do vencimento: com o token expirado, a extração para.
+</Warning>
+
+<Note>
+  Como as credenciais da AZTronic, o token fica guardado como segredo no Snowflake da sua conta e não pode ser lido de volta, só substituído.
+</Note>
+
+## Vincular e extrair um deal
+
+A visão **Extrair** lista os deals que a Proton liberou para o token, com a **Data-base** liberada.
+
+<Steps>
+  <Step title="Vincule o deal do Hub">
+    Na coluna **Deal no HUB**, escolha o deal do Hub que esse deal da Proton alimenta e clique em **Salvar**.
+  </Step>
+  <Step title="Extraia">
+    Clique em **Extrair**. A extração entra na fila de **Extração › Geral** ([Fila e histórico](/servicer/fila)), e **Última execução** mostra quando o deal foi extraído pela última vez.
+  </Step>
+</Steps>
+
+{/* PRINT: servicer/extracao-proton/passo-01: tabela de deals da Proton com Deal no HUB e Extrair (dados de demonstração) */}
+
+Para trocar o vínculo, escolha outro deal e salve. **Desvincular** faz o deal da Proton deixar de alimentar o deal do Hub. Os dados já carregados ficam como estão.
+
+## O que a Proton grava
+
+- Contratos e parcelas vêm do import do ERP da data-base exata. As unidades, do import mais recente até ela.
+- Os valores são a **parte cedida** de cada projeto (**% cedido**), que a própria extração preenche no cadastro.
+- A régua de atraso e quitação segue o cálculo da Proton, com desconto. Veja o [glossário](/servicer/glossario).
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Nenhum deal liberado para este token">
+    A Proton lista só os deals liberados para a organização do token, com data-base (**Deal releases**). Peça a liberação na Proton.
+  </Accordion>
+  <Accordion title="Extrair está desabilitado">
+    Passe o mouse sobre o botão para ver o motivo. Os mais comuns: falta vincular o deal do Hub (ou salvar o vínculo), a Proton não tem data-base liberada para o deal, ou já há uma extração dele em andamento.
+  </Accordion>
+  <Accordion title="Liberação revogada">
+    A Proton não libera mais esse deal para o token. Os dados já carregados ficam, mas não dá para extrair de novo até a Proton liberar.
+  </Accordion>
+  <Accordion title="A extração falhou ao gravar">
+    Antes de gravar, a Proton passa por travas de integridade: por exemplo, o mesmo projeto e mês já carregados por outro servicer, ou um projeto que pertence a outra operação do Hub. Veja o motivo no item da fila, em **Extração › Geral**.
+  </Accordion>
+</AccordionGroup>

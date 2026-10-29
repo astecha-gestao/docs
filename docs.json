@@ -64,6 +64,24 @@
         ]
       },
       {
+        "group": "App de Servicer Hub",
+        "pages": [
+          "servicer/visao-geral",
+          "servicer/glossario",
+          "servicer/registry",
+          "servicer/fila",
+          "servicer/reprocessamento-e-agendamentos",
+          "servicer/extracao-upload",
+          "servicer/extracao-aztronic",
+          "servicer/extracao-proton",
+          "servicer/data-quality",
+          "servicer/deal-analysis-geral",
+          "servicer/deal-analysis-unidades",
+          "servicer/deal-analysis-contratos",
+          "servicer/portfolio"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
