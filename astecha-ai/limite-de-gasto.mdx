@@ -1,0 +1,110 @@
+---
+title: "Limite de gasto do Astecha AI"
+sidebarTitle: "Limite de gasto"
+description: "Como o administrador define um teto mensal de gasto do Astecha AI por pessoa e para a conta, o que cada pessoa vê ao chegar perto do teto ou nele, e como liberar na hora."
+icon: "gauge"
+---
+
+O Astecha AI mede o que cada pergunta consome em **créditos**, a mesma unidade da tela de Créditos. O administrador da conta pode definir um **teto mensal em créditos**, para cada pessoa e para a conta inteira. Perto do teto, a pessoa recebe um aviso. No teto, o pedido seguinte não começa e ela vê o motivo.
+
+<Info>
+  **Quem faz o quê:** só o administrador da conta define, altera, libera e remove tetos, em **Settings → Astecha AI**. Qualquer pessoa vê o próprio gasto pelos avisos na caixa de entrada e pelo que o Astecha AI responde quando um pedido é recusado.
+</Info>
+
+## Como o gasto é contado
+
+- O mês é o **mês civil**, no horário de Brasília. No dia 1º o gasto volta a zero.
+- Cada pergunta conta pelo crédito **real**, quando a conferência do dia seguinte já o trouxe, e pelo crédito **estimado** enquanto o real não chega.
+- As **rotinas** contam para quem as criou.
+- Uma pergunta só entra na soma quando termina. Pedidos que estão rodando ao mesmo tempo podem passar um pouco do teto; o bloqueio vale para o pedido seguinte.
+- Uma pergunta que terminou sem crédito (por exemplo, de um modelo antigo, fora da tabela de créditos) conta **zero**. A tela mostra quantas foram, na coluna **Runs sem crédito**.
+
+## Definir o teto (administrador)
+
+<Steps>
+  <Step title="Abra Settings → Astecha AI">
+    No topo da tela fica o bloco **Orçamento do mês**, com o gasto de cada pessoa e o da conta.
+  </Step>
+  <Step title="Escolha o alvo">
+    **Novo teto por pessoa** pede o usuário. Na linha de quem já aparece na tabela, use **Definir teto** ou **Alterar**. Para a conta inteira, use **Definir teto da conta**.
+  </Step>
+  <Step title="Informe o teto e o aviso">
+    Digite o **teto do mês, em créditos** e o **percentual de aviso**. O campo de aviso já vem com o padrão da conta (80%).
+  </Step>
+  <Step title="Salve">
+    O teto vale na hora, para o mês corrente.
+  </Step>
+</Steps>
+
+<Tip>
+  Numa pessoa, o teto pode ficar **vazio**: ela fica sem teto próprio e segue o da conta. O teto da conta é obrigatório.
+</Tip>
+
+A tabela mostra, para cada pessoa, o **gasto no mês**, o **teto**, quanto ele já representa e a **situação**:
+
+| Situação | O que significa |
+|---|---|
+| **Sem teto** | Nenhum teto vale para a pessoa. |
+| **Dentro do teto** | O gasto está abaixo do percentual de aviso. |
+| **No aviso** | O gasto chegou ao percentual de aviso. |
+| **No teto** | Os próximos pedidos são recusados. |
+| **Liberado** | O teto estaria bloqueando, mas há uma liberação ativa. |
+
+Quando o contrato tem preço por crédito, a tabela mostra também o **custo em reais**. Uma pessoa sem teto próprio que o teto da conta bloqueia aparece com a marca **barrada pela conta**.
+
+## O que a pessoa vê
+
+### Perto do teto
+
+Quando o gasto chega ao percentual de aviso, chega um aviso na **caixa de entrada** (aba **Gasto**), dizendo quanto já foi usado e de quanto é o teto. É **um aviso por mês**. Se o administrador mudar o valor do teto, o aviso volta a valer para o novo valor.
+
+### No teto
+
+O pedido seguinte ao Astecha AI não começa. Em vez da resposta, a pessoa vê o motivo e a data em que o teto volta, por exemplo:
+
+> Você chegou ao teto mensal de gasto do Astecha AI neste mês (100,00 de 100,00 créditos). Novos pedidos ficam bloqueados até 01/11/2026 ou até um administrador liberar.
+
+A conversa nova que ela abriu para esse pedido não fica na lista. Também chega um item **No teto** na caixa de entrada.
+
+### Rotinas
+
+Se a pessoa que criou uma rotina está no teto, a rotina **não roda** naquele horário. Ela **não é pausada** e não conta como falha: volta a rodar sozinha no horário seguinte em que houver teto disponível. A pessoa recebe **um aviso por mês** na caixa de entrada dizendo qual rotina deixou de rodar.
+
+## Liberar na hora (administrador)
+
+Quando alguém precisa continuar antes de o mês virar, use **Liberar**, na linha da pessoa ou no cartão da conta.
+
+<Steps>
+  <Step title="Clique em Liberar">
+    Na linha da pessoa ou em **Liberar a conta**.
+  </Step>
+  <Step title="Escolha até quando">
+    Deixe o campo vazio para liberar **até a virada do mês**, ou informe uma data e hora.
+  </Step>
+  <Step title="Confirme">
+    A liberação vale na hora. **Revogar** desfaz.
+  </Step>
+</Steps>
+
+<Warning>
+  Liberar uma **pessoa** a isenta do próprio teto **e** do teto da conta. Liberar a **conta** suspende só o teto da conta: o teto de cada pessoa continua valendo.
+</Warning>
+
+Para tirar o teto de vez, use **Remover**. A tela pede uma confirmação e remove também a liberação, se houver.
+
+## Perguntas frequentes
+
+<AccordionGroup>
+  <Accordion title="O teto bloqueia o que já está rodando?">
+    Não. Ele só impede o **próximo** pedido. O que já começou termina normalmente.
+  </Accordion>
+  <Accordion title="Por que o gasto da tela mudou no dia seguinte?">
+    Porque o crédito estimado é trocado pelo crédito real quando a conferência do dia seguinte o traz. A diferença costuma ser pequena.
+  </Accordion>
+  <Accordion title="Quem não é administrador pode mudar o teto?">
+    Não. Se precisar de mais créditos no mês, peça a liberação ao administrador da conta.
+  </Accordion>
+  <Accordion title="O Astecha AI consegue me dizer quanto já gastei?">
+    Sim. Pergunte pelo seu gasto do mês e pelo seu teto. Ele não mostra o gasto de outras pessoas, e também não altera nem libera o teto: isso é do administrador, na tela.
+  </Accordion>
+</AccordionGroup>
