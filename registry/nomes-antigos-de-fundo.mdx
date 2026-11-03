@@ -1,0 +1,74 @@
+---
+title: "Nomes antigos de fundo (de/para)"
+sidebarTitle: "Nomes antigos de fundo"
+description: "Quando o administrador muda o nome de um fundo, registre o nome antigo para a carteira, o PL e a conciliação continuarem enxergando o histórico inteiro."
+icon: "arrow-right-arrow-left"
+---
+
+O administrador às vezes muda o nome de um fundo: um rebranding, uma troca de grafia, um código novo no começo do nome. As carteiras que já foram carregadas continuam gravadas com o nome antigo. Sem um aviso, o app passa a tratar o histórico antigo como se fosse de outro fundo, e as datas anteriores à troca somem da conciliação, do Connect, do Income e do Rent Roll.
+
+A aba **Nomes antigos (de/para)** resolve isso: você diz uma vez que o nome antigo pertence ao fundo, e o app passa a ler as carteiras antigas com o nome atual.
+
+<Info>
+  **Onde fica:** menu **Controller → Registry → Funds**, aba **Nomes antigos (de/para)**, ao lado da aba **Fund Registry**.
+</Info>
+
+## Quando o app registra sozinho
+
+Se você corrigir o nome do fundo na aba **Fund Registry** (campo **NOME_ADM**), o app grava o nome anterior no de/para automaticamente, antes de salvar a alteração. Essas linhas aparecem com **Origem** `auto-rename`.
+
+<Tip>
+  Mudou o nome errado e voltou ao nome original? O app apaga sozinho a linha que tinha criado. Você não precisa limpar nada.
+</Tip>
+
+Use o cadastro manual abaixo quando o fundo já estiver com o nome novo no cadastro e as carteiras antigas tiverem ficado de fora.
+
+## Cadastrar um nome antigo
+
+<Steps>
+  <Step title="Abra a aba">
+    Em **Controller → Registry → Funds**, clique na aba **Nomes antigos (de/para)**.
+  </Step>
+  <Step title="Clique em New">
+    O formulário **New record** abre.
+  </Step>
+  <Step title="Escolha o fundo">
+    Em **Fund Registry Id**, selecione o fundo pelo nome atual. Se o fundo mudou de nome mais de uma vez, escolha sempre o fundo como ele está hoje.
+  </Step>
+  <Step title="Digite o nome antigo">
+    Em **Nome Adm Antigo**, digite o nome exatamente como ele aparece nas carteiras antigas do administrador. Maiúsculas, minúsculas e espaços nas pontas não importam.
+  </Step>
+  <Step title="Preencha a data e a observação (opcional)">
+    **Data Troca** é a data em que o administrador passou a usar o nome novo. **Observacao** é uma nota livre, por exemplo o motivo da troca. Os dois campos servem só de registro: o nome antigo vale para todas as datas.
+
+    Deixe **Origem** em branco. O app preenche com `manual`.
+  </Step>
+  <Step title="Salve">
+    Clique em **Save**. A partir daí, as carteiras antigas aparecem com o nome atual do fundo.
+  </Step>
+</Steps>
+
+## Como conferir
+
+Abra **Reconciliation → Conciliação**, escolha o fundo e uma data anterior à troca de nome. O calendário passa a mostrar essa data, e o **Book ADM** traz as posições daquele dia.
+
+## O que o app recusa
+
+<AccordionGroup>
+  <Accordion title="Nome que ainda é o nome atual de um fundo">
+    Um nome antigo não pode ser o nome vigente de nenhum fundo cadastrado. Se fosse, as carteiras atuais daquele fundo seriam atribuídas a outro.
+  </Accordion>
+  <Accordion title="Nome antigo já cadastrado para outro fundo">
+    Cada nome antigo pertence a um fundo só. Se o administrador dividiu um fundo em classes (por exemplo, classe A e classe B), isso não é uma troca de nome e não entra no de/para. Fale com o suporte nesse caso.
+  </Accordion>
+  <Accordion title="Fundo que não existe no cadastro">
+    O fundo escolhido precisa estar na aba **Fund Registry**.
+  </Accordion>
+  <Accordion title="Renomear um fundo para o nome antigo de outro">
+    Na aba **Fund Registry**, o app também recusa dar a um fundo um nome que já está no de/para apontando para outro fundo.
+  </Accordion>
+</AccordionGroup>
+
+## Duas grafias na mesma data
+
+Pode acontecer de o administrador entregar a mesma data com o nome antigo e com o nome novo. Nesse caso o app não soma as duas: vale só a entrega mais recente daquele dia, por inteiro. Assim o PL do fundo nunca aparece em dobro.
