@@ -1,0 +1,92 @@
+---
+title: "Conferir a oferta no Pricing e as datas de liquidação"
+sidebarTitle: "Pricing e liquidações"
+description: "Como ver, em cada classe da oferta, se o título está pronto para precificar, qual PU do dia o boletim vai usar e quais são as datas de liquidação."
+icon: "calendar-check"
+---
+
+Sem o cronograma do título no Pricing, o boletim de subscrição cai no PU de emissão e ninguém percebe. Na tela **Ofertas**, cada classe mostra a **situação do título no Pricing**, o **PU do dia** com a fonte dele e as **datas de liquidação**. Tudo é só leitura: a tela mostra o que falta e leva você até onde se corrige.
+
+<Info>
+  **Onde fica:** **Passivo → Fundos → Ofertas**. A situação vem do **Título no Pricing** de cada classe; a classe sem título aparece como **Sem título**. Veja [como cadastrar a oferta](/passivo/ofertas-cadastrar).
+</Info>
+
+## O que a tela mostra
+
+- **Chip no cabeçalho da oferta.** Resume a oferta pelo pior estado entre as classes: **Pricing: em ordem** (verde), **Pricing: N pendências** (âmbar ou vermelho) ou **Pricing: sem títulos** (cinza).
+- **Coluna Pricing.** Um selo por classe, com texto e ícone, com a situação do título. Clique nele para abrir o painel da classe.
+- **Coluna PU do dia.** O PU que o boletim usa para essa classe e, abaixo, de onde ele vem.
+
+O **PU do dia** é calculado na **data** do filtro do Passivo (por padrão, hoje) e é o mesmo número que o boletim de subscrição usa. O status do Pricing é consultado à parte: se a consulta falhar, o restante do card continua funcionando e aparece **Pricing indisponível** com o botão **Tentar de novo**. Uma falha nunca é mostrada como "em ordem".
+
+## Situação do título
+
+A classe mostra a primeira situação que se aplica, da mais grave para a mais leve. O painel lista **todas** as pendências.
+
+| Selo | O que significa | Gravidade |
+|---|---|---|
+| **Em ordem** | Cadastro, cronograma, fórmulas e curva em ordem. O título está pronto para precificar. | Verde |
+| **Cota do dia anterior** | Classe subordinada: o PU é a cota do dia anterior, e ela não exige cronograma nem curva. | Verde |
+| **Sem título** | A classe não tem título no Pricing. Não é erro: a subordinada não precisa de título. | Cinza |
+| **Fora do cadastro** | O título informado não está mais no cadastro de ativos. | Vermelho |
+| **Título de outra classe** | O título é a cota de uma classe de fundo diferente da classe da oferta. Veja [cota de fundo sem deal](/passivo/ofertas-cota-de-fundo). | Vermelho |
+| **Sem papel definido** | O título está no cadastro sem operação (deal) nem classe de fundo, ou a classe dele está sem senioridade no Fund Registry. Não dá para saber se é dívida ou cota. | Vermelho |
+| **Sem cronograma** | A dívida não tem eventos de juros e amortização. | Vermelho |
+| **Cronograma incompleto** | O cronograma não termina em **VENCIMENTO (RESGATE)** de 100% na data de vencimento do título. | Vermelho |
+| **Sem fórmulas** | O título não tem fórmulas de curva. | Vermelho |
+| **Sem curva** | Não há curva no Pricing; o boletim usaria o PU de emissão. | Vermelho |
+| **Curva desatualizada** | A curva foi gerada com fórmulas antigas. Gere de novo no Pricing. | Âmbar |
+| **Curva diverge** | O PU da curva diverge do Agente Fiduciário. | Âmbar |
+| **Não verificado** | A verificação da curva não rodou. Tente de novo; nunca é tratado como "em ordem". | Âmbar |
+
+## Fonte do PU
+
+| Fonte exibida | Quando acontece |
+|---|---|
+| **Curva do Pricing de dd/mm/aaaa** | Situação normal da dívida: há curva na data. |
+| **Curva do próximo dia disponível (dd/mm/aaaa)** | Não há curva exatamente na data; vale a do próximo dia com curva. |
+| **PU de emissão (sem curva)** | Sem curva, o PU cai no de emissão. A classe também mostra **Sem curva**. |
+| **Sem PU** | Nem curva nem PU de emissão. O valor aparece como "—". |
+| **Cota do dia anterior (dd/mm/aaaa)** | Classe subordinada. |
+| **PU de emissão (sem cota anterior)** | Subordinada no primeiro aporte, quando ainda não há cota anterior. |
+
+Na coluna o valor é arredondado; no painel aparece com 8 casas decimais.
+
+## O painel da classe
+
+<Steps>
+  <Step title="Abra o painel">
+    Clique no selo da coluna **Pricing** (uma classe) ou no chip do cabeçalho (todas as classes da oferta). **Esc** fecha o painel.
+  </Step>
+  <Step title="Leia a situação">
+    O painel mostra o título, o papel da classe (dívida ou residual), o PU do dia com a fonte, a safra da curva, o vencimento e a lista de pendências em português.
+  </Step>
+  <Step title="Vá até onde se corrige">
+    Os atalhos levam ao Pricing já no título da classe: **Gerar cronograma** e **Editar fluxo** (Pricing → Curva → Fluxo), **Ver curva** e **Abrir cadastro do título** (cadastro de ativos). Um atalho só aparece se você tem acesso à tela de destino.
+  </Step>
+  <Step title="Atualize">
+    Depois de corrigir no Pricing, volte e clique em **Atualizar**. O status é consultado de novo, sem guardar resultado antigo.
+  </Step>
+</Steps>
+
+<Note>
+  Esta tela não gera cronograma, fórmulas nem curva, e não bloqueia o boletim por causa de uma pendência. Ela só avisa.
+</Note>
+
+## Ver liquidações
+
+Cada classe de dívida tem o link **Ver liquidações** na coluna **Pricing**. Ele abre, dentro do card, a agenda do título, uma linha por data de liquidação. Clique em **Ocultar liquidações** para fechar; ao reabrir, o que já foi carregado volta na hora.
+
+O cabeçalho da agenda traz o **próximo pagamento**, o **último pagamento** (o último evento já pago) e o total de eventos do título. A tabela mostra, por padrão, de um mês atrás até o vencimento:
+
+| Coluna | O que mostra |
+|---|---|
+| **Data de liquidação** | A data do evento. |
+| **Evento** | O que acontece na data, por exemplo `AMORTIZACAO + PAGAMENTO DE JUROS`. |
+| **% do saldo ou valor** | Para evento futuro, o percentual do saldo que ele amortiza. Para evento já calculado, o PU por cota. Fica "—" quando a data só tem juros. |
+| **Situação** | A situação do cálculo no Pricing. Sem cálculo, aparece **Não calculado**. |
+| **PMT bruto** e **PMT líquido** | Os valores, quando há cálculo. |
+
+Uma data que já passou sem cálculo ganha a etiqueta **Sem cálculo**: é o que ainda falta tratar. Calcular, aprovar e pagar continuam no **Pricing → Connect → PMT & IR**.
+
+Se a consulta falhar, aparece **Não foi possível consultar as liquidações agora** com **Tentar de novo**. Se o título não tem eventos no período, a tela diz **O título não tem eventos no período**.

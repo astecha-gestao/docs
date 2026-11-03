@@ -48,6 +48,15 @@
         ]
       },
       {
+        "group": "App de Passivo",
+        "pages": [
+          "passivo/ofertas-cadastrar",
+          "passivo/ofertas-pricing",
+          "passivo/ofertas-cota-de-fundo",
+          "passivo/resgates-converter-pagar"
+        ]
+      },
+      {
         "group": "Registry",
         "pages": [
           "registry/nomes-antigos-de-fundo"
@@ -56,7 +65,8 @@
       {
         "group": "App de Pricing",
         "pages": [
-          "pricing/aprovar-pmt-agente-fiduciario"
+          "pricing/aprovar-pmt-agente-fiduciario",
+          "pricing/check-pu-mtm"
         ]
       },
       {

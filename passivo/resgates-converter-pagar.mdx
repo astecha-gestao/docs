@@ -1,0 +1,78 @@
+---
+title: "Converter o pedido de resgate e marcar o pagamento"
+sidebarTitle: "Converter e pagar resgates"
+description: "Como transformar um pedido de resgate agendado em resgate efetivo no dia da cotização, marcar o pagamento ao cotista e desfazer uma conversão feita errada."
+icon: "arrow-right-arrow-left"
+---
+
+O pedido de resgate de um fundo aberto nasce **Agendado**, com as datas de cotização e de liquidação já calculadas pela regra da classe. Quando a cotização chega, você confirma a conversão na tela. Na liquidação, marca o pedido como pago. Nada é convertido sem a sua confirmação.
+
+<Info>
+  **Onde fica:** **Passivo → Agenda**, na seção **Pedidos de resgate**. Para cadastrar a regra e o pedido, veja o tutorial da agenda de resgates.
+</Info>
+
+## O ciclo do pedido
+
+| Status | O que significa | O que você pode fazer |
+|---|---|---|
+| **Agendado** | O pedido foi registrado e espera a cotização. | **Vincular** ou **Converter** (a partir da data de cotização) e **Cancelar**. |
+| **Convertido** | As cotas viraram resgate efetivo. | **Marcar pago** e **Desfazer**. |
+| **Pago** | O cotista recebeu. | Só leitura. |
+| **Cancelado** | O pedido foi cancelado, com motivo. | Só leitura. |
+
+Antes da data de cotização, o botão fica desabilitado e a dica diz quando a conversão abre.
+
+## Converter um pedido de fundo
+
+Nos fundos, quem lança o resgate é o administrador, e ele chega pelo feed. O botão se chama **Vincular**: você liga o pedido ao resgate que o administrador lançou. **Nada é escrito no feed.**
+
+<Steps>
+  <Step title="Abra a conversão">
+    Na linha do pedido Agendado, clique em **Vincular**. O app busca os resgates do administrador para a mesma classe e o mesmo cotista, cotizados entre o dia do pedido e alguns dias úteis depois da data prevista.
+  </Step>
+  <Step title="Escolha o resgate">
+    Cada candidato mostra a cotização, as cotas, o valor bruto e líquido e a liquidação. A coluna **Diferença para o pedido** mostra quantos dias a cotização destoa e quanto o valor ou as cotas diferem do que foi pedido. Um resgate que já está ligado a outro pedido não aparece.
+  </Step>
+  <Step title="Confirme">
+    Clique em **Confirmar**. O pedido passa a **Convertido**, com a data de cotização do administrador.
+  </Step>
+</Steps>
+
+Se o administrador ainda não lançou o resgate, a tela avisa e pede para tentar de novo depois da próxima carga do feed.
+
+## Converter um pedido de securitização
+
+Na securitização, o app grava o resgate. O botão se chama **Converter** e mostra a prévia do resgate (cota de D+X, valor bruto, IR, IOF e líquido, lote a lote). Ao confirmar, o servidor recalcula e grava.
+
+- **Por valor:** o valor pedido é resgatado pela cota do dia da cotização.
+- **Por cotas:** o app converte a quantidade em valor pela cota do dia. Se a quantidade que sai difere da pedida por causa do arredondamento em centavos, a prévia avisa.
+- **Total:** zera a posição do cotista.
+
+Sem cota calculada na data da cotização, a conversão é recusada com uma mensagem clara. Calcule a cota e tente de novo.
+
+## Marcar como pago
+
+<Steps>
+  <Step title="Abra o pagamento">
+    Na linha do pedido **Convertido**, clique em **Marcar pago**.
+  </Step>
+  <Step title="Informe a data">
+    A data vem preenchida com a liquidação prevista, nunca no futuro. Ajuste para o dia em que o cotista recebeu. Ela não pode ser anterior à cotização nem posterior a hoje.
+  </Step>
+  <Step title="Confirme">
+    Clique em **Marcar pago**. O pedido passa a **Pago**. Não há como desfazer um pagamento pela tela; se a data ficou errada, avise o suporte.
+  </Step>
+</Steps>
+
+## Desfazer uma conversão
+
+Vinculou o resgate errado? Na linha do pedido **Convertido**, clique em **Desfazer**, informe o **motivo** e confirme. O pedido volta a **Agendado** e o motivo fica na observação.
+
+- **Fundo:** o app só desfaz o vínculo.
+- **Securitização:** antes de desfazer, exclua o resgate gravado no cadastro de resgates. Enquanto ele existir, o app recusa.
+
+Um pedido **Convertido** não pode ser cancelado direto: desfaça a conversão primeiro.
+
+## Pelo Claude
+
+As mesmas ações existem para o Claude: ver a prévia da conversão, converter, marcar como pago e desfazer. Peça, por exemplo, "mostre os candidatos para converter o pedido 21". As travas e as mensagens são as da tela, e o Claude mostra a prévia antes de gravar.

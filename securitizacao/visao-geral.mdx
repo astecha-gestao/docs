@@ -44,6 +44,11 @@ O app concentra a operação de uma **securitização** (uma emissão/veículo q
     - **Resgate** — saída de capital do cotista; o sistema calcula cotas, dias de carrego e IR.
     - **Despesa** — custos da operação (administração, servicing, taxas), acompanhados na aba **Despesas** da Gestão.
   </Accordion>
+  <Accordion title="Razão de garantia" icon="shield-halved">
+    - **Razão de garantia** — quanto de lastro existe para cada real de dívida emitida (**lastro ÷ dívida**).
+    - Ela vem em duas leituras: **R.G. carteira** (só o lastro, sem o caixa) e **R.G. total** (lastro + caixa). A coluna **Base** diz qual das duas o contrato do deal julga.
+    - O **mínimo** de cada deal é cadastrado em **Registry → Deals**. A **Situação** compara a razão da base com o mínimo: **Ok**, **Atenção** (dentro da faixa logo acima do mínimo), **Violado** (abaixo do mínimo) ou **Em carência** (há mínimo, mas ele ainda não vale). **Sem mínimo** e **Sem dado** (sem dívida ou sem série na data-base) não têm semáforo.
+  </Accordion>
   <Accordion title="Bronze, conciliação e checagens" icon="layer-group">
     - Os arquivos CNAB entram "crus" (camada **bronze**: cessões e liquidações).
     - A **conciliação** deriva daí as tabelas de **contratos, parcelas e pagamentos** usadas nos relatórios.
@@ -55,12 +60,12 @@ O app concentra a operação de uma **securitização** (uma emissão/veículo q
 
 <Steps>
   <Step title="Abra o Portal e vá em Credit → Securitização">
-    Na tela inicial (grade de apps), abra a área **Credit** e selecione o app **Securitização**. A tela inicial é a **visão da Securitizadora** (KPIs gerais antes de escolher um deal).
+    Na tela inicial (grade de apps), abra a área **Credit** e selecione o app **Securitização**. A tela inicial é a **Geral** (KPIs da securitizadora inteira, antes de escolher um deal).
   </Step>
   <Step title="Use o menu lateral do app">
     O app é dividido em quatro áreas no menu:
 
-    - **Securitizadora** — visão executiva da securitizadora.
+    - **Geral** — visão executiva da securitizadora, em quatro abas: **Carteira**, **Subscrições**, **Despesas** e **Razão de Garantia**.
     - **Operação** — **Upload**, **Processar**, **Conciliação**, **CNAB Manual** e **Templates**.
     - **Gestão** — Relatório, Rentabilidade, Posições e IR, Despesas, PDD e DRE (escolhe **Deal** + **data**).
     - **Carteira** — Geral, Estoque, Safra, Analítica e **Check** (escolhe **Projeto** + **data**).
@@ -69,6 +74,26 @@ O app concentra a operação de uma **securitização** (uma emissão/veículo q
     Os **aportes e resgates** ficam em outra área: **Controller → Passivos** (com o **Registry** de subscrições). É lá que se cadastram cotistas, aportes e resgates. Veja em [Passivos no Registry](/securitizacao/passivos-registry).
   </Step>
 </Steps>
+
+## Acompanhar a razão de garantia de todos os deals
+
+Na tela **Geral**, a razão de garantia de **todos** os deals aparece de duas formas. A data é a **Data Base** do cabeçalho.
+
+<Steps>
+  <Step title="Veja o resumo na aba Carteira">
+    Em **Carteira**, clique em **Ver detalhes por deal**. Depois de **Despesas**, a tabela traz **Razão de garantia** (a da base do contrato) e **Situação** de cada deal.
+  </Step>
+  <Step title="Abra a aba Razão de Garantia">
+    A aba lista cada deal com **Base**, **R.G. carteira**, **R.G. total**, **Mínimo**, **Folga** (em pontos percentuais) e **Folga (R$)** (quanto sobra, ou falta, de lastro sobre o mínimo). Os deals em pior situação aparecem primeiro. Use o botão **Excel** para baixar a tabela.
+  </Step>
+  <Step title="Abra o detalhe de um deal">
+    Clique no nome do deal para ir à **Gestão → Razão de Garantia** daquele deal, na mesma data-base, com a série, os gráficos e o diagnóstico.
+  </Step>
+</Steps>
+
+<Note>
+  O número é o mesmo da aba **Razão de Garantia** da Gestão. Se a lista não carregar, a aba mostra **Tentar de novo** e o restante da tela continua funcionando.
+</Note>
 
 ## Fluxo de trabalho de ponta a ponta
 
