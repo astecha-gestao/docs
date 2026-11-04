@@ -116,7 +116,7 @@ A partir dos cadastros é possível gerar documentos:
 As **despesas** da operação (administração, servicing, taxas, juros) afetam o resultado do fundo. No app, elas aparecem em **Gestão → Despesas**, em modo **somente leitura** — a aba lista cada despesa com **data inicial, data de pagamento, valor, descrição e status**.
 
 <Info>
-  A aba **Despesas** é de **consulta**: não existe um botão "Nova despesa" nas telas operacionais. O lançamento das despesas é feito pela **equipe Astecha (back office)** — não pelo fluxo de operação do app.
+  A aba **Despesas** é de **consulta**: não existe um botão "Nova despesa" nas telas operacionais. O lançamento das despesas é feito pela **equipe Astecha (back office)** — não pelo fluxo de operação do app. A única exceção é o **IR retido do PMT**, que o app lança sozinho (veja abaixo).
 </Info>
 
 ### Paga x Provisionada
@@ -133,6 +133,10 @@ Em ambos os casos a despesa **reduz o PL** e compõe o **DRE** (em **Gestão →
 <Note>
   Despesa **não** se confunde com **PDD**: despesa é um **custo operacional** do fundo; PDD é a **provisão sobre recebíveis** que podem não ser pagos. São lançamentos distintos.
 </Note>
+
+### IR retido do PMT
+
+Ao confirmar o pagamento de um PMT da dívida em **Pricing → Connect → PMT & IR**, o caixa do deal baixa só o valor **líquido** de IR, e o **IR retido** entra em **Despesas** como **Provisionado**, com a descrição "IR retido PMT *código do título* *data do evento*". Como toda despesa, ele reduz o PL desde o dia do pagamento, então o PL desse dia não muda. Quando o DARF é pago, informa-se a data de pagamento dessa despesa no cadastro: ela passa a **Pago**, o caixa baixa o IR e a provisão zera. Se o pagamento do PMT for desfeito antes do DARF, a despesa é apagada; com o DARF já pago, o desfazer é recusado.
 
 ## Editar ou excluir um lançamento
 
