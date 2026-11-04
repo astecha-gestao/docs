@@ -1,0 +1,99 @@
+---
+title: "Extração — Upload de planilhas MONITORI e NEO"
+sidebarTitle: "Upload MONITORI e NEO"
+description: "Como carregar no Servicer Hub as planilhas mensais dos servicers MONITORI e NEO: mês de referência, envio dos arquivos, processamento e leitura do relatório de validação."
+icon: "upload"
+---
+
+Os servicers **MONITORI** e **NEO** mandam a posição da carteira em planilhas Excel. Você envia os arquivos do mês, o Hub lê, limpa, valida, grava e recalcula a série temporal dos deals afetados.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Extração → Extração**, nas abas **MONITORI** ou **NEO**.
+</Info>
+
+## Enviar as planilhas do mês
+
+<Steps>
+  <Step title="Escolha o servicer">
+    Na aba **Extração**, clique em **MONITORI** ou **NEO**.
+  </Step>
+  <Step title="Escolha o mês de referência">
+    Em **Mês de referência**, selecione o mês da posição. A tela mostra em que pasta os arquivos serão salvos.
+  </Step>
+  <Step title="Arraste os arquivos">
+    Arraste uma ou mais planilhas para a área de envio ou clique para selecionar. São aceitos **.xlsx**, **.xlsm** e **.xls**. Os arquivos ficam em **Prontos para processar**, e nada roda até o próximo passo. Para tirar um arquivo da lista, use **Remover arquivo**.
+  </Step>
+  <Step title="Clique em Processar">
+    O Hub processa cada arquivo e mostra o andamento. O processamento também aparece no topo de **Extração › Geral**. Veja [Fila e histórico](/servicer/fila).
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/servicer/extracao-upload/passo-01.png" alt="aba MONITORI com o mês de referência e a área de upload" />
+</Frame>
+
+## Ler o resultado
+
+Ao terminar, cada arquivo mostra um resumo: **Pipeline concluído**, **Concluído com avisos**, **Concluído com erros** ou **A extração falhou — nenhum dado salvo**. Abra o relatório para ver as três etapas:
+
+| Etapa | O que mostra |
+| --- | --- |
+| **Ingestão** | **Linhas lidas** e **Linhas salvas**. Se alguma linha não foi salva, o total aparece. |
+| **Limpeza** | **Valores normalizados**: as regras aplicadas para deixar os dados no formato esperado e quantos valores viraram nulo. |
+| **Validação** | **Verificações aprovadas** e **Problemas**, cada um com **Passou**, **Aviso** ou **Falhou**. |
+
+Abaixo, a lista de deals processados mostra as linhas de série temporal geradas por projeto e por deal, e os deals que ficaram **Sem série temporal** ou **Com falha**.
+
+{/* PRINT: servicer/extracao-upload/passo-02: relatório Ingestão / Limpeza / Validação de um arquivo */}
+
+## O que cada planilha precisa ter
+
+O Hub localiza as abas pelo nome e as colunas pelos nomes usuais do servicer (aceita variações comuns, como **CONTRATO** ou **NUM_CONTRATO**).
+
+<Tabs>
+  <Tab title="MONITORI">
+    | Aba | Conteúdo |
+    | --- | --- |
+    | **BDados** | Unidades e contratos vigentes: contrato, unidade, cliente, data e valor da venda, empreendimento, área privativa, tipologia e status da unidade. |
+    | **Distratos** | Contratos distratados, com a data do distrato. |
+    | **Carteira** | As parcelas: número, valor, vencimento, valor e data da baixa. |
+
+    A data-base vem do **Mês de referência** escolhido. Na falta dele, da célula **A1** da aba **BDados**.
+  </Tab>
+  <Tab title="NEO">
+    | Aba | Conteúdo |
+    | --- | --- |
+    | **BD_Mapa_Unidades** | O mapa de unidades. |
+    | **BD_Relação_Vendas** | Os contratos de venda. |
+    | **BD_Recebidas** | As parcelas pagas. |
+    | **BD_Recebíveis** | As parcelas a receber. |
+    | **Parâmetros** | O mês de fechamento. |
+
+    O arquivo consolidado em **.xlsm** também é aceito. A data-base vem do **Mês de referência** escolhido. Na falta dele, do mês de fechamento da aba **Parâmetros**.
+  </Tab>
+</Tabs>
+
+<Warning>
+  Algumas falhas rejeitam o arquivo inteiro, sem gravar nada. Na **MONITORI**: parcela sem contrato correspondente, **CONTRACT_ID** duplicado e contrato ativo sem nenhuma parcela. Na **NEO**: **CONTRACT_ID** duplicado. A seção recolhível **Como validamos e tratamos seus dados**, no fim de cada aba da Extração, lista o tratamento de cada servicer.
+</Warning>
+
+## Arquivos na pasta
+
+**Arquivos na pasta** lista o que já está salvo para o mês escolhido:
+
+- **Reprocessar** lê de novo o arquivo e refaz a gravação e a série temporal dos deals dele. Use depois de corrigir um cadastro, por exemplo.
+- **Excluir arquivo** apaga o arquivo da pasta. Os dados que já foram extraídos dele continuam gravados. Para apagar os dados, use **Excluir dados** em **Extração › Geral** (veja [Reprocessamento e agendamentos](/servicer/reprocessamento-e-agendamentos)).
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="A extração falhou — nenhum dado salvo">
+    Uma trava de integridade rejeitou o arquivo. Abra o relatório, veja qual verificação **Falhou**, corrija a planilha com o servicer e envie de novo.
+  </Accordion>
+  <Accordion title="O arquivo foi gravado, mas o deal ficou sem série temporal">
+    Normalmente o projeto não está vinculado a um deal no cadastro. Vincule em [Cadastro](/servicer/registry) e use **Reprocessar** no arquivo.
+  </Accordion>
+  <Accordion title="Carreguei o mês errado">
+    Exclua os dados da extração em **Extração › Geral** e envie de novo com o mês de referência correto.
+  </Accordion>
+</AccordionGroup>

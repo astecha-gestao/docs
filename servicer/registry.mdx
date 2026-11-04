@@ -1,0 +1,69 @@
+---
+title: "Servicer Hub — Cadastro de deals e projetos"
+sidebarTitle: "Cadastro"
+description: "Como consultar os deals e projetos do Servicer Hub e onde cadastrá-los ou editá-los no Cadastro do Controller, incluindo o gabarito de unidades."
+icon: "database"
+---
+
+O **Cadastro** (Registry) do Servicer Hub mostra os deals e os projetos da carteira em servicing. Aqui é só consulta: o cadastro e a edição ficam no **Cadastro do Controller**, que os botões da tela abrem para você.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Cadastro**, com as abas **Deals** e **Projetos**.
+</Info>
+
+## Aba Deals
+
+A lista de deals, com busca por nome. As colunas trazem a identificação do deal e o que o Hub usa nos cálculos:
+
+- **Fórmula de recebíveis**, **Fórmula de estoque**, **Fórmula de LTV**, **Fórmula de cobertura** e **Fórmula de inadimplência**: como o Hub calcula esses indicadores para o deal.
+- **Servicer**, **Setor**, **Região**, **Estado**, **Agente fiduciário**, **Certificado** e os dados bancários.
+- **Razão de garantia base**, **Razão de garantia mín.**, **Banda da razão de garantia** e **Carência da garantia até**.
+
+Para cadastrar ou editar, clique em **Cadastrar / editar deals**.
+
+## Aba Projetos
+
+A lista de projetos, com busca e filtro por deal. As colunas: **Projeto**, **Deal**, **Nome**, **Tipo de ativo**, **CNPJ**, **Endereço**, **CEP**, **Cidade**, **UF**, **Lançamento**, **Entrega**, **Registro** e **% cedido**.
+
+Para cadastrar ou editar, clique em **Cadastrar / editar projetos**.
+
+<Frame>
+  <img src="/images/servicer/registry/passo-01.png" alt="aba Projetos com os botões de cadastro" />
+</Frame>
+
+<Note>
+  Os botões só aparecem para quem tem acesso à página de cadastro correspondente no Controller. Se você não os vê, peça o acesso ao administrador da sua conta.
+</Note>
+
+## Cadastrar um projeto
+
+<Steps>
+  <Step title="Abra o cadastro de projetos">
+    Clique em **Cadastrar / editar projetos**. O Controller abre na tabela de projetos do Servicer.
+  </Step>
+  <Step title="Preencha o formulário">
+    Escolha a **Operação** do projeto (o deal) e preencha nome, endereço (o CEP preenche o resto do endereço) e as datas. Revise e salve.
+  </Step>
+  <Step title="Carregue o gabarito de unidades, se houver">
+    No formulário do projeto, o cartão **Gabarito de unidades** abre o editor do gabarito: a lista oficial de unidades do projeto, com área e status. Importar um gabarito **substitui o gabarito inteiro**.
+  </Step>
+</Steps>
+
+<Tip>
+  O gabarito é o único retrato histórico confiável das unidades. Com ele, a [Qualidade dos dados](/servicer/data-quality) aponta as unidades carregadas que divergem do gabarito (contagem, área total ou status).
+</Tip>
+
+<Warning>
+  O **% cedido** é só leitura: quem preenche é a extração da Proton. Para os outros servicers, campo vazio vale 100%.
+</Warning>
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="Projetos sem cadastro na Qualidade dos dados">
+    A carga trouxe contratos de um projeto que não existe no cadastro. Cadastre o projeto com o mesmo identificador que o servicer usa e reprocesse a data-base.
+  </Accordion>
+  <Accordion title="O deal não aparece em Operação, no formulário do projeto">
+    A lista vem dos deals cadastrados no Controller. Cadastre o deal primeiro, em **Cadastrar / editar deals**.
+  </Accordion>
+</AccordionGroup>
