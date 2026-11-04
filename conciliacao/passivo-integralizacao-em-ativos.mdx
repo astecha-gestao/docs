@@ -1,0 +1,158 @@
+---
+title: "Passivo: oferta de cotas em dinheiro ou em ativos"
+sidebarTitle: "Passivo: Dinheiro e Ativos"
+description: "Como tratar o aporte do dia na ferramenta Passivo da Conciliação: casar com várias entradas de caixa ou distribuir a integralização entre os ativos, aplicar e desfazer."
+icon: "right-left"
+---
+
+Quando o fundo recebe um aporte de cotistas, a ferramenta **Passivo** da Conciliação cruza o aporte do dia com o caixa. Ela trata dois casos:
+
+* **Dinheiro:** os cotistas pagaram em dinheiro, em uma ou em várias entradas de caixa (uma TED por cotista, por exemplo).
+* **Ativos:** os cotistas integralizaram as cotas com ativos. O passivo sobe e surgem ativos novos, ou posições maiores, no ADM, sem nenhuma entrada no extrato.
+
+<Info>
+  **Onde fica:** **Controller → Reconciliation → Conciliação**, na ferramenta **Passivo** das ferramentas de preenchimento do veículo e da data escolhidos.
+</Info>
+
+## A chave Dinheiro / Ativos
+
+No topo da ferramenta há uma chave com **Dinheiro** de um lado e **Ativos** do outro.
+
+* A chave só aparece quando há o que distribuir em ativos: o aporte do dia e ativos novos ou com posição maior no ADM, sem caixa real. Sem isso, a ferramenta é a de sempre.
+* Ela já vem ligada em **Ativos** quando a plataforma enxerga um aporte sem entrada de caixa que case e ativos cujo valor de referência cobre quase todo o aporte (95% ou mais). Você pode virar a chave.
+* Depois de aplicar em ativos, a chave **trava em Ativos**. Para voltar a **Dinheiro**, desfaça a aplicação.
+* O aporte do dia é todo em dinheiro ou todo em ativos: não existe aporte misto.
+
+<Note>
+  Resgates e amortizações seguem pela lista de caixa nos dois modos. A chave só muda o que acontece com o **aporte**.
+</Note>
+
+## Modo Dinheiro
+
+O painel é o de sempre: cobertura por evento, janela de dias, tolerância e a lista de linhas do extrato que casam com o passivo.
+
+Quando nenhuma linha traz o aporte inteiro, mas **várias linhas somam o aporte**, a ferramenta mostra a sugestão **N linhas somam o aporte**. Confira as linhas listadas e clique em **Aplicar essas N linhas**. A plataforma nunca aplica essa sugestão sozinha, porque a compra de um direito creditório pode somar o mesmo valor.
+
+As linhas são gravadas com o ATIVO **Oferta**, que o DRE conta como patrimônio, e não como resultado.
+
+## Modo Ativos
+
+Com a chave em **Ativos**, o aporte do dia deixa de ser gravado em dinheiro: as linhas do aporte saem da lista de caixa. Aparece o bloco de distribuição.
+
+<Steps>
+  <Step title="Confira o aporte">
+    Três números no topo: **Aporte do dia**, **Distribuído** e **Falta distribuir**. Em **Lotes do dia** (recolhido), veja cada cotista e o valor que ele integralizou.
+  </Step>
+  <Step title="Defina o ATIVO da entrada">
+    O campo **ATIVO da entrada** vem com **Oferta**. Se você trocar por um nome que o DRE e a Performance contam como resultado, a tela avisa.
+  </Step>
+  <Step title="Escolha os ativos">
+    A grade lista os ativos novos e os que aumentaram de posição. Marque os que fazem parte da integralização. Use **Selecionar todos** e a busca por ativo, nome ou mercado. O contador mostra quantos estão marcados entre os que aparecem.
+  </Step>
+  <Step title="Distribua o valor">
+    Digite o **Valor** de cada ativo marcado, ou clique em **Distribuir pela referência**: o aporte é rateado na proporção do valor de referência de cada ativo, e o último ativo absorve o centavo que sobrar. Ativos sem referência ficam de fora do rateio e pedem o valor à mão.
+  </Step>
+  <Step title="Aplique">
+    Quando **Falta distribuir** chegar a zero (diferença de até R$ 0,01), clique em **Aplicar N ativos**.
+  </Step>
+</Steps>
+
+### O que a grade mostra
+
+| Coluna | O que é |
+|---|---|
+| **ATIVO**, **NOME**, **MERCADO** | Como o ativo está no ADM. |
+| **Situação** | **Novo** (a posição nasce hoje) ou **Aumento** (a posição já existia e subiu). |
+| **ΔQTD** | Quanto a quantidade subiu, já descontadas as notas de corretagem. |
+| **Referência (R$)** | Valor de referência do ativo: o MTM do ADM para um ativo novo; o valor do trade, ou ΔQTD vezes o preço, para um aumento. |
+| **Valor (R$)** | O valor que você atribui ao ativo na integralização. |
+
+Se o valor que você digitou ficar **mais de 10% longe da referência**, a linha ganha um aviso. O aviso não bloqueia: ele lembra que o check 10 da Conciliação vai acusar a diferença e que **este valor vira o custo do lote no Income**.
+
+### Muitos ativos: distribua pela planilha
+
+Quando a integralização tem dezenas ou centenas de ativos, use o Excel em vez da grade. No bloco do modo **Ativos** há os botões **Baixar modelo** e **Subir planilha**.
+
+<Steps>
+  <Step title="Baixe o modelo">
+    **Baixar modelo** gera um `.xlsx` com todos os ativos candidatos do veículo e da data: ATIVO, NOME, MERCADO, Situação (Novo ou Aumento), ΔQTD, Referência (R$), H1 a H3 e **VALOR (R$)** vazio. Na linha 3 ficam Veículo, Data e Total, que o upload confere.
+  </Step>
+  <Step title="Apague o que não é da integralização">
+    **A linha presente no arquivo é a seleção.** Apague as linhas dos ativos que não fazem parte da integralização. Não use filtro nem oculte linhas: o que estiver no arquivo será lido.
+  </Step>
+  <Step title="Preencha o VALOR">
+    Digite o valor de cada ativo que ficou. O rodapé mostra **Distribuído** e **Diferença** contra o total, e a diferença fica verde quando chega a zero (até R$ 0,01). O rodapé é só para você conferir no Excel; o upload o ignora.
+  </Step>
+  <Step title="Suba a planilha">
+    **Subir planilha** lê o arquivo e mostra o preview, linha a linha, com o valor lido, o status e o motivo de cada erro. Nada é gravado nesta etapa.
+  </Step>
+  <Step title="Aplique">
+    Com o arquivo aceito, o botão vira **Aplicar N ativos**. Antes de gravar, a plataforma recalcula o aporte e os candidatos do dia: o que vale é o que está no sistema, não uma cópia do arquivo.
+  </Step>
+</Steps>
+
+O arquivo é recusado inteiro, com o número da linha, quando:
+
+* o VALOR está vazio, é zero, negativo ou não é número (use `1.234,56`; até duas casas decimais);
+* o ativo não faz parte da integralização do dia ou aparece em duas linhas;
+* ativo sem cadastro não traz NOME, MERCADO e H1 a H3;
+* a planilha é de outro veículo ou de outro dia;
+* a soma dos valores difere do total em mais de R$ 0,01;
+* não sobrou nenhuma linha de ativo.
+
+A planilha conferida fica disponível por uma hora. Depois disso, ou depois de aplicada, suba de novo.
+
+<Note>
+  O arquivo precisa ser o `.xlsx` do modelo (até 5 MB). Ativos como `00123` são lidos como texto: não converta a coluna ATIVO em número.
+</Note>
+
+### Ativo sem cadastro
+
+Ativo novo cuja chave ainda não tem cadastro aparece com a etiqueta **Sem cadastro**. Ao marcá-lo, a linha abre os campos **ATIVO**, **NOME**, **MERCADO**, **H1**, **H2** e **H3**. Todos são obrigatórios. Em renda fixa, o ATIVO já vem preenchido no formato `CÓDIGO | data`, com a data do aporte.
+
+### Quando o Aplicar libera
+
+O botão **Aplicar** fica desabilitado, com o motivo ao lado, enquanto houver:
+
+* nenhum ativo marcado;
+* ativo marcado sem valor maior que zero;
+* diferença maior que R$ 0,01 entre o aporte e a soma dos valores;
+* cadastro incompleto em ativo sem cadastro;
+* **ATIVO da entrada** vazio;
+* dois ativos com o mesmo nome final.
+
+Se o servidor recusar a aplicação, o motivo aparece na própria ferramenta, em vermelho. Nada é gravado.
+
+## O que é gravado
+
+A aplicação cria **linhas teóricas que se anulam**, para que o caixa continue somando zero:
+
+* uma **entrada** com o ATIVO escolhido (padrão **Oferta**), de valor negativo igual ao aporte;
+* uma **saída** por ativo, com o valor que você distribuiu.
+
+As linhas ficam na conta `MANUAL_<veículo>`, com ID_KEY começando por `PASSIVO_ATIVOS_`, e a Operação as processa como compras normais. Depois de aplicar, o pipeline roda de novo e a ferramenta abre com o resumo: quantos ativos, o total e a entrada.
+
+<Warning>
+  As linhas `PASSIVO_ATIVOS_` aparecem como **somente leitura** nas abas **Lançamentos Manuais** e **Excluir ID_KEYs**. Editar ou apagar uma perna isolada quebraria a conta que zera o caixa. Para mudar, use **Desfazer** na ferramenta Passivo.
+</Warning>
+
+## Desfazer
+
+Na ferramenta Passivo, clique em **Desfazer** e confirme. As linhas teóricas do extrato e do cadastro daquele dia são apagadas. As chaves ADM que você cadastrou durante a aplicação **ficam**. Depois de desfazer, a chave destrava: você pode distribuir de novo ou voltar a **Dinheiro**.
+
+Se o aporte do dia mudou depois da aplicação, a ferramenta avisa para desfazer e aplicar de novo. Ela nunca corrige sozinha.
+
+## Dias que precisam ser regravados
+
+Se o **MANAGEMENT_BOOK** do dia, ou de dias seguintes, já estava gravado, aplicar ou desfazer continua permitido, mas a ferramenta lista os dias que precisam ser **regravados** a partir da data da integralização. Regrave cada um deles, porque a posição gravada antes da integralização está desatualizada.
+
+## Antes de reprocessar o Income
+
+<Warning>
+  **Cadastre o PU_INICIAL no Pricing antes de reprocessar o Income.** Enquanto o ativo integralizado não tiver PU_INICIAL, o Income usa o valor distribuído dividido pela quantidade (Vᵢ/ΔQ) como custo do lote. Se o valor que você digitou estiver longe da referência, o custo e a rentabilidade saem distorcidos.
+</Warning>
+
+## Limitações
+
+* O modo **Ativos** usa o aporte do **mesmo dia** da integralização dos ativos. Se as cotas e os ativos chegam em dias diferentes, o modo não aparece.
+* A integralização fica na conta `MANUAL_<veículo>`: a entrada e as saídas aparecem no extrato dessa conta, como em outras contas de apoio da Conciliação.
