@@ -1,0 +1,87 @@
+---
+title: "Despesas, PDD e investimentos"
+sidebarTitle: "Despesas, PDD e investimentos"
+description: "Como lançar despesas, definir a política de PDD e registrar os movimentos do fundo de zeragem de uma operação no Registry."
+icon: "table-list"
+---
+
+Além do **Projeto**, cada operação tem cadastros que alimentam o PL, a PDD e a rentabilidade. Todos ficam em **Controller → Registry → Securitization** e seguem o mesmo molde: uma **lista** com busca e filtros, a **ficha** do registro e a **edição com revisão** antes de gravar.
+
+<Info>
+  **Como funciona a edição:** clique na linha para abrir a ficha, use **Editar**, altere os campos e clique em **Revisar e salvar**. A revisão mostra o antes e o depois, e nada é gravado sem a sua confirmação. Para criar, use o botão **Nova ...** no topo da lista.
+</Info>
+
+## Despesas
+
+Na aba **Expenses** você lança as despesas da operação (taxas, custódia, IR retido). Cada despesa tem **data de provisão** (quando começa a entrar no PL) e **data de pagamento** (o caixa).
+
+<Steps>
+  <Step title="Filtre por operação e competência">
+    Acima da lista, escolha a **Operação** e a **Competência** (o mês). O filtro é feito no servidor, então você vê tudo o que já existe daquela operação no mês, inclusive lançamentos antigos.
+  </Step>
+  <Step title="Clique em Nova despesa">
+    Com uma operação filtrada, o cadastro já abre nela.
+  </Step>
+  <Step title="Preencha e confira a duplicidade">
+    Informe descrição, valor e a data de provisão. O formulário lista o que a operação já tem no mesmo mês e **avisa quando o valor se repete**. É um aviso: se a despesa é legítima, siga em frente.
+  </Step>
+  <Step title="Revise e cadastre">
+    Gravar, alterar ou excluir uma despesa **recalcula o PL, as cotas e a rentabilidade** da operação. Até o recálculo terminar (job **Despesas** no menu de jobs), as telas ainda mostram o valor antigo.
+  </Step>
+</Steps>
+
+<Warning>
+  Mês fechado trava a escrita. O aviso aparece na revisão, sem perder o que você digitou.
+</Warning>
+
+## Política de PDD
+
+A aba **PDD** tem **uma linha por operação**, com o número de faixas, a provisão máxima e o tipo da política: **Padrão BACEN**, **Personalizada** ou **Sem política**.
+
+<Steps>
+  <Step title="Abra a operação">
+    Clique na linha. A ficha é a **régua**: as faixas de atraso (de/até em dias) e a provisão de cada uma, em %.
+  </Step>
+  <Step title="Ajuste as faixas">
+    Dá para editar os valores, **adicionar** ou remover faixas e **restaurar o padrão** da Res. 2682 do BACEN. Se a operação ainda não tem política, a régua já abre com o padrão. Erros (mínimo maior que o máximo, percentual fora de 0–100% ou faixas sobrepostas) aparecem na hora e travam o botão de salvar.
+  </Step>
+  <Step title="Copie de outra operação (opcional)">
+    Para uma operação **sem política**, é possível **copiar as faixas** de outra operação que já tenha.
+  </Step>
+  <Step title="Salve a política">
+    Clique em **Salvar política** e confirme. A política não tem vigência: gravar **repinta a PDD e o PL de toda a história** da operação no próximo recálculo.
+  </Step>
+</Steps>
+
+## Investimentos
+
+A aba **Investments** registra os movimentos do fundo de zeragem: **Aplicação**, **Resgate**, **Rentabilidade (caixa)** e **Rentabilidade (accrual)**. Use o mesmo filtro de **Operação** e **Competência** das despesas.
+
+- **Aplicação** e **resgate** são sempre valores positivos; a **rentabilidade** pode ser negativa.
+- O valor não pode ser zero.
+- Gravar recalcula o PL da operação.
+
+## Emissores, investidores e ocorrências
+
+<AccordionGroup>
+  <Accordion title="Issuers (emissores)" icon="building">
+    Razão social, CNPJ (validado na hora), NIRE, endereço e conta bancária do emissor. A lista mostra pendências como CNPJ ausente ou inválido.
+  </Accordion>
+  <Accordion title="Investors (investidores)" icon="user">
+    Nome, tipo de pessoa (**PF** ou **PJ**), documento, contato e endereço. Ao sair do campo **CEP**, o endereço é preenchido sozinho. Dois investidores não podem ter o mesmo nome nem o mesmo documento.
+  </Accordion>
+  <Accordion title="Ocorrência (mapeamento de códigos CNAB)" icon="triangle-exclamation">
+    No topo da lista, o cartão **Códigos não mapeados** mostra os códigos que apareceram nas liquidações e ainda não têm mapa. **Código sem mapa conta como liquidação**: confira a origem antes de confirmar o status. O código é gravado com dois dígitos.
+  </Accordion>
+</AccordionGroup>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Cadastrar uma operação" icon="folder-plus" href="/securitizacao/cadastrar-operacao">
+    Deal, projeto e debênture.
+  </Card>
+  <Card title="Passivos no Registry" icon="users" href="/securitizacao/passivos-registry">
+    Aportes e resgates dos cotistas.
+  </Card>
+</Columns>

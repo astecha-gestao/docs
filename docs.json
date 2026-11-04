@@ -28,6 +28,7 @@
         "pages": [
           "securitizacao/visao-geral",
           "securitizacao/cadastrar-operacao",
+          "securitizacao/cadastros-da-operacao",
           "securitizacao/ativos-cnab",
           "securitizacao/passivos-registry",
           "securitizacao/upload",
