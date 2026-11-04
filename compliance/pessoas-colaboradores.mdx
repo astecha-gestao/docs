@@ -1,0 +1,198 @@
+---
+title: "Pessoas › Colaboradores"
+sidebarTitle: "Colaboradores"
+description: "Como cadastrar, editar, desligar e reativar os colaboradores da gestora, e como importar a lista por planilha .xlsx com prévia antes de gravar."
+icon: "users"
+---
+
+A aba **Colaboradores** é a lista de quem trabalha na gestora, com cargo, área, funções reguladas, entrada e saída. É a base das outras abas de **Pessoas**: por exemplo, os aceites de políticas são cobrados dos colaboradores que estão ativos nesta lista.
+
+Quem opera a lista é o compliance officer. O colaborador **não faz login** na plataforma.
+
+<Info>
+  **Onde fica:** **Legal → Compliance → Pessoas**, aba **Colaboradores**. Se o item **Compliance** não aparece no seu menu, o seu usuário ainda não tem acesso: fale com o seu contato Astecha (veja [Suporte](/suporte)).
+</Info>
+
+{/* TODO: print — aba Colaboradores com a lista, os filtros e os botões Importar planilha e Novo colaborador */}
+
+## O que a lista mostra
+
+Cada linha traz o nome e o e-mail, o CPF, o cargo e a área, as funções reguladas, as datas de **Entrada** e **Saída** e a **Situação**. Acima da tabela, a plataforma conta quantos são ativos e quantos são desligados.
+
+| Situação | Quando aparece |
+|---|---|
+| **Ativo** | Não há data de saída, ou a data de saída ainda não passou. |
+| **Desligado** | A data de saída já passou. A linha aparece mais apagada. |
+
+A situação é calculada pela data de saída. Você não precisa marcar nada à mão.
+
+<Note>
+  **O CPF aparece sempre mascarado**, no formato `***.***.***-NN` (só os dois últimos dígitos). O CPF inteiro não é exibido em nenhuma tela, nem nas prévias da importação, e também não é gravado no histórico de alterações.
+</Note>
+
+## Buscar e filtrar
+
+A lista abre mostrando só os **Ativos**. Use os campos acima da tabela para mudar o recorte:
+
+| Filtro | Como funciona |
+|---|---|
+| **Buscar** | Procura por parte do nome ou do e-mail. Não faz diferença entre maiúsculas, minúsculas e acentos. |
+| **Situação** | **Ativos** (o padrão), **Desligados** ou **Todos**. |
+| **Área** | Lista as áreas que já estão cadastradas. |
+| **Função regulada** | Mostra quem exerce a função escolhida. |
+
+Para voltar ao padrão, clique em **Limpar filtros**.
+
+As funções reguladas disponíveis são: **Diretor de gestão**, **Diretor de risco**, **Diretor de compliance**, **Diretor de PLD**, **Gestor de carteira** e **Distribuição**.
+
+## Cadastrar um colaborador
+
+<Steps>
+  <Step title="Clique em Novo colaborador">
+    O botão fica no alto da aba. Um formulário se abre.
+  </Step>
+  <Step title="Preencha os dados">
+    | Campo | Regra |
+    |---|---|
+    | **Nome completo** | Obrigatório. |
+    | **E-mail** | Obrigatório. Não pode estar cadastrado para outra pessoa. |
+    | **CPF** | Obrigatório. Pode digitar com ou sem pontos e traço. A plataforma confere os dígitos verificadores. Não pode estar cadastrado para outra pessoa. |
+    | **Cargo** e **Área** | Opcionais. No campo **Área**, a plataforma sugere as áreas que já existem. |
+    | **Funções reguladas** | Opcional. Marque todas que a pessoa exerce: dá para acumular. |
+    | **Data de entrada** | Obrigatória. |
+  </Step>
+  <Step title="Clique em Cadastrar">
+    O colaborador entra na lista como **Ativo** e aparece uma confirmação na tela.
+  </Step>
+</Steps>
+
+## Editar um colaborador
+
+Na linha da pessoa, clique em **Editar**, altere os campos e clique em **Salvar**.
+
+* O campo **CPF** abre **vazio**, com a dica "Deixe vazio para manter" e o CPF mascarado. Vazio mantém o CPF atual. Preencher troca o CPF (e ele é conferido de novo).
+* Para limpar **Cargo**, **Área** ou as **Funções reguladas**, esvazie o campo ou desmarque as caixas e salve.
+* A data de saída não se edita aqui. Para isso, use **Desligar**.
+
+## Desligar e reativar
+
+Quem sai da gestora **não é apagado**. A plataforma não tem botão de excluir: o histórico de aceites e de outros registros da pessoa continua valendo, e fica guardado.
+
+<Steps>
+  <Step title="Clique em Desligar">
+    O botão fica na linha de um colaborador ativo e sem data de saída.
+  </Step>
+  <Step title="Informe a Data de saída">
+    A data é obrigatória e não pode ser anterior à data de entrada.
+  </Step>
+  <Step title="Confirme em Desligar">
+    A saída é registrada. Se a data já passou, a pessoa vira **Desligado** e sai da lista padrão (**Ativos**). Se a data é futura, ela continua **Ativo** até o dia passar.
+  </Step>
+</Steps>
+
+Para desfazer, use o botão da própria linha:
+
+* **Reativar**, para quem já está **Desligado**. A data de saída é removida e a pessoa volta a ser ativa.
+* **Cancelar saída**, para quem tem uma saída marcada que ainda não chegou.
+
+<Tip>
+  Marcou a data de saída errada? Clique em **Cancelar saída** (ou **Reativar**) e depois em **Desligar** com a data certa.
+</Tip>
+
+## Importar a lista por planilha
+
+Para cadastrar ou atualizar muitas pessoas de uma vez, use **Importar planilha**. A importação tem **dois passos**: primeiro você confere o que vai acontecer com cada linha, depois confirma. Até a confirmação, nada é gravado.
+
+### Como preparar o arquivo
+
+* Formato **.xlsx**, com até **5 MB** e **2.000 linhas**.
+* Só a **primeira aba** é lida, e o cabeçalho fica na **primeira linha**.
+* A plataforma reconhece os cabeçalhos mesmo com diferença de maiúsculas ou acentos.
+
+| Coluna | Observação |
+|---|---|
+| **Nome** | Obrigatória na planilha. |
+| **E-mail** | Obrigatória na planilha. |
+| **CPF** | Obrigatória na planilha. É por ele que a plataforma reconhece quem já está cadastrado. Se o Excel tirou os zeros do começo, a plataforma completa antes de conferir. |
+| **Data de entrada** | Obrigatória na planilha. Use data do Excel ou o formato `dd/mm/aaaa`. |
+| **Cargo** | Opcional. |
+| **Área** | Opcional. |
+| **Funções reguladas** | Opcional. Escreva os nomes das funções separados por ponto e vírgula (`;`). |
+| **Data de saída** | Opcional. Mesmo formato da data de entrada. |
+
+<Warning>
+  Se faltar alguma das quatro colunas obrigatórias, a plataforma recusa o arquivo e avisa qual coluna não foi encontrada.
+</Warning>
+
+### Passo a passo
+
+<Steps>
+  <Step title="Clique em Importar planilha">
+    O botão fica no alto da aba.
+  </Step>
+  <Step title="Escolha o arquivo e clique em Conferir planilha">
+    A plataforma lê o arquivo e mostra a prévia, sem gravar nada.
+  </Step>
+  <Step title="Leia a prévia">
+    No alto, aparecem as contagens: **novos**, **atualizados**, **sem mudança**, **ignorados** e **com problema**. A tabela mostra, linha a linha, o número da linha na planilha, o colaborador, o CPF mascarado e **o que acontece** com ela.
+  </Step>
+  <Step title="Clique em Importar N colaboradores">
+    O botão mostra quantas pessoas serão gravadas (novos mais atualizados). Se algo na planilha precisar de correção, feche a janela, corrija o arquivo e comece de novo.
+  </Step>
+  <Step title="Confira o resumo">
+    A tela mostra "Importação concluída" com quantos foram cadastrados e quantos foram atualizados, e lista as linhas que **não** foram gravadas, com o motivo.
+  </Step>
+</Steps>
+
+{/* TODO: print — prévia da importação com as contagens e a coluna "O que acontece" */}
+
+### O que cada situação da prévia significa
+
+| Situação | O que acontece |
+|---|---|
+| **Novo** | O CPF ainda não existe. A pessoa será cadastrada. Para quem é novo, a planilha precisa trazer nome, e-mail e data de entrada. |
+| **Atualiza** | O CPF já existe e algum dado é diferente. A prévia lista o que muda ("Muda: cargo, área…"). |
+| **Sem mudança** | O CPF existe e a planilha não traz nada diferente. Nada é gravado. |
+| **Ignorado** | O CPF existe, mas a pessoa está **desligada**. A planilha não reativa ninguém: para voltar a atualizar, reative a pessoa na lista. |
+| **Com problema** | A linha não pode ser gravada. O motivo aparece embaixo (CPF inválido, e-mail inválido, dado obrigatório ausente, função desconhecida…). O resto do arquivo segue normalmente. |
+
+<Note>
+  **Célula vazia não apaga dado.** Se uma pessoa já cadastrada vem na planilha com o **Cargo** em branco, o cargo atual é mantido. Para limpar um campo, edite o colaborador na tela.
+</Note>
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="CPF inválido: confira os dígitos" icon="id-card">
+    O CPF não tem 11 dígitos, tem os dígitos verificadores errados ou é um número repetido (como `111.111.111-11`). Corrija o número. Na importação, só aquela linha fica **Com problema**; as outras seguem.
+  </Accordion>
+  <Accordion title="Já existe um colaborador com este CPF (ou com este e-mail)" icon="copy">
+    A pessoa já está cadastrada, talvez como **Desligado**: troque o filtro **Situação** para **Todos** e procure por ela. Se for outra pessoa com o mesmo e-mail, confira o endereço digitado. Na importação, o aviso aparece como "E-mail já usado por outro colaborador".
+  </Accordion>
+  <Accordion title="A saída não pode ser anterior à entrada" icon="calendar-xmark">
+    A data de saída informada é anterior à data de entrada. Confira as duas datas. A mesma regra vale para as colunas **Data de entrada** e **Data de saída** da planilha.
+  </Accordion>
+  <Accordion title="Na prévia, uma linha aparece como Ignorado" icon="user-slash">
+    A pessoa está desligada e a planilha não reativa ninguém. Se ela voltou à gestora, clique em **Reativar** na lista e importe de novo.
+  </Accordion>
+  <Accordion title="Na prévia, aparece 'CPF repetido na linha N'" icon="clone">
+    O mesmo CPF aparece duas vezes na planilha. Vale a primeira ocorrência; as seguintes ficam **Com problema**. Remova a linha repetida.
+  </Accordion>
+  <Accordion title="Faltam as colunas / Arquivo acima do limite / planilha passa de 2000 linhas" icon="file-excel">
+    Confira se o arquivo é **.xlsx**, se tem até 5 MB e 2.000 linhas e se os cabeçalhos **Nome**, **E-mail**, **CPF** e **Data de entrada** estão na primeira linha da primeira aba. Para listas maiores, divida em mais de um arquivo.
+  </Accordion>
+  <Accordion title="Não encontro um botão para excluir o colaborador" icon="trash-can">
+    Ele não existe de propósito: o histórico da pessoa precisa ser mantido. Use **Desligar** para tirá-la da lista de ativos.
+  </Accordion>
+</AccordionGroup>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Políticas e aceites" icon="file-signature" href="/compliance/pessoas-politicas-aceites">
+    Publicar as políticas da gestora e registrar quem aceitou cada versão.
+  </Card>
+  <Card title="Suporte" icon="headset" href="/suporte">
+    Canais de atendimento para dúvidas e pedidos de acesso.
+  </Card>
+</Columns>

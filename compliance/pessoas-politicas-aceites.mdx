@@ -1,0 +1,204 @@
+---
+title: "Pessoas › Políticas e aceites"
+sidebarTitle: "Políticas e aceites"
+description: "Como publicar as políticas da gestora com versões, acompanhar quem ainda não aceitou, registrar aceites em lote com a prova e anular um aceite registrado por engano."
+icon: "file-signature"
+---
+
+A aba **Políticas e aceites** guarda as políticas da gestora (código de ética, investimentos pessoais, PLD/FTP e outras), **uma linha por versão publicada**, e registra quem aceitou cada versão, com a prova. Quando você publica uma versão nova, a tela mostra os colaboradores ativos que ainda não aceitaram: é a "campanha" de aceite.
+
+Quem registra o aceite é o compliance officer. O colaborador **não faz login** na plataforma: ele aceita por e-mail ou em documento assinado, e você registra o aceite aqui, anexando ou citando a prova.
+
+<Info>
+  **Onde fica:** **Legal → Compliance → Pessoas**, aba **Políticas e aceites**. Os colaboradores cobrados vêm da aba [Colaboradores](/compliance/pessoas-colaboradores): só quem está **Ativo** entra na conta.
+</Info>
+
+{/* TODO: print — aba Políticas e aceites com a tabela de políticas e o botão Nova política */}
+
+## O que a lista mostra
+
+O filtro **Tipo** mostra só um tipo de política (ou **Todos**). Cada política ocupa uma linha:
+
+| Coluna | O que mostra |
+|---|---|
+| **Política** | O título e o tipo. |
+| **Versão vigente** | A versão que vale hoje ("v2 desde 15/03/2026") e quem a aprovou. Se existe uma versão com início no futuro, uma etiqueta avisa: "v3 vale em 01/12/2026". Antes da primeira vigência, aparece "Nenhuma vigente ainda". |
+| **Aceites** | Quantos colaboradores aceitaram e quantos devem ("12 de 15"), com a etiqueta **N pendentes** ou **Em dia**. Mostra "Não exige aceite" quando a política não pede aceite. |
+| **Revisão** | De quanto em quanto tempo a política é revisada ("A cada 12 meses") e quem responde. |
+
+Os tipos de política são: **Código de ética**, **Investimentos pessoais**, **PLD/FTP**, **Segurança da informação**, **Continuidade de negócios**, **Gestão de risco e liquidez**, **Rateio e divisão de ordens** e **Outra**.
+
+### As situações de uma versão
+
+| Situação | Quando |
+|---|---|
+| **Vigente** | É a versão mais nova cuja data de início já chegou. É a que vale hoje. |
+| **Agendada** | O início é uma data futura. Ela passa a valer sozinha no dia. |
+| **Substituída** | Existe uma versão mais nova já vigente. Fica no histórico, e ninguém mais "deve" o aceite dela. |
+
+## Publicar uma política nova
+
+<Steps>
+  <Step title="Clique em Nova política">
+    O botão fica no alto da aba.
+  </Step>
+  <Step title="Preencha o formulário">
+    | Campo | Regra |
+    |---|---|
+    | **Título da política** | Obrigatório (por exemplo, "Código de Ética"). Não pode repetir o título de outra política. |
+    | **Tipo** | Escolha um dos tipos acima. |
+    | **Documento** | Obrigatório. Arquivo **pdf**, **doc** ou **docx**, de até **50 MB**. |
+    | **Vale a partir de** | Obrigatório. A data em que a política passa a valer. |
+    | **Aprovada por** | Obrigatório. Quem aprovou: comitê, ata ou diretor (por exemplo, "Comitê de Compliance, ata 12"). |
+    | **Os colaboradores precisam aceitar** | Já vem marcada. Desmarque se a política é só para consulta. |
+    | **Deve estar no site da gestora** | Opcional. É só uma marcação: a plataforma **não** confere o site da gestora. |
+    | **Agendar a revisão desta política** | Opcional. Ao marcar, informe **A cada quantos meses** (de 1 a 120) e **Quem responde**, que é obrigatório. Veja a seção **A revisão na Agenda**, mais abaixo. |
+  </Step>
+  <Step title="Clique em Publicar">
+    A política entra na lista como versão 1 e o documento fica guardado.
+  </Step>
+</Steps>
+
+<Warning>
+  Uma versão publicada **não se edita**. Se publicou algo errado, publique a versão seguinte: a anterior continua no histórico.
+</Warning>
+
+## Publicar uma nova versão
+
+<Steps>
+  <Step title="Clique em Nova versão">
+    O botão fica na linha da política.
+  </Step>
+  <Step title="Envie o documento e informe a vigência">
+    A tela já traz as escolhas da versão anterior (se exige aceite, se vai ao site, a revisão e o responsável). Você anexa o **Documento** novo, informa **Vale a partir de** e **Aprovada por**, e ajusta o que mudou.
+
+    A data de **Vale a partir de** precisa ser **posterior** à da versão anterior.
+  </Step>
+  <Step title="Clique em Publicar">
+    A versão nova vira **Vigente** na data escolhida (ou **Agendada**, se a data é futura). A anterior fica como **Substituída** quando a nova passa a valer.
+  </Step>
+</Steps>
+
+Para baixar o documento, clique em **Baixar** na linha da política: sai o arquivo da versão vigente (ou da agendada, se ainda não há vigente). Para baixar uma versão específica, use o botão **Baixar** dentro de **Versões e aceites**.
+
+## Ver as versões, os pendentes e os aceites
+
+Clique em **Versões e aceites** na linha da política. A janela tem duas partes.
+
+**Versões:** a tabela mostra, para cada versão, a **Situação**, a **Vigência**, quem publicou e quem aprovou, quantos aceitaram ("12 de 15"), o **Hash do documento** e o botão **Baixar**.
+
+<Note>
+  O **hash** é uma "impressão digital" do arquivo. Cada aceite guarda o hash do documento que a pessoa aceitou, o que comprova qual versão exata foi aceita.
+</Note>
+
+**Pendentes e aceites:** clique numa versão para ver, logo abaixo:
+
+* **Ainda não aceitaram**: os colaboradores **ativos** que ainda não têm aceite válido dessa versão. Quem entrou na gestora depois da publicação também aparece aqui. A lista só existe para a versão vigente ou agendada que exige aceite. Não há prazo para aceitar.
+* **Aceites registrados**: colaborador, data, como chegou, a prova e quem registrou.
+
+{/* TODO: print — janela Versões e aceites com a lista "Ainda não aceitaram" e a tabela de aceites registrados */}
+
+## Registrar o aceite
+
+Você pode registrar vários colaboradores de uma vez: eles compartilham a mesma data, o mesmo meio e a mesma prova (por exemplo, um e-mail de resposta de todos).
+
+<Steps>
+  <Step title="Abra o registro">
+    Clique em **Registrar aceite** na linha da política (o botão só aparece quando há pendentes) ou dentro de **Versões e aceites**.
+  </Step>
+  <Step title="Marque quem aceitou">
+    A janela lista os pendentes. Marque um a um ou use **Marcar todos**.
+  </Step>
+  <Step title="Informe os dados do aceite">
+    | Campo | Regra |
+    |---|---|
+    | **Data do aceite** | Já vem com a data de hoje. Não pode ser futura nem anterior à entrada do colaborador. |
+    | **Como chegou** | **E-mail**, **Documento assinado** ou **Outro**. |
+    | **Referência da prova** | Texto livre, por exemplo: e-mail "Aceite do Código de Ética", 12/10. |
+    | **Anexe a prova** | Opcional. Um arquivo vale para todos os marcados. |
+  </Step>
+  <Step title="Clique em Registrar N aceite(s)">
+    Todos os marcados são registrados de uma vez.
+  </Step>
+</Steps>
+
+<Warning>
+  É preciso informar a **referência da prova** ou **anexar um arquivo** (ou os dois). Sem isso, o aceite não é registrado.
+</Warning>
+
+O registro é **tudo ou nada**: se houver problema com um dos colaboradores marcados, **nenhum** aceite do grupo é registrado e a mensagem diz quem é o problema. Corrija e registre de novo.
+
+## Anular um aceite
+
+Registrou o colaborador errado ou a data errada? Anule e registre o certo. **Nada é apagado**: o aceite fica marcado como **Anulado**, com quem anulou e o motivo.
+
+<Steps>
+  <Step title="Abra Versões e aceites e escolha a versão">
+    Em **Aceites registrados**, localize o aceite.
+  </Step>
+  <Step title="Clique em Anular">
+    Um quadro pergunta se você quer anular o aceite daquela pessoa.
+  </Step>
+  <Step title="Escreva o Motivo da anulação e confirme">
+    O motivo é obrigatório. Clique em **Confirmar anulação**.
+  </Step>
+</Steps>
+
+A pessoa volta para a lista **Ainda não aceitaram**. Registre o aceite correto em seguida.
+
+## A revisão na Agenda
+
+Se você marcou **Agendar a revisão desta política**, a plataforma cria na **Agenda** uma obrigação chamada **Revisar: título da política**, com o responsável que você indicou. A ocorrência vence na data de início da versão mais o número de meses informado. Se o vencimento cair em dia não útil, ele é ajustado para o dia útil anterior.
+
+* Cada política tem **uma** obrigação de revisão. Ao publicar uma nova versão, a plataforma reaproveita a obrigação e agenda a próxima revisão a partir da nova data.
+* A ocorrência da versão anterior continua na Agenda. Dê baixa nela como de costume (**Dar baixa**) ou marque **Não se aplica**.
+
+<Warning>
+  **Se a Agenda recusar o agendamento**, a versão **fica publicada** do mesmo jeito, e a tela avisa: "Versão publicada, mas a revisão não entrou na Agenda… Registre o fato na Agenda". Para corrigir, abra **Agenda → Obrigações**, localize **Revisar: título da política**, clique em **Registrar fato** e informe como **Data do fato** a data de início da versão. O vencimento entra no calendário.
+</Warning>
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="'Fulano está desligado(a) e não deve aceitar'" icon="user-slash">
+    Só colaboradores **ativos** devem aceitar, e a plataforma recusa o grupo todo. Desmarque essa pessoa e registre os demais. Se a pessoa continua na gestora, vá em [Colaboradores](/compliance/pessoas-colaboradores) e use **Reativar** ou **Cancelar saída**. Os aceites que ela já tinha continuam valendo.
+  </Accordion>
+  <Accordion title="'Fulano já aceitou esta versão'" icon="circle-check">
+    Já existe um aceite válido dele para essa versão, então não dá para registrar outro. Se o registro anterior estiver errado, anule-o primeiro (veja [Anular um aceite](#anular-um-aceite)) e registre o certo.
+  </Accordion>
+  <Accordion title="'A data do aceite é anterior à entrada de Fulano'" icon="calendar-xmark">
+    O aceite não pode ter data anterior ao dia em que a pessoa entrou na gestora. Confira a data do aceite ou a **Data de entrada** na aba **Colaboradores**. A data também não pode ser futura.
+  </Accordion>
+  <Accordion title="'Informe a referência da prova ou anexe um arquivo'" icon="paperclip">
+    Falta a prova. Escreva a referência (assunto e data do e-mail, número da ata) ou anexe o arquivo.
+  </Accordion>
+  <Accordion title="Não aparece o botão Registrar aceite" icon="eye-slash">
+    Ele só aparece quando a política **exige aceite** e há colaboradores **pendentes**. Se a coluna **Aceites** mostra "Não exige aceite", a política foi publicada sem essa marcação: publique uma nova versão marcando **Os colaboradores precisam aceitar**. Se mostra **Em dia**, todos os ativos já aceitaram.
+  </Accordion>
+  <Accordion title="'A vigência precisa ser posterior à da versão anterior'" icon="calendar-days">
+    A nova versão precisa começar depois da anterior. A mensagem informa a data da versão anterior; escolha uma data depois dela.
+  </Accordion>
+  <Accordion title="'Já existe uma política com este título'" icon="copy">
+    Para atualizar uma política que já existe, use **Nova versão** na linha dela, em vez de **Nova política**.
+  </Accordion>
+  <Accordion title="'Outra versão foi publicada agora. Recarregue a lista.'" icon="rotate">
+    Outra pessoa publicou uma versão ao mesmo tempo. Recarregue a página e confira a lista antes de publicar de novo.
+  </Accordion>
+  <Accordion title="Documento recusado (tipo, tamanho ou vazio)" icon="file-circle-xmark">
+    O documento da política aceita só **pdf**, **doc** e **docx**, com até **50 MB**, e não pode estar vazio. Converta o arquivo e envie de novo.
+  </Accordion>
+  <Accordion title="'Esta versão foi substituída por uma mais nova'" icon="clock-rotate-left">
+    O aceite é registrado na versão que vale (ou que está agendada), não numa já substituída. Registre na versão mais nova.
+  </Accordion>
+</AccordionGroup>
+
+## Por onde continuar
+
+<Columns cols={2}>
+  <Card title="Colaboradores" icon="users" href="/compliance/pessoas-colaboradores">
+    Manter a lista de quem deve aceitar as políticas: cadastro, saída e importação por planilha.
+  </Card>
+  <Card title="Suporte" icon="headset" href="/suporte">
+    Canais de atendimento para dúvidas e pedidos de acesso.
+  </Card>
+</Columns>
