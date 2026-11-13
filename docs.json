@@ -70,6 +70,12 @@
         ]
       },
       {
+        "group": "Risco de crédito",
+        "pages": [
+          "risco-credito/devedor-e-concentracao"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
