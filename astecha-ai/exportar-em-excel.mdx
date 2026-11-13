@@ -1,0 +1,91 @@
+---
+title: "Exportar do Astecha AI para o Excel"
+sidebarTitle: "Exportar em Excel"
+description: "Como levar um gráfico, uma tabela ou a conversa inteira do Astecha AI para uma planilha .xlsx, o que vai em cada aba e como o Excel lê datas e números."
+icon: "file-excel"
+---
+
+Além de PDF e PowerPoint, o Astecha AI exporta em **Excel (.xlsx)**. A planilha sai do dado guardado na resposta, não de uma foto da tela. Por isso, a data chega como data e o número chega como número: dá para filtrar, somar e montar seu próprio gráfico.
+
+<Info>
+  **Onde fica:** o botão **Exportar** no topo da conversa leva a conversa inteira. O ícone de download no cabeçalho de cada gráfico, tabela ou faixa de indicadores leva só aquele item. Os dois só aparecem quando a resposta já terminou.
+</Info>
+
+## Como exportar
+
+<Steps>
+  <Step title="Abra o menu">
+    Clique em **Exportar** (conversa) ou no ícone de download do item (gráfico, tabela ou indicadores).
+  </Step>
+  <Step title="Escolha Excel (.xlsx)">
+    O menu mostra três formatos: **PDF**, **PowerPoint (.pptx)** e **Excel (.xlsx)**.
+  </Step>
+  <Step title="Espere o arquivo">
+    O botão mostra **Exportando…** enquanto o arquivo é gerado. Um item sai na hora. Uma conversa com mais de 6 itens é gerada em segundo plano e o navegador baixa o arquivo quando fica pronto, em geral em alguns segundos.
+  </Step>
+</Steps>
+
+O arquivo recebe o título do item ou da conversa, por exemplo `Recebíveis por vencimento.xlsx`.
+
+## O que vai em cada aba
+
+Cada gráfico, tabela ou faixa de indicadores vira **uma aba**, com o título dele no nome. Todas seguem o mesmo desenho:
+
+| Linhas | Conteúdo |
+|---|---|
+| 1 e 2 | Título, subtítulo e, se houver, o aviso sobre o item. |
+| 3 | **Fonte** do número: a consulta ou a ferramenta que o Astecha AI usou. |
+| 4 | **Data-base**: quando a leitura foi guardada com a resposta. |
+| 6 | Cabeçalho das colunas, com filtro e linhas congeladas. |
+| 7 em diante | Os dados. |
+
+<Tabs>
+  <Tab title="Tabela">
+    Uma coluna para cada coluna da tabela. Datas ficam no formato `dd/mm/aaaa`, valores em reais com `R$`, percentuais como percentual e inteiros com separador de milhar.
+  </Tab>
+  <Tab title="Gráfico">
+    A aba traz **a série que desenhou o gráfico**: o eixo e uma coluna por série, com os mesmos números que você viu na tela. Em gráfico de ponte, entram também as colunas **Total** (Sim ou Não) e **Acumulado**, o nível que cada barra atinge.
+  </Tab>
+  <Tab title="Indicadores">
+    Três colunas: **Indicador**, **Valor** e **Observação**. Cada valor mantém o próprio formato (reais, percentual ou inteiro).
+  </Tab>
+  <Tab title="Conversa inteira">
+    A primeira aba, **Conversa**, tem as perguntas e as respostas em texto, com a fonte e a data-base de cada resposta. Depois vem uma aba por gráfico, tabela ou faixa de indicadores, na ordem em que apareceram.
+  </Tab>
+</Tabs>
+
+## Como o Excel lê o arquivo
+
+- **Data é data.** Você pode filtrar por período e ordenar do mais antigo ao mais novo.
+- **Número é número.** Valores em reais, percentuais e inteiros somam, e o formato é só a aparência. O valor guarda a precisão completa.
+- **Célula vazia é vazia.** Um valor sem dado não vira traço nem zero.
+- **Texto é texto.** Um texto que começa com `=`, `+`, `-` ou `@` aparece como está e não é calculado como fórmula.
+
+<Note>
+  Ficam como texto, para não perder informação: datas anteriores a 1900 (o Excel não consegue mostrá-las) e identificadores numéricos muito grandes (mais de 15 dígitos), que o Excel arredondaria.
+</Note>
+
+## O que lembrar sobre os números
+
+<AccordionGroup>
+  <Accordion title="A data-base é a da resposta, não a de hoje" icon="calendar">
+    O arquivo traz o número que o Astecha AI leu quando respondeu. Ele **não consulta de novo** ao exportar. A linha 4 de cada aba diz quando a leitura foi guardada.
+  </Accordion>
+  <Accordion title="Um item leva até 500 linhas" icon="table-list">
+    É o limite de cada gráfico ou tabela do Astecha AI, e vale também no Excel.
+  </Accordion>
+  <Accordion title="O Astecha AI não desenhou o gráfico no Excel" icon="chart-line">
+    A aba traz os dados do gráfico. Para desenhá-lo no Excel, selecione as colunas e use **Inserir** › **Gráfico**.
+  </Accordion>
+  <Accordion title="Nomes de aba repetidos" icon="copy">
+    Dois itens com o mesmo título viram abas **Título** e **Título (2)**. O Excel limita o nome da aba a 31 caracteres, então títulos longos são encurtados.
+  </Accordion>
+</AccordionGroup>
+
+## Pelo Claude (conector MCP)
+
+Se você usa o [conector da Astecha no Claude](/conectar-mcp-claude), peça a exportação de um item ou de uma conversa **em xlsx**. O Claude devolve o link do arquivo, que expira depois de algum tempo.
+
+<Card title="Precisa de ajuda?" icon="headset" href="/suporte">
+  Veja os canais de atendimento da Astecha.
+</Card>
