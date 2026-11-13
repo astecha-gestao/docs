@@ -1,0 +1,136 @@
+---
+title: "Ver de quem é a dívida de um CRI ou CRA"
+sidebarTitle: "Devedor e concentração"
+description: "Como ler o devedor e o cedente na aba Crédito do título, os outros títulos do mesmo devedor e a concentração por devedor entre os títulos que pararam de pagar."
+icon: "building-user"
+---
+
+A análise de crédito de CRI e CRA mostra **de quem é a dívida**: o devedor do lastro e, quando houver, quem cedeu os créditos. Com isso você vê duas coisas:
+
+- **no título:** quem deve, de onde veio essa informação e que outros títulos o mesmo devedor tem;
+- **no mercado:** quantos devedores diferentes explicam os títulos que pararam de pagar, e quais aparecem mais.
+
+<Info>
+  **Onde fica:** no título, em **Assets → Títulos → Perfil**, aba **Crédito**. No mercado, em **Assets → Risco de crédito → Geral**, na seção **Concentração por devedor**.
+</Info>
+
+<Note>
+  A análise cobre só CRI e CRA. Numa debênture, a aba **Crédito** avisa que ela não se aplica.
+</Note>
+
+## O devedor do título
+
+Abra um título na aba **Crédito**. O bloco **De quem é a dívida** mostra:
+
+| O que aparece | O que significa |
+|---|---|
+| **Nome e CNPJ** | O devedor principal da série. |
+| **Fonte** | De onde veio o devedor: **TELA_CETIP** ou, quando ela não traz, **ANBIMA**. |
+| **Todos os devedores da série** | Aparece só quando a série tem mais de um devedor, com a fonte de cada um. |
+| **Cedente** | Quem cedeu os créditos. Só aparece quando existe. |
+
+Dois avisos podem aparecer embaixo do nome:
+
+- **Copiado de outra série da mesma operação:** a fonte não traz o devedor desta série, então usamos o de outra série da mesma operação.
+- **TELA_CETIP e ANBIMA trazem devedores diferentes:** as duas fontes discordam. A tela mostra o da fonte indicada.
+
+Quando não há devedor, o bloco diz por quê:
+
+- **Lastro pulverizado: sem devedor único.** A série tem muitos devedores pequenos, como uma carteira de financiamentos imobiliários.
+- **Sem devedor identificado.** Nenhuma das fontes traz o devedor.
+
+<Note>
+  Quando o devedor é pessoa física, o CPF aparece mascarado (`***.456.789-**`) e o nome aparece como **Pessoa física (nome oculto)**.
+</Note>
+
+## Outros títulos do mesmo devedor
+
+Mais abaixo, a tabela **Outros títulos do mesmo devedor** lista os CRI e CRA de qualquer devedor com a mesma **raiz de CNPJ**. A raiz são os 8 primeiros dígitos, então matriz e filiais entram juntas.
+
+A frase acima da tabela resume quantos títulos são, quantos estão em outras operações e quantos destes tiveram parcela não liquidada. Clique no código de um título para abrir a aba **Crédito** dele.
+
+| Situação | O que significa |
+|---|---|
+| **Não voltou a pagar em 180 dias** | O título deixou uma parcela sem liquidar e não voltou a pagar em 180 dias. |
+| **Em observação** | O título deixou uma parcela sem liquidar há menos de 180 dias. |
+| **Voltou a pagar** | O título deixou uma parcela sem liquidar e voltou a pagar em até 180 dias. |
+| **Teve parcela não liquidada** | O título teve parcela não liquidada antes de 2022, fora do período que classificamos. |
+| **Vencido** | O título já venceu sem parcela não liquidada registrada. |
+| **Sem parcela não liquidada** | Nenhuma parcela do título ficou sem liquidar. |
+
+<Tip>
+  A coluna **Operação** diz **mesma operação** quando o outro título é de outra série da mesma emissão. O que pesa é o devedor com problema **em outra operação**.
+</Tip>
+
+## O ponto "mesmo devedor em outra operação"
+
+Na lista **Por que o risco está alto**, o último ponto é **Mesmo devedor com parcela não liquidada em outra operação**. Ele dispara quando o devedor deste título tem parcela não liquidada num título de outra operação. A evidência traz a data e um link para esse título.
+
+Esse ponto **não entra na contagem** do rótulo. O rótulo continua contando os outros 6 pontos de atenção:
+
+| Pontos acionados | Rótulo |
+|---|---|
+| 4 ou mais | **Risco alto** |
+| 2 ou 3 | **Atenção** |
+| 0 ou 1 | **Sem alertas** |
+
+Por que ele fica de fora:
+
+- **"Não liquidada" é o que a CETIP registra**, e pode ser só um atraso operacional.
+- **A amostra ainda é pequena.** Das 81 operações cujo devedor já tinha parado em outra, 8 pararam depois.
+
+Use esse ponto como pista para investigar o devedor, não como sinal de risco por si só.
+
+## Concentração por devedor no mercado
+
+Em **Assets → Risco de crédito → Geral**, a seção **Concentração por devedor** olha os títulos sem voltar a pagar: os que pararam de pagar há 180 dias ou mais e os que ainda estão em observação.
+
+Os três cartões do topo mostram:
+
+| Cartão | O que significa |
+|---|---|
+| **Devedores distintos** | Quantos devedores diferentes explicam os títulos sem voltar a pagar que têm devedor. |
+| **Nos 5 devedores que mais aparecem** | Quantos títulos estão nos 5 maiores devedores, e quantos devedores pararam em mais de uma operação. |
+| **Sem devedor** | Quantos títulos ficam de fora: os de lastro pulverizado e os sem devedor identificado. |
+
+A tabela embaixo lista os 15 devedores que mais aparecem:
+
+| Coluna | O que significa |
+|---|---|
+| **Devedor** | O nome, com a raiz do CNPJ embaixo. Para pessoa física, aparece **pessoa física**. |
+| **Títulos sem voltar a pagar** | Quantos títulos desse devedor pararam. Se alguns ainda estão em observação, a célula diz quantos. |
+| **Operações** | Em quantas operações diferentes estão esses títulos. |
+| **Última parada** | A data da parada mais recente. |
+| **Títulos** | Os códigos dos títulos. A tabela mostra 2. Clique em **+N ver todos** para abrir o resto. |
+
+<Steps>
+  <Step title="Procure um devedor">
+    Digite parte do nome ou de um código na busca acima da tabela.
+  </Step>
+  <Step title="Ordene a tabela">
+    Clique no nome de uma coluna para ordenar. Clique de novo para inverter a ordem.
+  </Step>
+  <Step title="Abra um título">
+    Clique no código de um título para abrir a aba **Crédito** dele, com o devedor e os outros títulos.
+  </Step>
+  <Step title="Exporte, se precisar">
+    Passe o mouse sobre a tabela e use o botão de Excel. A planilha sai com a busca aplicada.
+  </Step>
+</Steps>
+
+<Tip>
+  Um devedor com títulos parados em várias operações pede atenção mesmo que cada título, sozinho, pareça isolado.
+</Tip>
+
+## Limites dos dados
+
+- **Cobertura do devedor por tipo de lastro.** Medido em 10/11/2026 nos 7.021 CRI/CRA vivos, o devedor aparece em:
+  - 87% das séries de lastro corporativo;
+  - 22% das de lastro pulverizado;
+  - 25% das séries sem tipo de lastro.
+
+  A lacuna real são as séries sem tipo e os CRI emitidos antes de 2022.
+- **Cedente.** Aparece em só 3% das séries. Ele vem da ANBIMA, que cobre emissões desde dez/2025, e não dá para preencher para trás.
+- **Fontes que discordam.** Onde a CETIP e a ANBIMA trazem devedor, a raiz do CNPJ bate em 94% dos casos. Nos outros, a tela mostra a divergência.
+- **Devedor principal.** A concentração conta o devedor principal de cada série. Nas séries com vários devedores, os outros não entram.
+- **SPE e grupo econômico.** O devedor é quem aparece no documento, muitas vezes uma SPE. A tela ainda não liga a SPE ao grupo econômico por trás dela.
