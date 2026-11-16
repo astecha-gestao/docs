@@ -94,6 +94,12 @@
         ]
       },
       {
+        "group": "App de RentRoll Hub",
+        "pages": [
+          "rentroll/o-que-mudou"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
