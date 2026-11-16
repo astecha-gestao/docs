@@ -1,0 +1,110 @@
+---
+title: "Demonstrativo de Resgate"
+sidebarTitle: "Demonstrativo de Resgate"
+description: "Emita, para cada resgate gravado, o documento com a memória de cálculo do IR lote a lote, para a contraparte conferir os valores."
+icon: "file-invoice"
+---
+
+O **Demonstrativo de Resgate** é o documento que você envia ao cotista (ou à contraparte dele) para que ele confira o imposto retido num resgate. Ele traz, lote a lote, quanto cada aplicação rendeu, a alíquota aplicada e o IR retido.
+
+<Info>
+  **O que ele não é:** o demonstrativo não substitui o **Informe de Rendimentos Financeiros** (IN SRF 698/2006) nem o comprovante oficial de retenção. Ele serve para conferir os cálculos de um resgate específico.
+</Info>
+
+O documento sai **em nome da emissora**, com a razão social e o CNPJ dela, porque é a emissora a responsável pela retenção. A Astecha aparece só como o sistema que gerou o arquivo.
+
+## Onde fica
+
+<Steps>
+  <Step title="Abra Movimentações">
+    No menu **Subscription → Securitização**, escolha a securitização e abra a aba **Movimentações**.
+  </Step>
+  <Step title="Filtre os resgates">
+    No seletor do topo, escolha **Resgates**.
+  </Step>
+  <Step title="Clique em Demonstrativo">
+    Na coluna **Ações** de cada resgate gravado aparece o botão **Demonstrativo**. Quando o resgate já tem documento emitido, a etiqueta **Emitido · vN** mostra a última versão.
+  </Step>
+</Steps>
+
+<Note>
+  O botão só aparece nos resgates gravados pelo app (Registros → Resgates). Os movimentos que vêm do arquivo do administrador não têm a memória de cálculo por lote.
+</Note>
+
+## O modal
+
+### Data-base
+
+A data-base é a data da posição do cotista que vai no documento. O padrão é a **data de cotização do resgate**. Você pode escolher outra data, com duas regras:
+
+- datas futuras não são aceitas: o sistema usa a última cota realizada até hoje;
+- uma data sem cota cai na data anterior com cota.
+
+### Definitivo ou Prévia
+
+Ao lado da data-base aparece um selo:
+
+- **Definitivo · competência fechada**: o mês já foi fechado na securitização, e os valores não mudam mais;
+- **Prévia · competência aberta**: o mês ainda está aberto. O documento sai marcado **"Prévia — sujeito a alteração"**, porque um reprocessamento da cota ou um ajuste no resgate ainda pode mudar os valores.
+
+### Antes de gerar
+
+O checklist confere quatro pontos:
+
+| Verificação | ✓ quando | O que fazer se falhar |
+|---|---|---|
+| Cadastro do investidor | o investidor e a emissora têm CNPJ no cadastro | clique em **Completar cadastro** e preencha o CNPJ |
+| Vínculo com o cadastro | os aportes do resgate apontam para um único investidor | corrija o investidor dos aportes em **Registros → Aportes** |
+| Competência | o mês está fechado | aviso apenas: você pode gerar a Prévia |
+| Totais | a soma dos lotes bate com o resgate gravado, e bruto − IOF − IRRF = líquido | fale com o suporte |
+
+Um item com **✕** bloqueia a geração. Um item com **△** é só aviso.
+
+<Warning>
+  Se o ativo for uma **tranche de dívida** (sênior ou mezanino), o demonstrativo não se aplica: o pagamento dessas tranches vem do PMT, no app de Pricing.
+</Warning>
+
+### Prévia do documento
+
+Logo abaixo aparecem o **bruto**, o **custo de aquisição**, o **IRRF** e o **líquido** do resgate, e a **memória por lote**, em ordem de antiguidade (FIFO):
+
+- **Rendimento** = valor de resgate − cotas resgatadas × cota de aplicação;
+- um lote com **rendimento negativo** aparece em vermelho. Ele não é tributado e **não é compensado** com o ganho dos outros lotes, porque, em debênture, a base do IR é apurada por aplicação (IN RFB 1.585/2015, art. 46 §1º).
+
+### Emissões anteriores
+
+Cada emissão fica guardada com número, versão, data-base, situação, quem emitiu e quando. Clique em **Baixar** para obter de novo o PDF de uma versão anterior.
+
+## Gerar o documento
+
+<Steps>
+  <Step title="Confira o checklist">
+    Resolva os itens com ✕. Os avisos (△) não impedem a geração.
+  </Step>
+  <Step title="Clique em Gerar demonstrativo">
+    O sistema monta o documento. Em alguns segundos o **PDF** e a **planilha** (.xlsx) com a memória de cálculo são baixados automaticamente.
+  </Step>
+  <Step title="Envie à contraparte">
+    O PDF traz o **número** (DR-AAAA-…), a **versão** e um **identificador de integridade (SHA-256)**, que permite provar depois qual foi exatamente o documento enviado.
+  </Step>
+</Steps>
+
+<Tip>
+  Precisa só conferir a conta, sem emitir documento? Use **Baixar só a planilha**. Ela não recebe número nem entra no registro de emissões.
+</Tip>
+
+### Reemitir
+
+Gerar de novo cria uma **nova versão**. A anterior continua guardada e disponível em **Emissões anteriores**. Nenhum documento é sobrescrito.
+
+## Pelo assistente (MCP)
+
+As mesmas ações estão disponíveis para o assistente no app **Subscription**:
+
+| Tool | O que faz |
+|---|---|
+| `sub_preview_demonstrativo` | mostra a prévia, o checklist e a memória por lote |
+| `sub_apply_generate_demonstrativo` | emite uma nova versão (pede confirmação) |
+| `sub_task_status` | acompanha a geração |
+| `sub_download_demonstrativo` | baixa o PDF ou a planilha de uma emissão |
+| `sub_demonstrativos` | lista as emissões de um resgate ou de um ativo |
