@@ -1,14 +1,14 @@
 ---
 title: "Ver de quem é a dívida de um CRI ou CRA"
 sidebarTitle: "Devedor e concentração"
-description: "Como ler o devedor e o cedente na aba Crédito do título, os outros títulos do mesmo devedor e a concentração por devedor entre os títulos que pararam de pagar."
+description: "Como ler o devedor e o cedente na aba Crédito do título, os outros títulos do mesmo devedor e a concentração por devedor entre os títulos em atraso ou inadimplentes."
 icon: "building-user"
 ---
 
 A análise de crédito de CRI e CRA mostra **de quem é a dívida**: o devedor do lastro e, quando houver, quem cedeu os créditos. Com isso você vê duas coisas:
 
 - **no título:** quem deve, de onde veio essa informação e que outros títulos o mesmo devedor tem;
-- **no mercado:** quantos devedores diferentes explicam os títulos que pararam de pagar, e quais aparecem mais.
+- **no mercado:** quantos devedores diferentes explicam os títulos em atraso ou inadimplentes, e quais aparecem mais.
 
 <Info>
   **Onde fica:** no título, em **Assets → Títulos → Perfil**, aba **Crédito**. No mercado, em **Assets → Risco de crédito → Geral**, na seção **Concentração por devedor**.
@@ -51,9 +51,11 @@ A frase acima da tabela resume quantos títulos são, quantos estão em outras o
 
 | Situação | O que significa |
 |---|---|
-| **Não voltou a pagar em 180 dias** | O título deixou uma parcela sem liquidar e não voltou a pagar em 180 dias. |
-| **Em observação** | O título deixou uma parcela sem liquidar há menos de 180 dias. |
-| **Voltou a pagar** | O título deixou uma parcela sem liquidar e voltou a pagar em até 180 dias. |
+| **Atrasado 1–30 dias**, **31–60 dias** ou **61–90 dias** | O título está com parcela sem liquidar há até 90 dias. É a faixa de hoje. |
+| **Inadimplente > 90 dias** | O título está com parcela sem liquidar há mais de 90 dias. |
+| **Atrasou e voltou a pagar** | O título deixou uma parcela sem liquidar e hoje não tem parcela em aberto. |
+| **Voltou a pagar depois de 180 dias** | O título ficou muito tempo sem pagar e hoje não tem parcela em aberto. |
+| **Em observação** | O título deixou uma parcela sem liquidar há pouco tempo e ainda não tem faixa. |
 | **Teve parcela não liquidada** | O título teve parcela não liquidada antes de 2022, fora do período que classificamos. |
 | **Vencido** | O título já venceu sem parcela não liquidada registrada. |
 | **Sem parcela não liquidada** | Nenhuma parcela do título ficou sem liquidar. |
@@ -77,20 +79,20 @@ Esse ponto **não entra na contagem** do rótulo. O rótulo continua contando os
 Por que ele fica de fora:
 
 - **"Não liquidada" é o que a CETIP registra**, e pode ser só um atraso operacional.
-- **A amostra ainda é pequena.** Das 81 operações cujo devedor já tinha parado em outra, 8 pararam depois.
+- **A amostra ainda é pequena.** Das 81 operações cujo devedor já tinha atrasado em outra, 8 atrasaram depois.
 
 Use esse ponto como pista para investigar o devedor, não como sinal de risco por si só.
 
 ## Concentração por devedor no mercado
 
-Em **Assets → Risco de crédito → Geral**, a seção **Concentração por devedor** olha os títulos sem voltar a pagar: os que pararam de pagar há 180 dias ou mais e os que ainda estão em observação.
+Em **Assets → Risco de crédito → Geral**, a seção **Concentração por devedor** olha os títulos em atraso ou inadimplentes. Para entender as faixas, veja [Faixas de atraso](/risco-credito/faixas-de-atraso).
 
 Os três cartões do topo mostram:
 
 | Cartão | O que significa |
 |---|---|
-| **Devedores distintos** | Quantos devedores diferentes explicam os títulos sem voltar a pagar que têm devedor. |
-| **Nos 5 devedores que mais aparecem** | Quantos títulos estão nos 5 maiores devedores, e quantos devedores pararam em mais de uma operação. |
+| **Devedores distintos** | Quantos devedores diferentes explicam os títulos em atraso que têm devedor. |
+| **Nos 5 devedores que mais aparecem** | Quantos títulos estão nos 5 maiores devedores, e quantos devedores atrasaram em mais de uma operação. |
 | **Sem devedor** | Quantos títulos ficam de fora: os de lastro pulverizado e os sem devedor identificado. |
 
 A tabela embaixo lista os 15 devedores que mais aparecem:
@@ -98,9 +100,9 @@ A tabela embaixo lista os 15 devedores que mais aparecem:
 | Coluna | O que significa |
 |---|---|
 | **Devedor** | O nome, com a raiz do CNPJ embaixo. Para pessoa física, aparece **pessoa física**. |
-| **Títulos sem voltar a pagar** | Quantos títulos desse devedor pararam. Se alguns ainda estão em observação, a célula diz quantos. |
+| **Títulos sem voltar a pagar** | Quantos títulos desse devedor estão em atraso ou inadimplentes. Se alguns ainda estão em observação, a célula diz quantos. |
 | **Operações** | Em quantas operações diferentes estão esses títulos. |
-| **Última parada** | A data da parada mais recente. |
+| **Último atraso** | A data do atraso mais recente. |
 | **Títulos** | Os códigos dos títulos. A tabela mostra 2. Clique em **+N ver todos** para abrir o resto. |
 
 <Steps>
@@ -119,7 +121,7 @@ A tabela embaixo lista os 15 devedores que mais aparecem:
 </Steps>
 
 <Tip>
-  Um devedor com títulos parados em várias operações pede atenção mesmo que cada título, sozinho, pareça isolado.
+  Um devedor com títulos em atraso em várias operações pede atenção mesmo que cada título, sozinho, pareça isolado.
 </Tip>
 
 ## Limites dos dados
