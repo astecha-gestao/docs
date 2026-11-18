@@ -1,0 +1,171 @@
+---
+title: "Extração — Mudanças no passado"
+sidebarTitle: "Mudanças no passado"
+description: "Como ler na Qualidade dos dados do Servicer Hub a seção Mudanças no passado, que compara cada projeto da data-base com a última carga anterior dele e aponta contratos, distratos, parcelas pagas e unidades que mudaram, e o que fazer quando ela acusa."
+icon: "history"
+---
+
+Cada carga do servicer é uma foto inteira da carteira na data-base, e ela substitui a foto anterior do projeto. O que já era passado na carga anterior não deveria mudar na nova: o contrato assinado, o distrato, a parcela já paga, a unidade. A seção **Mudanças no passado** compara as duas cargas e mostra o que mudou.
+
+<Info>
+  **Onde fica:** **Servicer Hub → Extração → Qualidade dos dados**, depois da **Cobertura dos dados (disponibilidade)**. Veja [Qualidade dos dados](/servicer/data-quality).
+</Info>
+
+## Como a comparação funciona
+
+- **Projeto a projeto.** Cada projeto carregado na data-base é comparado com a **última carga anterior dele**. Não é necessariamente o mês anterior: se o projeto não foi carregado em abril, maio é comparado com março.
+- **Mesmo servicer.** A comparação só é feita quando a carga anterior veio do mesmo servicer. Se o projeto trocou de servicer, ou se é a primeira carga dele, ele aparece em **Não comparados**.
+- **Data-base da página.** A seção usa a mesma **Data-base** das checagens; vazio, a **Última carga**. Os filtros de **Servicer** e **Deal** não recortam a comparação: ela vale para todos os servicers e deals da data, e a tela avisa isso quando um filtro está ativo.
+- **Também no fim de cada carga.** A mesma comparação roda sozinha depois de cada extração ou upload. Veja [No resultado da carga](#no-resultado-da-carga).
+
+<Note>
+  A comparação **só avisa**. Ela nunca rejeita a carga nem impede o cálculo da série temporal.
+</Note>
+
+## Ler o veredito
+
+O topo da seção traz uma frase e três totais: **Projetos comparados**, **Com mudança no passado** e **Sem base anterior**.
+
+| Veredito | O que quer dizer |
+| --- | --- |
+| **O passado se manteve nos N projetos comparados em DD/MM/AAAA** (verde) | Nenhum projeto comparado mudou o que a carga anterior já dizia. |
+| **N de M projetos comparados mudaram o passado em DD/MM/AAAA** (vermelho ou amarelo) | Há mudanças. Vermelho quando ao menos um projeto tem checagem em **Erro**; amarelo quando todas estão em **Atenção**. |
+| **Nenhum projeto de DD/MM/AAAA tem uma carga anterior do mesmo servicer para comparar.** | Todos os projetos da data são primeira carga ou trocaram de servicer. Nada foi comparado. |
+| **Nada carregado nesta data-base: não há o que comparar.** | Escolha outra data ou carregue o mês em **Extração**. |
+
+Abaixo do veredito, cada projeto com mudança vira uma linha que abre. Os projetos com **Erro** vêm primeiro e, entre eles, os com mais itens. A linha mostra:
+
+- o projeto;
+- o servicer e a **Base anterior: DD/MM/AAAA** usada na comparação;
+- o total de itens afetados.
+
+Ao abrir o projeto, cada checagem que acusou mostra o nível (**Erro** ou **Atenção**), o nome e a quantidade de itens. Abaixo vêm:
+
+- **R$ envolvidos**: o valor em jogo, sempre positivo (veja a tabela abaixo);
+- **Exemplos**: até cinco itens, os de maior valor primeiro.
+
+No fim, **Não comparados** lista os projetos que ficaram de fora e o motivo: **primeira carga** ou **a anterior é de** outro servicer.
+
+{/* PRINT: servicer/data-quality-mudancas-no-passado/passo-01: veredito, totais e um projeto aberto com as checagens */}
+
+## O que cada checagem aponta
+
+<Tabs>
+  <Tab title="Contratos e distratos">
+    | Checagem | Nível | O que aponta | R$ envolvidos |
+    | --- | --- | --- | --- |
+    | **Contrato da base anterior sumiu** | Erro | Um contrato da carga anterior não veio na nova. As parcelas dele não contam de novo nas checagens de parcela. | Valor do contrato |
+    | **Valor do contrato mudou** | Atenção | O valor de venda mudou (ou ficou vazio). | Tamanho da diferença |
+    | **Data do contrato mudou** | Atenção | A data de venda mudou. | Valor do contrato |
+    | **Unidade do contrato mudou** | Atenção | O contrato aponta para outra unidade. | Valor do contrato |
+    | **Comprador do contrato mudou** | Atenção | O contrato aponta para outro comprador. | Valor do contrato |
+    | **Distrato desfeito** | Erro | O contrato estava distratado e voltou a ficar ativo. | Valor do contrato |
+    | **Data do distrato mudou** | Atenção | O distrato continua, mas com outra data. | Valor do contrato |
+    | **Distrato novo com data anterior à base anterior** | Atenção | Um distrato que não estava na carga anterior chegou datado antes dela. | Valor do contrato |
+
+    Os exemplos são os identificadores dos contratos (o **CONTRACT_ID** do servicer).
+  </Tab>
+  <Tab title="Parcelas">
+    | Checagem | Nível | O que aponta | R$ envolvidos |
+    | --- | --- | --- | --- |
+    | **Parcela paga sumiu** | Erro | Uma parcela que estava paga não veio na nova carga, com o contrato ainda presente. | Valor pago |
+    | **Parcela paga voltou a ficar em aberto** | Erro | A parcela veio, mas sem pagamento. | Valor pago |
+    | **Valor pago diminuiu** | Erro | O pagamento continua, mas menor. | Redução do pago |
+    | **Data de pagamento mudou** | Atenção | O pagamento continua, com outra data. | Valor pago |
+    | **Valor de parcela quitada mudou** | Atenção | A parcela totalmente quitada mudou de valor. | Tamanho da diferença |
+    | **Parcela vencida em aberto sumiu** | Atenção | Uma parcela vencida e não paga sumiu de um contrato ativo, sem pagamento registrado. | Valor da parcela |
+
+    A parcela é identificada pelo contrato e pelo vencimento, e os exemplos aparecem nesse formato: `CONTRATO @ AAAA-MM-DD`. As parcelas com o mesmo vencimento são somadas. Por isso, uma renumeração das parcelas pelo servicer não acusa nada.
+  </Tab>
+  <Tab title="Unidades">
+    | Checagem | Nível | O que aponta |
+    | --- | --- | --- |
+    | **Unidade da base anterior sumiu** | Atenção | Uma unidade da carga anterior não veio na nova. |
+    | **Área da unidade mudou** | Atenção | A área mudou (ou ficou vazia). Aqui, o número em **R$ envolvidos** é a diferença de área em m², não dinheiro. |
+    | **Tipologia da unidade mudou** | Atenção | A tipologia mudou (ou ficou vazia). |
+
+    Os exemplos são os identificadores das unidades (o **UNIT_ID** do servicer).
+  </Tab>
+</Tabs>
+
+<Note>
+  **O que não acusa:** a renumeração das parcelas, a baixa parcial com o saldo corrigido, o valor das parcelas ainda em aberto (corrigido todo mês), as parcelas apagadas por um distrato, um campo que estava vazio e passou a vir preenchido e um distrato novo com data depois da carga anterior. Valores são comparados com tolerância de um centavo.
+</Note>
+
+## Exemplos
+
+<AccordionGroup>
+  <Accordion title="Parcelas pagas que sumiram">
+    O veredito diz **1 de 4 projetos comparados mudaram o passado em 01/05/2026**, em vermelho. O projeto **RESIDENCIAL EXEMPLO** mostra **Base anterior: 01/04/2026** e, aberto:
+
+    - **Erro · Parcela paga sumiu · 120**, **R$ envolvidos: R$ 1.250.000,00**, **Exemplos: 0001234 @ 2025-03-10 · 0001234 @ 2025-04-10 · …**
+    - **Erro · Valor pago diminuiu · 3**
+
+    Em abril essas parcelas estavam pagas; em maio não vieram ou vieram com menos pagamento. Em geral, é um relatório de recebidas cortado ou exportado com outro filtro. A inadimplência e os recebimentos de maio estão errados até a correção.
+  </Accordion>
+  <Accordion title="Contrato que sumiu">
+    O projeto **LOTEAMENTO EXEMPLO** mostra **Erro · Contrato da base anterior sumiu · 1**, **R$ envolvidos: R$ 380.000,00**, **Exemplos: 0004567**.
+
+    O contrato existia na carga anterior e não veio na nova, sem distrato. Pode ser uma venda cancelada que o servicer apagou em vez de distratar, ou uma linha perdida na exportação.
+  </Accordion>
+  <Accordion title="Mudança legítima">
+    O projeto **EDIFÍCIO EXEMPLO** mostra **Atenção · Valor do contrato mudou · 2** e **Atenção · Unidade do contrato mudou · 1**.
+
+    Uma renegociação ou uma troca de unidade feita pelo comprador muda o contrato de propósito. Confirme com o servicer: se for isso, não há o que corrigir.
+  </Accordion>
+  <Accordion title="Projeto não comparado">
+    **Não comparados: CONDOMÍNIO EXEMPLO (primeira carga); RESIDENCIAL EXEMPLO II (a anterior é de MONITORI)**.
+
+    O primeiro nunca foi carregado antes. O segundo veio de outro servicer na carga anterior, e as chaves dos dois servicers não se comparam. Nenhum dos dois é erro.
+  </Accordion>
+</AccordionGroup>
+
+## O que fazer quando a seção acusa
+
+<Steps>
+  <Step title="Confira os exemplos">
+    Abra a [Análise do deal › Contratos](/servicer/deal-analysis-contratos) do deal do projeto nas duas datas-base (a atual e a **Base anterior**) e procure os contratos e parcelas dos **Exemplos**.
+  </Step>
+  <Step title="Confirme com o servicer">
+    Pergunte se a mudança é uma correção legítima (reprocessamento, renegociação, distrato) ou um erro da base enviada. Mande os exemplos e as duas datas-base.
+  </Step>
+  <Step title="Se a base veio errada, recarregue a data">
+    Peça a base corrigida e carregue de novo a mesma data-base em **Extração** (veja [Upload de planilhas](/servicer/extracao-upload), [AZTronic](/servicer/extracao-aztronic) ou [Proton](/servicer/extracao-proton)). A nova carga substitui a foto inteira do projeto naquela data.
+  </Step>
+  <Step title="Confira de novo">
+    Clique em **Atualizar** na Qualidade dos dados. Se a mudança era legítima, não há o que recarregar: a próxima data-base vai ser comparada com esta.
+  </Step>
+</Steps>
+
+<Warning>
+  Uma mudança no passado afeta a série temporal da data-base: inadimplência, recebimentos, estoque e preço por m². Não use os indicadores da data como definitivos antes de confirmar com o servicer.
+</Warning>
+
+## No resultado da carga
+
+No fim de cada carga (upload, extração AZTronic ou Proton), o detalhe da execução (veja [Fila e histórico](/servicer/fila)) ganha o passo **Base comparison**, depois da série temporal, com uma frase curta em inglês:
+
+| Status do passo | Mensagem |
+| --- | --- |
+| OK | **The N compared project(s) keep the previous base's history.** |
+| OK | **No project has a previous base from the same servicer to compare with.** |
+| Erro ou aviso | **N of M project(s) changed what the previous base already said (… error / … warning check(s)).** Abra **Mudanças no passado** para ver os detalhes. |
+| Aviso | A comparação não rodou (o banco não respondeu ou acabou o tempo). Abra a seção na Qualidade dos dados para comparar. |
+
+<Note>
+  Quando o passo acusa, o resumo da execução fica **Concluído com erros** (ou **Concluído com avisos**). Os dados foram salvos e a série temporal foi calculada: o resumo só reflete a mudança no passado. Siga os passos de **O que fazer quando a seção acusa**, acima.
+</Note>
+
+## Problemas comuns
+
+<AccordionGroup>
+  <Accordion title="O Servicer não respondeu">
+    A tela diz **O banco do Servicer não respondeu, então nada foi comparado**. Não é falta de carga: tente de novo em alguns minutos com **Tentar de novo**.
+  </Accordion>
+  <Accordion title="A data-base não é válida">
+    Escolha o dia 1 de um mês com carga no filtro **Data-base**.
+  </Accordion>
+  <Accordion title="Recarreguei um mês antigo: o mês seguinte é comparado de novo?">
+    A seção compara na hora em que abre. Escolha o mês seguinte em **Data-base**: ele é comparado com a carga nova.
+  </Accordion>
+</AccordionGroup>
