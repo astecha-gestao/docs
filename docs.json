@@ -72,6 +72,7 @@
       {
         "group": "Risco de crédito",
         "pages": [
+          "risco-credito/faixas-de-atraso",
           "risco-credito/devedor-e-concentracao"
         ]
       },
