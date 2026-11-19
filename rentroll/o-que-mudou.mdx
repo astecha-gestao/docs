@@ -1,0 +1,260 @@
+---
+title: "RentRoll Hub — o que mudou nas telas"
+sidebarTitle: "O que mudou nas telas"
+description: "As mudanças visíveis do RentRoll Hub: o menu Recebidos, a origem de cada dado, os campos travados, a atualização da carteira, o recálculo diário, o Histórico de versões e as abas Cargas e Campos em Conexões Externas."
+icon: "sparkles"
+---
+
+<Info>
+  **Onde fica:** no Portal, escolha o domínio **Properties** e abra o **RentRoll Hub**. Os nomes de menus, abas, botões e avisos seguem o que aparece na interface em português.
+</Info>
+
+O RentRoll Hub passou a guardar **de onde veio cada dado**: da API do prestador, de um arquivo, de uma planilha Excel, da tela ou do motor de cálculo. As telas mostram essa origem e, a partir dela, o que você pode editar, quando a carteira foi atualizada e o histórico de cada registro.
+
+| O que mudou | Onde ver |
+|---|---|
+| O menu **Conciliação** agora se chama **Recebidos** | [Menu Recebidos](#o-menu-conciliação-agora-é-recebidos) |
+| Cada linha mostra a **Origem** e os campos que vêm da API têm **cadeado** | [Origem e campos travados](#origem-de-cada-linha) |
+| Depois de salvar, a linha mostra **atualizando…** até a carteira refletir a mudança | [Atualização da carteira](#atualização-da-carteira-depois-de-salvar) |
+| O recálculo pode estar **pausado**, e a tela avisa | [Recálculo pausado](#recálculo-pausado) |
+| A carteira é recalculada **todo dia às 06:00** | [Recálculo diário](#recálculo-diário-das-0600) |
+| A **Geral** ganhou o **Previsto × Recebido** e o seletor **Carteira calculada em** | [Novidades na Geral](#novidades-na-geral) |
+| Todo cadastro tem **Histórico** de versões | [Histórico de versões](#histórico-de-versões) |
+| **Conexões Externas** ganhou as abas **Cargas** e **Campos** | [Cargas e Campos](#conexões-externas-abas-cargas-e-campos) |
+
+## O menu Conciliação agora é Recebidos
+
+O item de menu **Conciliação** passou a se chamar **Recebidos**. A tela mostra **o que foi pago**, venha do arquivo do prestador, da API ou de um lançamento na tela. O endereço da página não mudou, e a busca do Portal continua achando a tela por "conciliação".
+
+Os sub-itens são:
+
+- **Recebidos** (antes **Dados de conciliação**): o upload do arquivo do prestador, a lista dos recebidos e o painel do período.
+- **Prestadores**: os layouts de arquivo que o app sabe ler.
+- **Conferência**: o último upload frente à carteira.
+
+<Note>
+  No menu **Upload**, o sub-item **OCR** passou a se chamar **Reprocessar OCR**. A função é a mesma.
+</Note>
+
+### Enviar o arquivo do prestador
+
+<Steps>
+  <Step title="Abra Recebidos → Recebidos, aba Upload e recebidos">
+    O topo da tela tem o formulário de upload e, abaixo, a lista dos recebidos.
+  </Step>
+  <Step title="Escolha o Prestador e o arquivo">
+    Em **Planilha ou .zip**, envie um `.xlsx`, um `.xlsm` ou um `.zip` com a planilha dentro. Se o nome do arquivo não traz a data, informe a **Data do movimento**.
+  </Step>
+  <Step title="Confira a pré-visualização">
+    A **Pré-visualização** mostra o arquivo como ele será gravado: as linhas cruas de cada aba e as **Linhas interpretadas**, que viram pagamentos.
+  </Step>
+  <Step title="Clique em Enviar">
+    O resultado diz o número da carga, quantas linhas foram gravadas e quantos pagamentos foram interpretados. Os pagamentos aparecem na lista assim que a carteira for atualizada.
+  </Step>
+</Steps>
+
+<Tip>
+  Enviar de novo um arquivo idêntico não grava nada. A tela avisa: **Arquivo idêntico já carregado em 10/11/2026 por Ana Souza (carga #128)**.
+</Tip>
+
+Quando um pagamento já veio da API do prestador, a API vale. O mesmo pagamento no arquivo fica guardado, mas não entra na lista.
+
+### A lista dos recebidos
+
+Cada linha é um pagamento, com **Competência**, **Vencimento**, **Pago em**, **Valor pago**, a **Composição** (aluguel, IPTU, condomínio e outros) e a **Situação do boleto**. Use os filtros de **Fundo**, **Prestador**, **Pago de** / **Pago até**, **Contrato**, **ID do boleto** e **Origem da data de pagamento**.
+
+- **sem de-para**: o pagamento não se liga a nenhum contrato do Hub.
+- **Origem da data de pagamento**: diz de onde veio a data (do pagamento, da baixa, do arquivo ou do movimento). Quando aparece **desconhecida**, a fonte não trouxe a data, e a data mostrada não é confiável.
+- O botão **Origem** da linha abre o **Registro de origem**: o dado como veio da fonte, com os campos sensíveis mascarados e, no arquivo, a opção **Baixar arquivo original**.
+
+Excluir um recebido tem efeito diferente conforme a origem. A confirmação explica o que acontece:
+
+| Origem | O que sai |
+|---|---|
+| Lançamento manual | O lançamento sai da lista. O registro fica no histórico. |
+| Linha do arquivo | Só aquela linha do dia. O arquivo original não muda. |
+| Pagamento do boleto | O pagamento inteiro do boleto. Se a API tiver o mesmo pagamento, o da API passa a valer. |
+
+As outras abas (**Geral**, **Por fundo**, **Cronológico**, **Qualidade** e **Órfãs**) mostram o recebido do período por fundo, a linha do tempo, as checagens de qualidade do arquivo e as linhas que não se ligam a nenhum fundo. No fim da tela, **Cargas dos arquivos** lista cada upload, com o que ele gravou e o arquivo original.
+
+## Origem de cada linha
+
+As listas de cadastro (contratos, imóveis, unidades, locatários e eventos) e as de recebíveis têm a coluna e o filtro **Origem**:
+
+| Origem | O que significa |
+|---|---|
+| **API ·** e o nome do prestador | O dado veio da API do prestador e é mantido por ela. |
+| **Entrada** | O dado foi incluído no Hub: pela **Tela**, por **Excel**, por **IA**, por **OCR** ou por **Arquivo**. Passe o mouse sobre o selo para ver o canal. |
+| **Motor** | O dado foi calculado pelo motor de aluguéis. É só leitura. |
+
+### Campos travados e edições à mão
+
+Num registro que veio da API, cada campo tem uma regra. O formulário de edição mostra qual:
+
+| Na tela | O que significa |
+|---|---|
+| Cadeado <Icon icon="lock" /> | O campo vem da API e deve ser corrigido na fonte da API. No Hub, ele não se edita. |
+| Campo livre com <Icon icon="circle-info" /> **Complemento manual** | A API não tem esse dado. Você preenche no Hub, e a carga da API não mexe nele. |
+| Campo livre com <Icon icon="circle-info" /> **Valor da API** | O valor vem da API, mas você pode editar. A sua edição prevalece sobre a carga. |
+| Selo **editado à mão** | Você (ou alguém da equipe) editou esse campo no Hub. |
+
+Nas linhas da API, os botões de editar e excluir também respeitam a origem. Passe o mouse sobre um botão bloqueado para ver o motivo, por exemplo **Linha da API** (nome do prestador)**: excluir só na fonte da API**. Linhas do **Motor** não se editam nem se excluem.
+
+### Quando a API muda um campo que você editou
+
+Se a API trouxer um valor novo para um campo que você editou à mão, o campo ganha o selo **API mudou**. Abaixo dele aparece **A API mudou para R$ 45.000,00 desde a sua edição**, com duas opções:
+
+- **Manter minha edição**: o seu valor continua valendo.
+- **Voltar ao valor da API**: o campo passa a seguir a API de novo.
+
+<Note>
+  No topo do formulário, o aviso **A API mudou 2 campos desde a sua edição** lista os campos com divergência. Clique em um deles para ir direto ao campo.
+</Note>
+
+A carga da API nunca desfaz uma edição sua sozinha. A escolha fica registrada no [Histórico](#histórico-de-versões).
+
+## Atualização da carteira depois de salvar
+
+Salvar um contrato, um evento ou um recebido grava o dado na hora. As listas de recebíveis e a Geral leem a **carteira**, que é atualizada logo depois. Enquanto isso, a linha mostra o selo **atualizando…**:
+
+| Selo | O que significa |
+|---|---|
+| **atualizando…** | O que você salvou está gravado. A lista mostra o valor novo assim que a carteira for atualizada. |
+| **excluindo…** | A exclusão está gravada e ainda não chegou à lista. |
+| **não atualizou** | A atualização da carteira falhou. O que você salvou continua gravado. Passe o mouse para ver o erro. |
+| **recálculo pausado** | A atualização está pausada. O que você salvou entra quando ela for religada. Veja [Recálculo pausado](#recálculo-pausado). |
+
+Nas telas que recalculam o contrato, o salvar mostra as etapas em sequência, por exemplo **Motor: processando** → **Carteira atualizada: concluído**. Se uma etapa falhar, use **Tentar de novo**. Um contrato com erro no motor sai da carteira até a próxima rodada boa, e a tela avisa.
+
+<Tip>
+  Na **Geral**, o aviso **3 contratos fora da carteira por erro do motor** lista os contratos com problema. Corrija o cadastro no editor de contratos: o salvar recalcula.
+</Tip>
+
+## Recálculo pausado
+
+A equipe pode pausar, por um tempo, três passos do recálculo:
+
+- **Recálculo ao salvar**;
+- **Recálculo diário das 06:00**;
+- **Atualização da carteira**.
+
+Com algum passo pausado, a **Geral**, o **Fluxo - Aluguéis**, o **Recebidos** e a aba **Conexão** de **Conexões Externas** mostram a faixa **Recálculo pausado**, com o passo e desde quando, por exemplo **Recálculo diário das 06:00 pausado desde 10/11/2026**. Os saves continuam gravados e entram quando o passo for religado.
+
+<Steps>
+  <Step title="Clique em gerenciar na faixa">
+    O link leva a **Conexões Externas → Cargas**, ao bloco **Pausas**.
+  </Step>
+  <Step title="Alterne o passo">
+    Cada passo mostra **ligado** ou **pausado**, quem alterou e quando. Ao pausar, a tela pede confirmação. Ao religar, o próximo recálculo diário confere todas as séries. Para recalcular na hora, use **Reprocessar tudo** na Geral.
+  </Step>
+</Steps>
+
+<Note>
+  Só administrador de acesso alterna as pausas. Os demais usuários veem o estado, sem o link **gerenciar**.
+</Note>
+
+## Recálculo diário das 06:00
+
+A carteira inteira é recalculada **todo dia às 06:00** (horário de Brasília). Além disso, cada save já recalcula o contrato que mudou. A Geral mostra o resultado da última rodada:
+
+- **Carteira recalculada hoje às 06:00.**
+- **O recálculo diário de hoje falhou.**, com o link **ver a carga #128** para o detalhe.
+- **Recálculo diário das 06:00 em andamento.**, com as etapas da rodada.
+
+Para recalcular fora do horário, por exemplo depois de publicar um índice, abra **Reprocessar tudo** na Geral, escolha o fundo e clique em **Reprocessar tudo**. O mesmo bloco lista as **Últimas rodadas do motor**; a diária aparece como **Recálculo diário 06:00**.
+
+<Note>
+  Locações que vêm da API não passam pelo motor: o valor cobrado vem do prestador.
+</Note>
+
+## Novidades na Geral
+
+### Quando a carteira foi atualizada
+
+Abaixo da data de referência, a Geral mostra a idade de cada parte da carteira:
+
+- **Motor: última rodada em 16/11/2026 06:04**;
+- **API** (nome do prestador)**: última carga em 16/11/2026 05:30**;
+- **carteira atualizada em 16/11/2026 06:05**, ou **carteira atualizando…** enquanto há atualização em curso.
+
+### Carteira calculada em
+
+No topo, ao lado da data de referência, o seletor **Carteira calculada em** volta a carteira do motor para uma rodada passada. **Hoje** é a carteira vigente.
+
+<Steps>
+  <Step title="Escolha uma data no seletor Carteira calculada em">
+    A lista traz as datas das rodadas guardadas.
+  </Step>
+  <Step title="Leia o aviso">
+    A tela avisa: **Carteira do motor calculada em 01/11/2026. Boletos da API e cadastros (imóvel, unidade, contrato, setor) são os atuais.** Ou seja, só a parte calculada pelo motor volta no tempo.
+  </Step>
+  <Step title="Clique em Voltar para hoje">
+    A Geral volta para a carteira vigente.
+  </Step>
+</Steps>
+
+### Previsto × Recebido
+
+O bloco **Previsto × Recebido** compara o aluguel do fundo cobrado com o recebido na **competência** escolhida. Os dois lados são agrupados pelo mês do vencimento original, não pela data do pagamento. O bloco lê sempre a carteira vigente, mesmo com **Carteira calculada em** numa data passada.
+
+| Indicador | O que mostra |
+|---|---|
+| **Cobrado** | Aluguel do fundo previsto na competência. |
+| **Recebido** | Aluguel do fundo recebido na mesma competência, na cota do fundo. Os encargos aparecem à parte, abaixo do valor. |
+| **Vencido em aberto** | Boletos da competência já vencidos sem pagamento, mais a diferença dos contratos do motor acima da tolerância. |
+| **Inadimplência** | Vencido em aberto ÷ cobrado das parcelas já vencidas. |
+| **Cobertura** | Parte do cobrado cujo contrato tem fonte de recebido (API ou arquivo com de-para). |
+
+Abaixo dos indicadores ficam o gráfico **Cobrado × recebido (12 meses)** e a tabela **Em aberto por fundo**, por faixa de atraso (**A vencer**, **1–30 dias**, até **> 180 dias**). O rodapé diz se o cruzamento é **exato pelo boleto** ou **aproximado** (por contrato, competência e fundo) e quanto ficou de fora, por exemplo o **Recebido sem contrato no Hub (sem de-para)**.
+
+## Histórico de versões
+
+Contratos, descontos, imóveis, unidades, laudos, locatários, eventos e as linhas do **Fluxo - Aluguéis** e do **Fluxo - Eventos** têm o botão **Histórico** <Icon icon="clock-rotate-left" /> na coluna de ações.
+
+O painel lista as versões **da mais recente para a mais antiga**:
+
+| Tipo de versão | O que mostra |
+|---|---|
+| **Criação**, **Alteração**, **Exclusão** | Edições feitas no Hub, com quem e quando, e o antes e depois de cada coluna. |
+| **Manteve a edição** / **Voltou ao valor da API** | A escolha feita quando [a API mudou um campo editado](#quando-a-api-muda-um-campo-que-você-editou). |
+| **Linha do Excel em lote** | A linha de uma importação por Excel. |
+| **Versão da API** | O que a API trouxe em cada carga. **Não veio na carga completa** indica que o registro sumiu da API. |
+| **Rodada #128** | O resultado de uma rodada do motor, com os totais (linhas, PMT, valor corrigido, parcelas sem índice). **diário 06:00** marca a rodada diária. |
+
+Em cada versão, **Ver JSON** mostra o dado como veio da fonte. Num contrato extraído de PDF, **PDF desta versão** baixa o documento daquela versão.
+
+## Conexões Externas: abas Cargas e Campos
+
+**Conexões Externas** ganhou duas abas ao lado de **Conexão** e **Explorador**.
+
+### Cargas
+
+A aba **Cargas** mostra cada carga da API do prestador: o que veio por recurso, o que foi gravado e quando os recebíveis foram atualizados. Filtre por **Tipo**, **Situação**, **Gatilho** e período (**De** / **Até**). Abra uma carga para ver os parâmetros, as contagens, os avisos e os erros por item.
+
+A aba reúne também:
+
+- **Saúde das tabelas**: o estado das tabelas que alimentam a carteira, com **tudo certo** ou o número de problemas, e a **Divulgação dos índices do motor**.
+- **Pausas**: os passos do recálculo, ligados ou pausados. Veja [Recálculo pausado](#recálculo-pausado).
+- **OCR dos PDFs**: lê em lote os PDFs de contrato do prestador que ainda não têm texto. Só administrador. Cada PDF lido consome créditos de processamento, e a tela pede confirmação.
+
+### Campos
+
+A aba **Campos** lista, só para leitura, todos os campos que a fonte já mandou e a coluna do Hub para onde cada um vai. Escolha a **Fonte** e o **Recurso**, busque um caminho ou marque **Só não mapeados** para ver o que ainda não chega às telas.
+
+<Tip>
+  Precisa de um campo que aparece como **não mapeado**? Abra um chamado em [Suporte](/suporte) com o nome do campo. A equipe da Astecha passa a ler o histórico que já está gravado, sem chamar a API de novo.
+</Tip>
+
+Na aba **Conexão**, o bloco **Mapa de status** mostra como cada situação do boleto no prestador vira o status do RentRoll e se ela conta como cobrado, recebido ou inadimplente. Um status sem mapa aparece em destaque: os boletos com esse status ficam fora do cobrado, do recebido e do aging até alguém mapear.
+
+## Avisos que podem aparecer
+
+| Aviso | O que fazer |
+|---|---|
+| **Este dado vem da API e deve ser tratado na fonte da API.** | Corrija o dado no sistema do prestador. A próxima carga traz o valor novo. |
+| **Linha calculada pelo motor: não se edita.** | Edite o cadastro que dá origem à linha (contrato, desconto, evento). O salvar recalcula. |
+| **Outra gravação deste cadastro está em andamento. Tente de novo.** | Espere alguns segundos e salve de novo. |
+| **RentRoll em migração: só leitura até a carga inicial.** | O RentRoll da sua conta está sendo migrado. A edição volta quando a carga inicial terminar. |
+| **Este arquivo já foi importado.** | O mesmo arquivo já foi carregado. Nada foi gravado de novo. |
+
+Dúvidas ou algo fora do esperado: [Suporte](/suporte).
