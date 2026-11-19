@@ -95,6 +95,13 @@
         ]
       },
       {
+        "group": "App Construction",
+        "pages": [
+          "construction/dossie",
+          "construction/enviar-e-revisar"
+        ]
+      },
+      {
         "group": "Suporte",
         "pages": [
           "suporte"
