@@ -53,7 +53,8 @@
           "passivo/ofertas-cadastrar",
           "passivo/ofertas-pricing",
           "passivo/ofertas-cota-de-fundo",
-          "passivo/resgates-converter-pagar"
+          "passivo/resgates-converter-pagar",
+          "passivo/movimentacoes"
         ]
       },
       {
