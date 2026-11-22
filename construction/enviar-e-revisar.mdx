@@ -1,0 +1,121 @@
+---
+title: "Enviar e revisar relatórios"
+sidebarTitle: "Enviar e revisar"
+description: "Como enviar os PDFs de uma obra, rodar o OCR e a extração, conferir cada campo com o PDF ao lado e publicar."
+icon: "file-arrow-up"
+---
+
+Todo relatório de obra passa por envio, processamento e revisão antes de entrar nos números do dossiê. Só o relatório publicado conta no **Geral** e no dossiê.
+
+<Info>
+  **Onde fica:** **Construction → Relatórios**. As abas são **Para processar**, **Processando**, **Aguardando revisão**, **Com erro** e **Publicados**, cada uma com a contagem ao lado.
+</Info>
+
+## Enviar os PDFs
+
+<Steps>
+  <Step title="Abra o envio">
+    Clique em **Enviar relatórios**.
+  </Step>
+  <Step title="Escolha a obra">
+    No campo **Obra**, escolha a obra. A lista agrupa as obras por deal.
+  </Step>
+  <Step title="Escolha a competência">
+    No campo **Competência**, escolha o mês a que o relatório se refere. O campo já vem com o mês anterior ao atual.
+  </Step>
+  <Step title="Escolha os PDFs">
+    Arraste os arquivos ou clique em **Arraste os PDFs ou clique para escolher**. Só entram PDFs de até 100 MB. Um arquivo fora disso aparece como **Recusado**, com o motivo ao lado.
+  </Step>
+  <Step title="Envie">
+    Clique em **Enviar (N)**, onde N é a quantidade de arquivos. No fim, um resumo diz quantos foram enviados, quantos já existiam e quantos deram erro. Clique em **Concluir**: os enviados estão em **Para processar**.
+  </Step>
+</Steps>
+
+## Processar
+
+O processamento tem duas etapas: o OCR lê o texto do PDF, e a extração preenche os campos do relatório com IA.
+
+<Steps>
+  <Step title="Selecione os relatórios">
+    Na aba **Para processar**, marque as caixas de seleção ou use **Selecionar todos da aba**. A barra mostra quantos estão selecionados, como "3 selecionados".
+  </Step>
+  <Step title="Rode o OCR">
+    Clique em **Rodar OCR (N)**. O botão age só nos relatórios que ainda não passaram pelo OCR.
+  </Step>
+  <Step title="Rode a extração">
+    Quando o OCR termina, o relatório volta a **Para processar**, pronto para extrair. Selecione-o e clique em **Extrair (N)**.
+
+    Em **Opções** ficam o **Modo do OCR**, o **Modelo** e o **Máximo de iterações**. O padrão serve na maioria dos casos.
+  </Step>
+  <Step title="Acompanhe">
+    Enquanto roda, o relatório fica em **Processando**. O lote segue no menu de jobs, mesmo se você sair da tela. Ao terminar, o relatório vai para **Aguardando revisão**.
+  </Step>
+</Steps>
+
+## Revisar
+
+<Steps>
+  <Step title="Abra o relatório">
+    Na aba **Aguardando revisão**, clique no relatório.
+  </Step>
+  <Step title="Confira campo por campo">
+    À esquerda ficam os campos, em grupos como **Identificação**, **Avanço**, **Custo** e **Prazo**. Cada grupo mostra quantos campos faltam conferir, como "4 para conferir". À direita fica o documento, em **PDF** ou em **Texto do OCR**.
+
+    Se o revisor automático não aprovou a extração, um aviso no topo pede para conferir os campos marcados.
+
+    Corrija o que estiver errado e clique em **Conferi** no campo. O campo cujo valor difere do que a IA leu ganha a marca **editado**: passe o mouse nela para ver o valor original.
+  </Step>
+  <Step title="Vá à página de origem">
+    Clique em **ver p. X** ao lado do campo. O documento vai para a página de onde o número veio.
+  </Step>
+  <Step title="Confira o custo">
+    No grupo **Custo**, a **Identidade do orçamento** faz a conta: **Orçamento total** menos **Incorrido até a data** dá o **A incorrer calculado**. Ela compara esse valor com o **A incorrer no relatório** e é refeita a cada edição.
+
+    Exemplo: orçamento de R$ 48,0 mi menos R$ 30,0 mi incorridos dá R$ 18,0 mi a incorrer. Se o relatório declarar outro valor, a tela mostra a diferença.
+  </Step>
+  <Step title="Não se preocupe em salvar">
+    O rascunho se salva sozinho, e o topo mostra a hora, como "Rascunho salvo às 14:02". Recarregar ou fechar a aba não perde a revisão.
+  </Step>
+</Steps>
+
+<Note>
+  No celular, os dois painéis viram as abas **Campos** e **Documento**. Tocar em **ver p. X** troca para **Documento** já na página certa.
+</Note>
+
+## Publicar
+
+<Steps>
+  <Step title="Salvar e publicar">
+    Clique em **Salvar e publicar**. O app publica o relatório e abre o dossiê da obra no mês dele, com o aviso **Relatório publicado.**
+  </Step>
+  <Step title="Ou salve e siga para o próximo">
+    Clique em **Salvar e próximo** para publicar e abrir o próximo relatório da fila. Se não houver próximo, a tela volta à fila com o aviso **Não há mais relatórios aguardando revisão nesta fila.**
+  </Step>
+</Steps>
+
+<Warning>
+  Um campo com erro impede a publicação. A barra mostra quantos campos faltam corrigir, e **Ir ao primeiro** leva ao primeiro deles.
+</Warning>
+
+Publicar é salvar a revisão. Por isso, na fita do Geral, o relatório publicado aparece como **Salvo**.
+
+## Quando algo dá errado
+
+| Situação | O que aparece | O que fazer |
+|---|---|---|
+| Arquivo recusado no envio | **Recusado**, com o motivo: o arquivo não é PDF ou passa de 100 MB. | Troque o arquivo e envie de novo. |
+| Relatório já publicado | "Já existe o relatório nº N desta obra e competência.", com o link **Ver o relatório**. | Abra o relatório pelo link. Não envie de novo. |
+| O mesmo PDF ainda em revisão | "Este PDF já foi extraído e aguarda revisão (relatório nº N).", com o link **Abrir a revisão**. | Continue a revisão que já existe. Nada é duplicado. |
+| Relatório em **Com erro** | A mensagem de erro na linha. | Selecione o relatório e clique em **Rodar OCR** ou em **Reprocessar**. A confirmação avisa que reprocessar refaz o OCR e consome créditos de IA. |
+| Relatório parado | "Parado há mais de 15 minutos. Rode de novo.", na aba **Com erro**. | Selecione e rode de novo. |
+| Alguém alterou o relatório antes | No topo da revisão: "Este relatório foi alterado por _nome_ às _hora_." ou "…alterado em outra aba…". | Clique em **Recarregar** para ver a versão atual. |
+| O PDF não abre ao lado | O painel mostra o **Texto do OCR**, com um aviso. | Use **Abrir o PDF em nova aba**. |
+| Precisa refazer a extração | — | Em **Mais ações**, use **Extrair de novo** ou **Descartar rascunho**. As duas pedem confirmação. |
+
+<Note>
+  **Extrair de novo** consome créditos de IA e descarta o rascunho atual. **Descartar rascunho** volta os campos ao que a IA leu, ou à versão publicada. Nos dois casos, a versão publicada continua valendo até a nova revisão.
+</Note>
+
+<Tip>
+  Para ler os números depois de publicar, veja [Ler o dossiê da obra](/construction/dossie).
+</Tip>
