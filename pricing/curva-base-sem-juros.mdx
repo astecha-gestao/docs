@@ -1,0 +1,45 @@
+---
+title: "Curva BASE que não acumula juros"
+sidebarTitle: "Curva sem juros"
+description: "O que significa o aviso de título prefixado cuja curva BASE não rende, onde ele aparece e como corrigir."
+icon: "triangle-exclamation"
+---
+
+Um título **prefixado**, com **taxa de emissão maior que zero**, tem de render todo dia. Quando a curva BASE dele não sobe, ou cai num dia sem pagamento, o cadastro das fórmulas está quebrado. A dívida fica congelada e nada mais na tela avisa.
+
+<Info>
+  **Onde aparece:** na **Razão de Garantia** do deal (Securitização) e em **Pricing → Check**, acima do funil.
+</Info>
+
+## O que o aviso diz
+
+O aviso nomeia o título, a taxa e a data em que o defeito começa. Há dois casos:
+
+| Caso | O que a curva faz | Data mostrada |
+|---|---|---|
+| **O PU não sobe em dia nenhum** | A curva fica no mesmo PU até o vencimento. Em geral, as fórmulas de juros estão na constante `1`. | O primeiro dia da curva. |
+| **Cai em dias sem pagamento** | A curva sobe e volta ao início a cada ciclo. Em geral, o expoente da fórmula zera em cada aniversário. | A primeira queda. |
+
+<Note>
+  O aviso não depende de o PU bater com o do administrador. O preço do dia pode estar certo e a curva, quebrada.
+</Note>
+
+## Como corrigir
+
+<Steps>
+  <Step title="Abra os parâmetros do título">
+    Em **Pricing → Curva → Parâmetros**, abra o título que o aviso nomeia.
+  </Step>
+  <Step title="Confira o grupo JUROS">
+    As fórmulas de juros de um prefixado precisam acumular a taxa ao longo do tempo. Uma constante `1` ou um expoente que zera a cada ciclo produz o defeito.
+  </Step>
+  <Step title="Regere a curva">
+    Gere a curva BASE de novo e recarregue a tela. O aviso some quando a curva passa a subir.
+  </Step>
+</Steps>
+
+## Quando o aviso não aparece
+
+- **Títulos em CDI, IPCA, SELIC ou IGP-M.** Neles, a constante `1` no grupo JUROS está certa: a remuneração entra pelo índice.
+- **Indexador em branco ou que a plataforma não reconhece.** Para avisar, o cadastro precisa dizer que o título é prefixado.
+- **Taxa zero ou vazia, ou curva com menos de dois pontos.**
